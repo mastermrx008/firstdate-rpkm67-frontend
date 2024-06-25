@@ -2,3 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.bg-1 {
+    background-image: url('/bg-1.svg');
+    background-repeat: repeat;
+    background-size: cover;
+}
+
+.bg-2 {
+    background-image: url('/bg-2.svg');
+    background-repeat: repeat;
+    background-size: cover;
+}
