@@ -45,7 +45,9 @@ export default function Footer() {
                 width={28}
                 height={28}
               />
-              <p className="underline underline-offset-2 text-xss lg:text-base">Website</p>
+              <p className="underline underline-offset-2 text-xss lg:text-base">
+                Website
+              </p>
             </div>
           </Link>
           <Link href="https://www.instagram.com/isd.sgcu/">
@@ -56,7 +58,9 @@ export default function Footer() {
                 width={28}
                 height={28}
               />
-              <p className="underline underline-offset-2 text-xss lg:text-base">Instagram</p>
+              <p className="underline underline-offset-2 text-xss lg:text-base">
+                Instagram
+              </p>
             </div>
           </Link>
         </div>
