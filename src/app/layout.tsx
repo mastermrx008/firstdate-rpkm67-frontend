@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Athiti } from 'next/font/google';
 import './globals.css';
+import Footer from '@/components/Footer';
 
 const athiti = Athiti({
   subsets: ['latin', 'thai'],
@@ -20,6 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={athiti.className + ' w-full min-h-screen bg-1'}>
         {children}
+        <Footer />
       </body>
     </html>
   );
