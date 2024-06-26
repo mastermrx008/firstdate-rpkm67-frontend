@@ -7,7 +7,7 @@ import SGCU_LOGO from '@public/footer/sgcu-logo.svg';
 export default function Footer() {
   return (
     <footer className="relative w-full bg-blue-400 text-center">
-      <section className="bg-gradient-footer text-xs font-medium grid grid-cols-1 gap-y-4 p-4">
+      <section className="bg-gradient-footer text-xs lg:text-xl font-medium grid grid-cols-1 gap-y-4 p-4">
         <div className="flex gap-4 justify-center">
           <Image
             src={ISD_LOGO}
@@ -34,7 +34,7 @@ export default function Footer() {
           Student Government Chulalongkorn University
         </p>
       </section>
-      <section className="bg-white text-base pb-2 font-medium pt-1">
+      <section className="bg-white text-base lg:text-3xl pb-2 lg:pb-4 font-medium pt-1 lg:pt-2">
         <h3 className="font-semibold mb-2">Contact us</h3>
         <div className="flex justify-center text-xs gap-x-4">
           <Link href="https://isd.sgcu.in.th">
@@ -45,7 +45,7 @@ export default function Footer() {
                 width={28}
                 height={28}
               />
-              <p className="underline underline-offset-2 text-xss">Website</p>
+              <p className="underline underline-offset-2 text-xss lg:text-base">Website</p>
             </div>
           </Link>
           <Link href="https://www.instagram.com/isd.sgcu/">
@@ -56,7 +56,7 @@ export default function Footer() {
                 width={28}
                 height={28}
               />
-              <p className="underline underline-offset-2 text-xss">Instagram</p>
+              <p className="underline underline-offset-2 text-xss lg:text-base">Instagram</p>
             </div>
           </Link>
         </div>
