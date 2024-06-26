@@ -138,3 +138,28 @@ Instruction Step :
 4. Implement Query or Mutation function in **Page** and pass data to components
 
 \*\* **Do not query data in any Component !!**
+
+
+tasks first date
+น้อง
+[ ]  coming soon
+[ ]  map
+[ ]  contact list
+[ ]  main home
+[ ]  หน้าเเรก
+[ ]  register 
+[ ]  pdpa
+[ ]  เเก้ไข profile
+[ ]  stamp
+[ ]  otp  && text for stamp pop up
+[ ]  reward 
+[ ]  stat
+[ ]  card result
+
+พี่
+[ ]  register
+[ ]  qr reader
+[ ]  confirm popup
+[ ]  otp
+[ ]  profile
+
