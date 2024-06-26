@@ -1,8 +1,8 @@
 import React from 'react';
-import darkPinkBorder from '../../public/border/darkPinkBorder.webp';
-import lightPinkBorder from '../../public/border/lightPinkBorder.webp';
-import whiteBrownBorder from '../../public/border/whiteBrownBorder.webp';
-import transparentBorder from '../../public/border/transparentBorder.webp';
+import darkPinkBorder from '../../public/border/darkPinkBorder.svg';
+import lightPinkBorder from '../../public/border/lightPinkBorder.svg';
+import whiteBrownBorder from '../../public/border/whiteBrownBorder.svg';
+import transparentBorder from '../../public/border/transparentBorder.svg';
 
 interface BorderProps {
   variant: 'dark-pink' | 'light-pink' | 'white-brown' | 'transparent';
@@ -12,25 +12,25 @@ interface BorderProps {
 
 const borderStyles = {
   'dark-pink': {
-    base: 'bg-cover bg-center',
+    base: '',
     style: {
       backgroundImage: `url(${darkPinkBorder.src})`,
     },
   },
   'light-pink': {
-    base: 'bg-cover bg-center opacity-70',
+    base: 'opacity-70',
     style: {
       backgroundImage: `url(${lightPinkBorder.src})`,
     },
   },
   'white-brown': {
-    base: 'bg-cover bg-center',
+    base: '',
     style: {
       backgroundImage: `url(${whiteBrownBorder.src})`,
     },
   },
   transparent: {
-    base: 'bg-cover bg-center opacity-70',
+    base: 'opacity-70',
     style: {
       backgroundImage: `url(${transparentBorder.src})`,
     },
@@ -46,7 +46,7 @@ const Border: React.FC<BorderProps> = ({
 
   return (
     <div
-      className={`flex pt-24 p-10 items-center flex-col w-[360px] h-[799px]  ${base} ${className}`}
+      className={`flex my-[4%] pt-24 p-10 items-center flex-col w-[90%] h-full bg-contain bg-no-repeat bg-top  ${base} ${className}`}
       style={style}
     >
       {children}
