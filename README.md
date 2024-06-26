@@ -142,24 +142,24 @@ Instruction Step :
 
 tasks first date
 น้อง
-[ ]  coming soon
-[ ]  map
-[ ]  contact list
-[ ]  main home
-[ ]  หน้าเเรก
-[ ]  register 
-[ ]  pdpa
-[ ]  เเก้ไข profile
-[ ]  stamp
-[ ]  otp  && text for stamp pop up
-[ ]  reward 
-[ ]  stat
-[ ]  card result
+- [ ]  coming soon
+- [ ]  map
+- [ ]  contact list
+- [ ]  main home
+- [ ]  หน้าเเรก
+- [ ]  register 
+- [ ]  pdpa
+- [ ]  เเก้ไข profile
+- [ ]  stamp
+- [ ]  otp  && text for stamp pop up
+- [ ]  reward 
+- [ ]  stat
+- [ ]  card result
 
 พี่
-[ ]  register
-[ ]  qr reader
-[ ]  confirm popup
-[ ]  otp
-[ ]  profile
+- [ ]  register
+- [ ]  qr reader
+- [ ]  confirm popup
+- [ ]  otp
+- [ ]  profile
 
