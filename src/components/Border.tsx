@@ -3,9 +3,10 @@ import darkPinkBorder from '../../public/border/darkPinkBorder.svg';
 import lightPinkBorder from '../../public/border/lightPinkBorder.svg';
 import whiteBrownBorder from '../../public/border/whiteBrownBorder.svg';
 import transparentBorder from '../../public/border/transparentBorder.svg';
+import whiteBorder from '@public/border/whiteBorder.svg';
 
 interface BorderProps {
-  variant: 'dark-pink' | 'light-pink' | 'white-brown' | 'transparent';
+  variant: 'dark-pink' | 'light-pink' | 'white-brown' | 'transparent' | 'white';
   className?: string;
   children?: React.ReactNode;
 }
@@ -33,6 +34,12 @@ const borderStyles = {
     base: 'opacity-70',
     style: {
       backgroundImage: `url(${transparentBorder.src})`,
+    },
+  },
+  white: {
+    base: '',
+    style: {
+      backgroundImage: `url(${whiteBorder.src})`,
     },
   },
 };
