@@ -27,13 +27,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-<<<<<<< HEAD
-        theseasons: ['var(--font-theseasons)'],
-=======
         season: ['var(--season)', 'system-ui'],
         athiti: ['var(--athiti)', 'system-ui'],
         sarun: ['var(--sarun)', 'system-ui'],
->>>>>>> main
       },
     },
   },
