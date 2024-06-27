@@ -18,7 +18,7 @@ const borderStyles = {
     },
   },
   'light-pink': {
-    base: 'opacity-70',
+    base: 'bg-opacity-70',
     style: {
       backgroundImage: `url(${lightPinkBorder.src})`,
     },
@@ -30,7 +30,7 @@ const borderStyles = {
     },
   },
   transparent: {
-    base: 'opacity-70',
+    base: 'bg-opacity-70',
     style: {
       backgroundImage: `url(${transparentBorder.src})`,
     },
