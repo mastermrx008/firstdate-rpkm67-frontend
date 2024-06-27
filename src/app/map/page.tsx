@@ -7,8 +7,8 @@ import { Icon } from '@iconify/react';
 export default function Map() {
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
-      <Border variant="white-brown">
-        <div className="relative flex flex-col w-full max-w-64 sm:max-w-64 items-center justify-center pt-10 gap-5">
+      <Border variant="white">
+        <div className="relative flex flex-col w-full max-w-80 items-center justify-center pt-10 gap-5">
           <div className="font-season italic text-2xl">Map</div>
           <Image
             src={MapImage}
