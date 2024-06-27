@@ -31,14 +31,19 @@ export default function Pdpa() {
     <div className="flex justify-center items-center z-10 inset-0 bg-black bg-opacity-25">
       <div className="relative flex flex-col justify-center items-center bg-white m-5 p-6 rounded-[20px]">
         <div className="absolute right-4 top-4">
-            <button>
-                <svg className="w-10 h-10"
-                    viewBox="0 0 24 24">
-                    <path stroke="currentColor" 
-                    stroke-linecap="round" stroke-width="1.5" 
-                    d="m8.464 15.535l7.072-7.07m-7.072 0l7.072 7.07"/>
-                </svg>
-            </button>
+          <button>
+            <svg
+              className="w-10 h-10"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-width="1.5"
+                d="m8.464 15.535l7.072-7.07m-7.072 0l7.072 7.07"
+              />
+            </svg>
+          </button>
         </div>
         <h1 className="mt-2 font-semibold text-5xl">PDPA</h1>
         <div className="m-8 bg-black h-[1px] w-[95%]"></div>
@@ -76,7 +81,7 @@ export default function Pdpa() {
               >
                 <path
                   d="M16.7,5.3c-0.4-0.4-1-0.4-1.4,0L7.4,13.2L4.7,10.6c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l3.3,3.3c0.2,0.2,0.4,0.3,0.7,0.3
-                                            s0.5-0.1,0.7-0.3l8.7-8.7C17.1,6.3,17.1,5.7,16.7,5.3z"
+                    s0.5-0.1,0.7-0.3l8.7-8.7C17.1,6.3,17.1,5.7,16.7,5.3z"
                 />
               </svg>
             )}
