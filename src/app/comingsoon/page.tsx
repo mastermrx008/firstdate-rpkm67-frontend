@@ -14,7 +14,7 @@ export default function Home() {
         <h1 className="text-2xl text-center font-semibold text-project-light-gray mb-6">
           รับเพื่อนก้าวใหม่ 2024
         </h1>
-        <h1 className="text-4xl text-center text-project-light-gray mb-8 font-theseasons italic font-bold">
+        <h1 className="text-4xl text-center text-project-light-gray mb-8 font-season italic font-bold">
           &#39;Coming Soon&#39;
         </h1>
         <h1 className="text-xl text-center font-semibold text-project-light-gray mb-10">
