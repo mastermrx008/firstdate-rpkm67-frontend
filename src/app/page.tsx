@@ -7,7 +7,7 @@ export default function Home() {
         <h1 className="text-4xl font text-center text-white font-season italic">
           Contact list
         </h1>
-        <p className='font-sarun'>test สวัสดีครับ</p>
+        <p className="font-sarun">test สวัสดีครับ</p>
       </Border>
     </main>
   );
