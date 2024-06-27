@@ -8,7 +8,8 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        'gradient-footer': 'linear-gradient(90deg, #E9A49B -3.82%, #FFFFFF 52.04%, #FFBBD2 85.55%, #F1DFC1 107.89%)',
+        'gradient-footer':
+          'linear-gradient(90deg, #E9A49B -3.82%, #FFFFFF 52.04%, #FFBBD2 85.55%, #F1DFC1 107.89%)',
       },
       fontSize: {
         xss: ['0.625rem', '0.875rem'], //size: 10px, line-height: 14px
@@ -24,6 +25,9 @@ const config: Config = {
           'light-gray': '#313131',
           'light-blue': '#D8E3FE',
         },
+      },
+      fontFamily: {
+        theseasons: ['var(--font-theseasons)'],
       },
     },
   },
