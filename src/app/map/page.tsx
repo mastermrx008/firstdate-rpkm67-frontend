@@ -8,24 +8,21 @@ export default function Map() {
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
       <Border variant="white">
-        <div className="relative flex flex-col w-full max-w-80 items-center justify-center pt-10 gap-5">
-          <div className="font-season italic text-2xl">Map</div>
+        <div className="flex w-full justify-center">
           <Image
-            src={MapImage}
-            alt="map"
-            className="w-full aspect-auto"
+            src={FDLogo}
+            alt="logo"
+            className="w-44"
           />
-          <div className="font-season italic text-2xl text-center p-4 bg-project-fuchsia">
-            Lorem ipsum dolor sit amet
-          </div>
-
-          <div className="absolute flex -top-16 w-full justify-center">
-            <Image
-              src={FDLogo}
-              alt="logo"
-              className="w-44"
-            />
-          </div>
+        </div>
+        <div className="font-season italic text-2xl mt-6">Map</div>
+        <Image
+          src={MapImage}
+          alt="map"
+          className="w-full aspect-auto mt-5"
+        />
+        <div className="font-season italic text-2xl text-center p-4 mt-5 bg-project-fuchsia">
+          Lorem ipsum dolor sit
         </div>
       </Border>
       <div className="absolute top-6 right-4 flex flex-col items-center">
