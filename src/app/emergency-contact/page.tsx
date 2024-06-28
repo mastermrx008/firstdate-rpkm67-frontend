@@ -20,9 +20,9 @@ export default function Home() {
         </div>
         <div className="mt-2 flex flex-col gap-y-4 items-center">
           <p className="font-athiti font-medium">เหตุฉุกเฉิน</p>
-          <div className="w-56 h-56 relative bg-project-gray/50 rounded-full flex flex-col items-center justify-center">
-            <div className="w-48 h-48 relative bg-project-gray rounded-full flex flex-col items-center justify-center">
-              <div className="w-40 h-40 relative bg-project-fuchsia rounded-full flex flex-col items-center justify-center">
+          <div className="w-[221px] h-[221px]  relative bg-project-gray/50 rounded-full flex flex-col items-center justify-center">
+            <div className="w-[185px] h-[185px]  relative bg-project-gray rounded-full flex flex-col items-center justify-center">
+              <div className="w-[163px] h-[163px]  relative bg-project-fuchsia rounded-full flex flex-col items-center justify-center">
                 <Image
                   src={EmergencyIcon}
                   alt="emergency icon"
