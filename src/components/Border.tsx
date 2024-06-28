@@ -46,7 +46,7 @@ const Border: React.FC<BorderProps> = ({
 
   return (
     <div
-      className={`flex my-[4%] pt-24 p-10 items-center flex-col w-[90%] h-full bg-contain bg-no-repeat bg-top  ${base} ${className}`}
+      className={`flex items-center flex-col w-[calc(100vh*(72/156)*(9/10))] h-full bg-contain bg-no-repeat bg-top py-[6%] px-[6%] my-[5%] ${base} ${className}`}
       style={style}
     >
       {children}
