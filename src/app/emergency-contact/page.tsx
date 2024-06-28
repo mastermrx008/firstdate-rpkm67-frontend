@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col">
       <Border variant="transparent">
-        <div className="-mt-11 flex flex-col  items-center">
+        <div className="mt-7 flex flex-col  items-center">
           <h1 className="text-center text-4xl text-balance font-season italic ">
             Emergency Contact
           </h1>
