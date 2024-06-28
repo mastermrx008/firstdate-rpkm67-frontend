@@ -18,7 +18,7 @@ const EmergencyCallBlock: React.FC<EmergencyCallProps> = ({
       </div>
       <div className="flex items-center">
         <a href={`tel:${phoneNumber}`}>
-          <button className="shadow flex rounded-full flex-cols w-11 h-11 bg-project-fuchsia  justify-center items-center">
+          <button className="shadow-[0_0_4px_0px_rgba(0,0,0,0.25)] flex rounded-full flex-cols w-11 h-11 bg-project-fuchsia  justify-center items-center">
             <Icon
               icon="fluent:call-connecting-20-filled"
               className="text-white"
