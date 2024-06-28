@@ -17,14 +17,16 @@ const EmergencyCallBlock: React.FC<EmergencyCallProps> = ({
         <p className="text-black text-base opacity-50">{phoneNumber}</p>
       </div>
       <div className="flex items-center">
-        <button className="shadow flex rounded-full flex-cols w-11 h-11 bg-project-fuchsia  justify-center items-center">
-          <Icon
-            icon="fluent:call-connecting-20-filled"
-            className="text-white"
-            width={24}
-            height={24}
-          />
-        </button>
+        <a href={`tel:${phoneNumber}`}>
+          <button className="shadow flex rounded-full flex-cols w-11 h-11 bg-project-fuchsia  justify-center items-center">
+            <Icon
+              icon="fluent:call-connecting-20-filled"
+              className="text-white"
+              width={24}
+              height={24}
+            />
+          </button>
+        </a>
       </div>
     </div>
   );

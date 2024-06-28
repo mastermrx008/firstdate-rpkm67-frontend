@@ -22,15 +22,17 @@ export default function Home() {
           <p className="font-athiti font-medium">เหตุฉุกเฉิน</p>
           <div className="w-[221px] h-[221px]  relative bg-project-gray/50 rounded-full flex flex-col items-center justify-center">
             <div className="w-[185px] h-[185px]  relative bg-project-gray rounded-full flex flex-col items-center justify-center">
-              <div className="w-[163px] h-[163px]  relative bg-project-fuchsia rounded-full flex flex-col items-center justify-center">
-                <Image
-                  src={EmergencyIcon}
-                  alt="emergency icon"
-                  className=""
-                ></Image>
-                <p className="text-white text-xs">ศูนย์ รปภ. จุฬาฯ</p>
-                <p className="text-white text-xs">02-218-0000</p>
-              </div>
+              <a href="tel:022180000">
+                <div className="w-[163px] h-[163px]  relative bg-project-fuchsia rounded-full flex flex-col items-center justify-center">
+                  <Image
+                    src={EmergencyIcon}
+                    alt="emergency icon"
+                    className=""
+                  ></Image>
+                  <p className="text-white text-xs">ศูนย์ รปภ. จุฬาฯ</p>
+                  <p className="text-white text-xs">02-218-0000</p>
+                </div>
+              </a>
             </div>
           </div>
         </div>
