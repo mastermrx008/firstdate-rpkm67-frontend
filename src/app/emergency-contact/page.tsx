@@ -1,9 +1,10 @@
 import Border from '@/components/Border';
 import Image from 'next/image';
 import { Icon } from '@iconify/react';
-import EmergencyCallBlock from '@/components/emergency-contact/emergency-call-block';
 import object from '@/assets/emergency-contact/Objects.svg';
 import EmergencyIcon from '@/assets/emergency-contact/emergency-icon.svg';
+import EmergencyCallBlock from '@/components/emergency-contact/EmergencyCallBlock';
+import EmergencyCircle from '@/components/emergency-contact/EmergencyCircle';
 
 export default function Emergency() {
   return (
@@ -18,12 +19,21 @@ export default function Emergency() {
             alt="object"
           ></Image>
         </div>
-        <div className="mt-2 flex flex-col gap-y-4 items-center">
-          <p className="font-athiti font-medium">เหตุฉุกเฉิน</p>
-          <div className="size-[221px] bg-project-gray/50 rounded-full flex flex-col items-center justify-center">
-            <div className="size-[185px] bg-project-gray rounded-full flex flex-col items-center justify-center">
+        <div className="mt-2">
+          <EmergencyCircle
+            size={221}
+            backgroundColor={'project-gray/50'}
+          >
+            <EmergencyCircle
+              size={185}
+              backgroundColor={'project-gray'}
+            >
               <a href="tel:022180000">
-                <div className="size-[163px] bg-project-fuchsia rounded-full flex flex-col items-center justify-center text-white text-xs">
+                <EmergencyCircle
+                  size={163}
+                  backgroundColor={'project-fuchsia'}
+                  className="text-white text-xs"
+                >
                   <Image
                     src={EmergencyIcon}
                     alt="emergency icon"
@@ -31,10 +41,10 @@ export default function Emergency() {
                   ></Image>
                   <p className="">ศูนย์ รปภ. จุฬาฯ</p>
                   <p>02-218-0000</p>
-                </div>
+                </EmergencyCircle>
               </a>
-            </div>
-          </div>
+            </EmergencyCircle>
+          </EmergencyCircle>
         </div>
         <div className="mt-4">
           <div className="flex flex-col gap-y-3">
