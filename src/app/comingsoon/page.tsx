@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Border from '@/components/Border';
 import Back_To_Menu from '@/components/comingsoon/back_to_menu';
-import Welcome from '@/components/welcome';
+import Welcome from '@/components/Welcome';
 import comingsoon from '../../../public/comingsoon.svg';
 
 export default function Home() {
@@ -9,7 +9,7 @@ export default function Home() {
     <main className="w-full h-screen flex justify-center items-center flex-col">
       <Border
         variant="transparent"
-        className="flex justify-center items-center flex-col"
+        className="flex flex-col"
       >
         {' '}
         <Welcome />
