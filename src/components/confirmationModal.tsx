@@ -1,6 +1,6 @@
 // components/ConfirmationModal.tsx
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React from 'react';
 
 interface ConfirmationModalProps {
   isOpen: boolean;
@@ -13,22 +13,16 @@ interface ConfirmationModalProps {
 const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
   isOpen,
   title,
-  message,
   onConfirm,
   onClose,
 }) => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   const handleConfirm = async () => {
-    setIsSubmitting(true);
     try {
       await onConfirm();
       onClose();
     } catch (error) {
       console.error('Confirmation failed:', error);
-      setIsSubmitting(false);
     } finally {
-      setIsSubmitting(false);
     }
   };
 
