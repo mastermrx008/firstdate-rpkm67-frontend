@@ -22,7 +22,6 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
       onClose();
     } catch (error) {
       console.error('Confirmation failed:', error);
-    } finally {
     }
   };
 
