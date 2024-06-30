@@ -1,3 +1,4 @@
+'use client';
 import CongratsModal from '@/components/congratulation/CongratsModal';
 
 export default function Map() {
