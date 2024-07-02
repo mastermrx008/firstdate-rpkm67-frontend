@@ -8,11 +8,12 @@ import qrcodeIcon from '@public/home/icon/qrcode.svg'
 import editIcon from '@public/home/icon/edit.svg'
 import smurfCat from '@public/home/smurfcat.png'
 
+
 export default function Home() {
     
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
-      <Border variant='transparent' className="px-[0%] py-[0%]">
+      <Border variant='transparent' className="pl-[0%] pr-[0%] pt-[0%]">
         <div className="flex flex-col w-[90%] h-[90vh] opacity-100 justify-center">
             
             
