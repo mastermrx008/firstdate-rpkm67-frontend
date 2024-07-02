@@ -5,6 +5,7 @@ export default function Map() {
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
       <CongratsModal
+        isOpen={true}
         score={0}
         handleBack={() => {}}
         handleSubmit={() => {}}
