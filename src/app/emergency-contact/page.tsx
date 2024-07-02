@@ -1,5 +1,6 @@
 import Border from '@/components/Border';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Icon } from '@iconify/react';
 import object from '@/assets/emergency-contact/Objects.svg';
 import EmergencyIcon from '@/assets/emergency-contact/emergency-icon.svg';
@@ -51,20 +52,19 @@ export default function Emergency() {
             src={object}
             alt="object"
           ></Image>
-          <button className="w-3/4 p-2 rounded-lg border-[1px] border-project-fuchsia">
-            <a href="/home">
-              <div className="flex flex-row gap-x-2 text-project-fuchsia justify-center items-center">
-                <Icon
-                  icon="ion:chevron-back"
-                  width={24}
-                  height={24}
-                />
-                <p className="font-athiti text-xl font-medium">
-                  กลับสู่หน้าหลัก
-                </p>
-              </div>
-            </a>
-          </button>
+          <Link
+            className="w-3/4 p-2 rounded-lg border-[1px] border-project-fuchsia"
+            href="/home"
+          >
+            <div className="flex flex-row gap-x-2 text-project-fuchsia justify-center items-center">
+              <Icon
+                icon="ion:chevron-back"
+                width={24}
+                height={24}
+              />
+              <p className="font-athiti text-xl font-medium">กลับสู่หน้าหลัก</p>
+            </div>
+          </Link>
         </div>
       </Border>
     </main>
