@@ -2,16 +2,18 @@ import Border from '@/components/Border';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Icon } from '@iconify/react';
-import SGCUlogo from '@/assets/registered/SGCUlogo.svg';
-import CU108 from '@/assets/registered/CU108.svg';
-import sparkle from '@/assets/registered/sparkle.svg';
-import registered from '@/assets/registered/registered.png';
-import dot from '@/assets/registered/dot.svg';
+import Flowers from '@/components/registered/flowers';
+import SGCUlogo from '../../../public/registered/SGCUlogo.svg';
+import CU108 from '../../../public/registered/CU108.svg';
+import sparkle from '../../../public/registered/sparkle.svg';
+import registered from '../../../public/registered/registered.png';
+import dot from '../../../public/registered/dot.svg';
 
 export default function Registered() {
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col">
       <Border variant="white-brown">
+        <Flowers />
         <div>
           <Image
             src={SGCUlogo}
@@ -29,7 +31,7 @@ export default function Registered() {
           ></Image>
         </div>
         <div className="flex flex-col items-center">
-          <div className="flex flex-row justify-between w-11/12">
+          <div className="flex flex-row justify-between w-11/12 z-10">
             <Image
               src={sparkle}
               alt="left sparkle"
@@ -52,9 +54,9 @@ export default function Registered() {
             alt="dot"
           ></Image>
         </div>
-        <div className="font-athiti text-base font-semibold text-center">
-          <p>‘แล้วพบกันไอ่เย็ดแม่’</p>
-          <p>วันที่ 21 กรกฎวย | เวลา หาเอาเอง นะ</p>
+        <div className="font-athiti text-base font-semibold text-center text-nowrap">
+          <p>‘แล้วพบกัน’</p>
+          <p>วันที่ 21 กรกฎาคม | เวลา 8.00 น.</p>
           <p>จุฬาลงกรณ์มหาวิทยาลัย</p>
         </div>
         <div className="w-5/6 mt-9">
