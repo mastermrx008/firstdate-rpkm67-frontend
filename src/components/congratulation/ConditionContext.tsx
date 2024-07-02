@@ -64,7 +64,10 @@ const StyledHR: React.FC<ReactMarkdownProps> = ({ ...props }) => {
   );
 };
 
-const ConditionContext = () => {
+interface ConditionContextProps {
+  handleBack: () => void;
+}
+const ConditionContext: React.FC<ConditionContextProps> = ({ handleBack }) => {
   return (
     <>
       <span className="text-center font-athiti font-semibold text-2xl">
@@ -94,6 +97,17 @@ const ConditionContext = () => {
         alt="divider"
         className="w-full h-4 bg-cover px-[20%] mt-6"
       />
+      <div className='w-full px-[15%] flex pt-6'>
+        <button
+          className="w-full h-12 flex items-center justify-center rounded-lg bg-project-light-gray"
+          onClick={handleBack}
+        >
+          <span className="font-athiti font-medium text-xl text-white">
+            กลับไปเดินทางต่อ
+          </span>
+        </button>
+      </div>
+
     </>
   );
 };

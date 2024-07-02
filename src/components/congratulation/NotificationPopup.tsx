@@ -21,10 +21,12 @@ const NotificationPopup: React.FC<NotificationPopupProps> = ({
         backgroundImage: `url(${NotiBg.src})`,
         backgroundSize: '100% 100%',
       }}
-      className={`w-full ${showCondition ? 'aspect-[390/589]' : 'aspect-[333/535]'} bg-no-repeat bg-center flex flex-col items-center py-[16%]`}
+      className={`w-full ${showCondition ? 'aspect-[390/640]' : 'aspect-[333/535]'} bg-no-repeat bg-center flex flex-col items-center py-[16%]`}
     >
       {showCondition ? (
-        <ConditionContext />
+        <ConditionContext 
+          handleBack={handleBack}
+        />
       ) : (
         <NotificationContext
           handleOnClickShowCondition={handleOnClickShowCondition}
