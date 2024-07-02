@@ -2,8 +2,8 @@ import Border from '@/components/Border';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Icon } from '@iconify/react';
-import object from '@/assets/emergency-contact/Objects.svg';
-import EmergencyIcon from '@/assets/emergency-contact/emergency-icon.svg';
+import object from '@public/emergency-contact/Objects.svg';
+import EmergencyIcon from '@public/emergency-contact/emergency-icon.svg';
 import EmergencyCallBlock from '@/components/emergency-contact/EmergencyCallBlock';
 
 export default function Emergency() {

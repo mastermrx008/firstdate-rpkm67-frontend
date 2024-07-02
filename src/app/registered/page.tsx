@@ -3,11 +3,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Icon } from '@iconify/react';
 import Flowers from '@/components/registered/flowers';
-import SGCUlogo from '../../../public/registered/SGCUlogo.svg';
-import CU108 from '../../../public/registered/CU108.svg';
-import sparkle from '../../../public/registered/sparkle.svg';
-import registered from '../../../public/registered/registered.png';
-import dot from '../../../public/registered/dot.svg';
+import SGCUlogo from '@public/registered/SGCUlogo.svg';
+import CU108 from '@public/registered/CU108.svg';
+import sparkle from '@public/registered/sparkle.svg';
+import registered from '@public/registered/registered.png';
+import dot from '@public/registered/dot.svg';
 
 export default function Registered() {
   return (
