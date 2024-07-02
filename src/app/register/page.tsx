@@ -30,18 +30,18 @@ export default function Register() {
           </h3>
         </div>
         <div>
-          <button className="w-64 h-12 rounded-md bg-white shadow-[0px_2px_4px_#00000026]">
+          <button className="text-xl w-64 h-12 rounded-md font-semibold bg-white shadow-[0px_2px_4px_#00000026]">
             ลงทะเบียน
           </button>
-          <p className="text-md text-center font-medium text-black mt-2">
+          <p className="text-base text-center font-medium text-black mt-2">
             *โปรดใช้Emailของจุฬาฯในการลงทะเบียน*
           </p>
         </div>
-        <div className="mb-36">
+        <div className="flex mb-36 flex-col items-center">
           <p className="text-lg text-center font-semibold text-black">
             เคยลงทะเบียนมาแล้ว?
           </p>
-          <p className="text-lg text-center font-semibold text-black">
+          <p className="text-xl text-center font-semibold text-black underline drop-shadow-text">
             เข้าสู่ระบบ
           </p>
         </div>
