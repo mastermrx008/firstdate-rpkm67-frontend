@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Icon } from '@iconify/react';
 import object from '@public/emergency-contact/Objects.svg';
-import EmergencyIcon from '@public/emergency-contact/emergency-icon.svg';
+import EmergencyCircles from '@/components/emergency-contact/EmergencyCircles';
 import EmergencyCallBlock from '@/components/emergency-contact/EmergencyCallBlock';
 
 export default function Emergency() {
@@ -19,24 +19,7 @@ export default function Emergency() {
             alt="object"
           ></Image>
         </div>
-        <div className="mt-2 flex flex-col gap-y-4 items-center">
-          <p className="font-athiti font-medium">เหตุฉุกเฉิน</p>
-          <div className="size-[221px] bg-project-gray/50 rounded-full flex flex-col items-center justify-center">
-            <div className="size-[185px] bg-project-gray rounded-full flex flex-col items-center justify-center">
-              <a href="tel:022180000">
-                <div className="size-[163px] bg-project-fuchsia rounded-full flex flex-col items-center justify-center">
-                  <Image
-                    src={EmergencyIcon}
-                    alt="emergency icon"
-                    className=""
-                  ></Image>
-                  <p className="text-white text-xs">ศูนย์ รปภ. จุฬาฯ</p>
-                  <p className="text-white text-xs">02-218-0000</p>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
+        <EmergencyCircles />
         <div className="mt-4 flex flex-col gap-y-3 w-11/12">
           <EmergencyCallBlock
             text="เหตุภายนอกมหาวิทยาลัย"
