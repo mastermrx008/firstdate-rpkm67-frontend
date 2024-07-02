@@ -45,7 +45,9 @@ export default function Emergency() {
                 width={24}
                 height={24}
               />
-              <p className="font-athiti text-xl font-medium">กลับสู่หน้าหลัก</p>
+              <p className="font-athiti text-xl font-medium text-nowrap">
+                กลับสู่หน้าหลัก
+              </p>
             </div>
           </Link>
         </div>
