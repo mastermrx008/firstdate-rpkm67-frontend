@@ -13,14 +13,13 @@ export default function Registered() {
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col">
       <Border variant="white-brown">
-        <Flowers />
         <div>
           <Image
             src={SGCUlogo}
             alt="SGCU logo"
           ></Image>
         </div>
-        <div className="flex flex-col items-center mt-20 mb-11">
+        <div className="flex flex-col items-center mt-20 mb-11 z-10">
           <h1 className="text-project-brown font-season italic text-5xl font-bold">
             Welcome,
           </h1>
@@ -54,12 +53,12 @@ export default function Registered() {
             alt="dot"
           ></Image>
         </div>
-        <div className="font-athiti text-base font-semibold text-center text-nowrap">
+        <div className="font-athiti text-base font-semibold text-center text-nowrap z-10">
           <p>‘แล้วพบกัน’</p>
           <p>วันที่ 21 กรกฎาคม | เวลา 8.00 น.</p>
           <p>จุฬาลงกรณ์มหาวิทยาลัย</p>
         </div>
-        <div className="w-5/6 mt-9">
+        <div className="w-5/6 mt-9 z-10">
           <Link
             href="/home"
             className="flex flex-row items-center justify-center bg-project-fuchsia px-2 py-[10px] gap-x-2 rounded-lg text-white"
@@ -72,6 +71,7 @@ export default function Registered() {
             <p className="font-athiti text-xl font-medium">เข้าสู่หน้าหลัก</p>
           </Link>
         </div>
+        <Flowers />
       </Border>
     </main>
   );

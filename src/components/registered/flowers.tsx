@@ -4,7 +4,7 @@ import flower2 from '../../../public/registered/flower2.png';
 
 export default function Flowers() {
   return (
-    <div className="-z-10 overflow-hidden	absolute top-0 left-0 right-0 w-full h-screen">
+    <div className="overflow-hidden absolute top-0 left-0 right-0 w-full h-screen">
       <Image
         src={flower2}
         alt="top left flower"
@@ -23,7 +23,7 @@ export default function Flowers() {
       <Image
         src={flower1}
         alt="bottom left flower"
-        className="absolute w-56 -right-20 -bottom-1 rotate-"
+        className="absolute w-56 -right-20 -bottom-1"
       ></Image>
     </div>
   );
