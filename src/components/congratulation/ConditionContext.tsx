@@ -10,45 +10,41 @@ import {
 import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
 import '@/components/congratulation/style.css';
 
-const StyledH1: React.FC<HeadingProps> = ({ children, ...props }) => {
+const StyledH1: React.FC<HeadingProps> = ({ children }) => {
   return (
     <h1
       className="text-center font-medium whitespace-pre-wrap"
-      {...props}
     >
       {children}
     </h1>
   );
 };
 
-const StyledP: React.FC<ReactMarkdownProps> = ({ children, ...props }) => {
+const StyledP: React.FC<ReactMarkdownProps> = ({ children  }) => {
   return (
     <p
       className="text-xs whitespace-pre-wrap"
-      {...props}
     >
       {children}
     </p>
   );
 };
 
-const StyledLI: React.FC<LiProps> = ({ children, ...props }) => {
+const StyledLI: React.FC<Omit<LiProps , "ordered">> = ({ children }) => {
   return (
     <li
       className="text-xs whitespace-pre-wrap"
-      {...props}
     >
       {children}
     </li>
   );
 };
 
-const StyledOL: React.FC<OrderedListProps> = ({ children, ...props }) => {
+const StyledOL: React.FC<OrderedListProps> = ({ children }) => {
   return (
     <ol
       className="flex flex-col pl-4 gap-3"
       style={{ listStyleType: 'decimal' }}
-      {...props}
     >
       {children}
     </ol>
