@@ -24,9 +24,7 @@ const NotificationPopup: React.FC<NotificationPopupProps> = ({
       className={`w-full ${showCondition ? 'aspect-[390/640]' : 'aspect-[333/535]'} bg-no-repeat bg-center flex flex-col items-center py-[16%]`}
     >
       {showCondition ? (
-        <ConditionContext 
-          handleBack={handleBack}
-        />
+        <ConditionContext handleBack={handleBack} />
       ) : (
         <NotificationContext
           handleOnClickShowCondition={handleOnClickShowCondition}

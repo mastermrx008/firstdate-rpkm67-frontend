@@ -12,32 +12,16 @@ import '@/components/congratulation/style.css';
 
 const StyledH1: React.FC<HeadingProps> = ({ children }) => {
   return (
-    <h1
-      className="text-center font-medium whitespace-pre-wrap"
-    >
-      {children}
-    </h1>
+    <h1 className="text-center font-medium whitespace-pre-wrap">{children}</h1>
   );
 };
 
-const StyledP: React.FC<ReactMarkdownProps> = ({ children  }) => {
-  return (
-    <p
-      className="text-xs whitespace-pre-wrap"
-    >
-      {children}
-    </p>
-  );
+const StyledP: React.FC<ReactMarkdownProps> = ({ children }) => {
+  return <p className="text-xs whitespace-pre-wrap">{children}</p>;
 };
 
-const StyledLI: React.FC<Omit<LiProps , "ordered">> = ({ children }) => {
-  return (
-    <li
-      className="text-xs whitespace-pre-wrap"
-    >
-      {children}
-    </li>
-  );
+const StyledLI: React.FC<Omit<LiProps, 'ordered'>> = ({ children }) => {
+  return <li className="text-xs whitespace-pre-wrap">{children}</li>;
 };
 
 const StyledOL: React.FC<OrderedListProps> = ({ children }) => {
@@ -93,7 +77,7 @@ const ConditionContext: React.FC<ConditionContextProps> = ({ handleBack }) => {
         alt="divider"
         className="w-full h-4 bg-cover px-[20%] mt-6"
       />
-      <div className='w-full px-[15%] flex pt-6'>
+      <div className="w-full px-[15%] flex pt-6">
         <button
           className="w-full h-12 flex items-center justify-center rounded-lg bg-project-light-gray"
           onClick={handleBack}
@@ -103,7 +87,6 @@ const ConditionContext: React.FC<ConditionContextProps> = ({ handleBack }) => {
           </span>
         </button>
       </div>
-
     </>
   );
 };
