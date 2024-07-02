@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image';
 import Link from 'next/link'
 import Border from '@/components/Border';
@@ -7,10 +9,29 @@ import contactIcon from '@public/home/icon/contactlist.svg'
 import qrcodeIcon from '@public/home/icon/qrcode.svg'
 import editIcon from '@public/home/icon/edit.svg'
 import smurfCat from '@public/home/smurfcat.png'
+import checkIcon from '@public/home/icon/check.svg'
+import alertIcon from '@public/home/icon/alert.svg'
+import CustomButton from '@/components/home/CustomButton';
+import { useEffect, useState } from 'react';
+
 
 
 export default function Home() {
-    
+    const checkElement = 
+        <Image 
+            src={checkIcon} 
+            alt="Contact List Icon" 
+            style={{ width: '2.63vh', height: '2.63vh' }} 
+        />;
+    const alertElement = 
+        <Image 
+            src={alertIcon} 
+            alt="Contact List Icon" 
+            style={{ width: '2.63vh', height: '2.63vh' }} 
+        />;
+
+    const fdIcon = checkElement;
+    const rpIcon = alertElement;
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
       <Border variant='transparent' className="pl-[0%] pr-[0%] pt-[0%]">
@@ -61,45 +82,37 @@ export default function Home() {
             
             
             <div className="w-full flex items-center flex-col h-[26.34vh] justify-between font-medium text-[2.2vh]">
-                <div className="bg-[#FFBBD2] w-4/5 h-[5.26vh] rounded-lg drop-shadow-md place-content-center">
-                    <div className="flex space-x-1 justify-center">
+                <CustomButton varient='first-date'>
                         <div>CU First Date 2024</div>
-                        <div></div>
-                    </div>
-                </div>
-                <div className="bg-[#E9A49B] w-4/5 h-[5.26vh] rounded-lg drop-shadow-md place-content-center">
-                    <div className="flex space-x-1 justify-center">
+                        {fdIcon}
+                </CustomButton>
+                <CustomButton varient='rub-peun'>
                         <div>Rub Peun Kao Mai 2024</div>
-                        <div></div>
-                    </div>
-                </div>
-                <div className="bg-[#F1DFC1] w-4/5 h-[5.26vh] rounded-lg drop-shadow-md place-content-center">
-                    <div className="flex space-x-1 justify-center items-center">
+                        {rpIcon}
+                </CustomButton>
+                <CustomButton varient='e-book'>
                         <Image 
                             src={eBookIcon} 
                             alt="E-book Icon" 
                             style={{ width: '2.63vh', height: '2.63vh' }} 
                         />
                         <div>E-Book</div>
-                    </div>
-                </div>
-                <div className="bg-[#313131] w-4/5 h-[5.26vh] rounded-lg drop-shadow-md place-content-center">
-                    <div className="flex space-x-1 justify-center items-center text-white">
+                </CustomButton>
+                <CustomButton varient='contact-list' className='text-white'>
                         <Image 
                             src={contactIcon} 
                             alt="Contact List Icon" 
                             style={{ width: '2.63vh', height: '2.63vh' }} 
                         />
                         <div>Emergency Contact</div>
-                    </div>
-                </div>
+                </CustomButton>
             </div>
 
 
 
             <div className="flex justify-center gap-x-[1.76vh] mt-[1.32vh] text-[1.76vh]">
                 <Link href="/" className="flex flex-col items-center text-center gap-y-[0.44vh]">
-                    <div className="w-[4.8vh] h-[4.8vh] rounded-full flex justify-center items-center shadow-[0px_3px_4px_.5px_#00000048]">
+                    <div className="w-[4.8vh] h-[4.8vh] rounded-full flex justify-center items-center shadow-[0px_3px_4px_.5px_#00000048] hover:scale-105">
                         <Image 
                                 src={qrcodeIcon} 
                                 alt="QR Code Icon" 
@@ -109,7 +122,7 @@ export default function Home() {
                     <div>My Qr</div>
                 </Link>
                 <Link href="/" className="flex flex-col items-center text-center gap-y-[0.44vh]">
-                    <div className="w-[4.8vh] h-[4.8vh] rounded-full flex justify-center items-center shadow-[0px_3px_4px_.5px_#00000048]">
+                    <div className="w-[4.8vh] h-[4.8vh] rounded-full flex justify-center items-center shadow-[0px_3px_4px_.5px_#00000048] hover:scale-105">
                         <Image 
                                 src={editIcon} 
                                 alt="Edit Icon" 
