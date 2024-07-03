@@ -9,27 +9,39 @@ import Spinner from '@/components/Spinner';
 import { useGetTokens } from '@/hooks/queries/auth/useGetTokens';
 import { useGetGoogleUrl } from '@/hooks/queries/auth/useGetGoogleUrl';
 import { useCallback, useEffect } from 'react';
+import { getCookie, setCookie } from 'cookies-next';
+import dayjs from 'dayjs'
 
 export default function Home() {
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
   const router = useRouter();
+  const accessToken = getCookie('access_token');
+
   const { data: googleUrl, isLoading: urlLoading } = useGetGoogleUrl({
     isReady: !code,
   });
   const { data: tokens, isLoading: tokensLoading } = useGetTokens({
     code: code as string,
-    isReady: !!code,
+    isReady: !!code && !accessToken,
   });
+  
 
-  console.log(tokens);
   useEffect(() => {
     if (!tokens) {
       return;
     }
 
-    
+    const now = dayjs();
+    const expire = now.add(tokens.credential.expires_in);
+
+    setCookie('access_token', tokens.credential.access_token);
+    setCookie('expires_in', expire.format());
+    setCookie('refresh_token', tokens.credential.refresh_token);
+    setCookie('user_id', tokens.user_id);
+
   }, [tokens]);
+
 
   const handleOnLogin = useCallback(() => {
     if (urlLoading) {
