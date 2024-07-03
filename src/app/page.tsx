@@ -4,28 +4,33 @@ import Border from '@/components/Border';
 import Welcome from '@/components/Welcome';
 import Image from 'next/image';
 import SGCULOGO from '@public/landing/SGCU-logo.svg';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { redirect, useRouter, useSearchParams } from 'next/navigation';
 import Spinner from '@/components/Spinner';
 import { useGetTokens } from '@/hooks/queries/auth/useGetTokens';
 import { useGetGoogleUrl } from '@/hooks/queries/auth/useGetGoogleUrl';
 import { useCallback, useEffect } from 'react';
-import { getCookie, setCookie } from 'cookies-next';
-import dayjs from 'dayjs'
+import { getCookies, setCookie } from 'cookies-next';
+import dayjs from 'dayjs';
+import { useGetUser } from '@/hooks/queries/user/useGetUser';
 
 export default function Home() {
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
   const router = useRouter();
-  const accessToken = getCookie('access_token');
+  const { access_token, user_id } = getCookies();
 
   const { data: googleUrl, isLoading: urlLoading } = useGetGoogleUrl({
     isReady: !code,
   });
   const { data: tokens, isLoading: tokensLoading } = useGetTokens({
     code: code as string,
-    isReady: !!code && !accessToken,
+    isReady: !!code && !access_token,
   });
-  
+  const { data: user, isLoading: userLoading } = useGetUser({
+    id: user_id as string,
+    access_token: access_token as string,
+    isReady: !!user_id && !!access_token,
+  });
 
   useEffect(() => {
     if (!tokens) {
@@ -39,9 +44,21 @@ export default function Home() {
     setCookie('expires_in', expire.format());
     setCookie('refresh_token', tokens.credential.refresh_token);
     setCookie('user_id', tokens.user_id);
-
   }, [tokens]);
 
+  useEffect(() => {
+    console.log(user);
+    if (!user) {
+      return;
+    }
+
+    const { firstname, lastname } = user;
+    if (!!firstname || !!lastname) {
+      redirect('/Home');
+    }
+
+    redirect('/register');
+  }, [user]);
 
   const handleOnLogin = useCallback(() => {
     if (urlLoading) {
