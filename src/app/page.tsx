@@ -8,26 +8,29 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useGetGoogleUrl } from '@/hooks/queries/useGetGoogleUrl';
 import Spinner from '@/components/Spinner';
 import axios from 'axios';
+import { useEffect } from 'react';
 
 export default function Home() {
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
   const router = useRouter();
 
+  useEffect(() => {
+    if (code) {
+      (async () => {
+        console.log(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/auth/verify-google?code=${code}`
+        );
+        const res = await axios.get(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/auth/verify-google?code=${code}`
+        );
+        const data = res.data;
+        console.log(data);
+      })();
+    }
+  }, [code]);
+
   if (code) {
-    // get token and set cookie
-    console.log(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/auth/verify-google?code=${code}`
-    );
-    (async () => {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/auth/verify-google?code=${code}`
-      );
-      const data = res.data;
-    })();
-
-    // fetch user data and check is it valid
-
     return (
       <div className="w-full h-screen flex items-center justify-center bg-black bg-opacity-20">
         <Spinner className="text-pink-300 fill-red-400" />
