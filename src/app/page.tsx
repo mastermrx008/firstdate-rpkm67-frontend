@@ -1,13 +1,23 @@
+'use client';
+
 import Border from '@/components/Border';
 import Welcome from '@/components/Welcome';
 import Image from 'next/image';
-import Link from 'next/link';
 import SGCULOGO from '@public/landing/SGCU-logo.svg';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  const handleOnLogin = () => {
-    
-  }
+  const router = useRouter();
+
+  const handleOnLogin = async () => {
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/auth/google-url`
+    );
+    const data = res.data;
+    const url = data.url;
+    router.push(url);
+  };
 
   return (
     <main className="h-screen w-full flex justify-center items-start text-lg">
@@ -26,18 +36,21 @@ export default function Home() {
           In honor of our wander,
           <br /> you are the answer.
         </p>
-        <button className="bg-white py-2 px-20 rounded-md font-medium shadow-md mb-4">
+        <button
+          onClick={handleOnLogin}
+          className="bg-white py-2 px-20 rounded-md font-medium shadow-md mb-4"
+        >
           ลงทะเบียน
         </button>
         <p className="text-xs mb-20">*โปรดใช้Emailของจุฬาฯในการลงทะเบียน*</p>
         <section className="flex flex-col justify-center items-center font-medium">
           <p className="text-lg">เคยลงทะเบียนมาแล้ว?</p>
-          <Link
-            href={''}
-            className="underline"
+          <span
+            onClick={handleOnLogin}
+            className="underline cursor-pointer"
           >
             เข้าสู่ระบบ
-          </Link>
+          </span>
         </section>
       </Border>
     </main>
