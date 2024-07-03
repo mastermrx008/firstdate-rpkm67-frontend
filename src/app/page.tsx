@@ -5,6 +5,10 @@ import Link from 'next/link';
 import SGCULOGO from '@public/landing/SGCU-logo.svg';
 
 export default function Home() {
+  const handleOnLogin = () => {
+    
+  }
+
   return (
     <main className="h-screen w-full flex justify-center items-start text-lg">
       <Border variant="dark-pink">
