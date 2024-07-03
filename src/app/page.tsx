@@ -6,6 +6,7 @@ import Image from 'next/image';
 import SGCULOGO from '@public/landing/SGCU-logo.svg';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useGetGoogleUrl } from '@/hooks/queries/useGetGoogleUrl';
+import Spinner from '@/components/Spinner';
 
 export default function Home() {
   const searchParams = useSearchParams();
@@ -13,8 +14,11 @@ export default function Home() {
   const router = useRouter();
 
   if (code) {
-    router.push('/map');
-    return 
+    return (
+      <div className="w-full h-screen flex items-center justify-center bg-black bg-opacity-20">
+        <Spinner className="text-pink-300 fill-red-400" />
+      </div>
+    );
   }
 
   const { data, isLoading } = useGetGoogleUrl();
