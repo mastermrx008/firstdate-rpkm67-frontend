@@ -3,7 +3,7 @@ import { Athiti } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
 import Footer from '@/components/Footer';
-import QueryClientWrapper from '@/components/queryClientWrapper';
+import QueryClientWrapper from '@/components/QueryClientWrapper';
 
 export const metadata: Metadata = {
   title: 'RPKM',
