@@ -5,33 +5,23 @@ import Welcome from '@/components/Welcome';
 import Image from 'next/image';
 import SGCULOGO from '@public/landing/SGCU-logo.svg';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useGetGoogleUrl } from '@/hooks/queries/useGetGoogleUrl';
 import Spinner from '@/components/Spinner';
-import axios from 'axios';
-import { useEffect } from 'react';
+import { useGetTokens } from '@/hooks/queries/auth/useGetTokens';
+import { useGetGoogleUrl } from '@/hooks/queries/auth/useGetGoogleUrl';
 
 export default function Home() {
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
   const router = useRouter();
-  const { data: googleUrl, isLoading } = useGetGoogleUrl(!code);
-  
+  const { data: googleUrl, isLoading: urlLoading } = useGetGoogleUrl(!code);
+  const { data: tokens, isLoading: tokensLoading } = useGetTokens({
+    code: code as string,
+    isReady: !!code,
+  });
 
-  useEffect(() => {
-    if (!code) {
-      return;
-    }
-    (async () => {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/auth/verify-google?code=${code}`
-      );
-      const data = res.data;
-      console.log(data);
-    })();
-  }, [code]);
-
+  console.log(tokens);
   const handleOnLogin = async () => {
-    if (isLoading) {
+    if (urlLoading) {
       return;
     }
     router.push(googleUrl);
@@ -46,7 +36,7 @@ export default function Home() {
           </div>
         )}
 
-        {!isLoading && (
+        {!urlLoading && (
           <>
             <Image
               src={SGCULOGO}
