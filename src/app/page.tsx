@@ -7,6 +7,7 @@ import SGCULOGO from '@public/landing/SGCU-logo.svg';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useGetGoogleUrl } from '@/hooks/queries/useGetGoogleUrl';
 import Spinner from '@/components/Spinner';
+import axios from 'axios';
 
 export default function Home() {
   const searchParams = useSearchParams();
@@ -14,6 +15,19 @@ export default function Home() {
   const router = useRouter();
 
   if (code) {
+    // get token and set cookie
+    console.log(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/auth/verify-google?code=${code}`
+    );
+    (async () => {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/auth/verify-google?code=${code}`
+      );
+      const data = res.data;
+    })();
+
+    // fetch user data and check is it valid
+
     return (
       <div className="w-full h-screen flex items-center justify-center bg-black bg-opacity-20">
         <Spinner className="text-pink-300 fill-red-400" />
