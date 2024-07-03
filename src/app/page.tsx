@@ -14,31 +14,20 @@ export default function Home() {
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
   const router = useRouter();
+  const { data, isLoading } = useGetGoogleUrl(!code);
 
   useEffect(() => {
-    if (code) {
-      (async () => {
-        console.log(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/auth/verify-google?code=${code}`
-        );
-        const res = await axios.get(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/auth/verify-google?code=${code}`
-        );
-        const data = res.data;
-        console.log(data);
-      })();
+    if (!code) {
+      return;
     }
+    (async () => {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/auth/verify-google?code=${code}`
+      );
+      const data = res.data;
+      console.log(data);
+    })();
   }, [code]);
-
-  if (code) {
-    return (
-      <div className="w-full h-screen flex items-center justify-center bg-black bg-opacity-20">
-        <Spinner className="text-pink-300 fill-red-400" />
-      </div>
-    );
-  }
-
-  const { data, isLoading } = useGetGoogleUrl();
 
   const handleOnLogin = async () => {
     if (isLoading) {
@@ -49,8 +38,14 @@ export default function Home() {
   };
 
   return (
-    <main className="h-screen w-full flex justify-center items-start text-lg">
+    <main className="h-screen w-full flex justify-center items-start text-lg relative">
       <Border variant="dark-pink">
+        {code && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 z-[999]">
+            <Spinner className="text-pink-300 fill-red-400" />
+          </div>
+        )}
+
         {!isLoading && (
           <>
             <Image
