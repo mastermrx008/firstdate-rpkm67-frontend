@@ -14,7 +14,8 @@ export default function Home() {
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
   const router = useRouter();
-  const { data, isLoading } = useGetGoogleUrl(!code);
+  const { data: googleUrl, isLoading } = useGetGoogleUrl(!code);
+  
 
   useEffect(() => {
     if (!code) {
@@ -33,7 +34,7 @@ export default function Home() {
     if (isLoading) {
       return;
     }
-    router.push(data);
+    router.push(googleUrl);
   };
 
   return (
