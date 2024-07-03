@@ -33,7 +33,6 @@ export default function Home() {
     if (isLoading) {
       return;
     }
-
     router.push(data);
   };
 
