@@ -4,11 +4,19 @@ import Border from '@/components/Border';
 import Welcome from '@/components/Welcome';
 import Image from 'next/image';
 import SGCULOGO from '@public/landing/SGCU-logo.svg';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useGetGoogleUrl } from '@/hooks/queries/useGetGoogleUrl';
 
 export default function Home() {
+  const searchParams = useSearchParams();
+  const code = searchParams.get('code');
   const router = useRouter();
+
+  if (code) {
+    router.push('/map');
+    return 
+  }
+
   const { data, isLoading } = useGetGoogleUrl();
 
   const handleOnLogin = async () => {
