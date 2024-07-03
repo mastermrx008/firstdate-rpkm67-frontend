@@ -1,4 +1,4 @@
-import { getGoogleUrl } from '@/api/googleLogin';
+import { getGoogleUrl } from '@/api/getGoogleUrl';
 import { useQuery } from '@tanstack/react-query';
 
 export const useGetGoogleUrl = (isReady: boolean) => {
