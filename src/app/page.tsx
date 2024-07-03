@@ -8,24 +8,35 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Spinner from '@/components/Spinner';
 import { useGetTokens } from '@/hooks/queries/auth/useGetTokens';
 import { useGetGoogleUrl } from '@/hooks/queries/auth/useGetGoogleUrl';
+import { useCallback, useEffect } from 'react';
 
 export default function Home() {
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
   const router = useRouter();
-  const { data: googleUrl, isLoading: urlLoading } = useGetGoogleUrl(!code);
+  const { data: googleUrl, isLoading: urlLoading } = useGetGoogleUrl({
+    isReady: !code,
+  });
   const { data: tokens, isLoading: tokensLoading } = useGetTokens({
     code: code as string,
     isReady: !!code,
   });
 
   console.log(tokens);
-  const handleOnLogin = async () => {
+  useEffect(() => {
+    if (!tokens) {
+      return;
+    }
+
+    
+  }, [tokens]);
+
+  const handleOnLogin = useCallback(() => {
     if (urlLoading) {
       return;
     }
     router.push(googleUrl);
-  };
+  }, [googleUrl]);
 
   return (
     <main className="h-screen w-full flex justify-center items-start text-lg relative">
