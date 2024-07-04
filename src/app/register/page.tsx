@@ -4,14 +4,8 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Border from '@/components/Border';
 import StarIcon from '@public/star.svg';
+import CurvedLineIcon from '@public/curved-line.svg';
 import Image from 'next/image';
-
-const steps = [
-  'อัปโหลดรูปภาพ',
-  'ข้อมูลส่วนตัว',
-  'ข้อมูลการติดต่อ',
-  'ข้อมูลด้านสุขภาพ',
-];
 
 export default function Register() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -53,109 +47,128 @@ export default function Register() {
     switch (currentStep) {
       case 0:
         return (
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-white">อัปโหลดรูปภาพ</h2>
+          <div className="flex flex-col space-y-4">
+            <h2 className="text-2xl font-bold">อัปโหลดรูปภาพ</h2>
             {/* Implement file upload component */}
-            <button
-              onClick={handleNextStep}
-              className="btn-primary"
-            >
-              ต่อไป
-            </button>
+            <button onClick={handleNextStep}>ต่อไป</button>
           </div>
         );
       case 1:
         return (
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-white">ข้อมูลส่วนตัว</h2>
+          <div className="flex flex-col space-y-4">
+            <h2 className="text-2xl font-bold ">ข้อมูลส่วนตัว</h2>
+            <select name="prefix">
+              <option value="นาย">นาย</option>
+              <option value="นาง">นาง</option>
+              <option value="นางสาว">นางสาว</option>
+              <option value="เด็กชาย">เด็กชาย</option>
+              <option value="เด็กหญิง">เด็กหญิง</option>
+            </select>
             <input
               type="text"
-              name="name"
-              placeholder="ชื่อ-สกุล"
+              name="firstname"
+              placeholder="ชื่อจริง"
               onChange={handleInputChange}
-              className="input-field"
             />
             <input
-              type="date"
-              name="birthdate"
+              type=""
+              name="lastname"
+              placeholder="นามสกุล"
               onChange={handleInputChange}
-              className="input-field"
             />
-            <div className="flex justify-between">
-              <button
-                onClick={handlePrevStep}
-                className="btn-secondary"
-              >
-                ย้อนกลับ
-              </button>
-              <button
-                onClick={handleNextStep}
-                className="btn-primary"
-              >
-                ต่อไป
-              </button>
+            <input
+              type=""
+              name="nickname"
+              placeholder="ชื่อเล่น"
+              onChange={handleInputChange}
+            />
+            <div className="flex flex-row justify-between">
+              <select name="faculty">
+                <option value="21">วิศวกรรมศาสตร์ 1</option>
+                <option value="22">วิศวกรรมศาสตร์ 2</option>
+              </select>
+              <select name="year">
+                <option value="1">1</option>
+                <option value="2">2</option>
+              </select>
             </div>
+            <button onClick={handleNextStep}>ต่อไป</button>
+            <button onClick={handlePrevStep}>ย้อนกลับ</button>
           </div>
         );
       case 2:
         return (
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-white">ข้อมูลการติดต่อ</h2>
-            <input
-              type="tel"
-              name="phone"
-              placeholder="เบอร์โทรศัพท์"
-              onChange={handleInputChange}
-              className="input-field"
-            />
-            <input
-              type="text"
-              name="address"
-              placeholder="ที่อยู่"
-              onChange={handleInputChange}
-              className="input-field"
-            />
-            <div className="flex justify-between">
-              <button
-                onClick={handlePrevStep}
-                className="btn-secondary"
-              >
-                ย้อนกลับ
-              </button>
-              <button
-                onClick={handleNextStep}
-                className="btn-primary"
-              >
-                ต่อไป
-              </button>
+          <div className="flex flex-col space-y-4 items-center">
+            <h2 className="text-2xl font-bold">ข้อมูลการติดต่อ</h2>
+            <div className="flex flex-row">
+              <input
+                type="text"
+                name="country-code"
+                placeholder="+66"
+                onChange={handleInputChange}
+              />
+              <input
+                type="tel"
+                name="phone"
+                placeholder="เบอร์โทรศัพท์"
+                onChange={handleInputChange}
+              />
             </div>
+
+            <Image
+              src={CurvedLineIcon}
+              alt="curved-line"
+              className="mb-4"
+            />
+
+            <h2 className="text-2xl font-bold">ข้อมูลผู้ปกครอง</h2>
+            <div className="flex flex-row">
+              <input
+                type="text"
+                name="guardian-country-code"
+                placeholder="+66"
+                onChange={handleInputChange}
+              />
+              <input
+                type="tel"
+                name="guardian-phone"
+                placeholder="เบอร์โทรศัพท์"
+                onChange={handleInputChange}
+              />
+            </div>
+            <select name="guardian-relation">
+              <option value="บิดา">บิดา</option>
+              <option value="มารดา">มารดา</option>
+            </select>
+
+            <button onClick={handleNextStep}>ต่อไป</button>
+            <button onClick={handlePrevStep}>ย้อนกลับ</button>
           </div>
         );
       case 3:
         return (
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-white">ข้อมูลด้านสุขภาพ</h2>
+          <div className="flex flex-col space-y-4">
+            <h2 className="text-2xl font-bold ">ข้อมูลด้านสุขภาพ</h2>
             <input
               type="text"
-              name="healthInfo"
-              placeholder="ข้อมูลสุขภาพ"
+              name="food-allergy"
+              placeholder="อาหารที่แพ้"
               onChange={handleInputChange}
-              className="input-field"
             />
-            <div className="flex justify-between">
-              <button
-                onClick={handlePrevStep}
-                className="btn-secondary"
-              >
-                ย้อนกลับ
-              </button>
-              <button
-                onClick={handleSubmit}
-                className="btn-primary"
-              >
-                ยืนยันข้อมูล
-              </button>
-            </div>
+            <input
+              type="text"
+              name="drug-allergy"
+              placeholder="ยาทที่แก้"
+              onChange={handleInputChange}
+            />
+            <input
+              type="text"
+              name="congenital-disease"
+              placeholder="โรคประจำตัว"
+              onChange={handleInputChange}
+            />
+            <button onClick={handleSubmit}>ยืนยันข้อมูล</button>
+            <button onClick={handlePrevStep}>ย้อนกลับ</button>
           </div>
         );
       default:
@@ -166,49 +179,18 @@ export default function Register() {
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col">
       <Border
-        variant="dark-pink"
-        className="flex flex-col items-center justify-between w-full max-w-md px-6 py-8"
+        variant="white-brown"
+        className="flex flex-col items-center justify-between"
       >
-        <div className="flex flex-col items-center w-full">
+        <div className="w-auto h-screen flex flex-col items-center justify-center">
           <Image
             src={StarIcon}
             alt="star"
-            className="mb-6"
+            className="mb-4"
           />
-          <h1 className="text-3xl font-bold text-white mb-6">ลงทะเบียน</h1>
-          <div className="w-full bg-white rounded-lg p-4 mb-6">
-            <div className="flex justify-between mb-2">
-              {steps.map((step, index) => (
-                <div
-                  key={index}
-                  className={`text-sm flex flex-col items-center ${
-                    index <= currentStep ? 'text-pink-500' : 'text-gray-400'
-                  }`}
-                >
-                  <div
-                    className={`w-6 h-6 rounded-full flex items-center justify-center mb-1 ${
-                      index <= currentStep
-                        ? 'bg-pink-500 text-white'
-                        : 'bg-gray-200 text-gray-400'
-                    }`}
-                  >
-                    {index + 1}
-                  </div>
-                  <span className="text-xs text-center">{step}</span>
-                </div>
-              ))}
-            </div>
-            <div className="relative">
-              <div className="absolute top-3 left-0 w-full h-1 bg-gray-200"></div>
-              <div
-                className={`absolute top-3 left-0 h-1 bg-pink-500 transition-all duration-300 ease-in-out`}
-                style={{
-                  width: `${(currentStep / (steps.length - 1)) * 100}%`,
-                }}
-              ></div>
-            </div>
+          <div className="w-full max-w-md">
+            <form className="space-y-6">{renderStep()}</form>
           </div>
-          <form className="w-full space-y-6">{renderStep()}</form>
         </div>
       </Border>
     </main>
