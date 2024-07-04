@@ -10,20 +10,21 @@ import Image from 'next/image';
 export default function Register() {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
-    prefix: '',
+    title: '',
     firstname: '',
     lastname: '',
     nickname: '',
     faculty: '',
     year: '',
-    countryCode: '',
-    phone: '',
-    guardianCountryCode: '',
-    guardianPhone: '',
-    guardianRelation: '',
-    foodAllergy: '',
-    drugAllergy: '',
-    congenitalDisease: '',
+    tel: '',
+    parent_tel: '',
+    parent: '',
+    baan: '',
+    food_allergy: '',
+    drug_allergy: '',
+    illness: '',
+    group_id: '',
+    receive_gift: 0,
   });
   const router = useRouter();
 
@@ -73,9 +74,10 @@ export default function Register() {
           <div className="flex flex-col space-y-4">
             <h2 className="text-2xl font-bold">ข้อมูลส่วนตัว</h2>
             <select
-              name="prefix"
-              value={formData.prefix}
+              name="title"
+              value={formData.title}
               onChange={handleInputChange}
+              required
             >
               <option
                 disabled
@@ -151,16 +153,9 @@ export default function Register() {
             <div className="flex flex-row">
               <input
                 type="text"
-                name="countryCode"
-                placeholder="+66"
-                value={formData.countryCode}
-                onChange={handleInputChange}
-              />
-              <input
-                type="tel"
-                name="phone"
+                name="tel"
                 placeholder="เบอร์โทรศัพท์"
-                value={formData.phone}
+                value={formData.tel}
                 onChange={handleInputChange}
               />
             </div>
@@ -175,22 +170,15 @@ export default function Register() {
             <div className="flex flex-row">
               <input
                 type="text"
-                name="guardianCountryCode"
-                placeholder="+66"
-                value={formData.guardianCountryCode}
-                onChange={handleInputChange}
-              />
-              <input
-                type="tel"
-                name="guardianPhone"
+                name="parent_tel"
                 placeholder="เบอร์โทรศัพท์"
-                value={formData.guardianPhone}
+                value={formData.parent_tel}
                 onChange={handleInputChange}
               />
             </div>
             <select
-              name="guardianRelation"
-              value={formData.guardianRelation}
+              name="parent"
+              value={formData.parent}
               onChange={handleInputChange}
             >
               <option
@@ -213,23 +201,23 @@ export default function Register() {
             <h2 className="text-2xl font-bold">ข้อมูลด้านสุขภาพ</h2>
             <input
               type="text"
-              name="foodAllergy"
+              name="food_allergy"
               placeholder="อาหารที่แพ้"
-              value={formData.foodAllergy}
+              value={formData.food_allergy}
               onChange={handleInputChange}
             />
             <input
               type="text"
-              name="drugAllergy"
+              name="drug_allergy"
               placeholder="ยาที่แพ้"
-              value={formData.drugAllergy}
+              value={formData.drug_allergy}
               onChange={handleInputChange}
             />
             <input
               type="text"
-              name="congenitalDisease"
+              name="illness"
               placeholder="โรคประจำตัว"
-              value={formData.congenitalDisease}
+              value={formData.illness}
               onChange={handleInputChange}
             />
             <button onClick={handleSubmit}>ยืนยันข้อมูล</button>
@@ -254,7 +242,7 @@ export default function Register() {
             className="mb-4"
           />
           <div className="w-full max-w-md">
-            <form className="space-y-6">{renderStep()}</form>
+            <div className="space-y-6">{renderStep()}</div>
           </div>
         </div>
       </Border>
