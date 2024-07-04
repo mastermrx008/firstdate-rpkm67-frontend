@@ -8,9 +8,10 @@ import CurvedLineIcon from '@public/curved-line.svg';
 import Image from 'next/image';
 import axios from 'axios';
 
-// Nac's userId access token from verifying with Google Oauth
+// from verifying with Google
 const MOCK_USER_ID = '97855fbc-abb3-4fe2-9297-bee8ebdc3929';
 const MOCK_ACCESS_TOKEN = 'pew pew';
+
 // refactor later
 type UserData = {
   baan: string;
@@ -56,7 +57,7 @@ export default function Register() {
     const checkAuth = async () => {
       const authCookie = document.cookie.includes('auth=');
       if (!authCookie) {
-        router.push('/login'); // Redirect to login if not authenticated
+        router.push('/');
       }
     };
     // skip check auth for dev
@@ -79,6 +80,7 @@ export default function Register() {
     const userId = MOCK_USER_ID;
     const accessToken = MOCK_ACCESS_TOKEN;
     try {
+      // refactor later
       const response = await axios.post(
         `https://rpkm67-dev.sgcu.in.th/api/v1/user/profile/${userId}`,
         userData,
