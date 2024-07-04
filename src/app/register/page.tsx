@@ -9,7 +9,22 @@ import Image from 'next/image';
 
 export default function Register() {
   const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    prefix: '',
+    firstname: '',
+    lastname: '',
+    nickname: '',
+    faculty: '',
+    year: '',
+    countryCode: '',
+    phone: '',
+    guardianCountryCode: '',
+    guardianPhone: '',
+    guardianRelation: '',
+    foodAllergy: '',
+    drugAllergy: '',
+    congenitalDisease: '',
+  });
   const router = useRouter();
 
   useEffect(() => {
@@ -42,7 +57,6 @@ export default function Register() {
     console.log('Form submitted:', formData);
     // router.push('/registered');
   };
-  console.log(formData);
 
   const renderStep = () => {
     switch (currentStep) {
@@ -57,12 +71,18 @@ export default function Register() {
       case 1:
         return (
           <div className="flex flex-col space-y-4">
-            <h2 className="text-2xl font-bold ">ข้อมูลส่วนตัว</h2>
+            <h2 className="text-2xl font-bold">ข้อมูลส่วนตัว</h2>
             <select
               name="prefix"
+              value={formData.prefix}
               onChange={handleInputChange}
             >
-              <option disabled>คำนำหน้า</option>
+              <option
+                disabled
+                value=""
+              >
+                คำนำหน้า
+              </option>
               <option value="นาย">นาย</option>
               <option value="นาง">นาง</option>
               <option value="นางสาว">นางสาว</option>
@@ -73,34 +93,49 @@ export default function Register() {
               type="text"
               name="firstname"
               placeholder="ชื่อจริง"
+              value={formData.firstname}
               onChange={handleInputChange}
             />
             <input
-              type=""
+              type="text"
               name="lastname"
               placeholder="นามสกุล"
+              value={formData.lastname}
               onChange={handleInputChange}
             />
             <input
-              type=""
+              type="text"
               name="nickname"
               placeholder="ชื่อเล่น"
+              value={formData.nickname}
               onChange={handleInputChange}
             />
             <div className="flex flex-row justify-between">
               <select
                 name="faculty"
+                value={formData.faculty}
                 onChange={handleInputChange}
               >
-                <option disabled>คณะ</option>
+                <option
+                  disabled
+                  value=""
+                >
+                  คณะ
+                </option>
                 <option value="21">วิศวกรรมศาสตร์ 1</option>
                 <option value="22">วิศวกรรมศาสตร์ 2</option>
               </select>
               <select
                 name="year"
+                value={formData.year}
                 onChange={handleInputChange}
               >
-                <option disabled>ชั้นปี</option>
+                <option
+                  disabled
+                  value=""
+                >
+                  ชั้นปี
+                </option>
                 <option value="1">1</option>
                 <option value="2">2</option>
               </select>
@@ -118,12 +153,14 @@ export default function Register() {
                 type="text"
                 name="countryCode"
                 placeholder="+66"
+                value={formData.countryCode}
                 onChange={handleInputChange}
               />
               <input
                 type="tel"
                 name="phone"
                 placeholder="เบอร์โทรศัพท์"
+                value={formData.phone}
                 onChange={handleInputChange}
               />
             </div>
@@ -140,20 +177,28 @@ export default function Register() {
                 type="text"
                 name="guardianCountryCode"
                 placeholder="+66"
+                value={formData.guardianCountryCode}
                 onChange={handleInputChange}
               />
               <input
                 type="tel"
                 name="guardianPhone"
                 placeholder="เบอร์โทรศัพท์"
+                value={formData.guardianPhone}
                 onChange={handleInputChange}
               />
             </div>
             <select
               name="guardianRelation"
+              value={formData.guardianRelation}
               onChange={handleInputChange}
             >
-              <option disabled>ความสัมพันธ์</option>
+              <option
+                disabled
+                value=""
+              >
+                ความสัมพันธ์
+              </option>
               <option value="บิดา">บิดา</option>
               <option value="มารดา">มารดา</option>
             </select>
@@ -165,23 +210,26 @@ export default function Register() {
       case 3:
         return (
           <div className="flex flex-col space-y-4">
-            <h2 className="text-2xl font-bold ">ข้อมูลด้านสุขภาพ</h2>
+            <h2 className="text-2xl font-bold">ข้อมูลด้านสุขภาพ</h2>
             <input
               type="text"
-              name="food-allergy"
+              name="foodAllergy"
               placeholder="อาหารที่แพ้"
+              value={formData.foodAllergy}
               onChange={handleInputChange}
             />
             <input
               type="text"
-              name="drug-allergy"
-              placeholder="ยาทที่แก้"
+              name="drugAllergy"
+              placeholder="ยาที่แพ้"
+              value={formData.drugAllergy}
               onChange={handleInputChange}
             />
             <input
               type="text"
-              name="congenital-disease"
+              name="congenitalDisease"
               placeholder="โรคประจำตัว"
+              value={formData.congenitalDisease}
               onChange={handleInputChange}
             />
             <button onClick={handleSubmit}>ยืนยันข้อมูล</button>
