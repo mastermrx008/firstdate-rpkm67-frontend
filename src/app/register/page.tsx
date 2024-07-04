@@ -29,11 +29,11 @@ export default function Register() {
   };
 
   const handleNextStep = () => {
-    setCurrentStep(currentStep + 1);
+    setCurrentStep((currentStep) => currentStep + 1);
   };
 
   const handlePrevStep = () => {
-    setCurrentStep(currentStep - 1);
+    setCurrentStep((currentStep) => currentStep - 1);
   };
 
   const handleSubmit = async (e) => {
@@ -42,6 +42,7 @@ export default function Register() {
     console.log('Form submitted:', formData);
     // router.push('/registered');
   };
+  console.log(formData);
 
   const renderStep = () => {
     switch (currentStep) {
@@ -57,7 +58,11 @@ export default function Register() {
         return (
           <div className="flex flex-col space-y-4">
             <h2 className="text-2xl font-bold ">ข้อมูลส่วนตัว</h2>
-            <select name="prefix">
+            <select
+              name="prefix"
+              onChange={handleInputChange}
+            >
+              <option disabled>คำนำหน้า</option>
               <option value="นาย">นาย</option>
               <option value="นาง">นาง</option>
               <option value="นางสาว">นางสาว</option>
@@ -83,11 +88,19 @@ export default function Register() {
               onChange={handleInputChange}
             />
             <div className="flex flex-row justify-between">
-              <select name="faculty">
+              <select
+                name="faculty"
+                onChange={handleInputChange}
+              >
+                <option disabled>คณะ</option>
                 <option value="21">วิศวกรรมศาสตร์ 1</option>
                 <option value="22">วิศวกรรมศาสตร์ 2</option>
               </select>
-              <select name="year">
+              <select
+                name="year"
+                onChange={handleInputChange}
+              >
+                <option disabled>ชั้นปี</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
               </select>
@@ -103,7 +116,7 @@ export default function Register() {
             <div className="flex flex-row">
               <input
                 type="text"
-                name="country-code"
+                name="countryCode"
                 placeholder="+66"
                 onChange={handleInputChange}
               />
@@ -125,18 +138,22 @@ export default function Register() {
             <div className="flex flex-row">
               <input
                 type="text"
-                name="guardian-country-code"
+                name="guardianCountryCode"
                 placeholder="+66"
                 onChange={handleInputChange}
               />
               <input
                 type="tel"
-                name="guardian-phone"
+                name="guardianPhone"
                 placeholder="เบอร์โทรศัพท์"
                 onChange={handleInputChange}
               />
             </div>
-            <select name="guardian-relation">
+            <select
+              name="guardianRelation"
+              onChange={handleInputChange}
+            >
+              <option disabled>ความสัมพันธ์</option>
               <option value="บิดา">บิดา</option>
               <option value="มารดา">มารดา</option>
             </select>
