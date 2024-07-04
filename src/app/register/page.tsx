@@ -6,16 +6,39 @@ import Border from '@/components/Border';
 import StarIcon from '@public/star.svg';
 import CurvedLineIcon from '@public/curved-line.svg';
 import Image from 'next/image';
+import axios from 'axios';
+
+// Nac's userId access token from verifying with Google Oauth
+const MOCK_USER_ID = '97855fbc-abb3-4fe2-9297-bee8ebdc3929';
+const MOCK_ACCESS_TOKEN = 'pew pew';
+// refactor later
+type UserData = {
+  baan: string;
+  drug_allergy: string;
+  faculty: string;
+  firstname: string;
+  food_allergy: string;
+  group_id: string;
+  illness: string;
+  lastname: string;
+  nickname: string;
+  parent: string;
+  parent_tel: string;
+  receive_gift: number;
+  tel: string;
+  title: string;
+  year: number;
+};
 
 export default function Register() {
   const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<UserData>({
     title: '',
     firstname: '',
     lastname: '',
     nickname: '',
     faculty: '',
-    year: '',
+    year: 0,
     tel: '',
     parent_tel: '',
     parent: '',
@@ -52,11 +75,31 @@ export default function Register() {
     setCurrentStep((currentStep) => currentStep - 1);
   };
 
+  async function updateUserProfile(userData: UserData) {
+    const userId = MOCK_USER_ID;
+    const accessToken = MOCK_ACCESS_TOKEN;
+    try {
+      const response = await axios.post(
+        `https://rpkm67-dev.sgcu.in.th/api/v1/user/profile/${userId}`,
+        userData,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      console.log('User profile updated successfully:', response.data);
+    } catch (error) {
+      console.error('Error updating user profile:', error);
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Implement API call to submit data
-    console.log('Form submitted:', formData);
-    // router.push('/registered');
+    updateUserProfile(formData);
+    console.log('Form submitted', formData);
+    router.push('/pdpa');
   };
 
   const renderStep = () => {
