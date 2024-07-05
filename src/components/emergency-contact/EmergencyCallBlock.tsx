@@ -13,7 +13,9 @@ const EmergencyCallBlock: React.FC<EmergencyCallProps> = ({
   return (
     <div className="shadow-[0_2px_4px_0px_rgba(0,0,0,0.25)] rounded-xl flex items-center flex-row justify-between px-3 py-1">
       <div className="flex flex-col gap-y-1">
-        <p className="font-athiti text-base	font-medium text-black">{text}</p>
+        <p className="font-athiti text-base	font-medium text-black text-nowrap">
+          {text}
+        </p>
         <p className="font-athiti text-base	font-medium text-black opacity-50">
           {phoneNumber}
         </p>
