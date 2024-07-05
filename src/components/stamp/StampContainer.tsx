@@ -5,9 +5,7 @@ interface StampContainerProps {
 }
 
 const StampContainer: React.FC<StampContainerProps> = ({ children }) => {
-  return (
-    <div className="flex items-center justify-center space-x-8">{children}</div>
-  );
+  return <div className="flex space-x-5">{children}</div>;
 };
 
 export default StampContainer;
