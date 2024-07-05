@@ -9,8 +9,8 @@ import Image from 'next/image';
 import axios from 'axios';
 
 // from verifying with Google
-const MOCK_USER_ID = '97855fbc-abb3-4fe2-9297-bee8ebdc3929';
-const MOCK_ACCESS_TOKEN = 'pew pew';
+const MOCK_USER_ID = '5187dc0a-aeeb-477b-8c90-ba75daae0623'; // Nac's userId
+const MOCK_ACCESS_TOKEN = ''
 
 // refactor later
 type UserData = {
@@ -81,12 +81,13 @@ export default function Register() {
     const accessToken = MOCK_ACCESS_TOKEN;
     try {
       // refactor later
-      const response = await axios.post(
+      const response = await axios.patch(
         `https://rpkm67-dev.sgcu.in.th/api/v1/user/profile/${userId}`,
         userData,
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
+
           },
         }
       );
@@ -98,7 +99,6 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Implement API call to submit data
     updateUserProfile(formData);
     console.log('Form submitted', formData);
     router.push('/pdpa');
