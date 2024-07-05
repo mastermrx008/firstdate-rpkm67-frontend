@@ -8,25 +8,27 @@ import { redirect, useRouter, useSearchParams } from 'next/navigation';
 import Spinner from '@/components/Spinner';
 import { useGetTokens } from '@/hooks/queries/auth/useGetTokens';
 import { useGetGoogleUrl } from '@/hooks/queries/auth/useGetGoogleUrl';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useContext, useEffect } from 'react';
 import { getCookies, setCookie } from 'cookies-next';
-import dayjs from 'dayjs';
 import { useGetUser } from '@/hooks/queries/user/useGetUser';
+import { getExpireTime } from '@/utils/getExpireTime';
+import { CookieContext } from '@/context/cookieContext';
 
 export default function Home() {
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
   const router = useRouter();
   const { access_token, user_id } = getCookies();
+  const { startRefreshToken } = useContext(CookieContext);
 
   const { data: googleUrl, isLoading: urlLoading } = useGetGoogleUrl({
     isReady: !code,
   });
-  const { data: tokens, isLoading: tokensLoading } = useGetTokens({
+  const { data: tokens } = useGetTokens({
     code: code as string,
     isReady: !!code && !access_token,
   });
-  const { data: user, isLoading: userLoading } = useGetUser({
+  const { data: user } = useGetUser({
     id: user_id as string,
     access_token: access_token as string,
     isReady: !!user_id && !!access_token,
@@ -37,17 +39,18 @@ export default function Home() {
       return;
     }
 
-    const now = dayjs();
-    const expire = now.add(tokens.credential.expires_in);
-
     setCookie('access_token', tokens.credential.access_token);
-    setCookie('expires_in', expire.format());
+    setCookie('expires_in', getExpireTime(tokens.credential.expires_in));
     setCookie('refresh_token', tokens.credential.refresh_token);
     setCookie('user_id', tokens.user_id);
+
+    startRefreshToken(
+      tokens.credential.refresh_token,
+      tokens.credential.expires_in
+    );
   }, [tokens]);
 
   useEffect(() => {
-    console.log(user);
     if (!user) {
       return;
     }
@@ -57,7 +60,7 @@ export default function Home() {
       redirect('/Home');
     }
 
-    redirect('/register');
+    // redirect('/register');
   }, [user]);
 
   const handleOnLogin = useCallback(() => {
@@ -76,40 +79,36 @@ export default function Home() {
           </div>
         )}
 
-
-            <Image
-              src={SGCULOGO}
-              alt="sgcu-logo"
-              className="w-10 mb-20 mt-4"
-            />
-            <Welcome
-              containerClassName="my-0 mb-4"
-              cuClassName="text-white text-4xl"
-              welcomeClassName="text-white text-6xl"
-            />
-            <p className="text-center text-white mb-20">
-              In honor of our wander,
-              <br /> you are the answer.
-            </p>
-            <button
-              onClick={handleOnLogin}
-              className="bg-white py-2 px-20 rounded-md font-medium shadow-md mb-4"
-            >
-              ลงทะเบียน
-            </button>
-            <p className="text-xs mb-20">
-              *โปรดใช้Emailของจุฬาฯในการลงทะเบียน*
-            </p>
-            <section className="flex flex-col justify-center items-center font-medium">
-              <p className="text-lg">เคยลงทะเบียนมาแล้ว?</p>
-              <span
-                onClick={handleOnLogin}
-                className="underline cursor-pointer"
-              >
-                เข้าสู่ระบบ
-              </span>
-            </section>
-        
+        <Image
+          src={SGCULOGO}
+          alt="sgcu-logo"
+          className="w-10 mb-20 mt-4"
+        />
+        <Welcome
+          containerClassName="my-0 mb-4"
+          cuClassName="text-white text-4xl"
+          welcomeClassName="text-white text-6xl"
+        />
+        <p className="text-center text-white mb-20">
+          In honor of our wander,
+          <br /> you are the answer.
+        </p>
+        <button
+          onClick={handleOnLogin}
+          className="bg-white py-2 px-20 rounded-md font-medium shadow-md mb-4"
+        >
+          ลงทะเบียน
+        </button>
+        <p className="text-xs mb-20">*โปรดใช้Emailของจุฬาฯในการลงทะเบียน*</p>
+        <section className="flex flex-col justify-center items-center font-medium">
+          <p className="text-lg">เคยลงทะเบียนมาแล้ว?</p>
+          <span
+            onClick={handleOnLogin}
+            className="underline cursor-pointer"
+          >
+            เข้าสู่ระบบ
+          </span>
+        </section>
       </Border>
     </main>
   );

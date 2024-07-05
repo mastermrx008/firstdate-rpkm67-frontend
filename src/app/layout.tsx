@@ -4,6 +4,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import Footer from '@/components/Footer';
 import QueryClientWrapper from '@/components/QueryClientWrapper';
+import CookiesProvider from '@/components/CookiesProvider';
 
 export const metadata: Metadata = {
   title: 'RPKM',
@@ -19,7 +20,9 @@ export default function RootLayout({
       <body
         className={`${athiti.variable} ${season.variable} ${sarun.variable} bg-1 font-athiti`}
       >
-        <QueryClientWrapper>{children}</QueryClientWrapper>
+        <QueryClientWrapper>
+          <CookiesProvider>{children}</CookiesProvider>
+        </QueryClientWrapper>
         <Footer />
       </body>
     </html>
