@@ -8,30 +8,25 @@ import { redirect, useRouter, useSearchParams } from 'next/navigation';
 import Spinner from '@/components/Spinner';
 import { useGetTokens } from '@/hooks/queries/auth/useGetTokens';
 import { useGetGoogleUrl } from '@/hooks/queries/auth/useGetGoogleUrl';
-import { useCallback, useContext, useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { getCookies, setCookie } from 'cookies-next';
-import { useGetUser } from '@/hooks/queries/user/useGetUser';
 import { getExpireTime } from '@/utils/getExpireTime';
-import { CookieContext } from '@/context/cookieContext';
+import { useAuth } from '@/context/AuthContext';
 
 export default function Home() {
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
   const router = useRouter();
-  const { access_token, user_id } = getCookies();
-  const { startRefreshToken } = useContext(CookieContext);
+  const { user, handleOnSuccessLogin } = useAuth();
+  console.log(user);
 
   const { data: googleUrl, isLoading: urlLoading } = useGetGoogleUrl({
     isReady: !code,
   });
+
   const { data: tokens } = useGetTokens({
     code: code as string,
-    isReady: !!code && !access_token,
-  });
-  const { data: user } = useGetUser({
-    id: user_id as string,
-    access_token: access_token as string,
-    isReady: !!user_id && !!access_token,
+    isReady: !!code,
   });
 
   useEffect(() => {
@@ -39,15 +34,12 @@ export default function Home() {
       return;
     }
 
-    setCookie('access_token', tokens.credential.access_token);
-    setCookie('expires_in', getExpireTime(tokens.credential.expires_in));
-    setCookie('refresh_token', tokens.credential.refresh_token);
-    setCookie('user_id', tokens.user_id);
+    setCookie('accessToken', tokens.credential.access_token);
+    setCookie('expiresIn', getExpireTime(tokens.credential.expires_in));
+    setCookie('refreshToken', tokens.credential.refresh_token);
+    setCookie('userId', tokens.user_id);
 
-    startRefreshToken(
-      tokens.credential.refresh_token,
-      tokens.credential.expires_in
-    );
+    handleOnSuccessLogin(tokens.user_id);
   }, [tokens]);
 
   useEffect(() => {
