@@ -70,14 +70,13 @@ export default function Home() {
   return (
     <main className="h-screen w-full flex justify-center items-start text-lg relative">
       <Border variant="dark-pink">
-        {code && (
+        {(code || urlLoading) && (
           <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 z-[999]">
             <Spinner className="text-pink-300 fill-red-400" />
           </div>
         )}
 
-        {!urlLoading && (
-          <>
+
             <Image
               src={SGCULOGO}
               alt="sgcu-logo"
@@ -110,8 +109,7 @@ export default function Home() {
                 เข้าสู่ระบบ
               </span>
             </section>
-          </>
-        )}
+        
       </Border>
     </main>
   );
