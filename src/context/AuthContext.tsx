@@ -1,6 +1,7 @@
 'use client';
 
-import { useGetUser } from '@/hooks/queries/user/useGetUser';
+import { getUser } from '@/api/user/getUser';
+import Spinner from '@/components/Spinner';
 import { User } from '@/types/user';
 import { redirect, usePathname, useRouter } from 'next/navigation';
 import {
@@ -8,7 +9,7 @@ import {
   ReactNode,
   useContext,
   useEffect,
-  useLayoutEffect,
+  useRef,
   useState,
 } from 'react';
 
@@ -17,8 +18,9 @@ interface AuthProviderProps {
 }
 
 interface IAuthContext {
-  user?: User;
-  handleOnSuccessLogin: (id: string) => void;
+  user: User | null;
+  resetContext: () => void;
+  logout: () => void;
 }
 
 const AuthContext = createContext<IAuthContext>({} as IAuthContext);
@@ -27,17 +29,32 @@ export const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = (props: AuthProviderProps) => {
   const { children } = props;
-  const [userId, setUserId] = useState('');
-  const [isReady, setIsReady] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const path = usePathname();
+  const isReady = useRef(false);
   const router = useRouter();
-  const pathname = usePathname();
-  const { data: user } = useGetUser({
-    id: userId,
-    isReady: !!isReady && !!userId,
-  });
+
+  const resetContext = async () => {
+    isReady.current = false;
+    const userData = await getUser();
+    if (userData) {
+      localStorage.setItem('user', JSON.stringify(userData));
+      setUser(userData);
+    }
+    isReady.current = true;
+  };
+
+  const logout = () => {
+    localStorage.clear();
+    window.location.href = '/';
+  };
 
   useEffect(() => {
-    if (pathname == '/') {
+    if (!isReady.current) {
+      return;
+    }
+
+    if (path == '/') {
       return;
     }
 
@@ -45,20 +62,32 @@ const AuthProvider = (props: AuthProviderProps) => {
       return redirect('/');
     }
 
-    const isStaff = pathname.startsWith('/staff');
-    if (isStaff && user?.role != 'staff') {
+    const isStaffPage = path.startsWith('/staff');
+    if (isStaffPage && user?.role != 'staff') {
       return router.push('/');
     }
+  }, [router, user]);
+
+  useEffect(() => {
+    isReady.current = false;
+    const userStr = localStorage.getItem('user');
+    if (userStr) {
+      const userObj: User = JSON.parse(userStr);
+      setUser(userObj);
+    }
+
+    isReady.current = true;
   }, [router]);
 
-  const handleOnSuccessLogin = (userId: string) => {
-    setIsReady(true);
-    setUserId(userId);
-  };
-
   return (
-    <AuthContext.Provider value={{ user, handleOnSuccessLogin }}>
-      {children}
+    <AuthContext.Provider value={{ user, resetContext, logout }}>
+      {user || path == '/' ? (
+        children
+      ) : (
+        <div className="w-full h-screen flex items-center justify-center bg-black bg-opacity-20">
+          <Spinner />
+        </div>
+      )}
     </AuthContext.Provider>
   );
 };

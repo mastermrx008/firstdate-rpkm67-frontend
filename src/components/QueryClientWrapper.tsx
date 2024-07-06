@@ -6,10 +6,10 @@ import React, { ReactNode } from 'react';
 interface QueryClientWrapperProps {
   children: ReactNode;
 }
+const queryClient = new QueryClient();
 
 const QueryClientWrapper: React.FC<QueryClientWrapperProps> = (props) => {
   const { children } = props;
-  const queryClient = new QueryClient();
 
   return (
     <div>

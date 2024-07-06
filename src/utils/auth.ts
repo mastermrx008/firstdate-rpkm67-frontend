@@ -1,34 +1,54 @@
 import { useRefreshToken } from '@/hooks/mutations/useRefreshToken';
-import { getCookie, setCookie } from 'cookies-next';
 import { getExpireTime } from './getExpireTime';
-import { useRouter } from 'next/navigation';
 import dayjs from 'dayjs';
 
-export const refreshAccessToken = async () => {
+export const getNewAccessToken = async (refreshToken: string) => {
   const mutation = useRefreshToken();
-  const router = useRouter();
-  const refreshToken = getCookie('refreshToken');
 
   if (refreshToken) {
-    const { access_token, expires_in, refresh_token } =
-      await mutation.mutateAsync(refreshToken);
+    const { tokens } = await mutation.mutateAsync(refreshToken);
 
-    setCookie('accessToken', access_token);
-    setCookie('expiresIn', getExpireTime(expires_in));
-    setCookie('refreshToken', refresh_token);
-  } else {
-    router.push('/');
+    if (!tokens) {
+      return null;
+    }
+
+    const tokenStr = JSON.stringify({
+      accessToken: tokens.access_token,
+      expiresIn: getExpireTime(tokens.expires_in),
+      refreshToken: tokens.refresh_token,
+    });
+
+    localStorage.setItem('tokens', tokenStr);
+    return tokens.access_token;
   }
 };
 
 export const getAccessToken = async () => {
-  const now = dayjs();
-  const expire = dayjs(getCookie('expiresIn'));
+  const tokenstr = localStorage.getItem('tokens');
 
-  if (now > expire) {
-    await refreshAccessToken();
+  if (!tokenstr) {
+    return null;
   }
 
-  const accessToken = getCookie('accessToken');
-  return accessToken;
+  const tokens = JSON.parse(tokenstr);
+  const now = dayjs();
+  const expire = dayjs(tokens.expiresIn);
+
+  if (now > expire) {
+    const newAccessToken = await getNewAccessToken(tokens.refreshToken);
+    if (!newAccessToken) {
+      return null;
+    }
+    return newAccessToken;
+  }
+
+  return tokens.accessToken;
+};
+
+export const getUserId = async () => {
+  const userId = localStorage.getItem('userId');
+  if (!userId) {
+    return null;
+  }
+  return userId;
 };

@@ -9,7 +9,6 @@ import Spinner from '@/components/Spinner';
 import { useGetTokens } from '@/hooks/queries/auth/useGetTokens';
 import { useGetGoogleUrl } from '@/hooks/queries/auth/useGetGoogleUrl';
 import { useCallback, useEffect } from 'react';
-import { getCookies, setCookie } from 'cookies-next';
 import { getExpireTime } from '@/utils/getExpireTime';
 import { useAuth } from '@/context/AuthContext';
 
@@ -17,7 +16,7 @@ export default function Home() {
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
   const router = useRouter();
-  const { user, handleOnSuccessLogin } = useAuth();
+  const { user, resetContext } = useAuth();
   console.log(user);
 
   const { data: googleUrl, isLoading: urlLoading } = useGetGoogleUrl({
@@ -34,12 +33,15 @@ export default function Home() {
       return;
     }
 
-    setCookie('accessToken', tokens.credential.access_token);
-    setCookie('expiresIn', getExpireTime(tokens.credential.expires_in));
-    setCookie('refreshToken', tokens.credential.refresh_token);
-    setCookie('userId', tokens.user_id);
+    const tokenStr = JSON.stringify({
+      accessToken: tokens.credential.access_token,
+      expiresIn: getExpireTime(tokens.credential.expires_in),
+      refreshToken: tokens.credential.refresh_token,
+    });
 
-    handleOnSuccessLogin(tokens.user_id);
+    localStorage.setItem('tokens', tokenStr);
+    localStorage.setItem('userId', tokens.user_id);
+    resetContext();
   }, [tokens]);
 
   useEffect(() => {
@@ -52,7 +54,7 @@ export default function Home() {
       redirect('/Home');
     }
 
-    // redirect('/register');
+    redirect('/register');
   }, [user]);
 
   const handleOnLogin = useCallback(() => {

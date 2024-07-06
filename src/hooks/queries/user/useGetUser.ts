@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 
 interface useGetUserProps {
   id: string;
-  isReady: boolean;
+  isReady?: boolean;
 }
 
 export const useGetUser = (props: useGetUserProps) => {
@@ -12,6 +12,7 @@ export const useGetUser = (props: useGetUserProps) => {
     queryKey: ['getUser', id],
     queryFn: () => getUser(id),
     enabled: isReady,
+    refetchOnMount: false,
   });
   return query;
 };
