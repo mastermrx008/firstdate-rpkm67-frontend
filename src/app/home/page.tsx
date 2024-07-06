@@ -13,10 +13,15 @@ import checkIcon from '@public/home/icon/check.svg'
 import alertIcon from '@public/home/icon/alert.svg'
 import CustomButton from '@/components/home/CustomButton';
 import { useEffect, useState } from 'react';
+import QrCodePopup from '@/components/home/QrCodePopup';
 
 
 
 export default function Home() {
+    const [popup, setPopup] = useState<boolean>(false);
+    const somethings=()=>{
+        console.log("work");
+    }
     const checkElement = 
         <Image 
             src={checkIcon} 
@@ -111,31 +116,33 @@ export default function Home() {
 
 
             <div className="flex justify-center gap-x-[1.76vh] mt-[1.32vh] text-[1.76vh]">
-                <Link href="/" className="flex flex-col items-center text-center gap-y-[0.44vh]">
-                    <div className="w-[4.8vh] h-[4.8vh] rounded-full flex justify-center items-center shadow-[0px_3px_4px_.5px_#00000048] hover:scale-105">
+                <div className="flex flex-col items-center text-center gap-y-[0.44vh]">
+                    <button className="w-[4.8vh] h-[4.8vh] rounded-full flex justify-center items-center shadow-[0px_3px_4px_.5px_#00000048] hover:scale-105">
                         <Image 
                                 src={qrcodeIcon} 
                                 alt="QR Code Icon" 
                                 style={{ width: '2.63vh', height: '2.63vh' }} 
+                                onClick={()=>setPopup(true)}
                         />
-                    </div>
+                    </button>
                     <div>My Qr</div>
-                </Link>
-                <Link href="/" className="flex flex-col items-center text-center gap-y-[0.44vh]">
-                    <div className="w-[4.8vh] h-[4.8vh] rounded-full flex justify-center items-center shadow-[0px_3px_4px_.5px_#00000048] hover:scale-105">
+                </div>
+                <div className="flex flex-col items-center text-center gap-y-[0.44vh]">
+                    <Link href="/" className="w-[4.8vh] h-[4.8vh] rounded-full flex justify-center items-center shadow-[0px_3px_4px_.5px_#00000048] hover:scale-105">
                         <Image 
                                 src={editIcon} 
                                 alt="Edit Icon" 
                                 style={{ width: '2.63vh', height: '2.63vh' }} 
                         />
-                    </div>
+                    </Link>
                     <div>แก้ไขข้อมูล</div>
-                </Link>
+                </div>
                 
             </div>
 
         </div>
       </Border>
+    <QrCodePopup setPopup = {setPopup} popup = {popup}/>
     </main>
   );
 }

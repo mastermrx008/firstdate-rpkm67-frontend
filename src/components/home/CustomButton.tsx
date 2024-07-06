@@ -1,3 +1,4 @@
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 interface CustomButtonProps {
@@ -5,40 +6,43 @@ interface CustomButtonProps {
     className? : string;
     children: React.ReactNode;
 }
-const fd = ()=>{
-    console.log('fd')
-}
-const rp = ()=>{
-    console.log('rp')
-}
-const eb = ()=>{
-    console.log('eb')
-}
-const cl = ()=>{
-    console.log('cl');
-}
-const buttonProps = {
-    'first-date':{
-        color: '#FFBBD2',
-        onClick: fd
-    },
-    'rub-peun':{
-        color: '#E9A49B',
-        onClick: rp
-    },
-    'e-book':{
-        color: '#F1DFC1',
-        onClick: eb
-    },
-    'contact-list':{
-        color: '#313131',
-        onClick: cl
-    }
-}
+
+
 const CustomButton: React.FC<CustomButtonProps> = ({ varient = 'first-date', className, children }) => {
+    const router = useRouter();
+    const fd = ()=>{
+        console.log('fd')
+    }
+    const rp = ()=>{
+        console.log('rp')
+    }
+    const eb = ()=>{
+        console.log('eb')
+    }
+    const cl = ()=>{
+        router.push("/emergency-contact")
+    }
+    const buttonProps = {
+        'first-date':{
+            color: 'bg-[#FFBBD2]',
+            onClick: fd
+        },
+        'rub-peun':{
+            color: 'bg-[#E9A49B]',
+            onClick: rp
+        },
+        'e-book':{
+            color: 'bg-[#F1DFC1]',
+            onClick: eb
+        },
+        'contact-list':{
+            color: 'bg-[#313131]',
+            onClick: cl
+        }
+    }
     const {color, onClick} = buttonProps[varient]
     return (
-        <button className={`bg-[${color}] w-4/5 h-[5.26vh] rounded-lg drop-shadow-md place-content-center hover:brightness-105`} onClick={onClick}>
+        <button className={`${color} w-4/5 h-[5.26vh] rounded-lg drop-shadow-md place-content-center hover:brightness-105`} onClick={onClick}>
             <div className={`flex space-x-1 justify-center items-center ${className}`}>
                 {children}
             </div>
