@@ -57,13 +57,17 @@ function Login() {
     if (!user) {
       return;
     }
+    const isStaff = user.role == 'staff';
+    const isRegistered = user.firstname && user.lastname;
+    let newPath;
 
-    const { firstname, lastname } = user;
-    if (firstname && lastname) {
-      redirect('/Home');
+    if (isStaff) {
+      newPath = isRegistered ? '/staff/home' : '/staff/register';
+    } else {
+      newPath = isRegistered ? '/home' : '/register';
     }
 
-    redirect('/register');
+    router.push(newPath);
   }, [user]);
 
   const handleOnLogin = useCallback(() => {
