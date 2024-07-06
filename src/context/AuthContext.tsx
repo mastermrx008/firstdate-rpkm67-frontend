@@ -3,7 +3,7 @@
 import Spinner from '@/components/Spinner';
 import { User } from '@/types/user';
 import { getUser } from '@/utils/user';
-import { redirect, usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   createContext,
   ReactNode,
@@ -50,16 +50,12 @@ const AuthProvider = (props: AuthProviderProps) => {
   };
 
   useEffect(() => {
-    if (!isReady.current) {
-      return;
-    }
-
-    if (path == '/') {
+    if (!isReady.current || path == '/') {
       return;
     }
 
     if (!user) {
-      return redirect('/');
+      return router.push('/');
     }
 
     const isStaffPage = path.startsWith('/staff');
