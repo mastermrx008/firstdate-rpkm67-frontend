@@ -4,7 +4,7 @@ import Spinner from '@/components/Spinner';
 import { User } from '@/types/user';
 import { getUser } from '@/utils/user';
 import { usePathname, useRouter } from 'next/navigation';
-import {
+import React, {
   createContext,
   ReactNode,
   useContext,
@@ -12,10 +12,6 @@ import {
   useRef,
   useState,
 } from 'react';
-
-interface AuthProviderProps {
-  children: ReactNode;
-}
 
 interface IAuthContext {
   user: User | null;
@@ -27,8 +23,11 @@ const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 export const useAuth = () => useContext(AuthContext);
 
-const AuthProvider = (props: AuthProviderProps) => {
-  const { children } = props;
+const AuthProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}: {
+  children: ReactNode;
+}) => {
   const [user, setUser] = useState<User | null>(null);
   const path = usePathname();
   const isReady = useRef(false);

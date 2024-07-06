@@ -10,6 +10,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { getExpireTime } from '@/utils/getExpireTime';
 import { useAuth } from '@/context/AuthContext';
 import { exchangeGoogleCodeForToken, getGoogleUrl } from '@/utils/auth';
+import { convertTokenDTOToToken } from '@/dtos/tokensDto';
 
 export default function Login() {
   const searchParams = useSearchParams();
@@ -32,31 +33,27 @@ export default function Login() {
       return;
     }
     (async () => {
-      const tokens = await exchangeGoogleCodeForToken(code);
-      if (!tokens) {
+      const token = await exchangeGoogleCodeForToken(code);
+
+      if (!token) {
         return;
       }
 
-      const tokenStr = JSON.stringify({
-        accessToken: tokens.credential.access_token,
-        expiresIn: getExpireTime(tokens.credential.expires_in),
-        refreshToken: tokens.credential.refresh_token,
-      });
+      const { userId } = token;
 
-      localStorage.setItem('tokens', tokenStr);
-      localStorage.setItem('userId', tokens.user_id);
+      localStorage.setItem('token', JSON.stringify(token));
+      localStorage.setItem('userId', userId);
       resetContext();
     })();
   }, [code]);
 
   useEffect(() => {
-    console.log(user);
     if (!user) {
       return;
     }
 
     const { firstname, lastname } = user;
-    if (!!firstname || !!lastname) {
+    if (firstname && lastname) {
       redirect('/Home');
     }
 
@@ -75,7 +72,7 @@ export default function Login() {
       <Border variant="dark-pink">
         {code && (
           <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 z-[999]">
-            <Spinner className="text-pink-300 fill-red-400" />
+            <Spinner />
           </div>
         )}
 

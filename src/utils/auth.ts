@@ -1,52 +1,61 @@
 import { getExpireTime } from './getExpireTime';
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
+import { apiClient } from './axios';
+import {
+  convertGoogleDTOToGoogle,
+  GoogleDTO,
+  TokenDTO,
+} from '@/dtos/tokensDto';
+import { Google, Token } from '@/types/token';
 
-export const getNewAccessToken = async (refreshToken: string) => {
-  let res: AxiosResponse;
-  const URL = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/refreshToken`;
-
+export const getNewAccessToken = async (
+  refreshToken: string
+): Promise<string | null> => {
   try {
-    res = await axios.post(URL, {
-      refresh_token: refreshToken,
-    });
+    const res: AxiosResponse<TokenDTO> = await apiClient.post(
+      '/auth/refreshToken',
+      {
+        refresh_token: refreshToken,
+      }
+    );
 
-    const tokens = res.data;
+    const { access_token, expires_in, refresh_token } = res.data;
     const tokenStr = JSON.stringify({
-      accessToken: tokens.access_token,
-      expiresIn: getExpireTime(tokens.expires_in),
-      refreshToken: tokens.refresh_token,
+      accessToken: access_token,
+      expiresIn: getExpireTime(expires_in),
+      refreshToken: refresh_token,
     });
 
-    localStorage.setItem('tokens', tokenStr);
-    return tokens.access_token;
+    localStorage.setItem('token', tokenStr);
+    return access_token;
   } catch {
     return null;
   }
 };
 
-export const getAccessToken = async () => {
-  const tokenstr = localStorage.getItem('tokens');
+export const getAccessToken = async (): Promise<string | null> => {
+  const tokenStr = localStorage.getItem('token');
 
-  if (!tokenstr) {
+  if (!tokenStr) {
     return null;
   }
 
-  const tokens = JSON.parse(tokenstr);
+  const token: Token = JSON.parse(tokenStr);
   const now = new Date();
-  const expire = new Date(tokens.expiresIn);
+  const expire = new Date(token.expiresIn);
 
   if (now > expire) {
-    const newAccessToken = await getNewAccessToken(tokens.refreshToken);
+    const newAccessToken = await getNewAccessToken(token.refreshToken);
     if (!newAccessToken) {
       return null;
     }
     return newAccessToken;
   }
 
-  return tokens.accessToken;
+  return token.accessToken;
 };
 
-export const getUserId = async () => {
+export const getUserId = async (): Promise<string | null> => {
   const userId = localStorage.getItem('userId');
   if (!userId) {
     return null;
@@ -54,23 +63,24 @@ export const getUserId = async () => {
   return userId;
 };
 
-export const exchangeGoogleCodeForToken = async (code: string) => {
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/verify-google?code=${code}`;
+export const exchangeGoogleCodeForToken = async (
+  code: string
+): Promise<Google | null> => {
   try {
-    const res = await axios.get(url);
-    return res.data;
+    const res: AxiosResponse<GoogleDTO> = await apiClient.get(
+      `/auth/verify-google?code=${code}`
+    );
+    return convertGoogleDTOToGoogle(res.data);
   } catch {
     return null;
   }
 };
 
-export const getGoogleUrl = async () => {
+export const getGoogleUrl = async (): Promise<string | null> => {
   try {
-    const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/auth/google-url`
-    );
-    const data = res.data;
-    const url = data.url;
+    const res: AxiosResponse<{ url: string }> =
+      await apiClient.get(`/auth/google-url`);
+    const { url } = res.data;
     return url;
   } catch {
     return null;

@@ -1,9 +1,9 @@
 export type Stamp = {
   id: string;
-  point_a: number;
-  point_b: number;
-  point_c: number;
-  point_d: number;
+  pointA: number;
+  pointB: number;
+  pointC: number;
+  pointD: number;
   stamp: string;
-  user_id: string;
+  userId: string;
 };

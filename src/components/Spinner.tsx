@@ -13,7 +13,7 @@ const Spinner: React.FC<SpinnerProps> = (props) => {
       <svg
         aria-hidden="true"
         className={cn(
-          'w-8 h-8 text-gray-200 animate-spin fill-blue-600',
+          'w-8 h-8 text-gray-200 animate-spin fill-white',
           className
         )}
         viewBox="0 0 100 101"

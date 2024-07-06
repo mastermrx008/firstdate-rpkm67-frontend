@@ -1,8 +1,10 @@
 import { User } from '@/types/user';
 import { getAccessToken, getUserId } from '@/utils/auth';
-import axios from 'axios';
+import { apiClient } from './axios';
+import { AxiosResponse } from 'axios';
+import { convertUserDTOtoUser, UserDTO } from '@/dtos/userDto';
 
-export const getUser = async () => {
+export const getUser = async (): Promise<User | null> => {
   const accessToken = await getAccessToken();
   const userId = await getUserId();
 
@@ -10,16 +12,17 @@ export const getUser = async () => {
     return null;
   }
 
-  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/user/${userId}`;
-
   try {
-    const res = await axios.get(url, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+    const res: AxiosResponse<{ user: UserDTO }> = await apiClient.get(
+      `/user/${userId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
 
-    return res.data.user as User;
+    return convertUserDTOtoUser(res.data.user);
   } catch (error) {
     console.log('error:', error);
     return null;
