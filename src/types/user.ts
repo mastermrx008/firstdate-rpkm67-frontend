@@ -1,0 +1,27 @@
+import { CheckIn } from './checkIn';
+import { Stamp } from './stamp';
+
+export type User = {
+  baan: string;
+  check_ins: CheckIn[];
+  drugAllergy: string;
+  email: string;
+  faculty: string;
+  firstname: string;
+  foodAllergy: string;
+  group_id: string;
+  id: string;
+  illness: string;
+  lastname: string;
+  nickname: string;
+  parent: string;
+  parentTel: string;
+  photoKey: string;
+  photoUrl: string;
+  receiveGift: number;
+  role: 'user' | 'staff';
+  stamp: Stamp;
+  tel: string;
+  title: string;
+  year: number;
+};
