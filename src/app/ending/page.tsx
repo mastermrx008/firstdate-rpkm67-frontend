@@ -21,19 +21,23 @@ export default function Ending() {
           alt="logo"
           className="w-44"
         />
-        <h1 className="font-season italic mt-2 text-2xl">My card</h1>
+        <h1 className="font-season italic mt-3 text-2xl text-light-gray">
+          My card
+        </h1>
         <Image
           src={Divider}
           alt="divider"
           className="w-44 m-3"
         />
-        <h2 className="font-season italic mb-2 text-2xl">Sprout</h2>
+        <h2 className="font-season italic mb-2 text-2xl text-light-gray">
+          Sprout
+        </h2>
         <Image
           src={SproutImage}
           alt="result image"
-          className="w-44"
+          className="w-48"
         />
-        <div className="flex flex-col justify-center w-4/5 text-center mt-2 text-sm">
+        <div className="flex flex-col justify-center w-4/5 text-center mt-2 text-sm text-light-gray">
           <p>
             “ไม่ว่าคุณจะเป็นคนแบบไหน ผ่านเรื่องอะไรมาบ้าง
             ยินดีต้อนรับเข้าสู่จุฬาลงกรณ์มหาวิทยาลัย
@@ -54,7 +58,7 @@ export default function Ending() {
           </button>
           <a
             href="/"
-            className="w-full bg-project-pink rounded-md py-2 text-center"
+            className="w-full bg-project-pink rounded-md py-2 text-center text-light-gray"
           >
             กลับไปเดินทางต่อ
           </a>
