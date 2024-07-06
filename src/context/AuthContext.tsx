@@ -2,7 +2,7 @@
 
 import Spinner from '@/components/Spinner';
 import { User } from '@/types/user';
-import { getUser } from '@/utils/user';
+import { getUser /* isUserRegistered */ } from '@/utils/user';
 
 import { usePathname, useRouter } from 'next/navigation';
 import React, {
@@ -58,7 +58,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
     //TODO comeback to activate route protection
     // const isStaffPage = path.startsWith('/staff');
     // const isStaff = userObj.role == 'staff';
-    // const isRegistered = userObj.firstname && userObj.lastname;
+    // const isRegistered = isUserRegistered(userObj);
     // const isLoginPage = path == '/';
 
     // if (isStaff && (!isStaffPage || isLoginPage)) {

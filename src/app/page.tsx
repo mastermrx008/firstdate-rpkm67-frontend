@@ -9,6 +9,7 @@ import Spinner from '@/components/Spinner';
 import { Suspense, useCallback, useEffect, useRef } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { exchangeGoogleCodeForToken, getGoogleUrl } from '@/utils/auth';
+import { isUserRegistered } from '@/utils/user';
 
 export default function page() {
   return (
@@ -58,7 +59,7 @@ function Login() {
       return;
     }
     const isStaff = user.role == 'staff';
-    const isRegistered = user.firstname && user.lastname;
+    const isRegistered = isUserRegistered(user);
     let newPath;
 
     if (isStaff) {
