@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useToPng } from '@hugocxl/react-to-image';
 
 import Border from '@/components/Border';
 
@@ -10,11 +11,55 @@ import SproutImage from '@public/ending/sprout.png';
 import DownloadIcon from '@public/ending/download.svg';
 
 export default function Ending() {
-  const handleDownload = () => {
-    return;
-  };
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_, convert, ref] = useToPng<HTMLDivElement>({
+    quality: 1,
+    onStart: () => {
+      const toHide = document.getElementsByClassName(
+        'to-hide'
+      ) as HTMLCollectionOf<HTMLElement>;
+      for (let i = 0; i < toHide.length; ++i) {
+        toHide[i].style.visibility = 'hidden';
+      }
+      const mainContainer = document.getElementById(
+        'main-containter'
+      ) as HTMLElement;
+
+      mainContainer.style.backgroundImage = `url('/bg-1.svg')`;
+      mainContainer.style.backgroundRepeat = 'repeat';
+      mainContainer.style.backgroundSize = 'cover';
+    },
+    onSuccess: (data) => {
+      const toHide = document.getElementsByClassName(
+        'to-hide'
+      ) as HTMLCollectionOf<HTMLElement>;
+      for (let i = 0; i < toHide.length; ++i) {
+        toHide[i].style.visibility = 'visible';
+      }
+      const mainContainer = document.getElementById(
+        'main-containter'
+      ) as HTMLElement;
+
+      mainContainer.style.backgroundImage = ``;
+      mainContainer.style.backgroundRepeat = '';
+      mainContainer.style.backgroundSize = '';
+
+      const link = document.createElement('a');
+      link.download = 'card.png';
+      link.href = data;
+      link.click();
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+
   return (
-    <main className="w-full h-screen flex justify-center items-center flex-col">
+    <main
+      className="w-full h-screen flex justify-center items-center flex-col"
+      id="main-containter"
+      ref={ref}
+    >
       <Border variant="white">
         <Image
           src={Logo}
@@ -47,8 +92,8 @@ export default function Ending() {
         </div>
         <div className="flex justify-center w-2/3 flex-col gap-y-2 mt-4 text-xl">
           <button
-            onClick={handleDownload}
-            className="w-full border rounded-md border-project-fuchsia py-2 flex flex-row items-center justify-center"
+            onClick={convert}
+            className="w-full border rounded-md border-project-fuchsia py-2 flex flex-row items-center justify-center to-hide"
           >
             <Image
               src={DownloadIcon}
@@ -58,7 +103,7 @@ export default function Ending() {
           </button>
           <a
             href="/"
-            className="w-full bg-project-pink rounded-md py-2 text-center text-light-gray"
+            className="w-full bg-project-pink rounded-md py-2 text-center text-light-gray to-hide"
           >
             กลับไปเดินทางต่อ
           </a>
