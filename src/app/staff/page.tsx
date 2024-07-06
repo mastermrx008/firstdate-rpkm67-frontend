@@ -13,6 +13,7 @@ export default function Staff() {
           <h1>Welcome,</h1>
           <h1>Staff</h1>
         </section>
+        {isQrCode ? <></> : <PinGroup />}
         <PinGroup />
       </Border>
       <TwoCircleMenu />
