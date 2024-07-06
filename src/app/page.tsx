@@ -4,7 +4,7 @@ import Border from '@/components/Border';
 import Welcome from '@/components/Welcome';
 import Image from 'next/image';
 import SGCULOGO from '@public/landing/SGCU-logo.svg';
-import { redirect, useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Spinner from '@/components/Spinner';
 import { Suspense, useCallback, useEffect, useRef } from 'react';
 import { useAuth } from '@/context/AuthContext';
@@ -68,7 +68,7 @@ function Login() {
     }
 
     router.push(newPath);
-  }, [user]);
+  }, [user, router]);
 
   const handleOnLogin = useCallback(() => {
     if (!googleUrl.current) {
