@@ -40,7 +40,6 @@ function Login() {
     }
     (async () => {
       const token = await exchangeGoogleCodeForToken(code);
-
       if (!token) {
         return;
       }
