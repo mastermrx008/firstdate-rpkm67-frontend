@@ -54,4 +54,25 @@ export const getUserId = async () => {
   return userId;
 };
 
+export const exchangeGoogleCodeForToken = async (code: string) => {
+  const url = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/verify-google?code=${code}`;
+  try {
+    const res = await axios.get(url);
+    return res.data;
+  } catch {
+    return null;
+  }
+};
 
+export const getGoogleUrl = async () => {
+  try {
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/auth/google-url`
+    );
+    const data = res.data;
+    const url = data.url;
+    return url;
+  } catch {
+    return null;
+  }
+};

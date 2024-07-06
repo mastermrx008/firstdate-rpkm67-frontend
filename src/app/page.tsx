@@ -6,11 +6,10 @@ import Image from 'next/image';
 import SGCULOGO from '@public/landing/SGCU-logo.svg';
 import { redirect, useRouter, useSearchParams } from 'next/navigation';
 import Spinner from '@/components/Spinner';
-import { useGetTokens } from '@/hooks/queries/auth/useGetTokens';
-import { useGetGoogleUrl } from '@/hooks/queries/auth/useGetGoogleUrl';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { getExpireTime } from '@/utils/getExpireTime';
 import { useAuth } from '@/context/AuthContext';
+import { exchangeGoogleCodeForToken, getGoogleUrl } from '@/utils/auth';
 
 export default function Home() {
   const searchParams = useSearchParams();
@@ -18,33 +17,41 @@ export default function Home() {
   const router = useRouter();
   const { user, resetContext } = useAuth();
   console.log(user);
-
-  const { data: googleUrl, isLoading: urlLoading } = useGetGoogleUrl({
-    isReady: !code,
-  });
-
-  const { data: tokens } = useGetTokens({
-    code: code as string,
-    isReady: !!code,
-  });
+  const googleUrl = useRef<string | null>(null);
 
   useEffect(() => {
-    if (!tokens) {
+    (async () => {
+      const url = await getGoogleUrl();
+      if (url) {
+        googleUrl.current = url;
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    if (!code) {
       return;
     }
+    (async () => {
+      const tokens = await exchangeGoogleCodeForToken(code);
+      if (!tokens) {
+        return;
+      }
 
-    const tokenStr = JSON.stringify({
-      accessToken: tokens.credential.access_token,
-      expiresIn: getExpireTime(tokens.credential.expires_in),
-      refreshToken: tokens.credential.refresh_token,
-    });
+      const tokenStr = JSON.stringify({
+        accessToken: tokens.credential.access_token,
+        expiresIn: getExpireTime(tokens.credential.expires_in),
+        refreshToken: tokens.credential.refresh_token,
+      });
 
-    localStorage.setItem('tokens', tokenStr);
-    localStorage.setItem('userId', tokens.user_id);
-    resetContext();
-  }, [tokens]);
+      localStorage.setItem('tokens', tokenStr);
+      localStorage.setItem('userId', tokens.user_id);
+      resetContext();
+    })();
+  }, [code]);
 
   useEffect(() => {
+    console.log(user);
     if (!user) {
       return;
     }
@@ -58,16 +65,16 @@ export default function Home() {
   }, [user]);
 
   const handleOnLogin = useCallback(() => {
-    if (urlLoading) {
+    if (!googleUrl.current) {
       return;
     }
-    router.push(googleUrl);
+    router.push(googleUrl.current);
   }, [googleUrl]);
 
   return (
     <main className="h-screen w-full flex justify-center items-start text-lg relative">
       <Border variant="dark-pink">
-        {(code || urlLoading) && (
+        {code && (
           <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 z-[999]">
             <Spinner className="text-pink-300 fill-red-400" />
           </div>

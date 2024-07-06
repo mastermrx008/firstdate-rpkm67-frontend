@@ -1,8 +1,8 @@
 'use client';
 
-import { getUser } from '@/api/user/getUser';
 import Spinner from '@/components/Spinner';
 import { User } from '@/types/user';
+import { getUser } from '@/utils/user';
 import { redirect, usePathname, useRouter } from 'next/navigation';
 import {
   createContext,
