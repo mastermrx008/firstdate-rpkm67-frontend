@@ -1,15 +1,10 @@
-'use client';
-
 import Border from '@/components/Border';
 import FDLogo from '@public/FIrst Date Logo.svg';
 import MapImage from '@public/map.svg';
 import Image from 'next/image';
 import { Icon } from '@iconify/react';
-import { useAuth } from '@/context/AuthContext';
 
 export default function Map() {
-  const { logout } = useAuth();
-  logout();
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
       <Border variant="white">
