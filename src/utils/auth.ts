@@ -1,6 +1,5 @@
 import { getExpireTime } from './getExpireTime';
 import axios, { AxiosResponse } from 'axios';
-import dayjs from 'dayjs';
 
 export const getNewAccessToken = async (refreshToken: string) => {
   let res: AxiosResponse;
@@ -33,8 +32,8 @@ export const getAccessToken = async () => {
   }
 
   const tokens = JSON.parse(tokenstr);
-  const now = dayjs();
-  const expire = dayjs(tokens.expiresIn);
+  const now = new Date();
+  const expire = new Date(tokens.expiresIn);
 
   if (now > expire) {
     const newAccessToken = await getNewAccessToken(tokens.refreshToken);
@@ -54,3 +53,5 @@ export const getUserId = async () => {
   }
   return userId;
 };
+
+
