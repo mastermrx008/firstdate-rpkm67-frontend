@@ -61,7 +61,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
     if (isStaffPage && user?.role != 'staff') {
       return router.push('/');
     }
-  }, [router, user]);
+  }, [router, user, path]);
 
   useEffect(() => {
     isReady.current = false;

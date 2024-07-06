@@ -7,10 +7,8 @@ import SGCULOGO from '@public/landing/SGCU-logo.svg';
 import { redirect, useRouter, useSearchParams } from 'next/navigation';
 import Spinner from '@/components/Spinner';
 import { useCallback, useEffect, useRef } from 'react';
-import { getExpireTime } from '@/utils/getExpireTime';
 import { useAuth } from '@/context/AuthContext';
 import { exchangeGoogleCodeForToken, getGoogleUrl } from '@/utils/auth';
-import { convertTokenDTOToToken } from '@/dtos/tokensDto';
 
 export default function Login() {
   const searchParams = useSearchParams();
@@ -45,7 +43,7 @@ export default function Login() {
       localStorage.setItem('userId', userId);
       resetContext();
     })();
-  }, [code]);
+  }, [code, resetContext]);
 
   useEffect(() => {
     if (!user) {
@@ -65,7 +63,7 @@ export default function Login() {
       return;
     }
     router.push(googleUrl.current);
-  }, [googleUrl]);
+  }, [googleUrl, router]);
 
   return (
     <main className="h-screen w-full flex justify-center items-start text-lg relative">
