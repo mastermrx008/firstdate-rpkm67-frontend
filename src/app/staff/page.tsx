@@ -1,0 +1,18 @@
+import Border from '@/components/Border';
+import TwoCircleMenu from '@/components/TwoCircleMenu';
+import PinGroup from '@/components/staff/otp/PinGroup';
+
+export default function Staff() {
+  return (
+    <main className="w-full h-screen flex justify-center bg-2">
+      <Border variant="white">
+        <section className="font-season italic text-5xl grid place-items-center">
+          <h1>Welcome,</h1>
+          <h1>Staff</h1>
+        </section>
+        <PinGroup />
+      </Border>
+      <TwoCircleMenu />
+    </main>
+  );
+}
