@@ -2,7 +2,7 @@
 
 import Spinner from '@/components/Spinner';
 import { User } from '@/types/user';
-import { getUser, isUserRegistered } from '@/utils/user';
+import { getUser, /* isUserRegistered */ } from '@/utils/user';
 
 import { usePathname, useRouter } from 'next/navigation';
 import React, {
