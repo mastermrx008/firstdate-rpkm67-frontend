@@ -18,8 +18,8 @@ export default function Ending() {
       const toHide = document.getElementsByClassName(
         'to-hide'
       ) as HTMLCollectionOf<HTMLElement>;
-      for (let i = 0; i < toHide.length; ++i) {
-        toHide[i].style.visibility = 'hidden';
+      for (const element of toHide) {
+        element.style.visibility = 'hidden';
       }
       const mainContainer = document.getElementById(
         'main-containter'
@@ -33,8 +33,8 @@ export default function Ending() {
       const toHide = document.getElementsByClassName(
         'to-hide'
       ) as HTMLCollectionOf<HTMLElement>;
-      for (let i = 0; i < toHide.length; ++i) {
-        toHide[i].style.visibility = 'visible';
+      for (const element of toHide) {
+        element.style.visibility = 'visible';
       }
       const mainContainer = document.getElementById(
         'main-containter'
