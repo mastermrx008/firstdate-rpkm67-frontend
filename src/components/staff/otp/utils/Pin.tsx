@@ -1,6 +1,6 @@
-import { OtpPinWithIndex } from '@/types/staff/pins';
+import { OtpPinReset } from '@/types/staff/otp/pins';
 import { Icon } from '@iconify/react/dist/iconify.js';
-export default function Pin(props: OtpPinWithIndex) {
+export default function Pin(props: OtpPinReset) {
   return (
     <section className="flex w-full h-full items-center justify-between">
       <div className="flex flex-col justify-evenly">
@@ -13,7 +13,7 @@ export default function Pin(props: OtpPinWithIndex) {
         <Icon
           icon="tabler:reload"
           className="w-6 h-6 text-black"
-          onClick={() => console.log('Hello')}
+          onClick={() => props.handleClick(props.index)}
         />
       </div>
     </section>
