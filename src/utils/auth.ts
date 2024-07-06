@@ -1,17 +1,17 @@
-import { useRefreshToken } from '@/hooks/mutations/useRefreshToken';
 import { getExpireTime } from './getExpireTime';
+import axios, { AxiosResponse } from 'axios';
 import dayjs from 'dayjs';
 
 export const getNewAccessToken = async (refreshToken: string) => {
-  const mutation = useRefreshToken();
+  let res: AxiosResponse;
+  const URL = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/refreshToken`;
 
-  if (refreshToken) {
-    const { tokens } = await mutation.mutateAsync(refreshToken);
+  try {
+    res = await axios.post(URL, {
+      refresh_token: refreshToken,
+    });
 
-    if (!tokens) {
-      return null;
-    }
-
+    const tokens = res.data;
     const tokenStr = JSON.stringify({
       accessToken: tokens.access_token,
       expiresIn: getExpireTime(tokens.expires_in),
@@ -20,6 +20,8 @@ export const getNewAccessToken = async (refreshToken: string) => {
 
     localStorage.setItem('tokens', tokenStr);
     return tokens.access_token;
+  } catch {
+    return null;
   }
 };
 
