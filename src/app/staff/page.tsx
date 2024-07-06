@@ -1,8 +1,11 @@
+'use client';
 import Border from '@/components/Border';
 import TwoCircleMenu from '@/components/TwoCircleMenu';
 import PinGroup from '@/components/staff/otp/PinGroup';
+import { useState } from 'react';
 
 export default function Staff() {
+  const [isQrCode, setIsQrCode] = useState<boolean>(true);
   return (
     <main className="w-full h-screen flex justify-center bg-2">
       <Border variant="white">
