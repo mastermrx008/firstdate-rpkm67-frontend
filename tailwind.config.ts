@@ -24,6 +24,8 @@ const config: Config = {
           'dark-gray': '#979797',
           'light-gray': '#313131',
           'light-blue': '#D8E3FE',
+          gray: '#DDDDDD',
+          brown: '#AA8B84',
         },
       },
       fontFamily: {
