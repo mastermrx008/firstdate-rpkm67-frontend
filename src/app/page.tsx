@@ -11,12 +11,11 @@ import { getExpireTime } from '@/utils/getExpireTime';
 import { useAuth } from '@/context/AuthContext';
 import { exchangeGoogleCodeForToken, getGoogleUrl } from '@/utils/auth';
 
-export default function Home() {
+export default function Login() {
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
   const router = useRouter();
   const { user, resetContext } = useAuth();
-  console.log(user);
   const googleUrl = useRef<string | null>(null);
 
   useEffect(() => {
