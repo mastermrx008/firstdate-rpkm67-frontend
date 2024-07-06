@@ -4,7 +4,7 @@ import Border from '@/components/Border';
 import Welcome from '@/components/Welcome';
 import Image from 'next/image';
 import SGCULOGO from '@public/landing/SGCU-logo.svg';
-import { redirect, useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Spinner from '@/components/Spinner';
 import { Suspense, useCallback, useEffect, useRef } from 'react';
 import { useAuth } from '@/context/AuthContext';
@@ -57,14 +57,18 @@ function Login() {
     if (!user) {
       return;
     }
+    const isStaff = user.role == 'staff';
+    const isRegistered = user.firstname && user.lastname;
+    let newPath;
 
-    const { firstname, lastname } = user;
-    if (firstname && lastname) {
-      redirect('/Home');
+    if (isStaff) {
+      newPath = isRegistered ? '/staff/home' : '/staff/register';
+    } else {
+      newPath = isRegistered ? '/home' : '/register';
     }
 
-    redirect('/register');
-  }, [user]);
+    router.push(newPath);
+  }, [user, router]);
 
   const handleOnLogin = useCallback(() => {
     if (!googleUrl.current) {

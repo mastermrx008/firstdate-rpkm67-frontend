@@ -5,7 +5,7 @@ import { CheckInDTO } from './checkInsDTO';
 
 export type UserDTO = {
   baan: string;
-  check_ins: CheckInDTO[];
+  check_ins?: CheckInDTO[] | null;
   drug_allergy: string;
   email: string;
   faculty: string;
@@ -31,12 +31,13 @@ export type UserDTO = {
 export const convertUserDTOtoUser = (userDTO: UserDTO): User => {
   return {
     baan: userDTO.baan,
-    check_ins: userDTO.check_ins.map((checkIn) => ({
-      email: checkIn.email,
-      event: checkIn.event,
-      id: checkIn.id,
-      userId: checkIn.user_id,
-    })),
+    check_ins:
+      userDTO.check_ins?.map((checkIn) => ({
+        email: checkIn.email,
+        event: checkIn.event,
+        id: checkIn.id,
+        userId: checkIn.user_id,
+      })) ?? [],
     drugAllergy: userDTO.drug_allergy,
     email: userDTO.email,
     faculty: userDTO.faculty,
