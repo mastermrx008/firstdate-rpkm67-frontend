@@ -6,11 +6,19 @@ import Image from 'next/image';
 import SGCULOGO from '@public/landing/SGCU-logo.svg';
 import { redirect, useRouter, useSearchParams } from 'next/navigation';
 import Spinner from '@/components/Spinner';
-import { useCallback, useEffect, useRef } from 'react';
+import { Suspense, useCallback, useEffect, useRef } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { exchangeGoogleCodeForToken, getGoogleUrl } from '@/utils/auth';
 
-export default function Login() {
+export default function page() {
+  return (
+    <Suspense>
+      <Login />
+    </Suspense>
+  );
+}
+
+function Login() {
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
   const router = useRouter();
