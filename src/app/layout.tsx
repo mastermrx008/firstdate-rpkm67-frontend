@@ -3,6 +3,8 @@ import { Athiti } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
 import Footer from '@/components/Footer';
+import QueryClientWrapper from '@/components/QueryClientWrapper';
+import AuthProvider from '@/context/AuthContext';
 
 export const metadata: Metadata = {
   title: 'RPKM',
@@ -16,9 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${athiti.variable} ${season.variable} ${sarun.variable} w-full min-h-screen bg-1 font-athiti`}
+        className={`${athiti.variable} ${season.variable} ${sarun.variable} bg-1 font-athiti`}
       >
-        {children}
+        <QueryClientWrapper>
+          <AuthProvider>{children}</AuthProvider>
+        </QueryClientWrapper>
         <Footer />
       </body>
     </html>
