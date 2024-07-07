@@ -1,4 +1,4 @@
-import { OtpPinReset } from '@/types/staff/otp/pins';
+import { OtpPinReset } from '@/types/staff/home/otp/pins';
 import { Icon } from '@iconify/react/dist/iconify.js';
 export default function Pin(props: OtpPinReset) {
   return (

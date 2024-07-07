@@ -1,4 +1,4 @@
-import { ModeInterface } from '@/types/staff/mode';
+import { ModeInterface } from '@/types/staff/home/mode';
 
 export default function Mode(props: ModeInterface) {
   return (

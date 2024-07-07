@@ -23,7 +23,7 @@ export const getAllPins = async (): Promise<PinDTO[] | null> => {
   }
 };
 
-export const resetPin = async (activityId: string): Promise<boolean | null> => {
+export const resetPin = async (activityId: string): Promise<PinDTO | null> => {
   const accessToken = await getAccessToken();
 
   if (!accessToken) {
@@ -31,15 +31,16 @@ export const resetPin = async (activityId: string): Promise<boolean | null> => {
   }
 
   try {
-    const res: AxiosResponse<{ success: boolean }> = await apiClient.post(
+    const res: AxiosResponse<{ pin: PinDTO }> = await apiClient.post(
       `/pin/reset/${activityId}`,
+      {},
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       }
     );
-    return res.data.success;
+    return res.data.pin;
   } catch (error) {
     console.log('error:', error);
     return null;

@@ -14,16 +14,15 @@ export default function PinGroup() {
       const pins = await getAllPins();
       setPins(pins ?? null);
     };
-
     fetchUserEstamp();
   }, []);
 
   const handleReset = async (ind: number) => {
     if (!pins) return;
-    const status = await resetPin(pins[ind].activity_id);
-    let updatedPins: PinDTO[] | null = null;
-    if (status) {
-      updatedPins = await getAllPins();
+    const updatedPins: PinDTO[] = [...pins];
+    const pin = await resetPin(pins[ind].activity_id);
+    if (pin) {
+      updatedPins[ind] = pin;
     }
     setPins(updatedPins);
   };

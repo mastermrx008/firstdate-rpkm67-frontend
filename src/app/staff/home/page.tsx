@@ -1,8 +1,8 @@
 'use client';
 import Border from '@/components/Border';
 import TwoCircleMenu from '@/components/TwoCircleMenu';
-import Mode from '@/components/staff/Mode';
-import PinGroup from '@/components/staff/otp/PinGroup';
+import Mode from '@/components/staff/home/Mode';
+import PinGroup from '@/components/staff/home/otp/PinGroup';
 import { useCallback, useState } from 'react';
 
 export default function Staff() {
