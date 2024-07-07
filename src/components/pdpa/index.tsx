@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { cn } from '@/lib/utils';
+import { useCallback, useState } from 'react';
 
 const titles: string[] = [
   'นโยบายความเป็นส่วนตัว',
@@ -24,14 +25,36 @@ const description: string[] = [
     รายละเอียดที่แจ้งไว้เท่านั้น`,
 ];
 
-export default function Pdpa() {
+interface PdpaProps {
+  isOpen: boolean;
+  onOpenChange: (isOpen: boolean) => void;
+  onSuccess: () => void;
+}
+
+export default function Pdpa(props: PdpaProps) {
+  const { isOpen, onOpenChange, onSuccess } = props;
   const [isChecked, setIsChecked] = useState(false);
+  const containerClassName = cn(
+    'fixed inset-0 z-10 flex justify-center items-center bg-black bg-opacity-25',
+    {
+      'opacity-0 pointer-events-none': !isOpen,
+    }
+  );
+
+  const handleOnClose = useCallback(() => {
+    onOpenChange(false);
+  }, [onOpenChange]);
+
+  const handleOnSuccess = useCallback(() => {
+    onSuccess();
+    handleOnClose();
+  }, [onSuccess]);
 
   return (
-    <div className="flex justify-center items-center z-10 inset-0 bg-black bg-opacity-25">
+    <div className={containerClassName}>
       <div className="relative flex flex-col justify-center items-center bg-white m-5 p-6 rounded-[20px]">
         <div className="absolute right-4 top-4">
-          <button>
+          <button onClick={handleOnClose}>
             <svg
               className="w-10 h-10"
               viewBox="0 0 24 24"
@@ -97,9 +120,7 @@ export default function Pdpa() {
           className={`mt-3 w-64 h-12 font-medium text-white text-xl rounded-lg bg-project-fuchsia
                 ${isChecked ? 'opacity-100' : 'opacity-50'}`}
           disabled={!isChecked}
-          onClick={() => {
-            /*put router here*/
-          }}
+          onClick={handleOnSuccess}
         >
           รับทราบและยินยอม
         </button>
