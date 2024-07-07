@@ -10,7 +10,7 @@ import { useAuth } from '@/context/AuthContext';
 
 export default function AdminInfo() {
   const [activeIcon, setActiveIcon] = useState<'profile' | 'home'>('profile');
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
       <Border
@@ -44,6 +44,9 @@ export default function AdminInfo() {
         <Icon
           icon="humbleicons:logout"
           className="w-12 h-12 p-3 rounded-full bg-white text-black shadow-lg"
+          onClick={() => {
+            logout();
+          }}
         />
         <span className="font-athiti font-medium">ออกจากระบบ</span>
       </div>
