@@ -2,7 +2,7 @@
 import Pin from './utils/Pin';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import line from '@/assets/line.svg';
+import line from '@/../public/line.svg';
 import { PinDTO } from '@/dtos/pinDTO';
 import { getAllPins, resetPin } from '@/utils/pin';
 
@@ -43,7 +43,7 @@ export default function PinGroup() {
             pins.map((data: PinDTO, index: number) => (
               <>
                 <Pin
-                  key={index}
+                  key={data.activity_id}
                   otp={data}
                   index={index}
                   handleClick={handleReset}

@@ -5,11 +5,12 @@ import Mode from '@/components/staff/home/Mode';
 import PinGroup from '@/components/staff/home/otp/PinGroup';
 import { useCallback, useState } from 'react';
 
-export default function Staff() {
-  const [isQrPage, setIsQrPage] = useState<boolean>(true);
+export type StaffHomeMode = 'QR-Reader' | 'OTP';
 
-  const handleClick = useCallback((value: boolean) => {
-    setIsQrPage(() => value);
+export default function Staff() {
+  const [mode, setMode] = useState<StaffHomeMode>('QR-Reader');
+  const handleClick = useCallback((value: StaffHomeMode) => {
+    setMode(() => value);
   }, []);
 
   return (
@@ -19,21 +20,19 @@ export default function Staff() {
           <h1>Welcome,</h1>
           <h1>Staff</h1>
         </section>
-        <section className="pb-3 w-full h-7 rounded-3xl bg-black flex justify-between">
+        <section className="w-full rounded-3xl bg-white text-project-light-gray flex item-center justify-between shadow-md">
           <Mode
-            message="QR-Reader"
-            reference={true}
-            status={isQrPage}
-            handleClick={handleClick}
+            variant="QR-Reader"
+            mode={mode}
+            handleOnClick={handleClick}
           />
           <Mode
-            message="OTP"
-            reference={false}
-            status={isQrPage}
-            handleClick={handleClick}
+            variant="OTP"
+            mode={mode}
+            handleOnClick={handleClick}
           />
         </section>
-        {isQrPage ? <></> : <PinGroup />}
+        {mode === 'QR-Reader' ? <></> : <PinGroup />}
       </Border>
       <TwoCircleMenu />
     </main>
