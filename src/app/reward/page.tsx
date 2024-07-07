@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 
 export default function Map() {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeIcon, setActiveIcon] = useState<'profile' | 'home'>('profile');
   const router = useRouter();
   const handleClick = async () => {
     router.push('/rewarddone');
@@ -79,7 +80,14 @@ export default function Map() {
           onClose={() => setIsOpen(false)}
         />
       </Border>
-      <TwoCircleMenu />
+      <TwoCircleMenu
+        activeIcon={activeIcon}
+        setActiveIcon={setActiveIcon}
+        hrefs={{
+          profile: 'firstdate/profile',
+          home: 'firstdate/home',
+        }}
+      />
     </main>
   );
 }

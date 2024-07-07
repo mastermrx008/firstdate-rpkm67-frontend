@@ -4,8 +4,10 @@ import spark from '../../../public/spark.png';
 import Image from 'next/image';
 import TwoCircleMenu from '@/components/TwoCircleMenu';
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function Map() {
+  const [activeIcon, setActiveIcon] = useState<'profile' | 'home'>('profile');
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
       <Border
@@ -40,7 +42,14 @@ export default function Map() {
           กลับสู่หน้าหลัก
         </Link>
       </Border>
-      <TwoCircleMenu />
+      <TwoCircleMenu
+        activeIcon={activeIcon}
+        setActiveIcon={setActiveIcon}
+        hrefs={{
+          profile: 'firstdate/profile',
+          home: 'firstdate/home',
+        }}
+      />
     </main>
   );
 }

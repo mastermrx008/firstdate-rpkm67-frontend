@@ -24,7 +24,7 @@ export default function AdminInfo() {
         />
         <div className="w-36 h-48 rounded-t-full bg-white drop-shadow-xl flex items-center justify-center">
           <Image
-            src={placeholder}
+            src={user?.photoUrl || placeholder}
             alt="profile"
             className="w-full p-1"
           />
@@ -50,6 +50,10 @@ export default function AdminInfo() {
       <TwoCircleMenu
         activeIcon={activeIcon}
         setActiveIcon={setActiveIcon}
+        hrefs={{
+          profile: '/staff/firstdate/profile',
+          home: '/staff/firstdate/home',
+        }}
       />
     </main>
   );
