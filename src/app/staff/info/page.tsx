@@ -1,14 +1,16 @@
 'use client';
 import Border from '@/components/Border';
 import FDLogo from '@public/FIrst Date Logo.svg';
-import placeholder from '../../../public/placeholder.png';
+import placeholder from '../../../../public/placeholder.png';
 import Image from 'next/image';
 import TwoCircleMenu from '@/components/TwoCircleMenu';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { useState } from 'react';
+import { useAuth } from '@/context/AuthContext';
 
 export default function AdminInfo() {
   const [activeIcon, setActiveIcon] = useState<'profile' | 'home'>('profile');
+  const { user } = useAuth();
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
       <Border
@@ -29,14 +31,13 @@ export default function AdminInfo() {
         </div>
 
         <div className="flex justify-center items-center text-2xl gap-2 font-semibold mt-4">
-          <div>Jane Doe</div>
-          <div>#1</div>
-          <div>Intania</div>
+          <div>{user?.firstname}</div>
+          <div>#{user?.year}</div>
+          <div>{user?.faculty}</div>
         </div>
-        <div className="text-lg mt-2 text-gray-500">6440011322</div>
+        <div className="text-lg mt-2 text-gray-500">{user?.id}</div>
         <div className="mt-2 w-36 font-medium text-black rounded-3xl border border-black bg-white flex justify-center items-center gap-2">
-          <div>ฝ่ายอำนวยการ1</div>
-          <div>ISD</div>
+          <div>{user?.title}</div>
         </div>
       </Border>
       <div className="absolute bottom-28 flex flex-col items-center">
