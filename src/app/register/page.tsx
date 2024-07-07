@@ -1,16 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Border from '@/components/Border';
 import StarIcon from '@public/star.svg';
 import CurvedLineIcon from '@public/curved-line.svg';
 import Image from 'next/image';
 import axios from 'axios';
-
-// from verifying with Google
-const MOCK_USER_ID = '5187dc0a-aeeb-477b-8c90-ba75daae0623'; // Nac's userId
-const MOCK_ACCESS_TOKEN = ''
+import { useAuth } from '@/context/AuthContext';
+import { getAccessToken } from '@/utils/auth';
 
 // refactor later
 type UserData = {
@@ -51,18 +49,9 @@ export default function Register() {
     receive_gift: 0,
   });
   const router = useRouter();
-
-  useEffect(() => {
-    // Check for authentication cookie
-    const checkAuth = async () => {
-      const authCookie = document.cookie.includes('auth=');
-      if (!authCookie) {
-        router.push('/');
-      }
-    };
-    // skip check auth for dev
-    // checkAuth();
-  }, [router]);
+  const { user } = useAuth();
+  const userId = user?.id;
+  const accessToken = getAccessToken();
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -77,20 +66,13 @@ export default function Register() {
   };
 
   async function updateUserProfile(userData: UserData) {
-    const userId = MOCK_USER_ID;
-    const accessToken = MOCK_ACCESS_TOKEN;
     try {
       // refactor later
-      const response = await axios.patch(
-        `https://rpkm67-dev.sgcu.in.th/api/v1/user/profile/${userId}`,
-        userData,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-
-          },
-        }
-      );
+      const response = await axios.patch(`/user/profile/${userId}`, userData, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       console.log('User profile updated successfully:', response.data);
     } catch (error) {
       console.error('Error updating user profile:', error);
@@ -101,7 +83,7 @@ export default function Register() {
     e.preventDefault();
     updateUserProfile(formData);
     console.log('Form submitted', formData);
-    router.push('/pdpa');
+    router.push('/registered');
   };
 
   const renderStep = () => {
