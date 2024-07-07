@@ -3,14 +3,18 @@
 import Image from 'next/image';
 import { useToPng } from '@hugocxl/react-to-image';
 
+import { useAuth } from '@/context/AuthContext';
+
 import Border from '@/components/Border';
+import CardImage from '@/components/ending/CardImage';
 
 import Logo from '@public/FIrst Date Logo.svg';
 import Divider from '@public/ending/divider.png';
-import SproutImage from '@public/ending/sprout.png';
 import DownloadIcon from '@public/ending/download.svg';
 
 export default function Ending() {
+  const { user } = useAuth();
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, convert, ref] = useToPng<HTMLDivElement>({
     quality: 1,
@@ -77,11 +81,7 @@ export default function Ending() {
         <h2 className="font-season italic mb-2 text-2xl text-light-gray">
           Sprout
         </h2>
-        <Image
-          src={SproutImage}
-          alt="result image"
-          className="w-48"
-        />
+        <CardImage stamp={user?.stamp} />
         <div className="flex flex-col justify-center w-4/5 text-center mt-2 text-sm text-light-gray">
           <p>
             “ไม่ว่าคุณจะเป็นคนแบบไหน ผ่านเรื่องอะไรมาบ้าง
