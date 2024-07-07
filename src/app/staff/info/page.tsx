@@ -8,7 +8,7 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 import { useState } from 'react';
 
 export default function AdminInfo() {
-  const [activeIcon, setActiveIcon] = useState<any | null>(null);
+  const [activeIcon, setActiveIcon] = useState<'profile' | 'home'>('profile');
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
       <Border

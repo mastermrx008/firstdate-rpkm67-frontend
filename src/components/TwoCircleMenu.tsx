@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 type IconName = 'profile' | 'home';
 
 interface TwoCircleMenuProps {
-  activeIcon: IconName | null;
+  activeIcon: IconName;
   setActiveIcon: (iconName: IconName) => void;
 }
 
