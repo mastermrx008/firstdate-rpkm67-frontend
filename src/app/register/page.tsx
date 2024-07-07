@@ -6,9 +6,9 @@ import Border from '@/components/Border';
 import StarIcon from '@public/star.svg';
 import CurvedLineIcon from '@public/curved-line.svg';
 import Image from 'next/image';
-import axios from 'axios';
 import { useAuth } from '@/context/AuthContext';
 import { getAccessToken } from '@/utils/auth';
+import { apiClient } from '@/utils/axios';
 
 // refactor later
 type UserData = {
@@ -51,7 +51,6 @@ export default function Register() {
   const router = useRouter();
   const { user } = useAuth();
   const userId = user?.id;
-  const accessToken = getAccessToken();
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -68,11 +67,16 @@ export default function Register() {
   async function updateUserProfile(userData: UserData) {
     try {
       // refactor later
-      const response = await axios.patch(`/user/profile/${userId}`, userData, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
+      const accessToken = await getAccessToken();
+      const response = await apiClient.patch(
+        `/user/profile/${userId}`,
+        userData,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
       console.log('User profile updated successfully:', response.data);
     } catch (error) {
       console.error('Error updating user profile:', error);
