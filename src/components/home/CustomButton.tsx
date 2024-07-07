@@ -5,13 +5,14 @@ interface CustomButtonProps {
     varient: 'first-date'|'rub-peun'|'e-book'|'contact-list'
     className? : string;
     children: React.ReactNode;
+    disabled? : boolean
 }
 
 
-const CustomButton: React.FC<CustomButtonProps> = ({ varient = 'first-date', className, children }) => {
+const CustomButton: React.FC<CustomButtonProps> = ({ varient = 'first-date', className, children, disabled = false }) => {
     const router = useRouter();
     const fd = ()=>{
-        console.log('fd')
+        router.push("/register")
     }
     const rp = ()=>{
         console.log('rp')
@@ -42,7 +43,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({ varient = 'first-date', cla
     }
     const {color, onClick} = buttonProps[varient]
     return (
-        <button className={`${color} w-4/5 h-[5.26vh] rounded-lg drop-shadow-md place-content-center hover:brightness-105`} onClick={onClick}>
+        <button className={`${color} w-4/5 h-[5.26vh] rounded-lg drop-shadow-md place-content-center hover:brightness-105`} onClick={onClick} disabled={disabled}>
             <div className={`flex space-x-1 justify-center items-center ${className}`}>
                 {children}
             </div>
