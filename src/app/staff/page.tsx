@@ -3,22 +3,22 @@ import Border from '@/components/Border';
 import TwoCircleMenu from '@/components/TwoCircleMenu';
 import Mode from '@/components/staff/Mode';
 import PinGroup from '@/components/staff/otp/PinGroup';
-// import { useAuth } from '@/context/AuthContext';
-import { useState } from 'react';
+import { useAuth } from '@/context/AuthContext';
+import { useEffect, useState } from 'react';
 
 export default function Staff() {
-  // const { user } = useAuth();
+  const { user } = useAuth();
   const [isQrPage, setIsQrPage] = useState<boolean>(true);
 
   function handleClick(value: boolean) {
     setIsQrPage(() => value);
   }
 
-  // useEffect(() => {
-  //   if (!user || user.role !== 'staff') {
-  //     window.location.href = '/';
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (!user || user.role !== 'staff') {
+      window.location.href = '/';
+    }
+  }, [user]);
 
   return (
     <main className="w-full h-screen flex justify-center bg-2 p-5">

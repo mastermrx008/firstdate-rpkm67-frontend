@@ -1,36 +1,32 @@
 'use client';
 import Pin from './utils/Pin';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import line from '@/assets/line.svg';
 import { PinDTO } from '@/dtos/pinDTO';
-
-const testData: PinDTO[] = [
-  { activity_id: 'workshop-1', code: '111111' },
-  { activity_id: 'workshop-2', code: '222222' },
-  { activity_id: 'workshop-3', code: '333333' },
-  { activity_id: 'workshop-4', code: '444444' },
-  { activity_id: 'workshop-5', code: '555555' },
-];
-
-function randomCode() {
-  let value = '';
-  for (let i = 0; i < 6; i++) {
-    const rand = Math.floor(Math.random() * 10);
-    value += rand;
-  }
-  return value;
-}
+import { getAllPins, resetPin } from '@/utils/pin';
 
 export default function PinGroup() {
-  const [pins, setPins] = useState<PinDTO[] | null>(testData);
+  const [pins, setPins] = useState<PinDTO[] | null>(null);
 
-  function handleReset(ind: number) {
+  useEffect(() => {
+    const fetchUserEstamp = async (): Promise<void> => {
+      const pins = await getAllPins();
+      setPins(pins ?? null);
+    };
+
+    fetchUserEstamp();
+  }, []);
+
+  const handleReset = async (ind: number) => {
     if (!pins) return;
-    const updatedPins = [...pins];
-    updatedPins[ind] = { ...updatedPins[ind], code: randomCode() };
+    const status = await resetPin(pins[ind].activity_id);
+    let updatedPins: PinDTO[] | null = null;
+    if (status) {
+      updatedPins = await getAllPins();
+    }
     setPins(updatedPins);
-  }
+  };
 
   return (
     <section className="py-3 w-full">
@@ -44,7 +40,7 @@ export default function PinGroup() {
       <div className="relative group cursor-pointer w-full h-full z-50">
         <div className="absolute -inset-1 bg-gray-300 rounded-lg blur"></div>
         <div className="relative px-7 py-6 bg-white h-full ring-1 ring-gray-900/5 rounded-lg flex flex-col items-center justify-center">
-          {pins &&
+          {pins ? (
             pins.map((data: PinDTO, index: number) => (
               <>
                 <Pin
@@ -55,7 +51,10 @@ export default function PinGroup() {
                 />
                 {index !== 4 && <hr className="w-4/5" />}
               </>
-            ))}
+            ))
+          ) : (
+            <h1 className="font-season font-bold text-2xl">No Data</h1>
+          )}
         </div>
       </div>
     </section>
