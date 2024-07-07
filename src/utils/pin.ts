@@ -39,7 +39,6 @@ export const resetPin = async (activityId: string): Promise<boolean | null> => {
         },
       }
     );
-
     return res.data.success;
   } catch (error) {
     console.log('error:', error);

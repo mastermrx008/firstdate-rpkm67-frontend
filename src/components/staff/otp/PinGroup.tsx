@@ -37,9 +37,9 @@ export default function PinGroup() {
           alt="line"
         />
       </div>
-      <div className="relative group cursor-pointer w-full h-full z-50">
-        <div className="absolute -inset-1 bg-gray-300 rounded-lg blur"></div>
-        <div className="relative px-7 py-6 bg-white h-full ring-1 ring-gray-900/5 rounded-lg flex flex-col items-center justify-center">
+      <div className="relative group cursor-pointer w-full h-3/5 z-50">
+        <div className="absolute -inset-1 bg-gray-300 rounded-lg blur" />
+        <div className="relative px-7 py-6 bg-white h-full ring-1 overflow-scroll ring-gray-900/5 rounded-lg flex flex-col items-center">
           {pins ? (
             pins.map((data: PinDTO, index: number) => (
               <>
@@ -49,7 +49,7 @@ export default function PinGroup() {
                   index={index}
                   handleClick={handleReset}
                 />
-                {index !== 4 && <hr className="w-4/5" />}
+                {index !== 8 && <hr className="w-4/5" />}
               </>
             ))
           ) : (
