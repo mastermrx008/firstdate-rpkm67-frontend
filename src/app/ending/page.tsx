@@ -102,7 +102,7 @@ export default function Ending() {
             <p className="text-project-fuchsia">บันทึกการ์ด</p>
           </button>
           <a
-            href="/"
+            href="/home"
             className="w-full bg-project-pink rounded-md py-2 text-center text-light-gray to-hide"
           >
             กลับไปเดินทางต่อ
