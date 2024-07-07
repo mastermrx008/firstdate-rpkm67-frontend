@@ -6,11 +6,11 @@ import line from '@/assets/line.svg';
 import { PinDTO } from '@/dtos/pinDTO';
 
 const testData: PinDTO[] = [
-  { activity_id: 'workshop-1', code: null },
-  { activity_id: 'workshop-2', code: null },
-  { activity_id: 'workshop-3', code: null },
-  { activity_id: 'workshop-4', code: null },
-  { activity_id: 'workshop-5', code: null },
+  { activity_id: 'workshop-1', code: '111111' },
+  { activity_id: 'workshop-2', code: '222222' },
+  { activity_id: 'workshop-3', code: '333333' },
+  { activity_id: 'workshop-4', code: '444444' },
+  { activity_id: 'workshop-5', code: '555555' },
 ];
 
 function randomCode() {
@@ -23,9 +23,10 @@ function randomCode() {
 }
 
 export default function PinGroup() {
-  const [pins, setPins] = useState<PinDTO[]>(testData);
+  const [pins, setPins] = useState<PinDTO[] | null>(testData);
 
   function handleReset(ind: number) {
+    if (!pins) return;
     const updatedPins = [...pins];
     updatedPins[ind] = { ...updatedPins[ind], code: randomCode() };
     setPins(updatedPins);
@@ -43,17 +44,18 @@ export default function PinGroup() {
       <div className="relative group cursor-pointer w-full h-full z-50">
         <div className="absolute -inset-1 bg-gray-300 rounded-lg blur"></div>
         <div className="relative px-7 py-6 bg-white h-full ring-1 ring-gray-900/5 rounded-lg flex flex-col items-center justify-center">
-          {pins.map((data: PinDTO, index: number) => (
-            <>
-              <Pin
-                key={index}
-                otp={data}
-                index={index}
-                handleClick={handleReset}
-              />
-              {index !== 4 && <hr className="w-4/5" />}
-            </>
-          ))}
+          {pins &&
+            pins.map((data: PinDTO, index: number) => (
+              <>
+                <Pin
+                  key={index}
+                  otp={data}
+                  index={index}
+                  handleClick={handleReset}
+                />
+                {index !== 4 && <hr className="w-4/5" />}
+              </>
+            ))}
         </div>
       </div>
     </section>
