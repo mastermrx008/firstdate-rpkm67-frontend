@@ -1,12 +1,9 @@
-'use client';
 import Border from '@/components/Border';
 import FDLogo from '@public/FIrst Date Logo.svg';
 import spark from '../../../public/spark.png';
 import Image from 'next/image';
 import TwoCircleMenu from '@/components/TwoCircleMenu';
 import Link from 'next/link';
-import { useState } from 'react';
-
 
 export default function RewardDone() {
   return (
@@ -43,14 +40,7 @@ export default function RewardDone() {
           กลับสู่หน้าหลัก
         </Link>
       </Border>
-      <TwoCircleMenu
-        activeIcon={activeIcon}
-        setActiveIcon={setActiveIcon}
-        hrefs={{
-          profile: 'firstdate/profile',
-          home: 'firstdate/home',
-        }}
-      />
+      <TwoCircleMenu />
     </main>
   );
 }

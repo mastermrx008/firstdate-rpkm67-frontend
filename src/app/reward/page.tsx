@@ -10,9 +10,8 @@ import React, { useState } from 'react';
 import ConfirmationModal from '../../components/confirmationModal';
 import { useRouter } from 'next/navigation';
 
-export default function Map() {
+export default function Reward() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeIcon, setActiveIcon] = useState<'profile' | 'home'>('profile');
   const router = useRouter();
   const handleClick = async () => {
     router.push('/rewarddone');
@@ -80,14 +79,7 @@ export default function Map() {
           onClose={() => setIsOpen(false)}
         />
       </Border>
-      <TwoCircleMenu
-        activeIcon={activeIcon}
-        setActiveIcon={setActiveIcon}
-        hrefs={{
-          profile: 'firstdate/profile',
-          home: 'firstdate/home',
-        }}
-      />
+      <TwoCircleMenu />
     </main>
   );
 }

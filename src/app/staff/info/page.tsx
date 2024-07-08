@@ -5,11 +5,9 @@ import placeholder from '../../../../public/placeholder.svg';
 import Image from 'next/image';
 import TwoCircleMenu from '@/components/TwoCircleMenu';
 import { Icon } from '@iconify/react/dist/iconify.js';
-import { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 
 export default function AdminInfo() {
-  const [activeIcon, setActiveIcon] = useState<'profile' | 'home'>('profile');
   const { user, logout } = useAuth();
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
@@ -52,14 +50,7 @@ export default function AdminInfo() {
         />
         <span className="font-athiti font-medium">ออกจากระบบ</span>
       </div>
-      <TwoCircleMenu
-        activeIcon={activeIcon}
-        setActiveIcon={setActiveIcon}
-        hrefs={{
-          profile: '/staff/firstdate/profile',
-          home: '/staff/firstdate/home',
-        }}
-      />
+      <TwoCircleMenu />
     </main>
   );
 }
