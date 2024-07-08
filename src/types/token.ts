@@ -1,6 +1,6 @@
 export type Token = {
   accessToken: string;
-  expiresIn: number;
+  expiresIn: string;
   refreshToken: string;
 };
 
