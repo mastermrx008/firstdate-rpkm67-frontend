@@ -11,7 +11,7 @@ const EndingPopup: React.FC<EndingPopupProps> = (props) => {
   const { onOpenChange } = props;
   const handleOnClick = useCallback(() => {
     onOpenChange(false);
-  }, []);
+  }, [onOpenChange]);
 
   return (
     <div className="relative w-[80%] max-w-[373px] min-h-[calc(100vw*(235/373))] flex items-center justify-center">
