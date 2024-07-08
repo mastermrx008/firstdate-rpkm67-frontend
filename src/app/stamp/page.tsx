@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import toast, { Toaster } from 'react-hot-toast';
 import Border from '@/components/Border';
 import FirstDateLogo from '@public/stamp/logo.svg';
 import Slide from '@public/stamp/slide.svg';
@@ -91,9 +92,11 @@ const StampPage = () => {
       }
       const newStamp = await CreateStamp(activityId, userId, userInput);
       if (newStamp instanceof Error) {
+        toast.error('OTP ไม่ถูกต้อง!');
         throw newStamp;
       }
       setStamps(newStamp);
+      toast.success('ได้รับ Stamp แล้ว!');
     } catch (error) {
       console.log('error:', error);
     } finally {
@@ -122,6 +125,7 @@ const StampPage = () => {
   return (
     <main className="w-full flex justify-center items-center flex-col">
       {isLoading && <Spinner />}
+      <Toaster />
       <Border
         variant="light-pink"
         className="space-y-5 pt-5"
