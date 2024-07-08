@@ -4,7 +4,7 @@ import { QrReader } from 'react-qr-reader';
 import { motion } from 'framer-motion';
 // import { XMarkIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 // import { useToast } from '@/components/Toast';
 // import { httpPost } from '@/utils/axios';
 
