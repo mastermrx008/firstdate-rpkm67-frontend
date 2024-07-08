@@ -3,7 +3,6 @@ import Border from '@/components/Border';
 import FDLogo from '@public/FIrst Date Logo.svg';
 import MapImage from '@public/map.svg';
 import Image from 'next/image';
-import { Icon } from '@iconify/react';
 import { useRouter } from 'next/navigation';
 
 export default function Map() {
