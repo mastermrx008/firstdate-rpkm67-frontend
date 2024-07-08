@@ -35,9 +35,7 @@ export default function AdminInfo() {
           <div>#{user?.year}</div>
           <div>{user?.faculty}</div>
         </div>
-        <div className="text-lg mt-2 text-gray-500">
-          {user?.email.split('@')[0]}
-        </div>
+        <div className="text-lg mt-2 text-gray-500">{user?.id}</div>
         <div className="mt-2 w-36 font-medium text-black rounded-3xl border border-black bg-white flex justify-center items-center gap-2">
           <div>{user?.title}</div>
         </div>
