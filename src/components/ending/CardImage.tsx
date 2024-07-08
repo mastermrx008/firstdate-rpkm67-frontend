@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import { getCard } from './utils/avaliable';
+import { getCard } from '@/utils/cardUtils';
 
 import { Stamp } from '@/types/stamp';
-import Card from './utils/card';
+import Card from '@/types/card';
 
 import SproutImage from '@public/ending/sprout.png';
 import DaisiesImage from '@public/ending/daisies.png';

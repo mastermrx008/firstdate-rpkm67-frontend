@@ -1,7 +1,7 @@
-import { getCard } from './utils/avaliable';
+import { getCard } from '@/utils/cardUtils';
 
 import { Stamp } from '@/types/stamp';
-import Card from './utils/card';
+import Card from '@/types/card';
 
 const CardTitle = ({ stamp }: { stamp: Stamp | undefined }) => {
   const getCardTitle = (stamp: Stamp | undefined) => {
