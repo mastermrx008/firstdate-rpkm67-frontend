@@ -4,15 +4,11 @@ import NotificationPopup from '@/components/congratulation/NotificationPopup';
 interface CongratsModalProps {
   isOpen: boolean;
   score: number;
-  handleBack: () => void;
-  handleSubmit: () => void;
 }
 
 const CongratsModal: React.FC<CongratsModalProps> = ({
   isOpen,
   score,
-  handleBack,
-  handleSubmit,
 }) => {
   const isEnough = score >= 6;
   const modalClasses = `fixed inset-0 z-50 overflow-y-auto justify-center flex  bg-gray-500 bg-opacity-75 transition-all ease-in-out duration-300 ${
@@ -27,11 +23,9 @@ const CongratsModal: React.FC<CongratsModalProps> = ({
         {isEnough ? (
           <CongratsPopup
             score={score}
-            handleBack={handleBack}
-            handleSubmit={handleSubmit}
           />
         ) : (
-          <NotificationPopup handleBack={handleBack} />
+          <NotificationPopup/>
         )}
       </div>
     </div>

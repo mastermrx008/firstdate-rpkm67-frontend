@@ -1,16 +1,10 @@
 'use client';
-
 import ConditionContext from '@/components/congratulation/ConditionContext';
 import NotificationContext from '@/components/congratulation/NotificationContext';
 import NotiBg from '@public/congrats/Noti.png';
 import { useState } from 'react';
 
-interface NotificationPopupProps {
-  handleBack: () => void;
-}
-const NotificationPopup: React.FC<NotificationPopupProps> = ({
-  handleBack,
-}) => {
+const NotificationPopup= () => {
   const [showCondition, setShowCondition] = useState(false);
   const handleOnClickShowCondition = () => {
     setShowCondition(true);
@@ -24,11 +18,10 @@ const NotificationPopup: React.FC<NotificationPopupProps> = ({
       className={`w-full ${showCondition ? 'aspect-[390/640]' : 'aspect-[333/535]'} bg-no-repeat bg-center flex flex-col items-center py-[16%]`}
     >
       {showCondition ? (
-        <ConditionContext handleBack={handleBack} />
+        <ConditionContext />
       ) : (
         <NotificationContext
-          handleOnClickShowCondition={handleOnClickShowCondition}
-          handleBack={handleBack}
+          onClickShowCondition={handleOnClickShowCondition}
         />
       )}
     </div>
