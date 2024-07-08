@@ -2,52 +2,37 @@
 import React, { useEffect, useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 import { motion } from 'framer-motion';
-// import { XMarkIcon } from '@heroicons/react/24/solid';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-// import { useToast } from '@/components/Toast';
-// import { httpPost } from '@/utils/axios';
+import { getCheckIn } from '../../utils/checkin'; // Update the path as needed
+import { useAuth } from '@/context/AuthContext'; // Update the path as needed
+import ConfirmationModal from './confirmationModal'; // Import the ConfirmationModal
+import FailureModal from './failureModal'; // Import the FailureModal
 
 function Scan() {
   const [isScanned, setIsScanned] = useState<boolean>(false);
   const [data, setData] = useState<string | null>(null);
-  const [showModal, setShowModal] = useState<boolean>(false);
-
-  // const toast = useToast();
+  const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
+  const [showFailureModal, setShowFailureModal] = useState<boolean>(false);
   const router = useRouter();
+  const { user } = useAuth(); // Get the user from the AuthContext
 
-  // const checkIn = async (token: string) => {
-  //     try {
-  //         // check-in qr code
-  //         if (token === 'rpkm66-check-in') {
-  //             const { status } = await httpPost('/checkin', {});
-  //             if (status === 200) {
-  //                 toast?.setToast('success', 'Check-in successfully');
-  //             } else {
-  //                 toast?.setToast('error', 'QR Code is invalid');
-  //             }
-  //             router.push('/walk-rally');
-  //         }
-
-  //         // estamp qr code
-  //         else {
-  //             const { status } = await httpPost('/estamp/' + token, {});
-  //             if (status === 200) {
-  //                 toast?.setToast('success', 'Successfully received E-Stamp');
-  //             } else {
-  //                 toast?.setToast('error', 'QR Code is invalid');
-  //             }
-  //             router.push('/walk-rally');
-  //         }
-  //     } catch {
-  //         toast?.setToast('error', 'There was an error');
-  //     }
-  // };
-
-  const handleScanResult = (token: any, error: any) => {
+  const handleScanResult = async (token: any, error: any) => {
     if (token) {
-      setData(token.text);
-      setShowModal(true);
+      const scannedData = token.text;
+      setData(scannedData);
+
+      if (user && user.email) {
+        // Send the scanned student ID and user email to the API
+        const response = await getCheckIn(scannedData, user.email);
+        if (response) {
+          // Handle the response as needed
+          console.log('Check-in successful:', response);
+          setShowSuccessModal(true);
+        } else {
+          console.error('Check-in failed');
+          setShowFailureModal(true);
+        }
+      }
     }
     if (error) {
       console.info(error);
@@ -60,6 +45,17 @@ function Scan() {
       setData(null);
     }
   }, [data]);
+
+  const handleCloseModal = () => {
+    setShowSuccessModal(false);
+    setShowFailureModal(false);
+    setIsScanned(false);
+  };
+
+  const handleConfirm = () => {
+    // Perform any confirmation actions if needed
+    handleCloseModal();
+  };
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
@@ -83,18 +79,22 @@ function Scan() {
       </div>
       <div className="flex w-full items-center justify-center bg-black">
         <div className="h-64 w-full bg-white p-8 text-center">
-          {showModal ? (
-            <div className="grid">
-              <Link
-                href={data?.includes('http') ? data : '/'}
-                className="truncate text-left text-blue-500"
-              >
-                {data}
-              </Link>
-              <p className="text-left text-sm text-gray-500">
-                Tap here to open the link
-              </p>
-            </div>
+          {showSuccessModal ? (
+            <ConfirmationModal
+              isOpen={showSuccessModal}
+              title="Success"
+              message="The check-in was successful."
+              onConfirm={handleConfirm}
+              onClose={handleCloseModal}
+            />
+          ) : showFailureModal ? (
+            <FailureModal
+              isOpen={showFailureModal}
+              title="Failure"
+              message="The check-in failed. Please try again."
+              onClose={handleCloseModal}
+              onConfirm={handleConfirm}
+            />
           ) : (
             <p className="break-all text-black">Please scan a QR code</p>
           )}
