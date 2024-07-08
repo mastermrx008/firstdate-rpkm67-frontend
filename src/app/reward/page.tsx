@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 import ConfirmationModal from '../../components/confirmationModal';
 import { useRouter } from 'next/navigation';
 
-export default function Map() {
+export default function Reward() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const handleClick = async () => {
