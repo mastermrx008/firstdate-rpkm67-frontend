@@ -9,13 +9,19 @@ interface ModalProps {
   title: string;
   placeholder: string;
   onClose: () => void;
-  children?: React.ReactNode; // Add children prop
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onClick?: () => void;
+  children?: React.ReactNode;
 }
 
 const Modal: React.FC<ModalProps> = ({
   title,
   placeholder,
   onClose,
+  value,
+  onChange,
+  onClick,
   children,
 }) => {
   return (
@@ -38,10 +44,15 @@ const Modal: React.FC<ModalProps> = ({
             type="text"
             placeholder={placeholder}
             className="w-full h-12 border border-black text-xl rounded-lg placeholder-gray-400 px-4" // Adjust padding
+            value={value}
+            onChange={onChange}
           />
         </div>
         <button
-          onClick={onClose}
+          onClick={() => {
+            onClick && onClick();
+            onClose();
+          }}
           className="text-black px-10 py-2 rounded-xl max-w-lg text-xl font-normal bg-project-pink"
         >
           ส่งคำตอบ
