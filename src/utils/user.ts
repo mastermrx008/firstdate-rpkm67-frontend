@@ -29,15 +29,16 @@ export const getUser = async (): Promise<User | null> => {
   }
 };
 
-export const patchReward = async (id: string): Promise<boolean | null> => {
+export const patchReward = async (): Promise<boolean | null> => {
+  const userId = await getUserId();
   const accessToken = await getAccessToken();
 
-  if (!accessToken) {
+  if (!accessToken || !userId) {
     return null;
   }
   try {
     const res: AxiosResponse<{ success: boolean }> = await apiClient.patch(
-      `/user/profile/${id}`,
+      `/user/profile/${userId}`,
       { receive_gift: 1 },
       {
         headers: {

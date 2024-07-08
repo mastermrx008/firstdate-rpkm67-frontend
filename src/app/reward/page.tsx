@@ -8,17 +8,15 @@ import TwoCircleMenu from '@/components/TwoCircleMenu';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import ConfirmationModal from '../../components/confirmationModal';
-import { useAuth } from '@/context/AuthContext';
 import { patchReward } from '@/utils/user';
 import { useRouter } from 'next/navigation';
 
 export default function Reward() {
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useAuth();
   const router = useRouter();
 
   async function handleRedeem() {
-    const res = await patchReward(user?.id ?? '');
+    const res = await patchReward();
     if (res) {
       router.push('/rewarddone');
     } else {
