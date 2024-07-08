@@ -7,8 +7,8 @@ import TwoCircleMenu from '@/components/TwoCircleMenu';
 import Link from 'next/link';
 import { useState } from 'react';
 
-export default function Map() {
-  const [activeIcon, setActiveIcon] = useState<'profile' | 'home'>('profile');
+
+export default function RewardDone() {
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
       <Border

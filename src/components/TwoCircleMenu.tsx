@@ -1,31 +1,11 @@
+import { useAuth } from '@/context/AuthContext';
 import { Icon } from '@iconify/react/dist/iconify.js';
-import Link from 'next/link';
 
-type IconName = 'profile' | 'home';
+import { useRouter } from 'next/navigation';
 
-interface TwoCircleMenuProps {
-  activeIcon: IconName;
-  setActiveIcon: (iconName: IconName) => void;
-  // Added href parameter for dynamic linking
-  hrefs: { [key in IconName]: string };
-}
-
-export default function TwoCircleMenu({
-  activeIcon,
-  setActiveIcon,
-  hrefs,
-}: TwoCircleMenuProps) {
-  const handleIconClick = (iconName: IconName) => {
-    setActiveIcon(iconName);
-  };
-
-  const getIconClasses = (iconName: IconName) => {
-    const isActive = activeIcon === iconName;
-    return `w-11 h-11 p-3 rounded-full ${
-      isActive ? 'bg-project-fuchsia text-white' : 'bg-white text-black'
-    }`;
-  };
-
+export default function TwoCircleMenu() {
+  const { user } = useAuth();
+  const router = useRouter();
   return (
     <div>
       <Link
@@ -35,7 +15,10 @@ export default function TwoCircleMenu({
       >
         <Icon
           icon="icon-park-solid:people"
-          className={getIconClasses('profile')}
+          className="w-11 h-11 p-3 rounded-full bg-white text-black"
+          onClick={() =>
+            router.push(`${user?.role === 'staff' ? '/staff' : ''}/firstdate/profile`)
+          }
         />
         <span className="font-athiti font-medium">โปรไฟล์</span>
       </Link>
@@ -46,7 +29,10 @@ export default function TwoCircleMenu({
       >
         <Icon
           icon="icon-park-solid:home"
-          className={getIconClasses('home')}
+          className="w-11 h-11 p-3 rounded-full bg-white text-black"
+          onClick={() =>
+            router.push(`${user?.role === 'staff' ? '/staff' : ''}/firstdate/home`)
+          }
         />
         <span className="font-athiti font-medium">หน้าหลัก</span>
       </Link>
