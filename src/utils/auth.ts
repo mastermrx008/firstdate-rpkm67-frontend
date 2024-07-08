@@ -44,10 +44,6 @@ export const getAccessToken = async (): Promise<string | null> => {
   const now = new Date();
   const expire = new Date(token.expiresIn);
 
-  console.log('now', now.toLocaleString());
-  console.log('expire', expire.toLocaleString());
-  console.log('isExpire', now > expire)
-
   if (now > expire) {
     const newAccessToken = await getNewAccessToken(token.refreshToken);
     if (!newAccessToken) {
