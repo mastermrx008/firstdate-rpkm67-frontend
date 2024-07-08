@@ -1,7 +1,7 @@
 'use client';
 import Border from '@/components/Border';
 import FDLogo from '@public/FIrst Date Logo.svg';
-import placeholder from '../../../../public/placeholder.png';
+import placeholder from '../../../../public/placeholder.svg';
 import Image from 'next/image';
 import TwoCircleMenu from '@/components/TwoCircleMenu';
 import { Icon } from '@iconify/react/dist/iconify.js';
