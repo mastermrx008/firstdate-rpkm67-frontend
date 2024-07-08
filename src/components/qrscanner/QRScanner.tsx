@@ -7,26 +7,28 @@ import { getCheckIn } from '../../utils/checkin'; // Update the path as needed
 import { useAuth } from '@/context/AuthContext'; // Update the path as needed
 import ConfirmationModal from './confirmationModal'; // Import the ConfirmationModal
 import FailureModal from './failureModal'; // Import the FailureModal
+import { CheckInDTO } from '@/dtos/checkInsDTO';
 
 function Scan() {
   const [isScanned, setIsScanned] = useState<boolean>(false);
   const [data, setData] = useState<string | null>(null);
+  const [resData, setResData] = useState<CheckInDTO | null>(null);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
   const [showFailureModal, setShowFailureModal] = useState<boolean>(false);
   const router = useRouter();
   const { user } = useAuth(); // Get the user from the AuthContext
-
   const handleScanResult = async (token: any, error: any) => {
     if (token) {
       const scannedData = token.text;
       setData(scannedData);
 
-      if (user && user.email) {
+      if (user && user.email && !resData) {
         // Send the scanned student ID and user email to the API
         const response = await getCheckIn(scannedData, user.email);
         if (response) {
           // Handle the response as needed
           console.log('Check-in successful:', response);
+          setResData(response);
           setShowSuccessModal(true);
         } else {
           console.error('Check-in failed');
@@ -59,7 +61,7 @@ function Scan() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
-      <div className="relative w-full">
+      <div className="relative w-72 h-72">
         <QrReader
           className="bg-black"
           onResult={handleScanResult}
@@ -73,9 +75,7 @@ function Scan() {
         <button
           className="absolute right-0 top-0 mr-4 mt-4"
           onClick={() => router.back()}
-        >
-          {/* <XMarkIcon className="h-6 w-6 rounded-sm bg-white bg-opacity-50 text-white" /> */}
-        </button>
+        ></button>
       </div>
       <div className="flex w-full items-center justify-center bg-black">
         <div className="h-64 w-full bg-white p-8 text-center">

@@ -5,7 +5,7 @@ import { getAccessToken } from './auth';
 
 export const getCheckIn = async (
   userID: string,
-  email: any
+  email: string
 ): Promise<CheckInDTO | null> => {
   const accessToken = await getAccessToken();
 
