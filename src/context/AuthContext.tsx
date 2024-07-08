@@ -2,15 +2,15 @@
 
 import Spinner from '@/components/Spinner';
 import { User } from '@/types/user';
-import { getUser } from '@/utils/user';
+import { getUser /* isUserRegistered */ } from '@/utils/user';
 
 import { usePathname, useRouter } from 'next/navigation';
 import React, {
   createContext,
   ReactNode,
+  useCallback,
   useContext,
   useEffect,
-  useRef,
   useState,
 } from 'react';
 
@@ -31,49 +31,46 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [user, setUser] = useState<User | null>(null);
   const path = usePathname();
-  const isReady = useRef(false);
   const router = useRouter();
 
-  const resetContext = async () => {
-    isReady.current = false;
+  const resetContext = useCallback(async () => {
     const userData = await getUser();
     if (userData) {
       localStorage.setItem('user', JSON.stringify(userData));
       setUser(userData);
     }
-    isReady.current = true;
-  };
+  }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     localStorage.clear();
     window.location.href = '/';
-  };
+  }, []);
 
   useEffect(() => {
-    if (!isReady.current || path == '/') {
-      return;
-    }
-
-    if (!user) {
-      return router.push('/');
-    }
-
-    const isStaffPage = path.startsWith('/staff');
-    if (isStaffPage && user?.role != 'staff') {
-      return router.push('/');
-    }
-  }, [router, user, path]);
-
-  useEffect(() => {
-    isReady.current = false;
     const userStr = localStorage.getItem('user');
-    if (userStr) {
-      const userObj: User = JSON.parse(userStr);
-      setUser(userObj);
+    if (!userStr) {
+      return router.push('/');
     }
 
-    isReady.current = true;
-  }, [router]);
+    const userObj: User = JSON.parse(userStr);
+    setUser(userObj);
+
+    //TODO comeback to activate route protection
+    // const isStaffPage = path.startsWith('/staff');
+    // const isStaff = userObj.role == 'staff';
+    // const isRegistered = isUserRegistered(userObj);
+    // const isLoginPage = path == '/';
+
+    // if (isStaff && (!isStaffPage || isLoginPage)) {
+    //   const newPath = isRegistered ? '/staff/home' : '/staff/register';
+    //   return router.push(newPath);
+    // }
+
+    // if (!isStaff && (isStaffPage || isLoginPage)) {
+    //   const newPath = isRegistered ? '/home' : '/register';
+    //   return router.push(newPath);
+    // }
+  }, [router, path]);
 
   return (
     <AuthContext.Provider value={{ user, resetContext, logout }}>
