@@ -1,4 +1,5 @@
 import { StaffHomeMode } from '@/app/staff/home/page';
+import { cn } from '@/lib/utils';
 
 interface ModeInterface {
   variant: StaffHomeMode;
@@ -11,7 +12,9 @@ export default function Mode(props: ModeInterface) {
   return (
     <button
       onClick={() => handleOnClick(variant)}
-      className={`w-7/12 rounded-3xl h-7 text-center ${mode === variant ? 'text-white bg-black' : 'text-black bg-white'}`}
+      className={cn('w-1/2 rounded-3xl py-1 text-center', {
+        'text-white bg-project-light-gray': mode === variant,
+      })}
     >
       {variant}
     </button>
