@@ -1,3 +1,5 @@
+'use client';
+
 import { useAuth } from '@/context/AuthContext';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { useRouter } from 'next/navigation';
