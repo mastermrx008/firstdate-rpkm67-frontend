@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import Border from '@/components/Border';
 import FDLogo from '@public/FIrst Date Logo.svg';
 import MapImage from '@public/map.svg';
@@ -10,10 +10,13 @@ export default function Map() {
   const router = useRouter();
   const handleBack = () => {
     router.back();
-  }
+  };
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
-      <Border variant="white" className='gap-5 px-[10%]'>
+      <Border
+        variant="white"
+        className="gap-5 px-[10%]"
+      >
         <div className="flex w-full justify-center">
           <Image
             src={FDLogo}
@@ -36,7 +39,6 @@ export default function Map() {
         >
           กลับ
         </button>
-
       </Border>
       <div className="absolute top-6 right-4 flex flex-col items-center">
         <Icon
