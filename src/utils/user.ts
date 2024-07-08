@@ -29,6 +29,30 @@ export const getUser = async (): Promise<User | null> => {
   }
 };
 
+export const patchReward = async (id: string): Promise<boolean | null> => {
+  const accessToken = await getAccessToken();
+
+  if (!accessToken) {
+    return null;
+  }
+  try {
+    const res: AxiosResponse<{ success: boolean }> = await apiClient.patch(
+      `/user/profile/${id}`,
+      { receive_gift: 0 },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    return res.data.success;
+  } catch (error) {
+    console.log('error:', error);
+    return null;
+  }
+};
+
 export const isUserRegistered = (user: User) => {
   return (
     user.drugAllergy &&

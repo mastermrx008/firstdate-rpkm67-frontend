@@ -1,21 +1,31 @@
 'use client';
 import Border from '@/components/Border';
 import FDLogo from '@public/FIrst Date Logo.svg';
-import line from '../../../public/line.png';
-import gift from '../../../public/gift.svg';
+import line from '@/../public/line.svg';
+import gift from '@/../public/gift.svg';
 import Image from 'next/image';
 import TwoCircleMenu from '@/components/TwoCircleMenu';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import ConfirmationModal from '../../components/confirmationModal';
+import { useAuth } from '@/context/AuthContext';
+import { patchReward } from '@/utils/user';
 import { useRouter } from 'next/navigation';
 
 export default function Reward() {
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useAuth();
   const router = useRouter();
-  const handleClick = async () => {
-    router.push('/rewarddone');
-  };
+
+  async function handleRedeem() {
+    const res = await patchReward(user?.id ?? '');
+    if (res) {
+      router.push('/rewarddone');
+    } else {
+      console.log('There is an error');
+    }
+  }
+
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
       <Border
@@ -55,7 +65,6 @@ export default function Reward() {
         </h1>
         <button
           onClick={() => setIsOpen(true)}
-          // href="rewarddone"
           className="mt-3 w-64 h-12 font-medium text-white text-xl rounded-lg bg-project-fuchsia flex justify-center items-center"
         >
           <Image
@@ -74,9 +83,8 @@ export default function Reward() {
         <ConfirmationModal
           isOpen={isOpen}
           title="ยืนยันการแลกรับของรางวัล"
-          message="ยืนยันการแลกรับของรางวัล"
-          onConfirm={handleClick}
           onClose={() => setIsOpen(false)}
+          handleRedeem={handleRedeem}
         />
       </Border>
       <TwoCircleMenu />
