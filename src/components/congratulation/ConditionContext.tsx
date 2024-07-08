@@ -45,7 +45,7 @@ const StyledHR: React.FC<ReactMarkdownProps> = ({ ...props }) => {
   );
 };
 
-const ConditionContext= () => {
+const ConditionContext = () => {
   return (
     <>
       <span className="text-center font-athiti font-semibold text-2xl">

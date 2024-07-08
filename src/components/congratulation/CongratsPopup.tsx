@@ -8,9 +8,7 @@ import Link from 'next/link';
 interface CongratsPopupProps {
   score: number;
 }
-const CongratsPopup: React.FC<CongratsPopupProps> = ({
-  score,
-}) => {
+const CongratsPopup: React.FC<CongratsPopupProps> = ({ score }) => {
   const isCollectAll = score === 11;
   return (
     <div

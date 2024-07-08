@@ -4,7 +4,7 @@ import NotificationContext from '@/components/congratulation/NotificationContext
 import NotiBg from '@public/congrats/Noti.png';
 import { useState } from 'react';
 
-const NotificationPopup= () => {
+const NotificationPopup = () => {
   const [showCondition, setShowCondition] = useState(false);
   const handleOnClickShowCondition = () => {
     setShowCondition(true);
