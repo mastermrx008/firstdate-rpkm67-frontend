@@ -9,6 +9,7 @@ import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { getAccessToken } from '@/utils/auth';
 import { apiClient } from '@/utils/axios';
+import Pdpa from '@/components/pdpa';
 
 // refactor later
 type UserData = {
@@ -31,6 +32,7 @@ type UserData = {
 
 export default function Register() {
   const [currentStep, setCurrentStep] = useState(0);
+  const [isPdpaOpen, setIsPdpaOpen] = useState(false);
   const [formData, setFormData] = useState<UserData>({
     title: '',
     firstname: '',
@@ -66,7 +68,6 @@ export default function Register() {
 
   async function updateUserProfile(userData: UserData) {
     try {
-      // refactor later
       const accessToken = await getAccessToken();
       const response = await apiClient.patch(
         `/user/profile/${userId}`,
@@ -83,13 +84,16 @@ export default function Register() {
     }
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    setIsPdpaOpen(true);
+  };
+
+  const handlePdpaSuccess = async () => {
     updateUserProfile(formData);
     console.log('Form submitted', formData);
     router.push('/registered');
   };
-
   const renderStep = () => {
     switch (currentStep) {
       case 0:
@@ -276,6 +280,11 @@ export default function Register() {
             <div className="space-y-6">{renderStep()}</div>
           </div>
         </div>
+        <Pdpa
+          isOpen={isPdpaOpen}
+          onOpenChange={setIsPdpaOpen}
+          onSuccess={handlePdpaSuccess}
+        />
       </Border>
     </main>
   );
