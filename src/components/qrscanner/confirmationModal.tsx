@@ -1,19 +1,22 @@
 import React from 'react';
 import Image from 'next/image';
 import successicon from '@public/success.svg';
-interface SuccessModalProps {
+import { CheckIn } from '@/types/checkIn1211';
+interface FailureModalProps {
   isOpen: boolean;
   title: string;
   message: string;
   onConfirm: () => void;
   onClose: () => void;
+  userData: CheckIn | null;
 }
 
-const SuccessModal: React.FC<SuccessModalProps> = ({
+const FailureModal: React.FC<FailureModalProps> = ({
   isOpen,
   title,
   onConfirm,
   onClose,
+  userData,
 }) => {
   const handleConfirm = async () => {
     try {
@@ -45,6 +48,9 @@ const SuccessModal: React.FC<SuccessModalProps> = ({
         </div>
 
         <h1 className="text-center mt-5">สแกนสำเร็จ ยินดีต้อนรับ</h1>
+        <h1 className="text-center text-project-fuchsia">
+          {userData?.firstName} {userData?.lastName} {userData?.checkIn.userId}
+        </h1>
         <div className="flex flex-col items-center mx-auto justify-center">
           <button
             onClick={handleConfirm}
@@ -58,4 +64,4 @@ const SuccessModal: React.FC<SuccessModalProps> = ({
   );
 };
 
-export default SuccessModal;
+export default FailureModal;

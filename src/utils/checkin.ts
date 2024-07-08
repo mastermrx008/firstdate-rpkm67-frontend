@@ -2,11 +2,13 @@ import { CheckInDTO } from '@/dtos/checkInsDTO';
 import { AxiosResponse } from 'axios';
 import { apiClient } from './axios';
 import { getAccessToken } from './auth';
+import { CheckIn } from '@/types/checkIn1211';
 
-export const getCheckIn = async (
+export const createCheckIn = async (
   userID: string,
-  email: string
-): Promise<CheckInDTO | null> => {
+  email: string,
+  event: string
+): Promise<CheckIn | null> => {
   const accessToken = await getAccessToken();
 
   if (!accessToken) {
@@ -15,10 +17,10 @@ export const getCheckIn = async (
 
   try {
     const res: AxiosResponse = await apiClient.post(
-      `checkin`,
+      `/checkin`,
       {
         email: email,
-        event: 'firstdate',
+        event: event,
         user_id: userID,
       },
       {
@@ -27,7 +29,6 @@ export const getCheckIn = async (
         },
       }
     );
-    console.log(res.data);
     return res.data;
   } catch (error) {
     console.log('error:', error);

@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import successicon from '@public/success.svg';
-interface FailureModalProps {
+import Failicon from '@public/fail.svg';
+interface FailModalProps {
   isOpen: boolean;
   title: string;
   message: string;
@@ -9,7 +9,7 @@ interface FailureModalProps {
   onClose: () => void;
 }
 
-const FailureModal: React.FC<FailureModalProps> = ({
+const FailModal: React.FC<FailModalProps> = ({
   isOpen,
   title,
   onConfirm,
@@ -35,25 +35,22 @@ const FailureModal: React.FC<FailureModalProps> = ({
       className={modalClasses + ' flex justify-center items-center text-center'}
     >
       <div className={modalContentClasses}>
-        <h2 className="text-xl font-semibold mt-6 mb-4">Confirmation!</h2>
+        <h2 className="text-xl font-semibold mt-6 mb-4">Invalid QR-Code</h2>
         <div className="flex justify-center items-center">
           {' '}
           <Image
-            src={successicon}
-            alt="success"
+            src={Failicon}
+            alt="Fail"
           />
         </div>
 
-        <h1 className="text-center mt-5">สแกนสำเร็จ ยินดีต้อนรับ</h1>
-        <h1 className="text-center text-project-fuchsia">
-          สแกนสำเร็จ ยินดีต้อนรับ
-        </h1>
+        <h1 className="text-center mt-5">สแกนไม่สำเร็จ โปรดลองอีกครั้ง</h1>
         <div className="flex flex-col items-center mx-auto justify-center">
           <button
             onClick={handleConfirm}
             className="mt-5 w-32 h-10 text-white rounded-lg bg-project-fuchsia flex justify-center items-center"
           >
-            สแกนต่อ
+            สแกนอีกครั้ง
           </button>
         </div>
       </div>
@@ -61,4 +58,4 @@ const FailureModal: React.FC<FailureModalProps> = ({
   );
 };
 
-export default FailureModal;
+export default FailModal;

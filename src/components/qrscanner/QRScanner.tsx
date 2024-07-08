@@ -3,36 +3,41 @@ import React, { useEffect, useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { getCheckIn } from '../../utils/checkin'; // Update the path as needed
+import { createCheckIn } from '../../utils/checkin'; // Update the path as needed
 import { useAuth } from '@/context/AuthContext'; // Update the path as needed
 import ConfirmationModal from './confirmationModal'; // Import the ConfirmationModal
 import FailureModal from './failureModal'; // Import the FailureModal
 import { CheckInDTO } from '@/dtos/checkInsDTO';
+import toast from 'react-hot-toast';
+import { CheckIn } from '@/types/checkIn1211';
 
 function Scan() {
   const [isScanned, setIsScanned] = useState<boolean>(false);
   const [data, setData] = useState<string | null>(null);
-  const [resData, setResData] = useState<CheckInDTO | null>(null);
-  const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
-  const [showFailureModal, setShowFailureModal] = useState<boolean>(false);
+  const [checkInData, setCheckInData] = useState<CheckIn | null>(null);
+  const [status, setStatus] = useState<'success' | 'error' | 'idle'>('idle');
   const router = useRouter();
-  const { user } = useAuth(); // Get the user from the AuthContext
-  const handleScanResult = async (token: any, error: any) => {
-    if (token) {
-      const scannedData = token.text;
-      setData(scannedData);
+  const { user } = useAuth(); // Get the user from the AuthContexts
 
-      if (user && user.email && !resData) {
+  const handleScanResult = async (
+    scanRawData: any,
+    error: Error | null | undefined
+  ) => {
+    if (scanRawData) {
+      console.log(scanRawData);
+      const userId = scanRawData.text;
+      setData(userId);
+
+      if (user && user.email && !checkInData) {
         // Send the scanned student ID and user email to the API
-        const response = await getCheckIn(scannedData, user.email);
-        if (response) {
-          // Handle the response as needed
-          console.log('Check-in successful:', response);
-          setResData(response);
-          setShowSuccessModal(true);
+        const userData = await createCheckIn(userId, user.email, 'firstdate');
+        if (userData) {
+          toast.success('Check-in successful');
+          setCheckInData(userData);
+          setStatus('success');
         } else {
           console.error('Check-in failed');
-          setShowFailureModal(true);
+          setStatus('error');
         }
       }
     }
@@ -49,13 +54,11 @@ function Scan() {
   }, [data]);
 
   const handleCloseModal = () => {
-    setShowSuccessModal(false);
-    setShowFailureModal(false);
+    setStatus('idle');
     setIsScanned(false);
   };
 
   const handleConfirm = () => {
-    // Perform any confirmation actions if needed
     handleCloseModal();
   };
 
@@ -79,23 +82,22 @@ function Scan() {
       </div>
       <div className="flex w-full items-center justify-center bg-black">
         <div className="h-64 w-full bg-white p-8 text-center">
-          {showSuccessModal ? (
-            <ConfirmationModal
-              isOpen={showSuccessModal}
-              title="Success"
-              message="The check-in was successful."
-              onConfirm={handleConfirm}
-              onClose={handleCloseModal}
-            />
-          ) : showFailureModal ? (
-            <FailureModal
-              isOpen={showFailureModal}
-              title="Failure"
-              message="The check-in failed. Please try again."
-              onClose={handleCloseModal}
-              onConfirm={handleConfirm}
-            />
-          ) : (
+          <ConfirmationModal
+            isOpen={status == 'success'}
+            title="Success"
+            message="The check-in was successful."
+            onConfirm={handleConfirm}
+            onClose={handleCloseModal}
+          />
+
+          <FailureModal
+            isOpen={status == 'error'}
+            title="Failure"
+            message="The check-in failed. Please try again."
+            onClose={handleCloseModal}
+            onConfirm={handleConfirm}
+          />
+          {status == 'idle' && (
             <p className="break-all text-black">Please scan a QR code</p>
           )}
         </div>
