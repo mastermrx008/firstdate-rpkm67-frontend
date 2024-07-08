@@ -1,12 +1,19 @@
+'use client';
+
 import Border from '@/components/Border';
 import FDLogo from '@public/FIrst Date Logo.svg';
 import MapImage from '@public/map.svg';
 import Image from 'next/image';
 import { Icon } from '@iconify/react';
+import EndingPopupModal from '@/components/ending/popup/EndingPopupModal';
+import { useState } from 'react';
 
 export default function Map() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
+      <EndingPopupModal isOpen={isOpen} onOpenChange={setIsOpen}/>
+      <button onClick={() => setIsOpen(!isOpen)}>open</button>
       <Border variant="white">
         <div className="flex w-full justify-center">
           <Image
