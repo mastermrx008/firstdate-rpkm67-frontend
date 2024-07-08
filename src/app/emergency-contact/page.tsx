@@ -37,7 +37,7 @@ export default function Emergency() {
           ></Image>
           <Link
             className="w-3/4 p-2 rounded-lg border-[1px] border-project-fuchsia"
-            href="/home"
+            href="/firstdate/home"
           >
             <div className="flex flex-row gap-x-2 text-project-fuchsia justify-center items-center">
               <Icon
