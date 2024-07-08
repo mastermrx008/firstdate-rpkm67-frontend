@@ -8,7 +8,11 @@ export const getAvaliable = (point: number) => {
 export const getCard = (stamp: Stamp | undefined) => {
   if (!stamp) return Card.Sprout;
 
-  const sumStamp = stamp.pointA + stamp.pointB + stamp.pointC + stamp.pointD;
+  const sumStamp =
+    stamp.pointA * 10 +
+    stamp.pointB * 12.5 +
+    stamp.pointC * 20 +
+    stamp.pointD * 12.5;
   if (sumStamp === 400) {
     return Card.Fortune;
   }
