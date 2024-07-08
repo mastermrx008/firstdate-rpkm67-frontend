@@ -1,4 +1,5 @@
 import { Google, Token } from '@/types/token';
+import { getExpireTime } from '@/utils/getExpireTime';
 
 export type TokenDTO = {
   access_token: string;
@@ -14,7 +15,7 @@ export type GoogleDTO = {
 export const convertTokenDTOToToken = (tokenDTO: TokenDTO): Token => {
   return {
     accessToken: tokenDTO.access_token,
-    expiresIn: tokenDTO.expires_in,
+    expiresIn: getExpireTime(tokenDTO.expires_in),
     refreshToken: tokenDTO.refresh_token,
   };
 };
