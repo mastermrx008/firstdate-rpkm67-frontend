@@ -38,7 +38,7 @@ export const patchReward = async (id: string): Promise<boolean | null> => {
   try {
     const res: AxiosResponse<{ success: boolean }> = await apiClient.patch(
       `/user/profile/${id}`,
-      { receive_gift: 0 },
+      { receive_gift: 1 },
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
