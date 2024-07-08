@@ -1,6 +1,6 @@
 'use client';
 import Pin from './utils/Pin';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import Image from 'next/image';
 import line from '@/../public/line.svg';
 import { PinDTO } from '@/dtos/pinDTO';
@@ -40,15 +40,14 @@ export default function PinGroup() {
         <div className="relative px-7 py-6 bg-white h-full ring-2 overflow-scroll ring-gray-900/5 rounded-lg flex flex-col items-center">
           {pins ? (
             pins.map((data: PinDTO, index: number) => (
-              <>
+              <Fragment key={data.activity_id}>
                 <Pin
-                  key={data.activity_id}
                   otp={data}
                   index={index}
                   handleClick={handleReset}
                 />
                 {index !== 8 && <hr className="w-4/5" />}
-              </>
+              </Fragment>
             ))
           ) : (
             <h1 className="font-season font-bold text-2xl">No Data</h1>
