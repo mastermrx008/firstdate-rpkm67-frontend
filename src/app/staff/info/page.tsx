@@ -14,7 +14,7 @@ export default function AdminInfo() {
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
       <Border
-        variant="light-pink"
+        variant="light-pink-2"
         className="flex flex-col"
       >
         <Image
