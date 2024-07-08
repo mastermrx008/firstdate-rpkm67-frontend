@@ -1,6 +1,8 @@
 import Image from 'next/image';
+import { getCard } from './utils/avaliable';
 
 import { Stamp } from '@/types/stamp';
+import Card from './utils/card';
 
 import SproutImage from '@public/ending/sprout.png';
 import DaisiesImage from '@public/ending/daisies.png';
@@ -10,38 +12,28 @@ import TulipImage from '@public/ending/tulip.png';
 import FortuneImage from '@public/ending/fortune.png';
 
 const CardImage = ({ stamp }: { stamp: Stamp | undefined }) => {
-  const getAvaliable = (point: number) => {
-    return point > 0 ? 1 : 0;
-  };
+  const getCardImage = (stamp: Stamp | undefined) => {
+    const card = getCard(stamp);
 
-  const getCard = (stamp: Stamp | undefined) => {
-    if (!stamp) return SproutImage;
-
-    const sumStamp = stamp.pointA + stamp.pointB + stamp.pointC + stamp.pointD;
-    if (sumStamp === 400) {
-      return FortuneImage;
-    }
-
-    const countStamp =
-      getAvaliable(stamp.pointA) +
-      getAvaliable(stamp.pointB) +
-      getAvaliable(stamp.pointC) +
-      getAvaliable(stamp.pointD);
-    switch (countStamp) {
-      case 0:
+    switch (card) {
+      case Card.Sprout:
         return SproutImage;
-      case 1:
+      case Card.Daisies:
         return DaisiesImage;
-      case 2:
+      case Card.Rose:
         return RoseImage;
-      case 3:
+      case Card.Sunflower:
         return SunflowerImage;
-      default:
+      case Card.Tulip:
         return TulipImage;
+      case Card.Fortune:
+        return FortuneImage;
+      default:
+        return SproutImage;
     }
   };
 
-  const card = getCard(stamp);
+  const card = getCardImage(stamp);
 
   return (
     <Image

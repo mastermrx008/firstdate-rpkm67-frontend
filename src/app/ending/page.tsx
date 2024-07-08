@@ -6,6 +6,7 @@ import { useToPng } from '@hugocxl/react-to-image';
 import { useAuth } from '@/context/AuthContext';
 
 import Border from '@/components/Border';
+import CardTitle from '@/components/ending/CardTitle';
 import CardImage from '@/components/ending/CardImage';
 
 import Logo from '@public/FIrst Date Logo.svg';
@@ -78,9 +79,7 @@ export default function Ending() {
           alt="divider"
           className="w-44 m-3"
         />
-        <h2 className="font-season italic mb-2 text-2xl text-light-gray">
-          Sprout
-        </h2>
+        <CardTitle stamp={user?.stamp} />
         <CardImage stamp={user?.stamp} />
         <div className="flex flex-col justify-center w-4/5 text-center mt-2 text-sm text-light-gray">
           <p>
