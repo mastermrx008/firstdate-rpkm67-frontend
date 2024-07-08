@@ -1,3 +1,4 @@
+'use client';
 import Border from '@/components/Border';
 import FDLogo from '@public/FIrst Date Logo.svg';
 import spark from '../../../public/spark.png';
