@@ -48,7 +48,7 @@ export default function Pdpa(props: PdpaProps) {
   const handleOnSuccess = useCallback(() => {
     onSuccess();
     handleOnClose();
-  }, [onSuccess]);
+  }, [onSuccess, handleOnClose]);
 
   return (
     <div className={containerClassName}>
