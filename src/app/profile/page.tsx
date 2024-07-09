@@ -8,10 +8,8 @@ import UserInfo from '@/components/profile/userInfo'
 import StatBars from "@/components/profile/statBars"
 import Image from 'next/image';
 import Link from 'next/link';
-import { useAuth } from '@/context/AuthContext';
 
 export default function Profile(){
-
     return (
         <main className="flex justify-center items-center flex-col bg-2">
             <TwoCircleMenu />
@@ -32,7 +30,7 @@ export default function Profile(){
                     <StatBars />
                     <div className="w-5/6 mt-9 z-10 drop-shadow">
                         <Link
-                            href=""
+                            href="/firstdate/home"
                             className="flex flex-row items-center justify-center bg-project-pink px-2 py-[10px] gap-x-2 rounded-lg text-white"
                         >
                             <p className="font-athiti text-xl font-medium text-black">กลับไปเดินทางต่อ</p>
@@ -40,8 +38,7 @@ export default function Profile(){
                     </div>
                 </div>               
             </Border>
-            </div>
-            
+            </div>       
         </main>
     )
 }

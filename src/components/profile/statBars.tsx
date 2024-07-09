@@ -7,7 +7,7 @@ import Image from "next/image";
 export default function StatBars(){
     return (
         <div className="flex justify-evenly gap-5">
-            <div className="flex items-center flex-col w-[38px] h-[273px] z-10">
+            <div className="flex items-center flex-col w-[38px] h-[273px]">
                 <div className="flex justify-center relative w-full h-[229px] bg-white rounded-t-full">
                     <div className="rounded-full w-[30px] h-[30px] absolute top-2">
                         <Image 
