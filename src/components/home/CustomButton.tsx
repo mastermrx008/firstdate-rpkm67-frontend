@@ -7,6 +7,8 @@ interface CustomButtonProps {
   className?: string;
   children: React.ReactNode;
   disabled?: boolean;
+  setWaitModal?: (value: boolean) => void;
+  setEvent?: (value: 'first-date' | 'rup-peun') => void;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
@@ -14,24 +16,46 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   className,
   children,
   disabled = false,
+  setWaitModal,
+  setEvent,
 }) => {
   const router = useRouter();
   const firstdate = () => {
-    router.push('/register');
+    const currentDate = new Date();
+    let firstDateDate = currentDate;
+    const firstDate = process.env.NEXT_PUBLIC_FIRST_DATE_DATE;
+    if (firstDate) {
+      firstDateDate = new Date(firstDate);
+    }
+    if (currentDate >= firstDateDate) router.push('/register');
+    else if (setWaitModal && setEvent) {
+      setEvent('first-date');
+      setWaitModal(true);
+    }
   };
   const rubpeun = () => {
-    console.log('rp');
+    const currentDate = new Date();
+    let rupPeunDate = currentDate;
+    const rupPeun = process.env.NEXT_PUBLIC_RUP_PEUN_DATE;
+    if (rupPeun) {
+      rupPeunDate = new Date(rupPeun);
+    }
+    if (currentDate >= rupPeunDate) console.log('hi');
+    else if (setWaitModal && setEvent) {
+      setEvent('rup-peun');
+      setWaitModal(true);
+    }
   };
   const ebook = () => {
     window.open('https://th.y8.com/', '_blank');
-    apiClient.post('/count', {
-    })
-    .then(response => {
-      console.log('POST request successful!', response.data);
-    })
-    .catch(error => {
-      console.error('Error making POST request:', error);
-    });
+    apiClient
+      .post('/count', {})
+      .then((response) => {
+        console.log('POST request successful!', response.data);
+      })
+      .catch((error) => {
+        console.error('Error making POST request:', error);
+      });
   };
   const contactlist = () => {
     router.push('/emergency-contact');
@@ -50,7 +74,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       onClick: ebook,
     },
     'contact-list': {
-      color: 'bg-black',
+      color: 'bg-[#313131]',
       onClick: contactlist,
     },
   };

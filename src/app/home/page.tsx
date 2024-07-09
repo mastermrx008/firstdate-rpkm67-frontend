@@ -17,6 +17,7 @@ import { useAuth } from '@/context/AuthContext';
 import { CheckIn } from '@/types/checkIn';
 import { useRouter } from 'next/navigation';
 import BottomButton from '@/components/home/BottomButton';
+import WaitModal from '@/components/home/WaitModal';
 
 export default function Home() {
   const router = useRouter();
@@ -25,8 +26,11 @@ export default function Home() {
     return checkIns.some((checkIn) => checkIn.event === event);
   };
   console.log(user);
-  const [modal, setModal] = useState<boolean>(false);
-
+  const [qrModal, setQrModal] = useState<boolean>(false);
+  const [waitModal, setWaitModal] = useState<boolean>(false);
+  const [interestedEvent, setInterestedEvent] = useState<
+    'first-date' | 'rup-peun'
+  >('first-date');
   const checkElement = (
     <Image
       src={checkIcon}
@@ -103,6 +107,8 @@ export default function Home() {
               disabled={
                 user && hasEvent(user.check_ins, 'CUFD2024') ? true : false
               }
+              setWaitModal={setWaitModal}
+              setEvent={setInterestedEvent}
             >
               <div>CU First Date 2024</div>
               {fdIcon}
@@ -112,6 +118,8 @@ export default function Home() {
               disabled={
                 user && hasEvent(user.check_ins, 'RPKM2024') ? true : false
               }
+              setWaitModal={setWaitModal}
+              setEvent={setInterestedEvent}
             >
               <div>Rub Peun Kao Mai 2024</div>
               {rpIcon}
@@ -139,7 +147,7 @@ export default function Home() {
 
           <div className="flex justify-center gap-x-[1.76vh] mt-[1.32vh] text-[1.76vh]">
             <BottomButton
-              onClick={() => setModal(true)}
+              onClick={() => setQrModal(true)}
               src={qrcodeIcon}
               text="My Qr"
             />
@@ -152,9 +160,14 @@ export default function Home() {
         </div>
       </Border>
       <QrCodeModal
-        setModal={setModal}
-        modal={modal}
-        userid={(user)?user.id:""}
+        setModal={setQrModal}
+        modal={qrModal}
+        userid={user ? user.id : ''}
+      />
+      <WaitModal
+        modal={waitModal}
+        setModal={setWaitModal}
+        event={interestedEvent}
       />
     </main>
   );
