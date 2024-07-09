@@ -1,22 +1,27 @@
+"use client";
+
 import Border from '@/components/Border';
 import FDLogo from '@public/FIrst Date Logo.svg';
 import bowLine from '@public/stat/bowline.svg';
 import TwoCircleMenu from '@/components/TwoCircleMenu';
-import UserInfo from '@/components/stat/userInfo'
-import StatBars from "@/components/stat/statBars"
+import UserInfo from '@/components/profile/userInfo'
+import StatBars from "@/components/profile/statBars"
 import Image from 'next/image';
 import Link from 'next/link';
+import { useAuth } from '@/context/AuthContext';
 
-export default function stat(){
+export default function Profile(){
+
     return (
-        <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
+        <main className="flex justify-center items-center flex-col bg-2">
             <TwoCircleMenu />
+            <div className="w-[calc(100vh*(72/156)*(9/10))] h-full overflow-y-auto">
             <Border variant="light-pink">
                 <div className="flex flex-col items-center z-10">
                     <Image
                         src={FDLogo}
                         alt="logo"
-                        className="w-44 mb-2"
+                        className="w-44 mt-5 mb-2"
                     />
                     <UserInfo />
                     <Image
@@ -35,6 +40,8 @@ export default function stat(){
                     </div>
                 </div>               
             </Border>
+            </div>
+            
         </main>
     )
 }
