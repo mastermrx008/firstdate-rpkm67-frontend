@@ -4,29 +4,16 @@ import successicon from '@public/success.svg';
 import { CheckIn } from '@/types/checkIn1211';
 interface FailureModalProps {
   isOpen: boolean;
-  title: string;
   message: string;
-  onConfirm: () => void;
   onClose: () => void;
   userData: CheckIn | null;
 }
 
 const FailureModal: React.FC<FailureModalProps> = ({
   isOpen,
-  title,
-  onConfirm,
   onClose,
   userData,
 }) => {
-  const handleConfirm = async () => {
-    try {
-      await onConfirm();
-      onClose();
-    } catch (error) {
-      console.error('Confirmation failed:', error);
-    }
-  };
-
   const modalClasses = `fixed inset-0 z-50 overflow-y-auto bg-gray-500 bg-opacity-75 transition-all ease-in-out duration-300 ${
     isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
   }`;
@@ -53,7 +40,7 @@ const FailureModal: React.FC<FailureModalProps> = ({
         </h1>
         <div className="flex flex-col items-center mx-auto justify-center">
           <button
-            onClick={handleConfirm}
+            onClick={onClose}
             className="mt-5 w-32 h-10 text-white rounded-lg bg-project-fuchsia flex justify-center items-center"
           >
             สแกนต่อ

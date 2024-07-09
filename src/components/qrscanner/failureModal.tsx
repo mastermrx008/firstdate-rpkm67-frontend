@@ -3,27 +3,11 @@ import Image from 'next/image';
 import Failicon from '@public/fail.svg';
 interface FailModalProps {
   isOpen: boolean;
-  title: string;
   message: string;
-  onConfirm: () => void;
   onClose: () => void;
 }
 
-const FailModal: React.FC<FailModalProps> = ({
-  isOpen,
-  title,
-  onConfirm,
-  onClose,
-}) => {
-  const handleConfirm = async () => {
-    try {
-      await onConfirm();
-      onClose();
-    } catch (error) {
-      console.error('Confirmation failed:', error);
-    }
-  };
-
+const FailModal: React.FC<FailModalProps> = ({ isOpen, onClose }) => {
   const modalClasses = `fixed inset-0 z-50 overflow-y-auto bg-gray-500 bg-opacity-75 transition-all ease-in-out duration-300 ${
     isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
   }`;
@@ -47,7 +31,7 @@ const FailModal: React.FC<FailModalProps> = ({
         <h1 className="text-center mt-5">สแกนไม่สำเร็จ โปรดลองอีกครั้ง</h1>
         <div className="flex flex-col items-center mx-auto justify-center">
           <button
-            onClick={handleConfirm}
+            onClick={onClose}
             className="mt-5 w-32 h-10 text-white rounded-lg bg-project-fuchsia flex justify-center items-center"
           >
             สแกนอีกครั้ง

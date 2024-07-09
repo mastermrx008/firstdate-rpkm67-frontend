@@ -1,4 +1,3 @@
-import { CheckInDTO } from '@/dtos/checkInsDTO';
 import { AxiosResponse } from 'axios';
 import { apiClient } from './axios';
 import { getAccessToken } from './auth';
