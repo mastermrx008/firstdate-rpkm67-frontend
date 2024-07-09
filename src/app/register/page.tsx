@@ -12,6 +12,7 @@ import { apiClient } from '@/utils/axios';
 import Pdpa from '@/components/pdpa';
 import { User } from '@/types/user';
 import UploadProfilePicture from '@/components/register/UploadProfilePicture';
+import { isUserRegistered } from '@/utils/user';
 
 type RegisterUser = Pick<
   User,
@@ -86,9 +87,22 @@ export default function Register() {
   };
 
   const handlePdpaSuccess = async () => {
-    updateUserProfile(formData);
+    updateUserProfile(formData).then(() => {
+      if (!user) return;
+
+      const isStaff = user.role == 'staff';
+      const isRegistered = isUserRegistered(user);
+      let newPath;
+
+      if (isStaff) {
+        newPath = isRegistered ? '/staff/home' : '/staff/register';
+      } else {
+        newPath = isRegistered ? '/home' : '/register';
+      }
+
+      router.push(newPath);
+    });
     console.log('Form submitted', formData);
-    router.push('/registered');
   };
 
   const renderStep = () => {
