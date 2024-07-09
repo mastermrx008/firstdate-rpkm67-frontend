@@ -53,7 +53,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   const ebook = () => {
     window.open('https://th.y8.com/', '_blank');
     apiClient
-      .post('/count', {})
+      .post('/count/ebook', {})
       .then((response) => {
         console.log('POST request successful!', response.data);
       })

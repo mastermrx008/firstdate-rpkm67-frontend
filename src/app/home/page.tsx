@@ -31,25 +31,7 @@ export default function Home() {
   const [interestedEvent, setInterestedEvent] = useState<
     'first-date' | 'rup-peun'
   >('first-date');
-  const checkElement = (
-    <Image
-      src={checkIcon}
-      alt="Contact List Icon"
-      style={{ width: '2.63vh', height: '2.63vh' }}
-    />
-  );
-  const alertElement = (
-    <Image
-      src={alertIcon}
-      alt="Contact List Icon"
-      style={{ width: '2.63vh', height: '2.63vh' }}
-    />
-  );
 
-  const fdIcon =
-    user && hasEvent(user.check_ins, 'CUFD2024') ? checkElement : alertElement;
-  const rpIcon =
-    user && hasEvent(user.check_ins, 'RPKM2024') ? checkElement : alertElement;
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
       <Border
@@ -111,7 +93,6 @@ export default function Home() {
               setEvent={setInterestedEvent}
             >
               <div>CU First Date 2024</div>
-              {fdIcon}
             </CustomButton>
             <CustomButton
               varient="rub-peun"
@@ -122,7 +103,6 @@ export default function Home() {
               setEvent={setInterestedEvent}
             >
               <div>Rub Peun Kao Mai 2024</div>
-              {rpIcon}
             </CustomButton>
             <CustomButton varient="e-book">
               <Image
