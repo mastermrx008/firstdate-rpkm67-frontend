@@ -1,4 +1,5 @@
-import { apiClient } from '@/utils/axios';
+import { cn } from '@/lib/utils';
+import { createEbookCount } from '@/utils/count';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
@@ -44,7 +45,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     }
     if (currentDate >= rupPeunDate) {
       if (registered) console.log('registered');
-      else console.log('not registered yet');
+      else router.push('/register');
     } else if (setWaitModal && setEvent) {
       setEvent('rup-peun');
       setWaitModal(true);
@@ -52,14 +53,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   };
   const ebook = () => {
     window.open('https://th.y8.com/', '_blank');
-    apiClient
-      .post('/count/ebook', {})
-      .then((response) => {
-        console.log('POST request successful!', response.data);
-      })
-      .catch((error) => {
-        console.error('Error making POST request:', error);
-      });
+    createEbookCount();
   };
   const contactlist = () => {
     router.push('/emergency-contact');
@@ -89,7 +83,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       onClick={onClick}
     >
       <div
-        className={`flex space-x-1 justify-center items-center ${className}`}
+        className={cn('flex space-x-1 justify-center items-center', className)}
       >
         {children}
       </div>
