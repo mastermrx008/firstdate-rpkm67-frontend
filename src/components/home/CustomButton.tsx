@@ -1,3 +1,4 @@
+import { apiClient } from '@/utils/axios';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
@@ -23,25 +24,33 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   };
   const ebook = () => {
     window.open('https://th.y8.com/', '_blank');
+    apiClient.post('/count', {
+    })
+    .then(response => {
+      console.log('POST request successful!', response.data);
+    })
+    .catch(error => {
+      console.error('Error making POST request:', error);
+    });
   };
   const contactlist = () => {
     router.push('/emergency-contact');
   };
   const buttonProps = {
     'first-date': {
-      color: 'bg-[#FFBBD2]',
+      color: 'bg-project-pink',
       onClick: firstdate,
     },
     'rub-peun': {
-      color: 'bg-[#E9A49B]',
+      color: 'bg-project-apricot',
       onClick: rubpeun,
     },
     'e-book': {
-      color: 'bg-[#F1DFC1]',
+      color: 'bg-project-cream',
       onClick: ebook,
     },
     'contact-list': {
-      color: 'bg-[#313131]',
+      color: 'bg-black',
       onClick: contactlist,
     },
   };
