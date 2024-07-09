@@ -6,7 +6,7 @@ interface CustomButtonProps {
   varient: 'first-date' | 'rub-peun' | 'e-book' | 'contact-list';
   className?: string;
   children: React.ReactNode;
-  disabled?: boolean;
+  registered?: boolean;
   setWaitModal?: (value: boolean) => void;
   setEvent?: (value: 'first-date' | 'rup-peun') => void;
 }
@@ -15,7 +15,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   varient = 'first-date',
   className,
   children,
-  disabled = false,
+  registered,
   setWaitModal,
   setEvent,
 }) => {
@@ -27,8 +27,10 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     if (firstDate) {
       firstDateDate = new Date(firstDate);
     }
-    if (currentDate >= firstDateDate) router.push('/register');
-    else if (setWaitModal && setEvent) {
+    if (currentDate >= firstDateDate) {
+      if (registered) router.push('/firstdate/home');
+      else router.push('/register');
+    } else if (setWaitModal && setEvent) {
       setEvent('first-date');
       setWaitModal(true);
     }
@@ -40,8 +42,10 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     if (rupPeun) {
       rupPeunDate = new Date(rupPeun);
     }
-    if (currentDate >= rupPeunDate) console.log('hi');
-    else if (setWaitModal && setEvent) {
+    if (currentDate >= rupPeunDate) {
+      if (registered) console.log('registered');
+      else console.log('not registered yet');
+    } else if (setWaitModal && setEvent) {
       setEvent('rup-peun');
       setWaitModal(true);
     }
@@ -83,7 +87,6 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     <button
       className={`${color} w-4/5 h-[5.26vh] rounded-lg drop-shadow-md place-content-center hover:brightness-105`}
       onClick={onClick}
-      disabled={disabled}
     >
       <div
         className={`flex space-x-1 justify-center items-center ${className}`}

@@ -104,7 +104,7 @@ export default function Home() {
           <div className="w-full flex items-center flex-col h-[26.34vh] justify-between font-medium text-[2.2vh]">
             <CustomButton
               varient="first-date"
-              disabled={
+              registered={
                 user && hasEvent(user.check_ins, 'CUFD2024') ? true : false
               }
               setWaitModal={setWaitModal}
@@ -115,7 +115,7 @@ export default function Home() {
             </CustomButton>
             <CustomButton
               varient="rub-peun"
-              disabled={
+              registered={
                 user && hasEvent(user.check_ins, 'RPKM2024') ? true : false
               }
               setWaitModal={setWaitModal}
