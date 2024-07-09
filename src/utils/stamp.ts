@@ -2,8 +2,10 @@ import { AxiosResponse } from 'axios';
 import { getAccessToken } from './auth';
 import { apiClient } from './axios';
 import { StampDTO } from '@/dtos/stampDTO';
+import { convertStampDTOToStamp } from '@/dtos/stampDTO';
+import { Stamp } from '@/types/stamp';
 
-export const getStamp = async (userId: string): Promise<StampDTO | Error> => {
+export const getStamp = async (userId: string): Promise<Stamp | Error> => {
   const accessToken = await getAccessToken();
   if (!accessToken) {
     return Error('No access token');
@@ -18,11 +20,11 @@ export const getStamp = async (userId: string): Promise<StampDTO | Error> => {
         },
       }
     );
-    console.log('res:', res.data.stamp);
-    return res.data.stamp;
+    const convertedStamp = convertStampDTOToStamp(res.data.stamp);
+    return convertedStamp;
   } catch (error) {
     console.log('error:', error);
-    return Error('Error occured: cannot get stamp');
+    return Error('Error occurred: cannot get stamp');
   }
 };
 
@@ -30,7 +32,7 @@ export const createStamp = async (
   activityId: string,
   userId: string,
   pinCode: string
-): Promise<StampDTO | Error> => {
+): Promise<Stamp | Error> => {
   const accessToken = await getAccessToken();
   if (!accessToken) {
     return Error('No access token');
@@ -49,9 +51,10 @@ export const createStamp = async (
         },
       }
     );
-    return res.data.stamp;
+    const convertedStamp = convertStampDTOToStamp(res.data.stamp);
+    return convertedStamp;
   } catch (error) {
     console.log('error:', error);
-    return Error('cannot create stamp');
+    return Error('Cannot create stamp');
   }
 };

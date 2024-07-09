@@ -24,15 +24,15 @@ import ClubInsideStamp from '@public/stamp/inside-sgcu.svg';
 import OTPModal from '@/components/stamp/modal/OTPModal';
 import FavoriteClubModal from '@/components/stamp/modal/FavoriteClubModal';
 import OpinionModal from '@/components/stamp/modal/OpinionModal';
-import { GetStamp, CreateStamp } from '@/utils/stamp';
+import { getStamp, createStamp } from '@/utils/stamp';
 import { IActivity } from '@/types/stamp';
-import { StampDTO } from '@/dtos/stampDTO';
+import { Stamp } from '@/types/stamp';
 import Spinner from '@/components/Spinner';
 import { getUserId } from '@/utils/auth';
 import { useAuth } from '@/context/AuthContext';
 
 const StampPage = () => {
-  const [stamps, setStamps] = useState<StampDTO>();
+  const [stamps, setStamps] = useState<Stamp>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isOTPModalOpen, setOTPModalOpen] = useState(false);
   const [isFavoriteClubModalOpen, setFavoriteClubModalOpen] = useState(false);
@@ -52,7 +52,7 @@ const StampPage = () => {
           throw new Error('No user id');
         }
 
-        const fetchedStamps = await GetStamp(userId);
+        const fetchedStamps = await getStamp(userId);
         if (fetchedStamps instanceof Error) {
           throw fetchedStamps;
         }
@@ -93,7 +93,7 @@ const StampPage = () => {
       if (!userId) {
         throw new Error('No user id');
       }
-      const newStamp = await CreateStamp(activityId, userId, userInput);
+      const newStamp = await createStamp(activityId, userId, userInput);
       if (newStamp instanceof Error) {
         toast.error('OTP ไม่ถูกต้อง!');
         throw newStamp;
