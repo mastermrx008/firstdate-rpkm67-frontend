@@ -47,7 +47,7 @@ function Login() {
 
       const { userId } = token;
 
-      localStorage.setItem('token', JSON.stringify(token));
+      localStorage.setItem('token', JSON.stringify(token.credential));
       localStorage.setItem('userId', userId);
       resetContext();
     })();
