@@ -15,34 +15,34 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   disabled = false,
 }) => {
   const router = useRouter();
-  const fd = () => {
+  const firstdate = () => {
     router.push('/register');
   };
-  const rp = () => {
+  const rubpeun = () => {
     console.log('rp');
   };
-  const eb = () => {
+  const ebook = () => {
     window.open('https://th.y8.com/', '_blank');
   };
-  const cl = () => {
+  const contactlist = () => {
     router.push('/emergency-contact');
   };
   const buttonProps = {
     'first-date': {
       color: 'bg-[#FFBBD2]',
-      onClick: fd,
+      onClick: firstdate,
     },
     'rub-peun': {
       color: 'bg-[#E9A49B]',
-      onClick: rp,
+      onClick: rubpeun,
     },
     'e-book': {
       color: 'bg-[#F1DFC1]',
-      onClick: eb,
+      onClick: ebook,
     },
     'contact-list': {
       color: 'bg-[#313131]',
-      onClick: cl,
+      onClick: contactlist,
     },
   };
   const { color, onClick } = buttonProps[varient];

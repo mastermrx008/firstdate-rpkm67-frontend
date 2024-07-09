@@ -1,14 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import qrbackgroundoutter from '@public/home/qr-background-outter.svg';
 import qrbackgroundinner from '@public/home/qr-background-inner.svg';
 import qrhead from '@public/home/qr-head.svg';
+import { useQRCode } from 'next-qrcode';
 
 interface QrCodeModalProps {
-  setPopup: (value: boolean) => void;
-  popup: boolean;
+  setModal: (value: boolean) => void;
+  modal: boolean;
+  userid: string;
 }
-const QrCodeModal: React.FC<QrCodeModalProps> = ({ popup, setPopup }) => {
-  if (!popup) return null;
+
+const QrCodeModal: React.FC<QrCodeModalProps> = ({ modal, setModal, userid }) => {
+  if (!modal) return null;
+  const [viewportHeight, setViewportHeight] = useState<number>(0.25*window.innerHeight);
+
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver(entries => {
+      for (let entry of entries) {
+        if (entry.target === document.documentElement) {
+          setViewportHeight(0.25*window.innerHeight);
+        }
+      }
+    });
+
+    resizeObserver.observe(document.documentElement);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
+  const { Canvas } = useQRCode();
   return (
     <div className="z-10 w-full h-full fixed flex justify-center">
       <div className="bg-black w-full h-full fixed self-center opacity-50" />
@@ -27,12 +48,18 @@ const QrCodeModal: React.FC<QrCodeModalProps> = ({ popup, setPopup }) => {
             className="w-11/12 h-[46vh] opacity-100 self-center justify-self-center bg-contain bg-no-repeat bg-center flex flex-col items-center justify-around pt-[5vh] pb-[2vh]"
             style={{ backgroundImage: `url(${qrbackgroundinner.src})` }}
           >
-            <button className="h-[25vh] w-[25vh] bg-white border-[0.1vh] border-rose-600 rounded-[1vh] text-2.12vh">
-              ช่อง qr code
-            </button>
+            <Canvas 
+            
+            text={userid}
+            options={{
+              width: viewportHeight
+            }}
+            />
+            
+            
             <button
-              className="h-[4.23vh] w-[13.76vh] bg-white border-[0.1vh] border-rose-600 rounded-[1vh] text-2.12vh"
-              onClick={() => setPopup(false)}
+              className="h-[4.23vh] w-[13.76vh] bg-white border-[0.1vh] border-rose-600 rounded-[1vh] text-[2.12vh]"
+              onClick={() => setModal(false)}
             >
               ย้อนกลับ
             </button>

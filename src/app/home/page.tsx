@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import Border from '@/components/Border';
+import placeholder from '@public/placeholder.svg';
 import something from '@public/home/something.svg';
 import eBookIcon from '@public/home/icon/ebook.svg';
 import contactIcon from '@public/home/icon/contactlist.svg';
@@ -15,14 +15,17 @@ import { useState } from 'react';
 import QrCodeModal from '@/components/home/QrCodeModal';
 import { useAuth } from '@/context/AuthContext';
 import { CheckIn } from '@/types/checkIn';
+import { useRouter } from 'next/navigation';
+import BottomButton from '@/components/home/BottomButton';
 
 export default function Home() {
+  const router = useRouter();
   const { user } = useAuth();
   const hasEvent = (checkIns: CheckIn[], event: string): boolean => {
     return checkIns.some((checkIn) => checkIn.event === event);
   };
   console.log(user);
-  const [popup, setPopup] = useState<boolean>(false);
+  const [modal, setModal] = useState<boolean>(false);
 
   const checkElement = (
     <Image
@@ -69,8 +72,10 @@ export default function Home() {
                 style={{ borderWidth: '0.66vh', borderStyle: 'solid' }}
               >
                 <Image
-                  src={user?.photoUrl ? user?.photoUrl : ''}
+                  src={user?.photoUrl ? user?.photoUrl : placeholder.src}
                   alt="profile picture"
+                  width={10}
+                  height={10}
                   style={{ width: '100%', height: '100%' }}
                   className="rounded-t-full"
                 />
@@ -133,38 +138,23 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center gap-x-[1.76vh] mt-[1.32vh] text-[1.76vh]">
-            <div className="flex flex-col items-center text-center gap-y-[0.44vh]">
-              <button
-                className="w-[4.8vh] h-[4.8vh] rounded-full flex justify-center items-center shadow-[0px_3px_4px_.5px_#00000048] hover:scale-105"
-                onClick={() => setPopup(true)}
-              >
-                <Image
-                  src={qrcodeIcon}
-                  alt="QR Code Icon"
-                  style={{ width: '2.63vh', height: '2.63vh' }}
-                />
-              </button>
-              <div>My Qr</div>
-            </div>
-            <div className="flex flex-col items-center text-center gap-y-[0.44vh]">
-              <Link
-                href="/"
-                className="w-[4.8vh] h-[4.8vh] rounded-full flex justify-center items-center shadow-[0px_3px_4px_.5px_#00000048] hover:scale-105"
-              >
-                <Image
-                  src={editIcon}
-                  alt="Edit Icon"
-                  style={{ width: '2.63vh', height: '2.63vh' }}
-                />
-              </Link>
-              <div>แก้ไขข้อมูล</div>
-            </div>
+            <BottomButton
+              onClick={() => setModal(true)}
+              src={qrcodeIcon}
+              text="My Qr"
+            />
+            <BottomButton
+              onClick={() => router.push('/edit')}
+              src={editIcon}
+              text="แก้ไขข้อมูล"
+            />
           </div>
         </div>
       </Border>
       <QrCodeModal
-        setPopup={setPopup}
-        popup={popup}
+        setModal={setModal}
+        modal={modal}
+        userid={(user)?user.id:""}
       />
     </main>
   );
