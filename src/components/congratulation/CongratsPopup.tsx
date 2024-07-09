@@ -7,8 +7,12 @@ import Link from 'next/link';
 
 interface CongratsPopupProps {
   score: number;
+  handleOnClose: () => void;
 }
-const CongratsPopup: React.FC<CongratsPopupProps> = ({ score }) => {
+const CongratsPopup: React.FC<CongratsPopupProps> = ({
+  score,
+  handleOnClose,
+}) => {
   const isCollectAll = score === 11;
   return (
     <div
@@ -56,14 +60,14 @@ const CongratsPopup: React.FC<CongratsPopupProps> = ({ score }) => {
               แลกรับเลย!
             </span>
           </Link>
-          <Link
+          <button
             className="w-full h-12 flex items-center justify-center rounded-lg bg-project-cream gap-1"
-            href="/firstdate/home"
+            onClick={handleOnClose}
           >
             <span className="font-athiti font-medium text-xl">
               กลับไปเดินทางต่อ
             </span>
-          </Link>
+          </button>
         </div>
       </div>
     </div>

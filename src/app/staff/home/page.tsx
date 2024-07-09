@@ -1,6 +1,7 @@
 'use client';
 import Border from '@/components/Border';
 import TwoCircleMenu from '@/components/TwoCircleMenu';
+import Scan from '@/components/qrscanner/QRScanner';
 import Mode from '@/components/staff/home/Mode';
 import PinGroup from '@/components/staff/home/otp/PinGroup';
 import { useCallback, useState } from 'react';
@@ -32,7 +33,13 @@ export default function Staff() {
             handleOnClick={handleClick}
           />
         </section>
-        {mode === 'QR-Reader' ? <></> : <PinGroup />}
+        {mode === 'QR-Reader' ? (
+          <div className="pt-8 w-full">
+            <Scan />
+          </div>
+        ) : (
+          <PinGroup />
+        )}
       </Border>
       <TwoCircleMenu />
     </main>
