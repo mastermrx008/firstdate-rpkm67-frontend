@@ -1,55 +1,48 @@
 'use client';
+
 import { useAuth } from '@/context/AuthContext';
-import { Icon } from '@iconify/react/dist/iconify.js';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { useCallback } from 'react';
+import MenuIcon from './MenuIcon';
 
 export default function TwoCircleMenu() {
   const { user } = useAuth();
   const router = useRouter();
-  const [profileActive, setProfileActive] = useState(false);
-  const [homeActive, setHomeActive] = useState(false);
-  const [selectedPath, setSelectedPath] = useState<string>('');
+  const currentPath = usePathname().split('/').at(-1);
 
-  const handleNavigate = (path: string) => {
-    router.push(`${user?.role === 'staff' ? '/staff' : ''}${path}`);
-    setSelectedPath(path);
-  };
+  const handleNavigate = useCallback(
+    (path: string): void => {
+      router.push(
+        `${user?.role === 'staff' ? '/staff' : ''}/firstdate/${path}`
+      );
+    },
+    [router, user?.role]
+  );
 
-  const handleClick = (iconName: 'home' | 'profile') => {
-    setProfileActive(iconName === 'profile');
-    setHomeActive(iconName === 'home');
-  };
+  const isPath = useCallback(
+    (path: string): boolean => {
+      return currentPath == path;
+    },
+    [currentPath]
+  );
 
   return (
     <div>
       <div className="absolute top-6 right-4 flex flex-col items-center">
-        <Icon
-          icon="icon-park-solid:people"
-          className={`w-11 h-11 p-3 rounded-full ${
-            profileActive
-              ? 'bg-project-fuchsia text-white'
-              : 'bg-white text-black'
-          }`}
-          onClick={() => {
-            handleClick('profile');
-            handleNavigate('/firstdate/profile');
-          }}
+        <MenuIcon
+          name="โปรไฟล์"
+          isActive={isPath('profile')}
+          handleOnClick={() => handleNavigate('profile')}
+          iconify="icon-park-solid:people"
         />
-        <span className="font-athiti font-medium">โปรไฟล์</span>
       </div>
       <div className="absolute top-6 left-4 flex flex-col items-center">
-        <Icon
-          icon="icon-park-solid:home"
-          className={`w-11 h-11 p-3 rounded-full ${
-            homeActive ? 'bg-project-fuchsia text-white' : 'bg-white text-black'
-          }`}
-          onClick={() => {
-            handleClick('home');
-            handleNavigate('/firstdate/home');
-          }}
+        <MenuIcon
+          name="หน้าหลัก"
+          isActive={isPath('home')}
+          handleOnClick={() => handleNavigate('home')}
+          iconify="icon-park-solid:home"
         />
-        <span className="font-athiti font-medium">หน้าหลัก</span>
       </div>
     </div>
   );

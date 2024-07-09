@@ -13,6 +13,7 @@ function Scan() {
   const [status, setStatus] = useState<'success' | 'error' | 'idle'>('idle');
   const { user } = useAuth();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleScanResult = async (scanRawData: any) => {
     if (!scanRawData || !user) {
       return;
