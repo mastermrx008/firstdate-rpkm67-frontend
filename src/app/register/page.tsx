@@ -10,30 +10,28 @@ import { useAuth } from '@/context/AuthContext';
 import { getAccessToken } from '@/utils/auth';
 import { apiClient } from '@/utils/axios';
 import Pdpa from '@/components/pdpa';
+import { User } from '@/types/user';
+import UploadProfilePicture from '@/components/register/UploadProfilePicture';
 
-// refactor later
-type UserData = {
-  baan: string;
-  drug_allergy: string;
-  faculty: string;
-  firstname: string;
-  food_allergy: string;
-  group_id: string;
-  illness: string;
-  lastname: string;
-  nickname: string;
-  parent: string;
-  parent_tel: string;
-  receive_gift: number;
-  tel: string;
-  title: string;
-  year: number;
-};
+type RegisterUser = Pick<
+  User,
+  | 'title'
+  | 'firstname'
+  | 'lastname'
+  | 'nickname'
+  | 'faculty'
+  | 'year'
+  | 'tel'
+  | 'parent_tel'
+  | 'parent'
+  | 'food_allergy'
+  | 'drug_allergy'
+  | 'illness'
+>;
 
 export default function Register() {
   const [currentStep, setCurrentStep] = useState(0);
-  const [isPdpaOpen, setIsPdpaOpen] = useState(false);
-  const [formData, setFormData] = useState<UserData>({
+  const [formData, setFormData] = useState<RegisterUser>({
     title: '',
     firstname: '',
     lastname: '',
@@ -43,13 +41,11 @@ export default function Register() {
     tel: '',
     parent_tel: '',
     parent: '',
-    baan: '',
     food_allergy: '',
     drug_allergy: '',
     illness: '',
-    group_id: '',
-    receive_gift: 0,
   });
+  const [isPdpaOpen, setIsPdpaOpen] = useState(false);
   const router = useRouter();
   const { user } = useAuth();
   const userId = user?.id;
@@ -66,7 +62,7 @@ export default function Register() {
     setCurrentStep((currentStep) => currentStep - 1);
   };
 
-  async function updateUserProfile(userData: UserData) {
+  async function updateUserProfile(userData: RegisterUser) {
     try {
       const accessToken = await getAccessToken();
       const response = await apiClient.patch(
@@ -94,14 +90,13 @@ export default function Register() {
     console.log('Form submitted', formData);
     router.push('/registered');
   };
+
   const renderStep = () => {
     switch (currentStep) {
       case 0:
         return (
           <div className="flex flex-col space-y-4">
-            <h2 className="text-2xl font-bold">อัปโหลดรูปภาพ</h2>
-            {/* Implement file upload component */}
-            <button onClick={handleNextStep}>ต่อไป</button>
+            <UploadProfilePicture onNext={handleNextStep} />
           </div>
         );
       case 1:
@@ -280,12 +275,12 @@ export default function Register() {
             <div className="space-y-6">{renderStep()}</div>
           </div>
         </div>
-        <Pdpa
-          isOpen={isPdpaOpen}
-          onOpenChange={setIsPdpaOpen}
-          onSuccess={handlePdpaSuccess}
-        />
       </Border>
+      <Pdpa
+        isOpen={isPdpaOpen}
+        onOpenChange={setIsPdpaOpen}
+        onSuccess={handlePdpaSuccess}
+      />
     </main>
   );
 }
