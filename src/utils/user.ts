@@ -53,19 +53,19 @@ export const patchReward = async (): Promise<boolean | null> => {
   }
 };
 
-export const isUserRegistered = (user: User) => {
+export const isUserRegistered = (user: User): boolean => {
   return (
-    user.drugAllergy &&
-    user.faculty &&
-    user.firstname &&
-    user.foodAllergy &&
-    user.illness &&
-    user.lastname &&
-    user.nickname &&
-    user.parent &&
-    user.parentTel &&
-    user.tel &&
-    user.title &&
-    user.year
+    !!user.drugAllergy &&
+    !!user.faculty &&
+    !!user.firstname &&
+    !!user.foodAllergy &&
+    !!user.illness &&
+    !!user.lastname &&
+    !!user.nickname &&
+    !!user.parent &&
+    !!user.parentTel &&
+    !!user.tel &&
+    !!user.title &&
+    !!user.year
   );
 };
