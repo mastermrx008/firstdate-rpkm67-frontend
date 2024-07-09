@@ -29,6 +29,7 @@ import { IActivity } from '@/types/stamp';
 import { StampDTO } from '@/dtos/stampDTO';
 import Spinner from '@/components/Spinner';
 import { getUserId } from '@/utils/auth';
+import { useAuth } from '@/context/AuthContext';
 
 const StampPage = () => {
   const [stamps, setStamps] = useState<StampDTO>();
@@ -39,6 +40,8 @@ const StampPage = () => {
   const [currentActivityId, setCurrentActivityId] = useState<string | null>(
     null
   );
+
+  const { resetContext } = useAuth();
 
   useEffect(() => {
     const fetchStamps = async () => {
@@ -97,6 +100,7 @@ const StampPage = () => {
       }
       setStamps(newStamp);
       toast.success('ได้รับ Stamp แล้ว!');
+      resetContext();
     } catch (error) {
       console.log('error:', error);
     } finally {
@@ -109,17 +113,6 @@ const StampPage = () => {
     setFavoriteClubModalOpen(false);
     setOpinionModalOpen(false);
     setCurrentActivityId(null);
-  };
-
-  const handleFavoriteClubModalOpen = (activityId: IActivity) => {
-    setCurrentActivityId(activityId);
-    console.log('activityId:', activityId);
-    setFavoriteClubModalOpen(true);
-  };
-
-  const handleOpinionModalOpen = (activityId: IActivity) => {
-    setCurrentActivityId(activityId);
-    setOpinionModalOpen(true);
   };
 
   return (
@@ -238,7 +231,7 @@ const StampPage = () => {
               collected={stamps?.stamp[9] === '1'}
               onClick={() =>
                 stamps?.stamp[9] === '0' &&
-                handleFavoriteClubModalOpen(IActivity.CLUB_OUTSIDE)
+                handleStampClick(IActivity.CLUB_OUTSIDE)
               }
             />
             <StampCheckBox
@@ -247,7 +240,7 @@ const StampPage = () => {
               collected={stamps?.stamp[10] === '1'}
               onClick={() =>
                 stamps?.stamp[10] === '0' &&
-                handleOpinionModalOpen(IActivity.CLUB_INSIDE)
+                handleStampClick(IActivity.CLUB_INSIDE)
               }
             />
           </StampContainer>

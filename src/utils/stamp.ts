@@ -3,7 +3,7 @@ import { getAccessToken } from './auth';
 import { apiClient } from './axios';
 import { StampDTO } from '@/dtos/stampDTO';
 
-export const GetStamp = async (userId: string): Promise<StampDTO | Error> => {
+export const getStamp = async (userId: string): Promise<StampDTO | Error> => {
   const accessToken = await getAccessToken();
   if (!accessToken) {
     return Error('No access token');
@@ -26,14 +26,12 @@ export const GetStamp = async (userId: string): Promise<StampDTO | Error> => {
   }
 };
 
-export const CreateStamp = async (
+export const createStamp = async (
   activityId: string,
   userId: string,
   pinCode: string
 ): Promise<StampDTO | Error> => {
   const accessToken = await getAccessToken();
-
-  console.log('accessToken:', accessToken);
   if (!accessToken) {
     return Error('No access token');
   }
