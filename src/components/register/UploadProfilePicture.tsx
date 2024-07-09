@@ -1,7 +1,7 @@
+import React, { useState, ChangeEvent } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { getAccessToken } from '@/utils/auth';
 import { apiClient } from '@/utils/axios';
-import React, { useState } from 'react';
 
 interface UploadProfilePictureProps {
   onNext: () => void;
@@ -14,7 +14,7 @@ const UploadProfilePicture: React.FC<UploadProfilePictureProps> = ({
   const { user } = useAuth();
   const userId = user?.id;
 
-  const handlePhotoChange = (e) => {
+  const handlePhotoChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       setPhoto(file);
@@ -46,27 +46,18 @@ const UploadProfilePicture: React.FC<UploadProfilePictureProps> = ({
   };
 
   const handleNextClick = () => {
-    handlePhotoUpload();
-    onNext();
+    handlePhotoUpload().then(() => {
+      onNext();
+    });
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <div className="text-center mb-6">
-        <div className="flex justify-center">
-          <img
-            src="/path/to/your/star-icon.png"
-            alt="Star Icon"
-            className="w-8 h-8 mb-2"
-          />
-        </div>
-        <h1 className="text-xl font-semibold mb-2">อัปโหลดรูปภาพ</h1>
-      </div>
+    <>
       <div className="relative mb-4">
         <div className="w-40 h-56 bg-gray-200 rounded-lg flex items-center justify-center overflow-hidden border border-gray-300">
           {photo ? (
             <img
-              src={photo}
+              src={URL.createObjectURL(photo)}
               alt="Profile"
               className="w-full h-full object-cover"
             />
@@ -103,12 +94,12 @@ const UploadProfilePicture: React.FC<UploadProfilePictureProps> = ({
         </div>
       </div>
       <button
-        className="bg-pink-300 text-white font-bold py-2 px-4 rounded-lg focus:outline-none"
+        className="bg-pink-300 text-black font-bold py-2 px-4 rounded-lg focus:outline-none"
         onClick={handleNextClick}
       >
         ต่อไป
       </button>
-    </div>
+    </>
   );
 };
 
