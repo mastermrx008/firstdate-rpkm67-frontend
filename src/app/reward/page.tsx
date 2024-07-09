@@ -2,6 +2,7 @@
 import Border from '@/components/Border';
 import FDLogo from '@public/FIrst Date Logo.svg';
 import line from '@/../public/line.svg';
+import RewardPlaceholder from '@public/reward/reward-placeholder.svg';
 import gift from '@/../public/gift.svg';
 import Image from 'next/image';
 import TwoCircleMenu from '@/components/TwoCircleMenu';
@@ -10,17 +11,19 @@ import React, { useState } from 'react';
 import ConfirmationModal from '../../components/confirmationModal';
 import { patchReward } from '@/utils/user';
 import { useRouter } from 'next/navigation';
+import NotificationModal from '@/components/congratulation/NotificationModal';
 
 export default function Reward() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
+  const [isOpenCondition, setIsOpenCondition] = useState(false);
 
   async function handleRedeem() {
-    const res = await patchReward();
-    if (res) {
+    const isSuccess = await patchReward();
+    if (isSuccess) {
       router.push('/rewarddone');
     } else {
-      console.log('There is an error');
+      console.log('error patch reward');
     }
   }
 
@@ -41,18 +44,20 @@ export default function Reward() {
         <h1 className="text-xl text-center font-semibold text-project-light-gray mb-3">
           กรุณาแสดงหน้านี้กับเจ้าหน้าที่
         </h1>
-        <div className="border border-black rounded-2xl w-60 h-48"></div>
-        <h1 className="text-center font-bold text-xs mt-2">
+        <div className="w-[70%]">
+          <Image
+            src={RewardPlaceholder}
+            alt="reward-image"
+          />
+        </div>
+        <p
+          className="text-center underline cursor-pointer text-xs mt-2"
+          onClick={() => setIsOpenCondition(true)}
+        >
           รายละเอียด เงื่อนไขต่างๆ
-        </h1>
-        <div className="text-center font-semibold text-xs mt-1 mx-5">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure,
-          placeat?
-        </div>
+        </p>
         <h1 className="text-center font-bold text-xs mt-2">สถานที่รับรางวัล</h1>
-        <div className="text-center font-semibold text-xs mt-1 mx-5">
-          Lorem ipsum dolor
-        </div>
+        <div className="text-center text-xs mt-1 mx-5">รอโทนี่</div>
         <Image
           src={line}
           alt="Line"
@@ -73,7 +78,7 @@ export default function Reward() {
           แลกรับเลย!
         </button>
         <Link
-          href=""
+          href="/firstdate/home"
           className="mt-4 w-64 h-12 font-medium text-black text-xl rounded-lg border-black border flex justify-center items-center"
         >
           กลับ
@@ -83,6 +88,10 @@ export default function Reward() {
           title="ยืนยันการแลกรับของรางวัล"
           onClose={() => setIsOpen(false)}
           handleRedeem={handleRedeem}
+        />
+        <NotificationModal
+          isOpen={isOpenCondition}
+          onOpenChange={setIsOpenCondition}
         />
       </Border>
       <TwoCircleMenu />

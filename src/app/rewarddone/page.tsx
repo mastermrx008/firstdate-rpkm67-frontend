@@ -4,10 +4,13 @@ import FDLogo from '@public/FIrst Date Logo.svg';
 import spark from '../../../public/spark.png';
 import Image from 'next/image';
 import TwoCircleMenu from '@/components/TwoCircleMenu';
-import { useRouter } from 'next/navigation';
+import EndingPopupModal from '@/components/ending/popup/EndingPopupModal';
+import { useState } from 'react';
+import Link from 'next/link';
 
 export default function RewardDone() {
-  const router = useRouter();
+  const [isOpenEndingModal, setIsOpenEndingModal] = useState<boolean>(false);
+
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
       <Border
@@ -30,19 +33,23 @@ export default function RewardDone() {
           className="w-48 h-auto mt-6 mb-16"
         />
         <button
-          onClick={() => router.push('/')}
+          onClick={() => setIsOpenEndingModal(true)}
           className="mt-3 w-64 h-12 font-medium text-white text-xl rounded-lg bg-project-fuchsia flex justify-center items-center"
         >
           สิ้นสุดการเดินทาง
         </button>
-        <button
-          onClick={() => router.push('/')}
+        <Link
+          href={'/firstdate/home'}
           className="mt-4 w-64 h-12 font-medium text-black text-xl rounded-lg border-black border flex justify-center items-center"
         >
           กลับไปเดินทางต่อ
-        </button>
+        </Link>
       </Border>
       <TwoCircleMenu />
+      <EndingPopupModal
+        isOpen={isOpenEndingModal}
+        onOpenChange={setIsOpenEndingModal}
+      />
     </main>
   );
 }
