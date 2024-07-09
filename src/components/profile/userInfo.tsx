@@ -1,3 +1,5 @@
+"use client";
+
 import { Icon } from "@iconify/react";
 import { useAuth } from "@/context/AuthContext";
 import placeholder from "@public/placeholder.svg";
