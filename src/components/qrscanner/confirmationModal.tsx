@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import successicon from '@public/success.svg';
-import { CheckIn } from '@/types/checkIn1211';
+import { CheckIn } from '@/types/checkIn';
 interface FailureModalProps {
   isOpen: boolean;
   message: string;

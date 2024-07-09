@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios';
 import { apiClient } from './axios';
 import { getAccessToken } from './auth';
-import { CheckIn } from '@/types/checkIn1211';
-import { convertCheckInDTOtoCheckIn } from '@/dtos/checkInsDTO';
+import { CheckIn } from '@/types/checkIn';
+import { CheckInParser } from '@/dtos/checkInsDTO';
 
 export const createCheckIn = async (
   userID: string,
@@ -29,9 +29,8 @@ export const createCheckIn = async (
         },
       }
     );
-    return convertCheckInDTOtoCheckIn(res.data);
+    return CheckInParser(res.data);
   } catch (error) {
-    console.log('error:', error);
     return null;
   }
 };

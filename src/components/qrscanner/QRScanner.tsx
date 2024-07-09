@@ -5,8 +5,8 @@ import { motion } from 'framer-motion';
 import { useAuth } from '@/context/AuthContext';
 import ConfirmationModal from './confirmationModal';
 import FailureModal from './failureModal';
-import { CheckIn } from '@/types/checkIn1211';
 import { createCheckIn } from '@/utils/checkin';
+import { CheckIn } from '@/types/checkIn';
 
 function Scan() {
   const [checkInData, setCheckInData] = useState<CheckIn | null>(null);

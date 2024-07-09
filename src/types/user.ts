@@ -1,9 +1,9 @@
-import { CheckIn } from './checkIn';
+import { ChildCheckIn } from './checkIn';
 import { Stamp } from './stamp';
 
 export type User = {
   baan: string;
-  check_ins: CheckIn[];
+  checkIns: ChildCheckIn[];
   drugAllergy: string;
   email: string;
   faculty: string;
