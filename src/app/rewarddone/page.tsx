@@ -5,7 +5,7 @@ import Image from 'next/image';
 import TwoCircleMenu from '@/components/TwoCircleMenu';
 import Link from 'next/link';
 
-export default function Map() {
+export default function RewardDone() {
   return (
     <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
       <Border
