@@ -2,6 +2,7 @@ import { AxiosResponse } from 'axios';
 import { apiClient } from './axios';
 import { getAccessToken } from './auth';
 import { CheckIn } from '@/types/checkIn1211';
+import { convertCheckInDTOtoCheckIn } from '@/dtos/checkInsDTO';
 
 export const createCheckIn = async (
   userID: string,
@@ -28,7 +29,7 @@ export const createCheckIn = async (
         },
       }
     );
-    return res.data;
+    return convertCheckInDTOtoCheckIn(res.data);
   } catch (error) {
     console.log('error:', error);
     return null;

@@ -36,7 +36,8 @@ const FailureModal: React.FC<FailureModalProps> = ({
 
         <h1 className="text-center mt-5">สแกนสำเร็จ ยินดีต้อนรับ</h1>
         <h1 className="text-center text-project-fuchsia">
-          {userData?.firstName} {userData?.lastName} {userData?.checkIn.userId}
+          {userData?.firstName} {userData?.lastName}{' '}
+          {userData?.checkIn.email.split('@').at(0)}
         </h1>
         <div className="flex flex-col items-center mx-auto justify-center">
           <button
