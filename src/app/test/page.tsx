@@ -18,9 +18,9 @@ const Page = () => {
           console.log('callBackFunction');
         }}
       >
-        <div>
-          <h1>Modal</h1>
-          <p>Modal Content</p>
+        <div className="text-center">
+          <p className="text-xl font-semibold">ยืนยันการเลือกบ้าน</p>
+          <p className="text-sm">*เมื่อยืนยันแล้วจะไม่สามารถแก้ไขได้อีก</p>
         </div>
       </Modal>
     </div>

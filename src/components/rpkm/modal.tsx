@@ -5,7 +5,6 @@ interface ModalProps {
   open: boolean;
   setOpen: (open: boolean) => void;
   callBackFunction: () => void;
-
   children: React.ReactNode;
 }
 
@@ -46,14 +45,17 @@ const Modal: React.FC<ModalProps> = ({
       <div className="p-1 inv-rad inv-rad-3 bg-[#EAE3C3]">
         <div className={cn('inv-rad inv-rad-3 p-3', background)}>
           {children}
-          <div className="flex flex-row gap-x-3">
+          <div className="flex flex-row gap-x-3 justify-center mt-3">
             <button
               onClick={() => setOpen(false)}
-              className={cn('p-1 inv-rad inv-rad-2', button['cancel-border'])}
+              className={cn(
+                'p-1 inv-rad inv-rad-2 w-2/5',
+                button['cancel-border']
+              )}
             >
               <div
                 className={cn(
-                  'p-3 text-[#313131] inv-rad inv-rad-2',
+                  'p-2 text-[#313131] inv-rad inv-rad-2',
                   button['cancel-background']
                 )}
               >
@@ -63,13 +65,13 @@ const Modal: React.FC<ModalProps> = ({
             <button
               onClick={() => callBackFunction()}
               className={cn(
-                'text-white p-1 inv-rad inv-rad-2',
+                'text-white p-1 inv-rad inv-rad-2 w-2/5',
                 button['accept-border']
               )}
             >
               <div
                 className={cn(
-                  'p-3 inv-rad inv-rad-2',
+                  'p-2 inv-rad inv-rad-2',
                   button['accept-background']
                 )}
               >
