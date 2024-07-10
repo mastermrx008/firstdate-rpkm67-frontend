@@ -93,12 +93,14 @@ const UploadProfilePicture: React.FC<UploadProfilePictureProps> = ({
           </div>
         </div>
       </div>
-      <button
-        className="bg-pink-300 text-black font-bold py-2 px-4 rounded-lg focus:outline-none"
-        onClick={handleNextClick}
-      >
-        ต่อไป
-      </button>
+      <div className="flex flex-col items-center">
+        <button
+          className={`mt-3 w-[130px] h-[40px] font-medium text-black text-xl rounded-lg bg-project-pink`}
+          onClick={handleNextClick}
+        >
+          ต่อไป
+        </button>
+      </div>
     </>
   );
 };

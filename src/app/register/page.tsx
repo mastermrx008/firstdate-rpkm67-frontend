@@ -110,14 +110,14 @@ export default function Register() {
       case 0:
         return (
           <div className="flex flex-col space-y-4">
-            <h2 className="text-2xl font-bold">อัปโหลดรูปภาพ</h2>
+            <h2 className="text-2xl font-bold text-center">อัปโหลดรูปภาพ</h2>
             <UploadProfilePicture onNext={handleNextStep} />
           </div>
         );
       case 1:
         return (
           <div className="flex flex-col space-y-4">
-            <h2 className="text-2xl font-bold">ข้อมูลส่วนตัว</h2>
+            <h2 className="text-2xl font-bold text-center">ข้อมูลส่วนตัว</h2>
             <select
               name="title"
               value={formData.title}
@@ -187,8 +187,20 @@ export default function Register() {
                 <option value="2">2</option>
               </select>
             </div>
-            <button onClick={handleNextStep}>ต่อไป</button>
-            <button onClick={handlePrevStep}>ย้อนกลับ</button>
+            <div className="flex flex-col items-center gap-[4px]">
+              <button
+                className={`mt-3 w-[130px] h-[40px] font-medium text-black text-xl rounded-lg bg-project-pink`}
+                onClick={handleNextStep}
+              >
+                ต่อไป
+              </button>
+              <button
+                className={`mt-3 w-[130px] h-[40px] font-medium text-project-fuchsia text-xl rounded-lg bg-pro border-project-fuchsia border-[1px]`}
+                onClick={handlePrevStep}
+              >
+                ย้อนกลับ
+              </button>
+            </div>
           </div>
         );
       case 2:
