@@ -1,9 +1,9 @@
-import ProgressDisplay from "./ProgressDisplay";
-import { ProgressProps } from "./ProgressDisplay";
-import { Stamp } from "@/types/stamp";
+import ProgressDisplay from './ProgressDisplay';
+import { ProgressProps } from './ProgressDisplay';
+import { Stamp } from '@/types/stamp';
 
 interface Point {
-  stamp: Stamp
+  stamp: Stamp;
 }
 
 export default function StatBars({ stamp }: Point) {
@@ -17,7 +17,10 @@ export default function StatBars({ stamp }: Point) {
   return (
     <div className="flex justify-evenly gap-6">
       {progressBars.map((props, index) => (
-        <ProgressDisplay key={index} {...props} />
+        <ProgressDisplay
+          key={index}
+          {...props}
+        />
       ))}
     </div>
   );
