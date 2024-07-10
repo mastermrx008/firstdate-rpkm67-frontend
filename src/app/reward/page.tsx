@@ -96,7 +96,6 @@ export default function Reward() {
         />
       </Border>
       <MenuList isRewardPage />
-    </main>
-
+    </>
   );
 }

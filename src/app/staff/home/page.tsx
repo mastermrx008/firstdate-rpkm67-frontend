@@ -1,6 +1,7 @@
 'use client';
 import Border from '@/components/Border';
 import MenuList from '@/components/MenuList';
+
 import Scan from '@/components/qrscanner/QRScanner';
 import Mode from '@/components/staff/home/Mode';
 import PinGroup from '@/components/staff/home/otp/PinGroup';
@@ -42,7 +43,7 @@ export default function Staff() {
       ) : (
         <PinGroup />
       )}
-      <TwoCircleMenu />
+      <MenuList />
     </Border>
   );
 }
