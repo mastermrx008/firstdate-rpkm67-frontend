@@ -12,6 +12,7 @@ import { useAuth } from '@/context/AuthContext';
 
 export default function Profile(){
     const { user } = useAuth();
+    if( !user ) return;
 
     return (
         <main className="flex justify-center items-center flex-col bg-2">
@@ -24,7 +25,7 @@ export default function Profile(){
                         alt="logo"
                         className="w-44 mt-5 mb-2"
                     />
-                    <UserInfo info={user}/>
+                    <UserInfo user={user}/>
                     <Image
                         src={bowLine}
                         alt="bowLine"
