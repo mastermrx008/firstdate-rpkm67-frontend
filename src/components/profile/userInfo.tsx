@@ -17,7 +17,7 @@ export default function UserInfo(){
             >
                 <Icon
                 icon="ri:edit-fill"
-                className="w-11 h-11 p-3 rounded-full bg-white text-black"
+                className="w-11 h-11 p-3 rounded-full bg-white text-black drop-shadow"
                 />
                 <span className="text-center font-medium text-base">แก้ไขข้อมูล</span>
             </Link>
@@ -43,7 +43,7 @@ export default function UserInfo(){
                 href="/firstdate/map">
                 <Icon
                 icon="material-symbols:map"
-                className="w-11 h-11 p-3 rounded-full bg-white text-black"
+                className="w-11 h-11 p-3 rounded-full bg-white text-black drop-shadow"
                 />
                 <span className="text-center font-medium text-base">แผนที่</span>
             </Link>
