@@ -2,7 +2,8 @@
 
 import Spinner from '@/components/Spinner';
 import { User } from '@/types/user';
-import { getUser /* isUserRegistered */ } from '@/utils/user';
+import { getReceiveGiftCondition } from '@/utils/reward';
+import { getUser /* isUserRegistered */, isUserRegistered } from '@/utils/user';
 
 import { usePathname, useRouter } from 'next/navigation';
 import React, {
@@ -48,6 +49,10 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
   useEffect(() => {
     const userStr = localStorage.getItem('user');
+    if (path == '/') {
+      return;
+    }
+
     if (!userStr) {
       return router.push('/');
     }
@@ -56,19 +61,23 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
     setUser(userObj);
 
     //TODO comeback to activate route protection
-    // const isStaffPage = path.startsWith('/staff');
     // const isStaff = userObj.role == 'staff';
     // const isRegistered = isUserRegistered(userObj);
-    // const isLoginPage = path == '/';
 
-    // if (isStaff && (!isStaffPage || isLoginPage)) {
-    //   const newPath = isRegistered ? '/staff/home' : '/staff/register';
-    //   return router.push(newPath);
-    // }
+    // if (isStaff) {
+    //   if (!isRegistered) {
+    //     return router.push('/staff/register');
+    //   }
+    // } else {
+    //   if (!isRegistered) {
+    //     return router.push('/register');
+    //   } else if (path.split('/').at(-1) == 'reward' || 'reward-done') {
+    //     const condition = getReceiveGiftCondition(userObj);
 
-    // if (!isStaff && (isStaffPage || isLoginPage)) {
-    //   const newPath = isRegistered ? '/home' : '/register';
-    //   return router.push(newPath);
+    //     if (condition.status != 'ready') {
+    //       return router.push('/firstdate/home');
+    //     }
+    //   }
     // }
   }, [router, path]);
 

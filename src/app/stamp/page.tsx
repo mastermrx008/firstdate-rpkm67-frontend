@@ -30,6 +30,7 @@ import { Stamp } from '@/types/stamp';
 import Spinner from '@/components/Spinner';
 import { getUserId } from '@/utils/auth';
 import { useAuth } from '@/context/AuthContext';
+import TwoCircleMenu from '@/components/TwoCircleMenu';
 
 const StampPage = () => {
   const [stamps, setStamps] = useState<Stamp>();
@@ -247,6 +248,7 @@ const StampPage = () => {
         </div>
         <EndJourneyButton />
       </Border>
+      <TwoCircleMenu />
       {isOTPModalOpen && currentActivityId && (
         <OTPModal
           activityId={currentActivityId}

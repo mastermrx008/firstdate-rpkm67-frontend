@@ -94,7 +94,7 @@ export default function Reward() {
           onOpenChange={setIsOpenCondition}
         />
       </Border>
-      <TwoCircleMenu />
+      <TwoCircleMenu isRewardPage />
     </main>
   );
 }

@@ -45,7 +45,7 @@ export default function RewardDone() {
           กลับไปเดินทางต่อ
         </Link>
       </Border>
-      <TwoCircleMenu />
+      <TwoCircleMenu isRewardPage />
       <EndingPopupModal
         isOpen={isOpenEndingModal}
         onOpenChange={setIsOpenEndingModal}
