@@ -11,7 +11,7 @@ interface TwoCircleMenuProps {
   isRewardPage?: boolean;
 }
 
-export default function TwoCircleMenu({ isRewardPage }: TwoCircleMenuProps) {
+export default function MenuList({ isRewardPage }: TwoCircleMenuProps) {
   const { user } = useAuth();
   const router = useRouter();
   const currentPath = usePathname().split('/').at(-1);

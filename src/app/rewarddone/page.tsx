@@ -3,10 +3,10 @@ import Border from '@/components/Border';
 import FDLogo from '@public/FIrst Date Logo.svg';
 import spark from '../../../public/spark.png';
 import Image from 'next/image';
-import TwoCircleMenu from '@/components/TwoCircleMenu';
 import EndingPopupModal from '@/components/ending/popup/EndingPopupModal';
 import { useState } from 'react';
 import Link from 'next/link';
+import MenuList from '@/components/MenuList';
 
 export default function RewardDone() {
   const [isOpenEndingModal, setIsOpenEndingModal] = useState<boolean>(false);
@@ -45,7 +45,7 @@ export default function RewardDone() {
           กลับไปเดินทางต่อ
         </Link>
       </Border>
-      <TwoCircleMenu isRewardPage />
+      <MenuList isRewardPage />
       <EndingPopupModal
         isOpen={isOpenEndingModal}
         onOpenChange={setIsOpenEndingModal}

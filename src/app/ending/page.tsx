@@ -12,6 +12,7 @@ import CardImage from '@/components/ending/CardImage';
 import Logo from '@public/FIrst Date Logo.svg';
 import Divider from '@public/ending/divider.png';
 import DownloadIcon from '@public/ending/download.svg';
+import MenuList from '@/components/MenuList';
 
 export default function Ending() {
   const { user } = useAuth();
@@ -65,6 +66,10 @@ export default function Ending() {
       id="main-containter"
       ref={ref}
     >
+      <div className="to-hide">
+        <MenuList isRewardPage />
+      </div>
+
       <Border variant="white">
         <Image
           src={Logo}

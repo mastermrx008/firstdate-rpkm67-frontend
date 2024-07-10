@@ -2,8 +2,7 @@
 
 import Spinner from '@/components/Spinner';
 import { User } from '@/types/user';
-import { getReceiveGiftCondition } from '@/utils/reward';
-import { getUser /* isUserRegistered */, isUserRegistered } from '@/utils/user';
+import { getUser } from '@/utils/user';
 
 import { usePathname, useRouter } from 'next/navigation';
 import React, {
