@@ -10,8 +10,8 @@ import CardTitle from '@/components/ending/CardTitle';
 import CardImage from '@/components/ending/CardImage';
 
 import Logo from '@public/FIrst Date Logo.svg';
-import Divider from '@public/ending/divider.png';
 import DownloadIcon from '@public/ending/download.svg';
+import MenuList from '@/components/MenuList';
 
 export default function Ending() {
   const { user } = useAuth();
@@ -61,21 +61,26 @@ export default function Ending() {
 
   return (
     <main
-      className="w-full h-screen flex justify-center items-center flex-col"
+      className="w-full"
       id="main-containter"
       ref={ref}
     >
+      <div className="to-hide">
+        <MenuList isRewardPage />
+      </div>
+
       <Border variant="white">
         <Image
           src={Logo}
           alt="logo"
-          className="w-44"
+          className="w-[50%] mt-[10%]"
         />
         <h1 className="font-season italic mt-3 text-2xl text-light-gray">
           My card
         </h1>
-        <Image
-          src={Divider}
+        {/* using <img> instead of next <Image> because it have a bug when convert to png */}
+        <img
+          src={'/ending/divider.png'}
           alt="divider"
           className="w-44 m-3"
         />
@@ -102,7 +107,7 @@ export default function Ending() {
           </button>
           <a
             href="/firstdate/home"
-            className="w-full bg-project-pink rounded-md py-2 text-center text-light-gray to-hide"
+            className="w-full bg-project-pink rounded-md py-2 mb-[5%] text-center text-light-gray to-hide"
           >
             กลับไปเดินทางต่อ
           </a>

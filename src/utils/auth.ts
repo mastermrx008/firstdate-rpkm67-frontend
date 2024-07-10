@@ -39,7 +39,7 @@ export const getAccessToken = async (): Promise<string | null> => {
     return null;
   }
 
-  const token: Token = JSON.parse(tokenStr).credential;
+  const token: Token = JSON.parse(tokenStr);
   const now = new Date();
   const expire = new Date(token.expiresIn);
 

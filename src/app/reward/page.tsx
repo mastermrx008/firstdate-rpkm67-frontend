@@ -5,13 +5,13 @@ import line from '@/../public/line.svg';
 import RewardPlaceholder from '@public/reward/reward-placeholder.svg';
 import gift from '@/../public/gift.svg';
 import Image from 'next/image';
-import TwoCircleMenu from '@/components/TwoCircleMenu';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import ConfirmationModal from '../../components/confirmationModal';
 import { patchReward } from '@/utils/user';
 import { useRouter } from 'next/navigation';
 import NotificationModal from '@/components/congratulation/NotificationModal';
+import MenuList from '@/components/MenuList';
 
 export default function Reward() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +28,7 @@ export default function Reward() {
   }
 
   return (
-    <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
+    <>
       <Border
         variant="white-brown"
         className="flex flex-col"
@@ -36,7 +36,7 @@ export default function Reward() {
         <Image
           src={FDLogo}
           alt="logo"
-          className="w-44 mb-2"
+          className="w-44 my-[10%]"
         />
         <h1 className="text-3xl text-center font-semibold text-project-light-gray mb-1">
           แลกรับของรางวัล
@@ -44,20 +44,21 @@ export default function Reward() {
         <h1 className="text-xl text-center font-semibold text-project-light-gray mb-3">
           กรุณาแสดงหน้านี้กับเจ้าหน้าที่
         </h1>
-        <div className="w-[70%]">
+        <div className="w-[70%] mx-auto">
           <Image
             src={RewardPlaceholder}
             alt="reward-image"
+            className="mx-auto"
           />
         </div>
         <p
-          className="text-center underline cursor-pointer text-xs mt-2"
+          className="text-center underline cursor-pointer mt-2"
           onClick={() => setIsOpenCondition(true)}
         >
           รายละเอียด เงื่อนไขต่างๆ
         </p>
-        <h1 className="text-center font-bold text-xs mt-2">สถานที่รับรางวัล</h1>
-        <div className="text-center text-xs mt-1 mx-5">รอโทนี่</div>
+        <h1 className="text-center font-bold mt-2">สถานที่รับรางวัล</h1>
+        <div className="text-center mt-1 mx-5">รอโทนี่</div>
         <Image
           src={line}
           alt="Line"
@@ -68,7 +69,7 @@ export default function Reward() {
         </h1>
         <button
           onClick={() => setIsOpen(true)}
-          className="mt-3 w-64 h-12 font-medium text-white text-xl rounded-lg bg-project-fuchsia flex justify-center items-center"
+          className="mt-4 w-[60%] py-2 font-medium text-white text-xl rounded-lg bg-project-fuchsia flex justify-center items-center"
         >
           <Image
             src={gift}
@@ -79,7 +80,7 @@ export default function Reward() {
         </button>
         <Link
           href="/firstdate/home"
-          className="mt-4 w-64 h-12 font-medium text-black text-xl rounded-lg border-black border flex justify-center items-center"
+          className="mt-4 w-[60%] py-2 font-medium text-black text-xl rounded-lg border-black border flex justify-center items-center"
         >
           กลับ
         </Link>
@@ -94,7 +95,7 @@ export default function Reward() {
           onOpenChange={setIsOpenCondition}
         />
       </Border>
-      <TwoCircleMenu />
-    </main>
+      <MenuList isRewardPage />
+    </>
   );
 }
