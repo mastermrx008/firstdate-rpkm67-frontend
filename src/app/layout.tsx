@@ -3,7 +3,6 @@ import { Athiti } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
 import Footer from '@/components/Footer';
-import QueryClientWrapper from '@/components/QueryClientWrapper';
 import AuthProvider from '@/context/AuthContext';
 import { Toaster } from 'react-hot-toast';
 
@@ -22,9 +21,7 @@ export default function RootLayout({
         className={`${athiti.variable} ${season.variable} ${sarun.variable} bg-1 font-athiti`}
       >
         <Toaster />
-        <QueryClientWrapper>
-          <AuthProvider>{children}</AuthProvider>
-        </QueryClientWrapper>
+        <AuthProvider>{children}</AuthProvider>
         <Footer />
       </body>
     </html>

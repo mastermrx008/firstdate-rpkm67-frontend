@@ -1,6 +1,6 @@
 'use client';
 
-import Spinner from '@/components/Spinner';
+import Spinner from '@/components/firstdate/Spinner';
 import { User } from '@/types/user';
 import { getUser /* isUserRegistered */ } from '@/utils/user';
 
