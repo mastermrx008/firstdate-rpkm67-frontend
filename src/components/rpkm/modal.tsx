@@ -23,8 +23,8 @@ const modalStyles = {
     button: {
       'accept-background': 'bg-[#C94B4B]',
       'accept-border': 'bg-[#EAE3C3]',
-      'cancel-background': 'bg-[#F5F5F5] ',
-      'cancel-border': 'bg-[#313131]',
+      'cancel-background': 'bg-[#313131] text-[#F5F5F5]',
+      'cancel-border': 'bg-[#F5F5F5]',
     },
   },
 };
@@ -55,7 +55,7 @@ const Modal: React.FC<ModalProps> = ({
             >
               <div
                 className={cn(
-                  'p-2 text-[#313131] inv-rad inv-rad-2',
+                  'p-2 inv-rad inv-rad-2',
                   button['cancel-background']
                 )}
               >
