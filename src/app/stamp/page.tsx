@@ -30,6 +30,7 @@ import { Stamp } from '@/types/stamp';
 import Spinner from '@/components/Spinner';
 import { getUserId } from '@/utils/auth';
 import { useAuth } from '@/context/AuthContext';
+import MenuList from '@/components/MenuList';
 
 const StampPage = () => {
   const [stamps, setStamps] = useState<Stamp>();
@@ -247,6 +248,7 @@ const StampPage = () => {
         </div>
         <EndJourneyButton />
       </Border>
+      <MenuList />
       {isOTPModalOpen && currentActivityId && (
         <OTPModal
           activityId={currentActivityId}

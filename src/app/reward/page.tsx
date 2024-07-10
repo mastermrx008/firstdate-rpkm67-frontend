@@ -5,13 +5,13 @@ import line from '@/../public/line.svg';
 import RewardPlaceholder from '@public/reward/reward-placeholder.svg';
 import gift from '@/../public/gift.svg';
 import Image from 'next/image';
-import TwoCircleMenu from '@/components/TwoCircleMenu';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import ConfirmationModal from '../../components/confirmationModal';
 import { patchReward } from '@/utils/user';
 import { useRouter } from 'next/navigation';
 import NotificationModal from '@/components/congratulation/NotificationModal';
+import MenuList from '@/components/MenuList';
 
 export default function Reward() {
   const [isOpen, setIsOpen] = useState(false);
@@ -95,7 +95,7 @@ export default function Reward() {
           onOpenChange={setIsOpenCondition}
         />
       </Border>
-      <TwoCircleMenu />
+      <MenuList isRewardPage />
     </>
   );
 }
