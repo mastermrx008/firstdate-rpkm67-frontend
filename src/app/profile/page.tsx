@@ -4,12 +4,15 @@ import Border from '@/components/Border';
 import FDLogo from '@public/FIrst Date Logo.svg';
 import bowLine from '@public/stat/bowline.svg';
 import TwoCircleMenu from '@/components/TwoCircleMenu';
-import UserInfo from '@/components/profile/userInfo'
-import StatBars from "@/components/profile/statBars"
+import UserInfo from '@/components/profile/UserInfo'
+import StatBars from "@/components/profile/StatBars"
 import Image from 'next/image';
 import Link from 'next/link';
+import { useAuth } from '@/context/AuthContext';
 
 export default function Profile(){
+    const { user } = useAuth();
+
     return (
         <main className="flex justify-center items-center flex-col bg-2">
             <TwoCircleMenu />
@@ -21,13 +24,13 @@ export default function Profile(){
                         alt="logo"
                         className="w-44 mt-5 mb-2"
                     />
-                    <UserInfo />
+                    <UserInfo info={user}/>
                     <Image
                         src={bowLine}
                         alt="bowLine"
                         className="w-44 mb-2 mt-1"
                     />
-                    <StatBars />
+                    <StatBars stamp={user?.stamp}/>
                     <div className="w-5/6 mt-9 z-10 drop-shadow">
                         <Link
                             href="/firstdate/home"
