@@ -9,7 +9,7 @@ import {
 } from 'react-markdown/lib/ast-to-react';
 import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
 import '@/components/congratulation/style.css';
-import Link from 'next/link';
+import React from 'react';
 
 const StyledH1: React.FC<HeadingProps> = ({ children }) => {
   return (
@@ -45,7 +45,13 @@ const StyledHR: React.FC<ReactMarkdownProps> = ({ ...props }) => {
   );
 };
 
-const ConditionContext = () => {
+interface ConditionContextProps {
+  handleOnClose: () => void;
+}
+
+const ConditionContext: React.FC<ConditionContextProps> = ({
+  handleOnClose,
+}) => {
   return (
     <>
       <span className="text-center font-athiti font-semibold text-2xl">
@@ -76,14 +82,14 @@ const ConditionContext = () => {
         className="w-full h-4 bg-cover px-[20%] mt-6"
       />
       <div className="w-full px-[15%] flex pt-6">
-        <Link
+        <button
           className="w-full h-12 flex items-center justify-center rounded-lg bg-project-light-gray"
-          href="/firstdate/home"
+          onClick={handleOnClose}
         >
           <span className="font-athiti font-medium text-xl text-white">
-            กลับไปเดินทางต่อ
+            กลับ
           </span>
-        </Link>
+        </button>
       </div>
     </>
   );

@@ -36,7 +36,7 @@ export default function PinGroup() {
           alt="line"
         />
       </div>
-      <div className="relative group cursor-pointer w-full h-3/5 z-50">
+      <div className="relative group cursor-pointer w-full h-1/2 z-50">
         <div className="relative px-7 py-6 bg-white h-full ring-2 overflow-scroll ring-gray-900/5 rounded-lg flex flex-col items-center">
           {pins ? (
             pins.map((data: PinDTO, index: number) => (
