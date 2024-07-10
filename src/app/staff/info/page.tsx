@@ -3,9 +3,9 @@ import Border from '@/components/Border';
 import FDLogo from '@public/FIrst Date Logo.svg';
 import placeholder from '../../../../public/placeholder.svg';
 import Image from 'next/image';
-import TwoCircleMenu from '@/components/TwoCircleMenu';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { useAuth } from '@/context/AuthContext';
+import MenuList from '@/components/MenuList';
 
 export default function AdminInfo() {
   const { user, logout } = useAuth();
@@ -50,7 +50,7 @@ export default function AdminInfo() {
         />
         <span className="font-athiti font-medium">ออกจากระบบ</span>
       </div>
-      <TwoCircleMenu />
+      <MenuList />
     </main>
   );
 }
