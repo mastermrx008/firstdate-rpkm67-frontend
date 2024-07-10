@@ -1,13 +1,14 @@
 import { Icon } from '@iconify/react/dist/iconify.js';
 import Divider from '@public/congrats/divider.svg';
 import Image from 'next/image';
-import Link from 'next/link';
 
 interface NotificationContextProps {
   onClickShowCondition: () => void;
+  handleOnClose: () => void;
 }
 const NotificationContext: React.FC<NotificationContextProps> = ({
   onClickShowCondition,
+  handleOnClose,
 }) => {
   return (
     <>
@@ -37,14 +38,14 @@ const NotificationContext: React.FC<NotificationContextProps> = ({
               ดูเงื่อนไขการรับรางวัล
             </span>
           </button>
-          <Link
+          <button
             className="w-full h-12 flex items-center justify-center rounded-lg bg-project-light-gray"
-            href="/firstdate/home"
+            onClick={handleOnClose}
           >
             <span className="font-athiti font-medium text-xl text-white">
               กลับไปเดินทางต่อ
             </span>
-          </Link>
+          </button>
         </div>
       </div>
       <Image

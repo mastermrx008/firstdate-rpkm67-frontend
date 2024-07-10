@@ -1,11 +1,11 @@
 import { User } from '@/types/user';
 
 import { StampDTO } from './stampDTO';
-import { CheckInDTO } from './checkInsDTO';
+import { ChildCheckInDTO, ChildCheckInParser } from './checkInsDTO';
 
 export type UserDTO = {
   baan: string;
-  check_ins?: CheckInDTO[] | null;
+  check_ins: ChildCheckInDTO[] | null;
   drug_allergy: string;
   email: string;
   faculty: string;
@@ -28,16 +28,11 @@ export type UserDTO = {
   year: number;
 };
 
-export const convertUserDTOtoUser = (userDTO: UserDTO): User => {
+export const UserParser = (userDTO: UserDTO): User => {
   return {
     baan: userDTO.baan,
-    check_ins:
-      userDTO.check_ins?.map((checkIn) => ({
-        email: checkIn.email,
-        event: checkIn.event,
-        id: checkIn.id,
-        userId: checkIn.user_id,
-      })) ?? [],
+    checkIns:
+      userDTO.check_ins?.map((checkIn) => ChildCheckInParser(checkIn)) ?? [],
     drugAllergy: userDTO.drug_allergy,
     email: userDTO.email,
     faculty: userDTO.faculty,
