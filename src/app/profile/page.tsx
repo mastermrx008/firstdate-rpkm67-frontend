@@ -17,7 +17,7 @@ export default function Profile(){
     return (
         <main className="flex justify-center items-center flex-col bg-2">
             <TwoCircleMenu />
-            <div className="w-[calc(100vh*(72/156)*(9/10))] h-full overflow-y-auto">
+            <div className="flex justify-center items-center w-full h-screen overflow-y-auto">
             <Border variant="light-pink">
                 <div className="flex flex-col items-center z-10">
                     <Image
@@ -29,10 +29,10 @@ export default function Profile(){
                     <Image
                         src={bowLine}
                         alt="bowLine"
-                        className="w-44 mb-2 mt-1"
+                        className="w-32 mb-3 mt-1"
                     />
                     <StatBars stamp={user?.stamp}/>
-                    <div className="w-5/6 mt-9 z-10 drop-shadow">
+                    <div className="w-5/6 mt-10 z-10 drop-shadow">
                         <Link
                             href="/firstdate/home"
                             className="flex flex-row items-center justify-center bg-project-pink px-2 py-[10px] gap-x-2 rounded-lg text-white"
