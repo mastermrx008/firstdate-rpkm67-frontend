@@ -12,18 +12,14 @@ import CustomButton from '@/components/home/CustomButton';
 import { useState } from 'react';
 import QrCodeModal from '@/components/home/QrCodeModal';
 import { useAuth } from '@/context/AuthContext';
-import { CheckIn } from '@/types/checkIn';
 import { useRouter } from 'next/navigation';
 import BottomButton from '@/components/home/BottomButton';
 import WaitModal from '@/components/home/WaitModal';
+import { isUserRegistered } from '@/utils/user';
 
 export default function Home() {
   const router = useRouter();
   const { user } = useAuth();
-  const hasEvent = (checkIns: CheckIn[], event: string): boolean => {
-    return checkIns.some((checkIn) => checkIn.event === event);
-  };
-  console.log(user);
   const [qrModal, setQrModal] = useState<boolean>(false);
   const [waitModal, setWaitModal] = useState<boolean>(false);
   const [interestedEvent, setInterestedEvent] = useState<
@@ -84,9 +80,7 @@ export default function Home() {
           <div className="w-full flex items-center flex-col h-[26.34vh] justify-between font-medium text-[2.2vh]">
             <CustomButton
               varient="first-date"
-              registered={
-                user && hasEvent(user.check_ins, 'CUFD2024') ? true : false
-              }
+              registered={!!user && isUserRegistered(user)}
               setWaitModal={setWaitModal}
               setEvent={setInterestedEvent}
             >
@@ -94,9 +88,7 @@ export default function Home() {
             </CustomButton>
             <CustomButton
               varient="rub-peun"
-              registered={
-                user && hasEvent(user.check_ins, 'RPKM2024') ? true : false
-              }
+              registered={!!user && isUserRegistered(user)}
               setWaitModal={setWaitModal}
               setEvent={setInterestedEvent}
             >

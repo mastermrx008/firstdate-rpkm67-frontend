@@ -18,7 +18,6 @@ export const getAllPins = async (): Promise<PinDTO[] | null> => {
     });
     return res.data.pins;
   } catch (error) {
-    console.log('error:', error);
     return null;
   }
 };
@@ -42,7 +41,6 @@ export const resetPin = async (activityId: string): Promise<PinDTO | null> => {
     );
     return res.data.pin;
   } catch (error) {
-    console.log('error:', error);
     return null;
   }
 };

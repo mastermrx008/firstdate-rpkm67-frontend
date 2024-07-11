@@ -5,6 +5,7 @@ import lightPinkBorder2 from '../../public/border/lightPinkBorder2.svg';
 import whiteBrownBorder from '../../public/border/whiteBrownBorder.svg';
 import transparentBorder from '../../public/border/transparentBorder.svg';
 import whiteBorder from '@public/border/whiteBorder.svg';
+import { cn } from '@/lib/utils';
 
 interface BorderProps {
   variant:
@@ -66,7 +67,11 @@ const Border: React.FC<BorderProps> = ({
 
   return (
     <div
-      className={`flex items-center flex-col w-[calc(100vh*(72/156)*(9/10))] h-full bg-contain bg-no-repeat bg-top py-[6%] px-[6%] my-[5%] ${base} ${className}`}
+      className={cn(
+        'flex items-center flex-col w-[95%] min-h-[calc(95vw*(801/371))] my-[5%] mx-auto bg-contain bg-no-repeat bg-top',
+        base,
+        className
+      )}
       style={style}
     >
       {children}
