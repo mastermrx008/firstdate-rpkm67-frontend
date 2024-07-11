@@ -7,12 +7,12 @@ import modalStyles from './ModalStyle';
 
 import BaseModal from '@/components/rpkm/Modal/BaseModal';
 import ModalButton from '@/components/rpkm/Modal/ModalButton';
+import PersonIcon from '@public/rpkm/person-icon.svg';
 import InstagramIcon from '@public/rpkm/instagram-icon.svg';
 
 interface BaanModalProps {
   open: boolean;
   setOpen: (value: boolean) => void;
-  callBackFunction: () => void;
   name: {
     th: string;
     en: string;
@@ -22,6 +22,8 @@ interface BaanModalProps {
     en: string;
   };
   size: string;
+  currentPeople: number;
+  capacity: number;
   instagram: string;
   image: StaticImageData;
 }
@@ -30,10 +32,11 @@ interface BaanModalProps {
  * BaanModal component
  * @param open - boolean
  * @param setOpen - function
- * @param callBackFunction - function
  * @param name - { th: string, en: string }
  * @param content - { th: string, en: string }
  * @param size - string
+ * @param currentPeople - number
+ * @param capacity - number
  * @param instagram - string
  * @param image - StaticImageData (next/image)
  * @returns Styled baan modal component
@@ -44,6 +47,8 @@ const BaanModal: React.FC<BaanModalProps> = ({
   name,
   content,
   size,
+  currentPeople,
+  capacity,
   instagram,
   image,
 }) => {
@@ -61,9 +66,22 @@ const BaanModal: React.FC<BaanModalProps> = ({
       open={open}
     >
       <div className="w-[75vw]">
-        <div className="flex justify-between">
-          <p className=" p-2 size-max bg-[#EAE3C3] flex rounded-full">{size}</p>
-          <div>
+        <div className="flex flex-row justify-between w-full items-center">
+          <p className="font-semibold p-2 size-max bg-[#EAE3C3] flex rounded-full text-[#183F86]">
+            {size}
+          </p>
+
+          <div className="flex items-center">
+            <p>
+              <span className="text-[#EAE3C3]">{currentPeople}</span>
+              <span className="text-white">/{capacity}</span>
+            </p>
+            <Image
+              src={PersonIcon}
+              alt="person icon"
+            />
+          </div>
+          <div className="flex items-center">
             <button
               onClick={() => setMode('th')}
               className={cn(
