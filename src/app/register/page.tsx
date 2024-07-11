@@ -12,7 +12,10 @@ import { apiClient } from '@/utils/axios';
 import Pdpa from '@/components/pdpa';
 import { User } from '@/types/user';
 import UploadProfilePicture from '@/components/register/UploadProfilePicture';
-import { isUserRegistered } from '@/utils/user';
+import {
+  StyledInput,
+  StyledSelect,
+} from '@/components/register/StyledComponents';
 
 type RegisterUser = Pick<
   User,
@@ -61,13 +64,12 @@ export default function Register() {
         e.target.name === 'year' ? +e.target.value : e.target.value,
     });
   };
-  console.log(formData);
 
   const validateStep = (): boolean => {
     let stepErrors: string[] = [];
     switch (currentStep) {
       case 0:
-        // Note: Handle in the UploadProfilePicture Component
+        // Note: validate in the UploadProfilePicture Component
         break;
       case 1:
         if (!formData.title) stepErrors.push('title');
@@ -83,7 +85,7 @@ export default function Register() {
         if (!formData.parent) stepErrors.push('parent');
         break;
       case 3:
-        // Validate food, drug, illness mai krub
+        // Note: not validate food, drug, and illness
         break;
     }
     setErrors(stepErrors);
@@ -150,14 +152,11 @@ export default function Register() {
         return (
           <div className="flex flex-col space-y-4">
             <h2 className="text-2xl font-bold text-center">ข้อมูลส่วนตัว</h2>
-            <select
+            <StyledSelect
               name="title"
               value={formData.title}
               onChange={handleInputChange}
-              required
-              className={
-                errors.includes('title') ? 'border-2 border-red-500' : ''
-              }
+              error={errors.includes('title')}
             >
               <option
                 disabled
@@ -170,45 +169,37 @@ export default function Register() {
               <option value="นางสาว">นางสาว</option>
               <option value="เด็กชาย">เด็กชาย</option>
               <option value="เด็กหญิง">เด็กหญิง</option>
-            </select>
-            <input
+            </StyledSelect>
+            <StyledInput
               type="text"
               name="firstname"
               placeholder="ชื่อจริง"
               value={formData.firstname}
               onChange={handleInputChange}
-              className={
-                errors.includes('firstname') ? 'border-2 border-red-500' : ''
-              }
+              error={errors.includes('firstname')}
             />
-            <input
+            <StyledInput
               type="text"
               name="lastname"
               placeholder="นามสกุล"
               value={formData.lastname}
               onChange={handleInputChange}
-              className={
-                errors.includes('lastname') ? 'border-2 border-red-500' : ''
-              }
+              error={errors.includes('lastname')}
             />
-            <input
+            <StyledInput
               type="text"
               name="nickname"
               placeholder="ชื่อเล่น"
               value={formData.nickname}
               onChange={handleInputChange}
-              className={
-                errors.includes('nickname') ? 'border-2 border-red-500' : ''
-              }
+              error={errors.includes('nickname')}
             />
             <div className="flex flex-row justify-between">
-              <select
+              <StyledSelect
                 name="faculty"
                 value={formData.faculty}
                 onChange={handleInputChange}
-                className={
-                  errors.includes('faculty') ? 'border-2 border-red-500' : ''
-                }
+                error={errors.includes('faculty')}
               >
                 <option
                   disabled
@@ -218,14 +209,12 @@ export default function Register() {
                 </option>
                 <option value="21">วิศวกรรมศาสตร์ 1</option>
                 <option value="22">วิศวกรรมศาสตร์ 2</option>
-              </select>
-              <select
+              </StyledSelect>
+              <StyledSelect
                 name="year"
                 value={formData.year}
                 onChange={handleInputChange}
-                className={
-                  errors.includes('year') ? 'border-2 border-red-500' : ''
-                }
+                error={errors.includes('year')}
               >
                 <option
                   disabled
@@ -235,7 +224,7 @@ export default function Register() {
                 </option>
                 <option value={1}>1</option>
                 <option value={2}>2</option>
-              </select>
+              </StyledSelect>
             </div>
             <div className="flex flex-col items-center gap-[4px]">
               <button
@@ -258,15 +247,13 @@ export default function Register() {
           <div className="flex flex-col space-y-4 items-center">
             <h2 className="text-2xl font-bold">ข้อมูลการติดต่อ</h2>
             <div className="flex flex-row">
-              <input
+              <StyledInput
                 type="text"
                 name="tel"
                 placeholder="เบอร์โทรศัพท์"
                 value={formData.tel}
                 onChange={handleInputChange}
-                className={
-                  errors.includes('tel') ? 'border-2 border-red-500' : ''
-                }
+                error={errors.includes('tel')}
               />
             </div>
             <Image
@@ -276,24 +263,20 @@ export default function Register() {
             />
             <h2 className="text-2xl font-bold">ข้อมูลผู้ปกครอง</h2>
             <div className="flex flex-row">
-              <input
+              <StyledInput
                 type="text"
                 name="parent_tel"
                 placeholder="เบอร์โทรศัพท์"
                 value={formData.parent_tel}
                 onChange={handleInputChange}
-                className={
-                  errors.includes('parent_tel') ? 'border-2 border-red-500' : ''
-                }
+                error={errors.includes('parent_tel')}
               />
             </div>
-            <select
+            <StyledSelect
               name="parent"
               value={formData.parent}
               onChange={handleInputChange}
-              className={
-                errors.includes('parent') ? 'border-2 border-red-500' : ''
-              }
+              error={errors.includes('parent')}
             >
               <option
                 disabled
@@ -303,7 +286,7 @@ export default function Register() {
               </option>
               <option value="บิดา">บิดา</option>
               <option value="มารดา">มารดา</option>
-            </select>
+            </StyledSelect>
             <button onClick={handleNextStep}>ต่อไป</button>
             <button onClick={handlePrevStep}>ย้อนกลับ</button>
           </div>
@@ -311,29 +294,34 @@ export default function Register() {
       case 3:
         return (
           <div className="flex flex-col space-y-4">
-            <h2 className="text-2xl font-bold">ข้อมูลด้านสุขภาพ</h2>
-            <input
+            <h2 className="text-2xl font-bold text-center">
+              ข้อมูลทางการแพทย์
+            </h2>
+            <StyledInput
               type="text"
               name="food_allergy"
               placeholder="อาหารที่แพ้"
               value={formData.food_allergy}
               onChange={handleInputChange}
+              error={errors.includes('food_allergy')}
             />
-            <input
+            <StyledInput
               type="text"
               name="drug_allergy"
               placeholder="ยาที่แพ้"
               value={formData.drug_allergy}
               onChange={handleInputChange}
+              error={errors.includes('drug_allergy')}
             />
-            <input
+            <StyledInput
               type="text"
               name="illness"
               placeholder="โรคประจำตัว"
               value={formData.illness}
               onChange={handleInputChange}
+              error={errors.includes('illness')}
             />
-            <button onClick={handleSubmit}>ยืนยันข้อมูล</button>
+            <button onClick={handleSubmit}>ยืนยัน</button>
             <button onClick={handlePrevStep}>ย้อนกลับ</button>
           </div>
         );
