@@ -5,7 +5,10 @@ function Navbar() {
   const [sidebar, setSidebar] = useState<boolean>(false);
   return (
     <div>
-      <Sidebar sidebar={sidebar} setSidebar={setSidebar}/>
+      <Sidebar
+        sidebar={sidebar}
+        setSidebar={setSidebar}
+      />
       <div className="w-full h-[63px] bg-[#313131] flex justify-between items-center px-5">
         <button
           className="w-[28px] h-[26px] bg-white flex flex-col justify-evenly items-center"
