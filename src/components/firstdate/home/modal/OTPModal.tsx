@@ -43,7 +43,7 @@ const OTPModal: React.FC<OTPModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="flex flex-col items-center justify-center bg-white p-6 rounded-3xl shadow-lg max-w-md w-full">
+      <div className="flex flex-col items-center justify-center bg-white p-6 rounded-3xl shadow-lg max-w-md w-[95vw]">
         <div className="flex justify-between items-center w-full">
           <Image
             src={BorderLeft}
@@ -76,7 +76,7 @@ const OTPModal: React.FC<OTPModalProps> = ({
                     inputMode="numeric"
                     pattern="[0-9]*"
                     placeholder="0"
-                    className="w-14 h-14 border border-black text-center text-xl rounded-lg placeholder-gray-400"
+                    className="w-[12vw] h-[12vw] border border-black text-center text-xl rounded-lg placeholder-gray-400"
                     onChange={(e) => handleInputChange(e, index)}
                   />
                 ))}
