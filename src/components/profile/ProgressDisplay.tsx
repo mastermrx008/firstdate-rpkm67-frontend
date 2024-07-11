@@ -3,9 +3,10 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { statConfig } from './statConfig';
+import { cn } from '@/lib/utils';
 import Sparkle from '@public/stat/sparkle.svg';
 
-export interface ProgressProps {
+export interface ProgressDisplayProps {
   point: number;
   type: 'pointA' | 'pointB' | 'pointC' | 'pointD';
 }
@@ -14,7 +15,7 @@ const calculatePoint = (point: number, maxPoint: number): number => {
   return Math.min(1, point / maxPoint) * 100;
 };
 
-const ProgressDisplay = ({ point, type }: ProgressProps) => {
+const ProgressDisplay = ({ point, type }: ProgressDisplayProps) => {
   const { icon, color, label, text, maxPoint } = statConfig[type];
   const [percentage, setPercentage] = useState(0);
 
@@ -25,15 +26,24 @@ const ProgressDisplay = ({ point, type }: ProgressProps) => {
   return (
     <div className="relative flex items-center flex-col w-10 h-auto ">
       <div
-        className={`${percentage === 100 ? '' : 'hidden'} absolute shadow-white shadow-xl w-full h-56 z-10 rounded-t-full`}
+        className={cn(
+          'absolute shadow-white shadow-xl w-full h-56 z-10 rounded-t-full',
+          {
+            hidden: percentage < 100,
+          }
+        )}
       />
       <div
         className={`relative flex justify-center w-full h-56 z-20 bg-white rounded-t-full drop-shadow`}
       >
         <div
-          className={`transition-all ease-out duration-700 absolute bottom-0 w-full bg-gradient-to-t 
-                        ${percentage === 100 ? color[2] : color[1]}
-                        ${percentage === 100 ? 'rounded-t-full' : ''} `}
+          className={cn(
+            `transition-all ease-out duration-700 absolute bottom-0 w-full bg-gradient-to-t ${color[1]}`,
+            {
+              [color[2]]: percentage === 100,
+              'rounded-t-full': percentage === 100,
+            }
+          )}
           style={{
             height: `${percentage}%`,
           }}
@@ -42,17 +52,23 @@ const ProgressDisplay = ({ point, type }: ProgressProps) => {
           <Image
             src={percentage === 100 ? icon[1] : icon[0]}
             alt={label}
-            className={`size-[30px] p-0.5 ${percentage === 100 ? color[0] : ''} ${percentage === 100 ? 'rounded-full' : ''} `}
+            className={cn('size-[30px] p-0.5', {
+              [color[0]]: percentage === 100,
+              'rounded-full': percentage === 100,
+            })}
           />
           <Image
             src={Sparkle}
             alt="Sparkle"
-            className={percentage === 100 ? 'mt-1.5' : 'mt-1.5 opacity-0'}
+            className={cn('mt-1.5', {
+              'opacity-0': percentage < 100,
+            })}
           />
         </div>
         <div
-          className={`absolute bottom-1 font-semibold text-2xl 
-            ${percentage >= 20 ? 'text-white' : 'text-black'}`}
+          className={cn('absolute bottom-1 font-semibold text-2xl text-black', {
+            'text-white': percentage >= 20,
+          })}
         >
           {label}.
         </div>

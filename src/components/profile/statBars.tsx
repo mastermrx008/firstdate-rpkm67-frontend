@@ -1,13 +1,13 @@
 import ProgressDisplay from './ProgressDisplay';
-import { ProgressProps } from './ProgressDisplay';
+import { ProgressDisplayProps } from './ProgressDisplay';
 import { Stamp } from '@/types/stamp';
 
-interface Point {
+interface StatBarsProps {
   stamp: Stamp;
 }
 
-export default function StatBars({ stamp }: Point) {
-  const progressBars: ProgressProps[] = [
+export default function StatBars({ stamp }: StatBarsProps) {
+  const progressBars: ProgressDisplayProps[] = [
     { point: stamp?.pointA || 0, type: 'pointA' },
     { point: stamp?.pointB || 0, type: 'pointB' },
     { point: stamp?.pointC || 0, type: 'pointC' },

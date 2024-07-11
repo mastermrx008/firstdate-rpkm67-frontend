@@ -1,14 +1,15 @@
 import { Icon } from '@iconify/react';
 import { User } from '@/types/user';
+import { cn } from '@/lib/utils';
 import placeholder from '@public/placeholder.svg';
 import Image from 'next/image';
 import Link from 'next/link';
 
-interface Info {
+interface UserInfoProps {
   user: User;
 }
 
-export default function UserInfo({ user }: Info) {
+export default function UserInfo({ user }: UserInfoProps) {
   return (
     <div className="w-auto h-full">
       <div className="flex justify-center gap-2">
@@ -31,9 +32,9 @@ export default function UserInfo({ user }: Info) {
             <Image
               src={user?.photoUrl || placeholder}
               alt="profile"
-              className={`w-full rounded-t-full p-1.5
-                                ${user?.photoUrl ? 'h-[22vh] object-cover' : 'mt-5 h-[14vh]'}
-                                `}
+              className={cn('w-full rounded-t-full p-1.5 mt-5 h-[14vh]', {
+                'h-[22vh] object-cover': user?.photoUrl,
+              })}
             />
           </div>
           <div className="flex justify-center items-center font-semibold text-xl gap-2 max-w-36">
