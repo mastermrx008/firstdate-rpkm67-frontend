@@ -3,11 +3,14 @@ import background from '@public/bar/sidebar-background.svg';
 import UserInfo from './Sidebar/UserInfo';
 import crossIcon from '@public/bar/icon/cross.svg';
 import Image from 'next/image';
+import Menu from './Sidebar/Menu';
+
 interface SidebarProps{
   sidebar: boolean,
   setSidebar: (value:boolean)=>void
 }
 const Sidebar: React.FC<SidebarProps>=({sidebar, setSidebar})=> {
+
   if(!sidebar)return null
   return (
     <div className="z-10 w-full h-full absolute flex top-0">
@@ -17,24 +20,20 @@ const Sidebar: React.FC<SidebarProps>=({sidebar, setSidebar})=> {
         style={{ backgroundImage: `url(${background.src})` }}
       >
         <div className="w-10/12  flex flex-col justify-items-center items-center pt-[11vh]">
-        <div className="flex flex-col items-center text-center w-full relative">
-          <button className='w-[2.82vh] h-[2.82vh] absolute top-0 right-0 flex items-center justify-center z-10' onClick={()=>setSidebar(false)}>
-                  <Image
-                      src={crossIcon}
-                      alt="cross"
-                      width={10}
-                      height={10}
-                      style={{ width: '1.76vh', height: '1.76vh' }}
-                    />
-            </button>
-            <UserInfo/>
-        </div>
-        
-          <div className='w-full text-left text-[1.88vh] font-medium'>
-            <h1>ลงทะเบียนเลือกบ้าน</h1>
-            <h1>ลงทะเบียน Freshy Night</h1>
-          
+          <div className="flex flex-col items-center text-center w-full relative">
+            <button className='w-[2.82vh] h-[2.82vh] absolute top-0 right-0 flex items-center justify-center z-10' onClick={()=>setSidebar(false)}>
+                    <Image
+                        src={crossIcon}
+                        alt="cross"
+                        width={10}
+                        height={10}
+                        style={{ width: '1.76vh', height: '1.76vh' }}
+                      />
+              </button>
+              <UserInfo/>
           </div>
+          <Menu/>
+          
         </div>
       </div>
     </div>
