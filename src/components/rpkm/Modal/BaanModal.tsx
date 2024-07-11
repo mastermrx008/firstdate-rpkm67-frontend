@@ -26,6 +26,18 @@ interface BaanModalProps {
   image: StaticImageData;
 }
 
+/**
+ * BaanModal component
+ * @param open - boolean
+ * @param setOpen - function
+ * @param callBackFunction - function
+ * @param name - { th: string, en: string }
+ * @param content - { th: string, en: string }
+ * @param size - string
+ * @param instagram - string
+ * @param image - StaticImageData (next/image)
+ * @returns Styled baan modal component
+ */
 const BaanModal: React.FC<BaanModalProps> = ({
   open,
   setOpen,

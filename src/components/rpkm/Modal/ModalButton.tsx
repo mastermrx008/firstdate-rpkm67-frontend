@@ -7,6 +7,14 @@ interface ModalButtonProps {
   children: React.ReactNode;
 }
 
+/**
+ * ModalButton component
+ * @param callBackFunction - function
+ * @param borderClassName - string
+ * @param backgroundClassName - string
+ * @param children - ReactNode
+ * @returns Styled button component
+ */
 const ModalButton: React.FC<ModalButtonProps> = ({
   callBackFunction,
   borderClassName,

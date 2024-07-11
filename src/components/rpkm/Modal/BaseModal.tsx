@@ -8,6 +8,13 @@ interface ModalProps {
   children: React.ReactNode;
 }
 
+/**
+ * BaseModal component
+ * @param variant - red | blue
+ * @param open - boolean
+ * @param children - ReactNode
+ * @returns Styled modal component
+ */
 const BaseModal: React.FC<ModalProps> = ({ variant, open, children }) => {
   const { background } = modalStyles[variant];
 

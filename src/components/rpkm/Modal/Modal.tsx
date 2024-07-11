@@ -11,6 +11,15 @@ interface ModalProps {
   children: React.ReactNode;
 }
 
+/**
+ * Modal component
+ * @param variant - red | blue
+ * @param open - boolean
+ * @param setOpen - function
+ * @param callBackFunction - function
+ * @param children - ReactNode
+ * @returns Styled modal component
+ */
 const Modal: React.FC<ModalProps> = ({
   variant,
   open,
