@@ -23,7 +23,7 @@ export const StyledInput: React.FC<StyledInputProps> = ({
     placeholder={placeholder}
     value={value}
     onChange={onChange}
-    className={`w-full h-[40px] p-2 border-[0.5px] rounded-lg ${
+    className={`w-full h-[40px] p-2 border-[0.5px] rounded-lg drop-shadow-sm ${
       error ? 'border-red-500' : 'border-black'
     }`}
   />
@@ -48,7 +48,7 @@ export const StyledSelect: React.FC<StyledSelectProps> = ({
     name={name}
     value={value}
     onChange={onChange}
-    className={`w-full h-[40px] p-2 border-[0.5px] rounded-lg ${
+    className={`w-full h-[40px] p-2 border-[0.5px] rounded-lg drop-shadow-sm ${
       error ? 'border-red-600' : 'border-black'
     }`}
   >

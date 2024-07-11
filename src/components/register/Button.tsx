@@ -15,7 +15,7 @@ const Button: React.FC<ButtonProps> = ({
   className,
 }) => {
   const baseStyles =
-    'w-32 h-12 font-medium text-xl rounded-lg flex items-center justify-center';
+    'w-32 h-12 font-medium text-xl rounded-lg flex items-center justify-center drop-shadow-md';
   const variantStyles = {
     pink: 'bg-project-pink text-black',
     white: 'bg-white text-project-fuchsia border-[1px] border-project-fuchsia',
