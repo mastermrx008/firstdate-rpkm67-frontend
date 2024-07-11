@@ -11,37 +11,35 @@ export default function Map() {
     router.back();
   };
   return (
-    <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
-      <Border
-        variant="white"
-        className="gap-4 !pb-[30%]"
-      >
-        <div className="flex w-full justify-center">
-          <Image
-            src={FDLogo}
-            alt="logo"
-            className="w-44"
-          />
-        </div>
-        <div className="font-season italic text-2xl">Map</div>
-
+    <Border
+      variant="white"
+      className="gap-4 pt-[5%] px-[8%]"
+    >
+      <div className="flex w-full justify-center">
         <Image
-          src={MapImage}
-          alt="map"
-          className="w-full aspect-[274/342] object-cover"
+          src={FDLogo}
+          alt="logo"
+          className="w-44"
         />
+      </div>
+      <div className="font-season italic text-2xl">Map</div>
 
-        <div className="font-season italic text-2xl text-center p-4 w-full bg-project-fuchsia">
-          Lorem ipsum dolor sit
-        </div>
+      <Image
+        src={MapImage}
+        alt="map"
+        className="w-full aspect-[274/342] object-cover"
+      />
 
-        <button
-          onClick={handleBack}
-          className="w-3/4 h-12 font-medium text-black text-xl rounded-lg border-black border flex justify-center items-center"
-        >
-          กลับ
-        </button>
-      </Border>
-    </main>
+      <div className="font-season italic text-2xl text-center p-4 w-full bg-project-fuchsia">
+        Lorem ipsum dolor sit
+      </div>
+
+      <button
+        onClick={handleBack}
+        className="w-3/4 h-12 font-medium text-black text-xl rounded-lg border-black border flex justify-center items-center"
+      >
+        กลับ
+      </button>
+    </Border>
   );
 }
