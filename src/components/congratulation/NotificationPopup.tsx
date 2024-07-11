@@ -1,34 +1,46 @@
 'use client';
-
 import ConditionContext from '@/components/congratulation/ConditionContext';
 import NotificationContext from '@/components/congratulation/NotificationContext';
+import { cn } from '@/lib/utils';
 import NotiBg from '@public/congrats/Noti.png';
-import { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 interface NotificationPopupProps {
-  handleBack: () => void;
+  isDefaultShowCondition?: boolean;
+  handleOnClose: () => void;
 }
+
 const NotificationPopup: React.FC<NotificationPopupProps> = ({
-  handleBack,
+  isDefaultShowCondition,
+  handleOnClose,
 }) => {
-  const [showCondition, setShowCondition] = useState(false);
-  const handleOnClickShowCondition = () => {
+  const [showCondition, setShowCondition] = useState(
+    isDefaultShowCondition ?? false
+  );
+  const handleOnClickShowCondition = useCallback(() => {
     setShowCondition(true);
-  };
+  }, [setShowCondition]);
+
   return (
     <div
       style={{
         backgroundImage: `url(${NotiBg.src})`,
         backgroundSize: '100% 100%',
       }}
-      className={`w-full ${showCondition ? 'aspect-[390/640]' : 'aspect-[333/535]'} bg-no-repeat bg-center flex flex-col items-center py-[16%]`}
+      className={cn(
+        'w-full bg-no-repeat bg-center flex flex-col items-center py-[16%]',
+        {
+          'aspect-[390/640]': showCondition,
+          'aspect-[333/535]': !showCondition,
+        }
+      )}
     >
       {showCondition ? (
-        <ConditionContext handleBack={handleBack} />
+        <ConditionContext handleOnClose={handleOnClose} />
       ) : (
         <NotificationContext
-          handleOnClickShowCondition={handleOnClickShowCondition}
-          handleBack={handleBack}
+          onClickShowCondition={handleOnClickShowCondition}
+          handleOnClose={handleOnClose}
         />
       )}
     </div>

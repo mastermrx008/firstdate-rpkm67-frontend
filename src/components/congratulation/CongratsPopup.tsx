@@ -3,16 +3,15 @@ import CongratsBlack from '@public/congrats/congratsBlack.png';
 import CongratsIcon from '@public/congrats/congratsIcon.svg';
 import Image from 'next/image';
 import { Icon } from '@iconify/react/dist/iconify.js';
+import Link from 'next/link';
 
 interface CongratsPopupProps {
   score: number;
-  handleBack: () => void;
-  handleSubmit: () => void;
+  handleOnClose: () => void;
 }
 const CongratsPopup: React.FC<CongratsPopupProps> = ({
   score,
-  handleBack,
-  handleSubmit,
+  handleOnClose,
 }) => {
   const isCollectAll = score === 11;
   return (
@@ -49,9 +48,9 @@ const CongratsPopup: React.FC<CongratsPopupProps> = ({
           สามารถแลกรับของรางวัลได้เลย!
         </span>
         <div className="flex flex-col px-[15%] items-center w-full mt-4 gap-5">
-          <button
+          <Link
             className="w-full h-12 flex items-center justify-center rounded-lg bg-project-fuchsia gap-1"
-            onClick={handleSubmit}
+            href="/firstdate/reward"
           >
             <Icon
               icon="solar:gift-bold"
@@ -60,10 +59,10 @@ const CongratsPopup: React.FC<CongratsPopupProps> = ({
             <span className="font-athiti font-medium text-xl text-white">
               แลกรับเลย!
             </span>
-          </button>
+          </Link>
           <button
             className="w-full h-12 flex items-center justify-center rounded-lg bg-project-cream gap-1"
-            onClick={handleBack}
+            onClick={handleOnClose}
           >
             <span className="font-athiti font-medium text-xl">
               กลับไปเดินทางต่อ

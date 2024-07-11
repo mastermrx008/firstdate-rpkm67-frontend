@@ -12,18 +12,17 @@ export const getNewAccessToken = async (
   refreshToken: string
 ): Promise<string | null> => {
   try {
-    const res: AxiosResponse<TokenDTO> = await apiClient.post(
-      '/auth/refreshToken',
-      {
-        refresh_token: refreshToken,
-      }
-    );
+    const res: AxiosResponse<TokenDTO> = await apiClient.post('/auth/refresh', {
+      refresh_token: refreshToken,
+    });
 
     const { access_token, expires_in, refresh_token } = res.data;
     const tokenStr = JSON.stringify({
-      accessToken: access_token,
-      expiresIn: getExpireTime(expires_in),
-      refreshToken: refresh_token,
+      credential: {
+        accessToken: access_token,
+        expiresIn: getExpireTime(expires_in),
+        refreshToken: refresh_token,
+      },
     });
 
     localStorage.setItem('token', tokenStr);
@@ -40,9 +39,9 @@ export const getAccessToken = async (): Promise<string | null> => {
     return null;
   }
 
-  const token: Token = JSON.parse(tokenStr).credential;
+  const token: Token = JSON.parse(tokenStr);
   const now = new Date();
-  const expire = new Date(now.getTime() + token.expiresIn * 1000);
+  const expire = new Date(token.expiresIn);
 
   if (now > expire) {
     const newAccessToken = await getNewAccessToken(token.refreshToken);

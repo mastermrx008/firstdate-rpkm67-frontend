@@ -3,12 +3,12 @@ import Divider from '@public/congrats/divider.svg';
 import Image from 'next/image';
 
 interface NotificationContextProps {
-  handleOnClickShowCondition: () => void;
-  handleBack: () => void;
+  onClickShowCondition: () => void;
+  handleOnClose: () => void;
 }
 const NotificationContext: React.FC<NotificationContextProps> = ({
-  handleOnClickShowCondition,
-  handleBack,
+  onClickShowCondition,
+  handleOnClose,
 }) => {
   return (
     <>
@@ -32,7 +32,7 @@ const NotificationContext: React.FC<NotificationContextProps> = ({
         <div className="flex flex-col px-[15%] items-center w-full mt-4 gap-5">
           <button
             className="w-full h-12 flex items-center justify-center rounded-lg bg-white border border-project-fuchsia"
-            onClick={handleOnClickShowCondition}
+            onClick={onClickShowCondition}
           >
             <span className="font-athiti font-medium text-xl text-project-fuchsia">
               ดูเงื่อนไขการรับรางวัล
@@ -40,7 +40,7 @@ const NotificationContext: React.FC<NotificationContextProps> = ({
           </button>
           <button
             className="w-full h-12 flex items-center justify-center rounded-lg bg-project-light-gray"
-            onClick={handleBack}
+            onClick={handleOnClose}
           >
             <span className="font-athiti font-medium text-xl text-white">
               กลับไปเดินทางต่อ

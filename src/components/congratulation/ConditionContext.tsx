@@ -9,6 +9,7 @@ import {
 } from 'react-markdown/lib/ast-to-react';
 import { ReactMarkdownProps } from 'react-markdown/lib/complex-types';
 import '@/components/congratulation/style.css';
+import React from 'react';
 
 const StyledH1: React.FC<HeadingProps> = ({ children }) => {
   return (
@@ -45,9 +46,12 @@ const StyledHR: React.FC<ReactMarkdownProps> = ({ ...props }) => {
 };
 
 interface ConditionContextProps {
-  handleBack: () => void;
+  handleOnClose: () => void;
 }
-const ConditionContext: React.FC<ConditionContextProps> = ({ handleBack }) => {
+
+const ConditionContext: React.FC<ConditionContextProps> = ({
+  handleOnClose,
+}) => {
   return (
     <>
       <span className="text-center font-athiti font-semibold text-2xl">
@@ -80,10 +84,10 @@ const ConditionContext: React.FC<ConditionContextProps> = ({ handleBack }) => {
       <div className="w-full px-[15%] flex pt-6">
         <button
           className="w-full h-12 flex items-center justify-center rounded-lg bg-project-light-gray"
-          onClick={handleBack}
+          onClick={handleOnClose}
         >
           <span className="font-athiti font-medium text-xl text-white">
-            กลับไปเดินทางต่อ
+            กลับ
           </span>
         </button>
       </div>

@@ -3,14 +3,19 @@
 import Image from 'next/image';
 import { useToPng } from '@hugocxl/react-to-image';
 
+import { useAuth } from '@/context/AuthContext';
+
 import Border from '@/components/Border';
+import CardTitle from '@/components/ending/CardTitle';
+import CardImage from '@/components/ending/CardImage';
 
 import Logo from '@public/FIrst Date Logo.svg';
-import Divider from '@public/ending/divider.png';
-import SproutImage from '@public/ending/sprout.png';
 import DownloadIcon from '@public/ending/download.svg';
+import MenuList from '@/components/MenuList';
 
 export default function Ending() {
+  const { user } = useAuth();
+
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, convert, ref] = useToPng<HTMLDivElement>({
     quality: 1,
@@ -56,32 +61,31 @@ export default function Ending() {
 
   return (
     <main
-      className="w-full h-screen flex justify-center items-center flex-col"
+      className="w-full"
       id="main-containter"
       ref={ref}
     >
+      <div className="to-hide">
+        <MenuList isRewardPage />
+      </div>
+
       <Border variant="white">
         <Image
           src={Logo}
           alt="logo"
-          className="w-44"
+          className="w-[50%] mt-[10%]"
         />
         <h1 className="font-season italic mt-3 text-2xl text-light-gray">
           My card
         </h1>
-        <Image
-          src={Divider}
+        {/* using <img> instead of next <Image> because it have a bug when convert to png */}
+        <img
+          src={'/ending/divider.png'}
           alt="divider"
           className="w-44 m-3"
         />
-        <h2 className="font-season italic mb-2 text-2xl text-light-gray">
-          Sprout
-        </h2>
-        <Image
-          src={SproutImage}
-          alt="result image"
-          className="w-48"
-        />
+        <CardTitle stamp={user?.stamp} />
+        <CardImage stamp={user?.stamp} />
         <div className="flex flex-col justify-center w-4/5 text-center mt-2 text-sm text-light-gray">
           <p>
             “ไม่ว่าคุณจะเป็นคนแบบไหน ผ่านเรื่องอะไรมาบ้าง
@@ -102,8 +106,8 @@ export default function Ending() {
             <p className="text-project-fuchsia">บันทึกการ์ด</p>
           </button>
           <a
-            href="/"
-            className="w-full bg-project-pink rounded-md py-2 text-center text-light-gray to-hide"
+            href="/firstdate/home"
+            className="w-full bg-project-pink rounded-md py-2 mb-[5%] text-center text-light-gray to-hide"
           >
             กลับไปเดินทางต่อ
           </a>
