@@ -1,22 +1,20 @@
 'use client';
 
-import { useState, ChangeEvent, useEffect } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import Border from '@/components/Border';
 import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { getAccessToken } from '@/utils/auth';
 import { apiClient } from '@/utils/axios';
-import Pdpa from '@/components/pdpa';
 import { User } from '@/types/user';
 import UploadProfilePicture from '@/components/register/UploadProfilePicture';
 import {
   StyledInput,
   StyledSelect,
 } from '@/components/register/StyledComponents';
-import Spinner from '@/components/Spinner';
 import EditIcon from '@public/edit/edit-icon.svg';
 import CurvedLineIcon from '@public/curved-line.svg';
+import Button from '@/components/register/Button';
 
 type RegisterUser = Pick<
   User,
@@ -94,8 +92,7 @@ export default function Register() {
     }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     if (validateForm()) {
       updateUserProfile(formData).then(() => {
         resetContext();
@@ -105,8 +102,8 @@ export default function Register() {
   };
 
   return (
-    <Border variant="white">
-      <div className="flex flex-col py-10">
+    <div className="flex items-center flex-col w-[95%] min-h-[calc(95vw*(801/371))] my-[5%] mx-auto bg-white rounded-b-lg rounded-t-full  border-[1px] border-black">
+      <div className="flex flex-col py-10 px-10">
         <div className="flex flex-col items-center">
           <Image
             src={EditIcon}
@@ -123,168 +120,172 @@ export default function Register() {
             <UploadProfilePicture />
           </div>
         </div>
-        <div className="flex flex-col space-y-2">
-          <h3 className="text-xl font-semibold text-center">ข้อมูลส่วนตัว</h3>
-          <StyledSelect
-            name="title"
-            value={formData.title}
-            onChange={handleInputChange}
-            error={errors.includes('title')}
-          >
-            <option
-              disabled
-              value=""
-            >
-              คำนำหน้า
-            </option>
-            <option value="นาย">นาย</option>
-            <option value="นาง">นาง</option>
-            <option value="นางสาว">นางสาว</option>
-            <option value="เด็กชาย">เด็กชาย</option>
-            <option value="เด็กหญิง">เด็กหญิง</option>
-          </StyledSelect>
-          <StyledInput
-            type="text"
-            name="firstname"
-            placeholder="ชื่อจริง"
-            value={formData.firstname}
-            onChange={handleInputChange}
-            error={errors.includes('firstname')}
-          />
-          <StyledInput
-            type="text"
-            name="lastname"
-            placeholder="นามสกุล"
-            value={formData.lastname}
-            onChange={handleInputChange}
-            error={errors.includes('lastname')}
-          />
-          <StyledInput
-            type="text"
-            name="nickname"
-            placeholder="ชื่อเล่น"
-            value={formData.nickname}
-            onChange={handleInputChange}
-            error={errors.includes('nickname')}
-          />
-          <div className="flex space-x-2">
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col space-y-2">
+            <h3 className="text-xl font-semibold text-center">ข้อมูลส่วนตัว</h3>
             <StyledSelect
-              name="faculty"
-              value={formData.faculty}
+              name="title"
+              value={formData.title}
               onChange={handleInputChange}
-              error={errors.includes('faculty')}
+              error={errors.includes('title')}
             >
               <option
                 disabled
                 value=""
               >
-                คณะ
+                คำนำหน้า
               </option>
-              <option value="21">วิศวกรรมศาสตร์ 1</option>
-              <option value="22">วิศวกรรมศาสตร์ 2</option>
+              <option value="นาย">นาย</option>
+              <option value="นาง">นาง</option>
+              <option value="นางสาว">นางสาว</option>
+              <option value="เด็กชาย">เด็กชาย</option>
+              <option value="เด็กหญิง">เด็กหญิง</option>
             </StyledSelect>
-            <StyledSelect
-              name="year"
-              value={formData.year}
+            <StyledInput
+              type="text"
+              name="firstname"
+              placeholder="ชื่อจริง"
+              value={formData.firstname}
               onChange={handleInputChange}
-              error={errors.includes('year')}
+              error={errors.includes('firstname')}
+            />
+            <StyledInput
+              type="text"
+              name="lastname"
+              placeholder="นามสกุล"
+              value={formData.lastname}
+              onChange={handleInputChange}
+              error={errors.includes('lastname')}
+            />
+            <StyledInput
+              type="text"
+              name="nickname"
+              placeholder="ชื่อเล่น"
+              value={formData.nickname}
+              onChange={handleInputChange}
+              error={errors.includes('nickname')}
+            />
+            <div className="flex space-x-2">
+              <StyledSelect
+                name="faculty"
+                value={formData.faculty}
+                onChange={handleInputChange}
+                error={errors.includes('faculty')}
+              >
+                <option
+                  disabled
+                  value=""
+                >
+                  คณะ
+                </option>
+                <option value="21">วิศวกรรมศาสตร์ 1</option>
+                <option value="22">วิศวกรรมศาสตร์ 2</option>
+              </StyledSelect>
+              <StyledSelect
+                name="year"
+                value={formData.year}
+                onChange={handleInputChange}
+                error={errors.includes('year')}
+              >
+                <option
+                  disabled
+                  value={0}
+                >
+                  ชั้นปี
+                </option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+              </StyledSelect>
+            </div>
+            <StyledInput
+              type="text"
+              name="tel"
+              placeholder="เบอร์โทรศัพท์"
+              value={formData.tel}
+              onChange={handleInputChange}
+              error={errors.includes('tel')}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <h3 className="text-xl font-semibold text-center">
+              ข้อมูลผู้ปกครอง
+            </h3>
+            <StyledInput
+              type="text"
+              name="parent_tel"
+              placeholder="เบอร์โทรศัพท์"
+              value={formData.parent_tel}
+              onChange={handleInputChange}
+              error={errors.includes('parent_tel')}
+            />
+            <StyledSelect
+              name="parent"
+              value={formData.parent}
+              onChange={handleInputChange}
+              error={errors.includes('parent')}
             >
               <option
                 disabled
-                value={0}
+                value=""
               >
-                ชั้นปี
+                ความสัมพันธ์
               </option>
-              <option value={1}>1</option>
-              <option value={2}>2</option>
+              <option value="บิดา">บิดา</option>
+              <option value="มารดา">มารดา</option>
             </StyledSelect>
           </div>
-          <StyledInput
-            type="text"
-            name="tel"
-            placeholder="เบอร์โทรศัพท์"
-            value={formData.tel}
-            onChange={handleInputChange}
-            error={errors.includes('tel')}
-          />
-        </div>
-        <div className="space-y-2">
-          <h3 className="text-xl font-semibold text-center">ข้อมูลผู้ปกครอง</h3>
-          <StyledInput
-            type="text"
-            name="parent_tel"
-            placeholder="เบอร์โทรศัพท์"
-            value={formData.parent_tel}
-            onChange={handleInputChange}
-            error={errors.includes('parent_tel')}
-          />
-          <StyledSelect
-            name="parent"
-            value={formData.parent}
-            onChange={handleInputChange}
-            error={errors.includes('parent')}
-          >
-            <option
-              disabled
-              value=""
+
+          <div className="space-y-2">
+            <h3 className="text-xl font-semibold text-center">
+              ข้อมูลด้านสุขภาพ
+            </h3>
+            <StyledInput
+              type="text"
+              name="food_allergy"
+              placeholder="อาหารที่แพ้"
+              value={formData.food_allergy}
+              onChange={handleInputChange}
+              error={errors.includes('food_allergy')}
+            />
+            <StyledInput
+              type="text"
+              name="drug_allergy"
+              placeholder="ยาที่แพ้"
+              value={formData.drug_allergy}
+              onChange={handleInputChange}
+              error={errors.includes('drug_allergy')}
+            />
+            <StyledInput
+              type="text"
+              name="illness"
+              placeholder="โรคประจำตัว"
+              value={formData.illness}
+              onChange={handleInputChange}
+              error={errors.includes('illness')}
+            />
+          </div>
+          <div className="flex flex-col items-center gap-4 mt-6">
+            <Image
+              src={CurvedLineIcon}
+              alt="curved-line-icon"
+              className="mb-2"
+            />
+            <Button
+              variant="pink"
+              onClick={handleSubmit}
             >
-              ความสัมพันธ์
-            </option>
-            <option value="บิดา">บิดา</option>
-            <option value="มารดา">มารดา</option>
-          </StyledSelect>
-        </div>
-        <div className="space-y-2">
-          <h3 className="text-xl font-semibold text-center">
-            ข้อมูลด้านสุขภาพ
-          </h3>
-          <StyledInput
-            type="text"
-            name="food_allergy"
-            placeholder="อาหารที่แพ้"
-            value={formData.food_allergy}
-            onChange={handleInputChange}
-            error={errors.includes('food_allergy')}
-          />
-          <StyledInput
-            type="text"
-            name="drug_allergy"
-            placeholder="ยาที่แพ้"
-            value={formData.drug_allergy}
-            onChange={handleInputChange}
-            error={errors.includes('drug_allergy')}
-          />
-          <StyledInput
-            type="text"
-            name="illness"
-            placeholder="โรคประจำตัว"
-            value={formData.illness}
-            onChange={handleInputChange}
-            error={errors.includes('illness')}
-          />
-        </div>
-        <div className="flex flex-col items-center gap-2 mt-6">
-          <Image
-            src={CurvedLineIcon}
-            alt="curved-line-icon"
-            className="mb-6"
-          />
-          <button
-            type="submit"
-            className="w-32 h-12 font-medium text-white text-xl rounded-lg bg-pink-500"
-            onClick={handleSubmit}
-          >
-            ยืนยันข้อมูล
-          </button>
-          <button
-            type="button"
-            className="w-32 h-12 font-medium text-black text-xl rounded-lg bg-white"
-            onClick={() => router.push('/home')}
-          >
-            ยกเลิก
-          </button>
+              ยืนยันข้อมูล
+            </Button>
+            <Button
+              variant="white"
+              onClick={() => router.push('/home')}
+            >
+              ยกเลิก
+            </Button>
+          </div>
         </div>
       </div>
-    </Border>
+    </div>
   );
 }
