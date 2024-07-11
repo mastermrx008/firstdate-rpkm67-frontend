@@ -5,7 +5,7 @@ import { apiClient } from '@/utils/axios';
 import Spinner from '../Spinner';
 
 interface UploadProfilePictureProps {
-  onNext: () => void;
+  onNext?: () => void;
 }
 
 const UploadProfilePicture: React.FC<UploadProfilePictureProps> = ({
@@ -38,20 +38,21 @@ const UploadProfilePicture: React.FC<UploadProfilePictureProps> = ({
     }
   }, []);
 
-  const handlePhotoChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handlePhotoChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       setPhoto(file);
       setErrorMessage(null);
       setCurrentPhotoUrl(null);
+      await handlePhotoUpload(file);
     }
   };
 
-  const handlePhotoUpload = async () => {
-    if (!photo) return;
+  const handlePhotoUpload = async (file: File) => {
+    if (!file) return;
 
     const formData = new FormData();
-    formData.append('picture', photo);
+    formData.append('picture', file);
 
     setUploading(true);
     try {
@@ -80,9 +81,9 @@ const UploadProfilePicture: React.FC<UploadProfilePictureProps> = ({
       setErrorMessage('โปรดอัพโหลดรูปภาพ');
       return;
     }
-    handlePhotoUpload().then(() => {
+    if (onNext) {
       onNext();
-    });
+    }
   };
 
   return (
@@ -141,14 +142,18 @@ const UploadProfilePicture: React.FC<UploadProfilePictureProps> = ({
       {errorMessage && (
         <div className="text-red-500 mb-2 text-center">{errorMessage}</div>
       )}
-      <div className="flex flex-col items-center">
-        <button
-          className={`mt-3 w-[130px] h-[40px] font-medium text-black text-xl rounded-lg bg-project-pink`}
-          onClick={handleNextClick}
-        >
-          ต่อไป
-        </button>
-      </div>
+      {onNext ? (
+        <div className="flex flex-col items-center">
+          <button
+            className={`mt-3 w-[130px] h-[40px] font-medium text-black text-xl rounded-lg bg-project-pink`}
+            onClick={handleNextClick}
+          >
+            ต่อไป
+          </button>
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   );
 };
