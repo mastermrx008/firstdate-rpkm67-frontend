@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Athiti } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
-import Footer from '@/components/Footer';
+import Footer from '@/components/(main)/Footer';
 import AuthProvider from '@/context/AuthContext';
 import { Toaster } from 'react-hot-toast';
 

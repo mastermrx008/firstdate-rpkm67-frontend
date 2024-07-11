@@ -10,7 +10,8 @@ import CardImage from '@/components/firstdate/result/CardImage';
 
 import Logo from '@public/FIrst Date Logo.svg';
 import DownloadIcon from '@public/ending/download.svg';
-import MenuList from '@/components/MenuList';
+import MenuList from '@/components/firstdate/MenuList';
+import Border from '@/components/firstdate/Border';
 
 export default function Ending() {
   const { user } = useAuth();

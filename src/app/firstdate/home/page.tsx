@@ -30,12 +30,14 @@ import EndJourneyButton from '@/components/firstdate/home/EndJourneyButton';
 import OTPModal from '@/components/firstdate/home/modal/OTPModal';
 import FavoriteClubModal from '@/components/firstdate/home/modal/FavoriteClubModal';
 import OpinionModal from '@/components/firstdate/home/modal/OpinionModal';
-import MenuList from '@/components/MenuList';
+import MenuList from '@/components/firstdate/MenuList';
+import EndingPopupModal from '@/components/firstdate/result/popup/EndingPopupModal';
 
 const StampPage = () => {
   const [stamps, setStamps] = useState<Stamp>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isOTPModalOpen, setOTPModalOpen] = useState(false);
+  const [isEndingOpen, setIsEndingOpen] = useState(false);
   const [isFavoriteClubModalOpen, setFavoriteClubModalOpen] = useState(false);
   const [isOpinionModalOpen, setOpinionModalOpen] = useState(false);
   const [currentActivityId, setCurrentActivityId] = useState<string | null>(
@@ -246,7 +248,7 @@ const StampPage = () => {
             />
           </StampContainer>
         </div>
-        <EndJourneyButton />
+        <EndJourneyButton handleOnClick={() => setIsEndingOpen(true)} />
       </Border>
       <MenuList />
       {isOTPModalOpen && currentActivityId && (
@@ -270,6 +272,10 @@ const StampPage = () => {
           onSubmit={handleCreateStamp}
         />
       )}
+      <EndingPopupModal
+        isOpen={isEndingOpen}
+        onOpenChange={setIsEndingOpen}
+      />
     </main>
   );
 };

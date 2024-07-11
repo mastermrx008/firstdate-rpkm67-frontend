@@ -3,9 +3,9 @@
 import { useAuth } from '@/context/AuthContext';
 import { usePathname, useRouter } from 'next/navigation';
 import { useCallback, useMemo, useState } from 'react';
-import MenuIcon from './MenuIcon';
 import { getReceiveGiftCondition } from '@/utils/reward';
 import CongratsModal from './congratulation/CongratsModal';
+import MenuIcon from './MenuIcon';
 
 interface TwoCircleMenuProps {
   isRewardPage?: boolean;
@@ -19,7 +19,7 @@ export default function MenuList({ isRewardPage }: TwoCircleMenuProps) {
 
   const handleNavigate = useCallback(
     (path: string, role: 'user' | 'staff'): void => {
-      const url = `${role == 'staff' ? '/staff' : ''}/firstdate/${path}`;
+      const url = `/firstdate/${role == 'staff' ? 'staff' : ''}/${path}`;
       router.push(url);
     },
     [router]

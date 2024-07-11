@@ -1,13 +1,10 @@
 'use client';
-import Border from '@/components/Border';
-import MenuList from '@/components/MenuList';
-
-import Scan from '@/components/qrscanner/QRScanner';
-import Mode from '@/components/staff/home/Mode';
-import PinGroup from '@/components/staff/home/otp/PinGroup';
-import { useCallback, useState } from 'react';
 import Border from '@/components/firstdate/Border';
-import TwoCircleMenu from '@/components/firstdate/TwoCircleMenu';
+import MenuList from '@/components/firstdate/MenuList';
+import Mode from '@/components/firstdate/staff/home/Mode';
+import PinGroup from '@/components/firstdate/staff/home/otp/PinGroup';
+import Scan from '@/components/firstdate/staff/qrscanner/QRScanner';
+import { useCallback, useState } from 'react';
 
 export type StaffHomeMode = 'QR-Reader' | 'OTP';
 

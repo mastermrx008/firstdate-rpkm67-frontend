@@ -5,7 +5,8 @@ import placeholder from '@public/placeholder.svg';
 import Image from 'next/image';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { useAuth } from '@/context/AuthContext';
-import MenuList from '@/components/MenuList';
+import Border from '@/components/firstdate/Border';
+import MenuList from '@/components/firstdate/MenuList';
 
 export default function AdminInfo() {
   const { user, logout } = useAuth();
