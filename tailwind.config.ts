@@ -38,6 +38,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@butterfail/tailwindcss-inverted-radius')],
 };
 export default config;
