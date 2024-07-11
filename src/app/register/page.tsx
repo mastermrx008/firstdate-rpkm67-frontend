@@ -16,6 +16,7 @@ import {
   StyledInput,
   StyledSelect,
 } from '@/components/register/StyledComponents';
+import Button from '@/components/register/Button';
 
 type RegisterUser = Pick<
   User,
@@ -52,7 +53,7 @@ export default function Register() {
   const [isPdpaOpen, setIsPdpaOpen] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, resetContext } = useAuth();
   const userId = user?.id;
 
   const handleInputChange = (
@@ -120,8 +121,7 @@ export default function Register() {
     }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     if (validateStep()) {
       setIsPdpaOpen(true);
     }
@@ -135,6 +135,7 @@ export default function Register() {
       const newPath = isStaff ? '/staff/home' : '/registered';
 
       router.push(newPath);
+      resetContext();
     });
     console.log('Form submitted', formData);
   };
@@ -152,24 +153,26 @@ export default function Register() {
         return (
           <div className="flex flex-col space-y-4">
             <h2 className="text-2xl font-bold text-center">ข้อมูลส่วนตัว</h2>
-            <StyledSelect
-              name="title"
-              value={formData.title}
-              onChange={handleInputChange}
-              error={errors.includes('title')}
-            >
-              <option
-                disabled
-                value=""
+            <div className="w-3/5">
+              <StyledSelect
+                name="title"
+                value={formData.title}
+                onChange={handleInputChange}
+                error={errors.includes('title')}
               >
-                คำนำหน้า
-              </option>
-              <option value="นาย">นาย</option>
-              <option value="นาง">นาง</option>
-              <option value="นางสาว">นางสาว</option>
-              <option value="เด็กชาย">เด็กชาย</option>
-              <option value="เด็กหญิง">เด็กหญิง</option>
-            </StyledSelect>
+                <option
+                  disabled
+                  value=""
+                >
+                  คำนำหน้า
+                </option>
+                <option value="นาย">นาย</option>
+                <option value="นาง">นาง</option>
+                <option value="นางสาว">นางสาว</option>
+                <option value="เด็กชาย">เด็กชาย</option>
+                <option value="เด็กหญิง">เด็กหญิง</option>
+              </StyledSelect>
+            </div>
             <StyledInput
               type="text"
               name="firstname"
@@ -194,51 +197,55 @@ export default function Register() {
               onChange={handleInputChange}
               error={errors.includes('nickname')}
             />
-            <div className="flex flex-row justify-between">
-              <StyledSelect
-                name="faculty"
-                value={formData.faculty}
-                onChange={handleInputChange}
-                error={errors.includes('faculty')}
-              >
-                <option
-                  disabled
-                  value=""
+            <div className="flex flex-row justify-between gap-2">
+              <div className="w-4/5">
+                <StyledSelect
+                  name="faculty"
+                  value={formData.faculty}
+                  onChange={handleInputChange}
+                  error={errors.includes('faculty')}
                 >
-                  คณะ
-                </option>
-                <option value="21">วิศวกรรมศาสตร์ 1</option>
-                <option value="22">วิศวกรรมศาสตร์ 2</option>
-              </StyledSelect>
-              <StyledSelect
-                name="year"
-                value={formData.year}
-                onChange={handleInputChange}
-                error={errors.includes('year')}
-              >
-                <option
-                  disabled
-                  value={0}
+                  <option
+                    disabled
+                    value=""
+                  >
+                    คณะ
+                  </option>
+                  <option value="21">วิศวกรรมศาสตร์ 1</option>
+                  <option value="22">วิศวกรรมศาสตร์ 2</option>
+                </StyledSelect>
+              </div>
+              <div className="w-2/5">
+                <StyledSelect
+                  name="year"
+                  value={formData.year}
+                  onChange={handleInputChange}
+                  error={errors.includes('year')}
                 >
-                  ชั้นปี
-                </option>
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-              </StyledSelect>
+                  <option
+                    disabled
+                    value={0}
+                  >
+                    ชั้นปี
+                  </option>
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                </StyledSelect>
+              </div>
             </div>
-            <div className="flex flex-col items-center gap-[4px]">
-              <button
-                className="mt-3 w-[130px] h-[40px] font-medium text-black text-xl rounded-lg bg-project-pink"
+            <div className="flex flex-col items-center gap-4">
+              <Button
+                variant="pink"
                 onClick={handleNextStep}
               >
                 ต่อไป
-              </button>
-              <button
-                className="mt-3 w-[130px] h-[40px] font-medium text-project-fuchsia text-xl rounded-lg bg-pro border-project-fuchsia border-[1px]"
+              </Button>
+              <Button
+                variant="white"
                 onClick={handlePrevStep}
               >
                 ย้อนกลับ
-              </button>
+              </Button>
             </div>
           </div>
         );
@@ -287,8 +294,18 @@ export default function Register() {
               <option value="บิดา">บิดา</option>
               <option value="มารดา">มารดา</option>
             </StyledSelect>
-            <button onClick={handleNextStep}>ต่อไป</button>
-            <button onClick={handlePrevStep}>ย้อนกลับ</button>
+            <Button
+              variant="pink"
+              onClick={handleNextStep}
+            >
+              ต่อไป
+            </Button>
+            <Button
+              variant="white"
+              onClick={handlePrevStep}
+            >
+              ย้อนกลับ
+            </Button>
           </div>
         );
       case 3:
@@ -321,8 +338,20 @@ export default function Register() {
               onChange={handleInputChange}
               error={errors.includes('illness')}
             />
-            <button onClick={handleSubmit}>ยืนยัน</button>
-            <button onClick={handlePrevStep}>ย้อนกลับ</button>
+            <div className="flex flex-col items-center gap-4">
+              <Button
+                variant="pink"
+                onClick={handleSubmit}
+              >
+                ยืนยัน
+              </Button>
+              <Button
+                variant="white"
+                onClick={handlePrevStep}
+              >
+                ย้อนกลับ
+              </Button>
+            </div>
           </div>
         );
       default:

@@ -3,6 +3,7 @@ import { useAuth } from '@/context/AuthContext';
 import { getAccessToken } from '@/utils/auth';
 import { apiClient } from '@/utils/axios';
 import Spinner from '../Spinner';
+import Button from './Button';
 
 interface UploadProfilePictureProps {
   onNext?: () => void;
@@ -144,12 +145,12 @@ const UploadProfilePicture: React.FC<UploadProfilePictureProps> = ({
       )}
       {onNext ? (
         <div className="flex flex-col items-center">
-          <button
-            className={`mt-3 w-[130px] h-[40px] font-medium text-black text-xl rounded-lg bg-project-pink`}
+          <Button
+            variant="pink"
             onClick={handleNextClick}
           >
             ต่อไป
-          </button>
+          </Button>
         </div>
       ) : (
         <></>
