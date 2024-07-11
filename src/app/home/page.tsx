@@ -8,8 +8,6 @@ import eBookIcon from '@public/home/icon/ebook.svg';
 import contactIcon from '@public/home/icon/contactlist.svg';
 import qrcodeIcon from '@public/home/icon/qrcode.svg';
 import editIcon from '@public/home/icon/edit.svg';
-import checkIcon from '@public/home/icon/check.svg';
-import alertIcon from '@public/home/icon/alert.svg';
 import CustomButton from '@/components/home/CustomButton';
 import { useState } from 'react';
 import QrCodeModal from '@/components/home/QrCodeModal';
