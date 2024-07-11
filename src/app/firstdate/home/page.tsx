@@ -30,6 +30,7 @@ import EndJourneyButton from '@/components/firstdate/home/EndJourneyButton';
 import OTPModal from '@/components/firstdate/home/modal/OTPModal';
 import FavoriteClubModal from '@/components/firstdate/home/modal/FavoriteClubModal';
 import OpinionModal from '@/components/firstdate/home/modal/OpinionModal';
+import MenuList from '@/components/MenuList';
 
 const StampPage = () => {
   const [stamps, setStamps] = useState<Stamp>();
@@ -247,6 +248,7 @@ const StampPage = () => {
         </div>
         <EndJourneyButton />
       </Border>
+      <MenuList />
       {isOTPModalOpen && currentActivityId && (
         <OTPModal
           activityId={currentActivityId}

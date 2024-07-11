@@ -10,12 +10,12 @@ interface MenuIconProps {
 }
 
 const MenuIcon = (props: MenuIconProps) => {
-  const { isActive, handleOnClick, name } = props;
+  const { isActive, handleOnClick, name, iconify } = props;
 
   return (
     <div className="flex flex-col items-center justify-center">
       <Icon
-        icon="icon-park-solid:people"
+        icon={iconify}
         className={cn('w-11 h-11 p-3 rounded-full cursor-pointer', {
           'bg-project-fuchsia text-white': isActive,
           'bg-white text-black': !isActive,
