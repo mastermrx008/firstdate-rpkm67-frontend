@@ -9,8 +9,8 @@ const UserCard = () => {
   const router = useRouter();
   const { user } = useAuth();
   const name = `${user?.firstname} ${user?.lastname}`;
-  const id = user?.email.split('@')[0];
-  const image = user?.photo_url;
+  const studentId = user?.email.split('@')[0];
+  const photo_url = user?.photo_url;
 
   return (
     <div className="relative w-full h-full flex justify-center items-center p-4">
@@ -21,15 +21,17 @@ const UserCard = () => {
       />
       <div className="absolute top-[15%] left-[9%] w-[65%] h-[65%] flex flex-col items-center justify-center p-4 bg-blue-900 rounded-lg">
         <div className="w-[35%] h-[50%] overflow-hidden rounded-full">
-          <img
-            src={image}
-            alt="user-picture"
-            className="w-full h-full object-cover"
-          />
+          {photo_url && (
+            <img
+              src={photo_url}
+              alt="user-picture"
+              className="w-full h-full object-cover"
+            />
+          )}
         </div>
         <div className="text-center">
           <h2 className="text-sm text-yellow-400 font-bold mt-2">{name}</h2>
-          <p className="text-xs text-white">รหัสนิสิต {id}</p>
+          <p className="text-xs text-white">รหัสนิสิต {studentId}</p>
         </div>
       </div>
       <div
