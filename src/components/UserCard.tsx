@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 const UserCard = () => {
   const router = useRouter();
   const { user } = useAuth();
-  const name = user?.firstname + ' ' + user?.lastname;
+  const name = `${user?.firstname} ${user?.lastname}`;
   const id = user?.email.split('@')[0];
   const image = user?.photo_url;
 
@@ -33,13 +33,12 @@ const UserCard = () => {
         </div>
       </div>
       <div
-        className="absolute top-6 right-3 w-1/5"
+        className="absolute top-[5%] right-[2%] w-[20%]"
         onClick={() => router.push('/edit')}
       >
         <Image
           src={EditIcon}
           alt="edit-icon"
-          sizes=""
         />
       </div>
     </div>
