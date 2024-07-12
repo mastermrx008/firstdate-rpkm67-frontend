@@ -4,11 +4,11 @@ import Border from '@/components/Border';
 import FDLogo from '@public/FIrst Date Logo.svg';
 import bowLine from '@public/stat/bowline.svg';
 import MenuList from '@/components/MenuList';
-import UserInfo from '@/components/profile/UserInfo';
-import StatBars from '@/components/profile/StatBars';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
+import UserInfo from '@/components/profile/userInfo';
+import StatBars from '@/components/profile/statBars';
 
 export default function Profile() {
   const { user } = useAuth();
