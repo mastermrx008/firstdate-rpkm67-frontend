@@ -9,6 +9,7 @@ import BaseModal from '@/components/rpkm/Modal/BaseModal';
 import ModalButton from '@/components/rpkm/Modal/ModalButton';
 import PersonIcon from '@public/rpkm/person-icon.svg';
 import InstagramIcon from '@public/rpkm/instagram-icon.svg';
+import Star from '@public/rpkm/star.svg';
 
 interface BaanModalProps {
   open: boolean;
@@ -67,25 +68,37 @@ const BaanModal: React.FC<BaanModalProps> = ({
     >
       <div className="w-[75vw]">
         <div className="flex flex-row justify-between w-full items-center">
-          <p className="font-semibold p-2 size-max bg-[#EAE3C3] flex rounded-full text-[#183F86]">
-            {size}
-          </p>
-
-          <div className="flex items-center">
-            <p>
-              <span className="text-[#EAE3C3]">{currentPeople}</span>
-              <span className="text-white">/{capacity}</span>
-            </p>
+          <div
+            className={cn(
+              'flex justify-center items-center',
+              size.length === 1 && 'ml-1'
+            )}
+          >
             <Image
-              src={PersonIcon}
-              alt="person icon"
+              src={Star}
+              alt="star"
+              className="absolute -z-10"
             />
+            <p className="font-semibold text-[#183F86]">{size}</p>
+          </div>
+
+          <div className="absolute left-[50%] -translate-x-[50%]">
+            <div className="flex items-center">
+              <p>
+                <span className="text-[#EAE3C3]">{currentPeople}</span>
+                <span className="text-white">/{capacity}</span>
+              </p>
+              <Image
+                src={PersonIcon}
+                alt="person icon"
+              />
+            </div>
           </div>
           <div className="flex items-center">
             <button
               onClick={() => setMode('th')}
               className={cn(
-                'px-3 rounded-l-full',
+                'px-[0.6rem] rounded-l-full text-sm',
                 mode == 'th' ? 'bg-[#EB9096] text-white' : 'bg-white text-black'
               )}
             >
@@ -94,7 +107,7 @@ const BaanModal: React.FC<BaanModalProps> = ({
             <button
               onClick={() => setMode('en')}
               className={cn(
-                'px-3 rounded-r-full',
+                'px-[0.6rem] rounded-r-full text-sm',
                 mode == 'th' ? 'bg-white text-black' : 'bg-[#EB9096] text-white'
               )}
             >
@@ -109,11 +122,15 @@ const BaanModal: React.FC<BaanModalProps> = ({
             className="w-44 p-1 border-[#F5F5F5] border-2"
           />
         </div>
-        <div className="text-center text-[#EAE3C3]">
+        <div className="text-center text-white">
           <p className="text-xl font-bold">{name[mode]}</p>
-          <p className="text-sm">{content[mode]}</p>
+          <div className="flex justify-center">
+            <p className="w-4/5 text-sm max-h-20 overflow-y-scroll">
+              {content[mode]}
+            </p>
+          </div>
         </div>
-        <div className="flex flex-row justify-center w-full gap-x-1">
+        <div className="flex flex-row justify-center w-full gap-x-1 mt-2">
           <Image
             src={InstagramIcon}
             alt="instagram icon"
