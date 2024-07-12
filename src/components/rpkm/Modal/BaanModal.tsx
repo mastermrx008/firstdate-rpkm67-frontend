@@ -27,6 +27,7 @@ interface BaanModalProps {
   capacity: number;
   instagram: string;
   image: StaticImageData;
+  callBackFunction: (params: unknown) => void;
 }
 
 /**
@@ -40,6 +41,7 @@ interface BaanModalProps {
  * @param capacity - number
  * @param instagram - string
  * @param image - StaticImageData (next/image)
+ * @param callBackFunction - function => void
  * @returns Styled baan modal component
  */
 const BaanModal: React.FC<BaanModalProps> = ({
@@ -52,14 +54,9 @@ const BaanModal: React.FC<BaanModalProps> = ({
   capacity,
   instagram,
   image,
+  callBackFunction,
 }) => {
   const [mode, setMode] = useState<'th' | 'en'>('th');
-
-  const handleSelection = () => {
-    /* select this baan */
-    console.log('select!');
-    setOpen(false);
-  };
 
   return (
     <BaseModal
@@ -125,7 +122,7 @@ const BaanModal: React.FC<BaanModalProps> = ({
         <div className="text-center text-white">
           <p className="text-xl font-bold">{name[mode]}</p>
           <div className="flex justify-center">
-            <p className="w-4/5 text-sm max-h-20 overflow-y-scroll">
+            <p className="w-4/5 text-sm max-h-20 overflow-y-scroll ">
               {content[mode]}
             </p>
           </div>
@@ -135,7 +132,7 @@ const BaanModal: React.FC<BaanModalProps> = ({
             src={InstagramIcon}
             alt="instagram icon"
           />
-          <p className="text-[#EAE3C3]">{instagram}</p>
+          <p className="text-white">{instagram}</p>
         </div>
         <div className="flex flex-row gap-x-3 justify-center mt-3">
           <ModalButton
@@ -146,7 +143,7 @@ const BaanModal: React.FC<BaanModalProps> = ({
             กลับ
           </ModalButton>
           <ModalButton
-            callBackFunction={() => handleSelection()}
+            callBackFunction={callBackFunction}
             borderClassName={modalStyles.blue.button['accept-border']}
             backgroundClassName={modalStyles.blue.button['accept-background']}
           >
