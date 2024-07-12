@@ -27,9 +27,9 @@ const UserCard = () => {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="text-center text-sm">
-          <h2 className=" text-yellow-400 font-bold mt-2">{name}</h2>
-          <p className="text-white">รหัสนิสิต {id}</p>
+        <div className="text-center">
+          <h2 className="text-sm text-yellow-400 font-bold mt-2">{name}</h2>
+          <p className="text-xs text-white">รหัสนิสิต {id}</p>
         </div>
       </div>
       <div
