@@ -19,11 +19,11 @@ const UserCard = () => {
         alt="tv"
         className="w-full h-auto object-cover"
       />
-      <div className="absolute top-10 left-8 w-2/3 h-4/6 flex flex-col items-center justify-center p-4 bg-blue-900 rounded-lg">
-        <div className="w-24 h-24 overflow-hidden rounded-full">
+      <div className="absolute top-[15%] left-[9%] w-[65%] h-[65%] flex flex-col items-center justify-center p-4 bg-blue-900 rounded-lg">
+        <div className="w-[35%] h-[50%] overflow-hidden rounded-full">
           <img
             src={image}
-            alt="User"
+            alt="user-picture"
             className="w-full h-full object-cover"
           />
         </div>
@@ -33,12 +33,13 @@ const UserCard = () => {
         </div>
       </div>
       <div
-        className="absolute top-6 right-6"
+        className="absolute top-6 right-3 w-1/5"
         onClick={() => router.push('/edit')}
       >
         <Image
           src={EditIcon}
           alt="edit-icon"
+          sizes=""
         />
       </div>
     </div>
