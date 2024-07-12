@@ -67,7 +67,7 @@ export default function Register() {
   };
 
   const validateStep = (): boolean => {
-    let stepErrors: string[] = [];
+    const stepErrors: string[] = [];
     switch (currentStep) {
       case 0:
         // Note: validate in the UploadProfilePicture Component
