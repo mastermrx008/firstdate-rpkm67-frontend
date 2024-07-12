@@ -33,6 +33,9 @@ const config: Config = {
         athiti: ['var(--athiti)', 'system-ui'],
         sarun: ['var(--sarun)', 'system-ui'],
       },
+      dropShadow: {
+        text: '0px 0px 4px 0px #00000040;',
+      },
     },
   },
   plugins: [require('@butterfail/tailwindcss-inverted-radius')],
