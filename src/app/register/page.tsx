@@ -361,7 +361,7 @@ export default function Register() {
 
   return (
     <Border variant="white-brown">
-      <div className="h-screen flex flex-col items-center justify-center">
+      <div className="my-auto flex flex-col items-center justify-center">
         <Image
           src={StarIcon}
           alt="star"
