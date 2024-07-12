@@ -1,6 +1,7 @@
 import { getAccessToken } from "@/utils/auth";
 import { apiClient } from "@/utils/axios";
 import { QueryClient, useMutation, useQueryClient } from "@tanstack/react-query"
+import toast from "react-hot-toast";
 
 interface PostJoinGroupRequest {
     token : string,
@@ -30,6 +31,9 @@ export const usePostJoinGroup = () => {
             queryClient.invalidateQueries({
                 queryKey: ["group"]
             });
+        },
+        onError : () => {
+            toast.error("ไม่สามารถเข้าร่วมกลุ่มนี้ได้")
         }
     })
 }
