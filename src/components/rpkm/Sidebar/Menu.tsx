@@ -2,7 +2,7 @@ import React from 'react';
 import { Accordion, AccordionItem } from '@nextui-org/accordion';
 function Menu() {
   return (
-    <div className="w-full h-full text-left text-[1.88vh] font-medium flex flex-col pb-[5vh]">
+    <div className="w-full h-full text-left text-base font-medium flex flex-col pb-[5vh]">
       <button className="text-left">ลงทะเบียนเลือกบ้าน</button>
       <button className="text-left">ลงทะเบียน Freshy Night</button>
       <div className="w-full h-px bg-black"></div>
@@ -16,7 +16,7 @@ function Menu() {
             aria-label="Accordion 1"
             title="กิจกรรม"
           >
-            <div className="flex flex-col w-full justify-items-start text-[1.41vh] px-[1.41vh]">
+            <div className="flex flex-col w-full justify-items-start text-xs px-xs">
               <button className="text-left">กิจกรรมในงาน</button>
               <button className="text-left">ข้อมูลแต่ละบ้าน</button>
               <button className="text-left">กิจกรรมชุมชน</button>
@@ -28,7 +28,7 @@ function Menu() {
             aria-label="Accordion 2"
             title="แผนที่"
           >
-            <div className="flex flex-col w-full justify-items-start text-[1.41vh] px-[1.41vh]">
+            <div className="flex flex-col w-full justify-items-start text-xs px-xs">
               <button className="text-left">ข้อมูลที่จัดแต่ละกิจกรรม</button>
               <button className="text-left">กิจกรรมชุมชน</button>
             </div>

@@ -18,15 +18,15 @@ function UserInfo() {
           style={{ width: '100%', height: '22.066vh', top: '-2.934vh' }}
         />
       </div>
-      <h1 className="text-[2.11vh] font-semibold text-center text-black">
+      <h1 className="text-lg font-semibold text-center text-black">
         {user?.firstname} {user?.lastname}
       </h1>
       <button className="flex flex-col">
-        <h1 className="text-[1.41vh] font-semibold text-center text-black">
+        <h1 className="text-xs font-semibold text-center text-black">
           {user?.baan}
         </h1>
-        <div className="flex justify-center justify-items-center items-center gap-x-[0.23vh]">
-          <h1 className="text-[1.41vh] font-semibold text-center text-black underline">
+        <div className="flex justify-center justify-items-center items-center gap-x-0.5">
+          <h1 className="text-xs font-semibold text-center text-black underline">
             แก้ไขข้อมูลส่วนตัว
           </h1>
           <Image
@@ -34,7 +34,7 @@ function UserInfo() {
             alt="pencil"
             width={10}
             height={10}
-            style={{ width: '0.94vh', height: '0.94vh' }}
+            style={{ width: '8px', height: '8px' }}
           />
         </div>
       </button>
