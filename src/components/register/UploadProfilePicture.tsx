@@ -19,28 +19,14 @@ const UploadProfilePicture: React.FC<UploadProfilePictureProps> = ({
   const [currentPhotoUrl, setCurrentPhotoUrl] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [uploading, setUploading] = useState<boolean>(false);
-  const { user } = useAuth();
+  const { user, resetContext } = useAuth();
   const userId = user?.id;
 
   useEffect(() => {
-    const fetchUserProfile = async () => {
-      try {
-        const accessToken = await getAccessToken();
-        const response = await apiClient.get(`/user/${userId}`, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
-        setCurrentPhotoUrl(response.data.user.photo_url);
-      } catch (error) {
-        console.error('Error fetching user profile:', error);
-      }
-    };
-
-    if (userId) {
-      fetchUserProfile();
+    if (user) {
+      setCurrentPhotoUrl(user?.photoUrl);
     }
-  }, []);
+  }, [user]);
 
   const handlePhotoChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -73,6 +59,7 @@ const UploadProfilePicture: React.FC<UploadProfilePictureProps> = ({
       );
       console.log('Photo uploaded successfully:', response.data);
       setCurrentPhotoUrl(response.data.photo_url);
+      await resetContext();
     } catch (error) {
       console.error('Error uploading photo:', error);
     } finally {
@@ -134,7 +121,6 @@ const UploadProfilePicture: React.FC<UploadProfilePictureProps> = ({
             />
           </div>
         </div>
-        
       </div>
       {errorMessage && (
         <div className="text-red-500 mb-2 text-center">{errorMessage}</div>
