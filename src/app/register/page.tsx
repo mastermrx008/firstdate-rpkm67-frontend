@@ -17,6 +17,7 @@ import {
   StyledSelect,
 } from '@/components/register/StyledComponents';
 import Button from '@/components/register/Button';
+import { major } from '@/utils/register';
 
 type RegisterUser = Pick<
   User,
@@ -82,7 +83,7 @@ export default function Register() {
         break;
       case 2:
         if (!formData.tel) stepErrors.push('tel');
-        if (!formData.parentTel) stepErrors.push('parent_tel');
+        if (!formData.parentTel) stepErrors.push('parentTel');
         if (!formData.parent) stepErrors.push('parent');
         break;
       case 3:
@@ -211,8 +212,14 @@ export default function Register() {
                   >
                     คณะ
                   </option>
-                  <option value="21">วิศวกรรมศาสตร์ 1</option>
-                  <option value="22">วิศวกรรมศาสตร์ 2</option>
+                  {major.map((m) => (
+                    <option
+                      key={m.id}
+                      value={m.id}
+                    >
+                      {m.name}
+                    </option>
+                  ))}
                 </StyledSelect>
               </div>
               <div className="w-2/5">
@@ -272,11 +279,11 @@ export default function Register() {
             <div className="flex flex-row">
               <StyledInput
                 type="text"
-                name="parent_tel"
+                name="parentTel"
                 placeholder="เบอร์โทรศัพท์"
                 value={formData.parentTel}
                 onChange={handleInputChange}
-                error={errors.includes('parent_tel')}
+                error={errors.includes('parentTel')}
               />
             </div>
             <StyledSelect
@@ -293,6 +300,7 @@ export default function Register() {
               </option>
               <option value="บิดา">บิดา</option>
               <option value="มารดา">มารดา</option>
+              <option value="อื่นๆ">อื่นๆ</option>
             </StyledSelect>
             <Button
               variant="pink"
@@ -316,19 +324,19 @@ export default function Register() {
             </h2>
             <StyledInput
               type="text"
-              name="food_allergy"
+              name="foodAllergy"
               placeholder="อาหารที่แพ้"
               value={formData.foodAllergy}
               onChange={handleInputChange}
-              error={errors.includes('food_allergy')}
+              error={errors.includes('foodAllergy')}
             />
             <StyledInput
               type="text"
-              name="drug_allergy"
+              name="drugAllergy"
               placeholder="ยาที่แพ้"
               value={formData.drugAllergy}
               onChange={handleInputChange}
-              error={errors.includes('drug_allergy')}
+              error={errors.includes('drugAllergy')}
             />
             <StyledInput
               type="text"
