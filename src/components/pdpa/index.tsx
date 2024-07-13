@@ -68,7 +68,7 @@ export default function Pdpa(props: PdpaProps) {
             </svg>
           </button>
         </div>
-        <h1 className="mt-[150px] font-semibold text-5xl">PDPA</h1>
+        <h1 className="mt-[400px] font-semibold text-5xl">PDPA</h1>
         <div className="my-8 border border-black h-[1px] w-[95%]"></div>
         <h2 className="text-center text-xl font-semibold">
           {titles.map((title, index) => (
