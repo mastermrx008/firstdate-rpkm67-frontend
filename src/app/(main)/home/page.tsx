@@ -16,6 +16,7 @@ import WaitModal from '@/components/(main)/home/WaitModal';
 import { isUserRegistered } from '@/utils/user';
 import Border from '@/components/firstdate/Border';
 import CustomButton from '@/components/(main)/home/CustomButton';
+import Link from 'next/link';
 
 export default function Home() {
   const router = useRouter();
@@ -109,7 +110,7 @@ export default function Home() {
                 alt="Contact List Icon"
                 style={{ width: '2.63vh', height: '2.63vh' }}
               />
-              <div>Emergency Contact</div>
+              <Link href={'/emergency-contact'}>Emergency Contact</Link>
             </CustomButton>
           </div>
 

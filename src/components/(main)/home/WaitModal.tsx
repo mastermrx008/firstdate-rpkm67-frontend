@@ -45,7 +45,7 @@ const WaitModal: React.FC<WaitModalProps> = ({ modal, setModal, event }) => {
   }, []);
   if (!modal) return null;
   return (
-    <div className="z-10 w-full h-full fixed flex justify-center">
+    <div className="z-10 inset-0 fixed flex justify-center">
       <div className="bg-black w-full h-full fixed self-center opacity-50" />
 
       <div className="w-[calc(100vh*(72/156)*(9/10))] h-[64vh] relative self-center flex flex-col justify-center">
