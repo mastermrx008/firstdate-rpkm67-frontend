@@ -26,7 +26,7 @@ export default function AdminInfo() {
             src={user?.photoUrl || placeholder}
             alt="profile"
             fill
-            className="p-1.5 rounded-t-full object-center object-cover"
+            className="p-1.5 rounded-t-full object-center object-contain"
           />
         </div>
 
