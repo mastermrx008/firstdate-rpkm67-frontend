@@ -2,7 +2,7 @@
 import { useAuth } from "@/context/AuthContext";
 import { useGetGroupById } from "@/hooks/group/useGetGroupById";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import HandShake_color from "@public/group-finder/handshake_color.svg"
 import HandShake_gray from "@public/group-finder/handshake_gray.svg"
 import Image from "next/image";
@@ -14,7 +14,7 @@ import LeaveGroupButton from "./LeaveGroupButton";
 import CodeTextarea from "./CodeTextarea";
 
 const GroupFinder = () => {
-    const { user } = useAuth();
+    const { user, resetContext } = useAuth();
     if (!user) return;
 
     const [groupSize, setGroupSize] = useState(0);
@@ -45,6 +45,10 @@ const GroupFinder = () => {
         toast.success("Copied to Clipboard");
     }
 
+    useEffect(() => {
+        //resetContext() // prevent another paired user join the new group, so need to update the userData
+    }, []);
+
     return (
         <div className="relative flex flex-col w-full">
             <div className="flex flex-col bg-project-light-gray bg-opacity-90 p-4 w-full items-center gap-2">
@@ -52,7 +56,7 @@ const GroupFinder = () => {
                 {
                     groupSize > 0 ?
                         <div className="flex flex-col w-full gap-2 items-center ">
-                            <CodeTextarea userId={user.id} />
+                            <CodeTextarea userId={user.id} userOwnToken={groupData? groupData.group.token : ""} isPaired={groupSize === 2} isLeader={groupData?.group.leader_id === user.id} memberId={groupData && groupData.group.members.length === 2 ? groupData.group.members[1].id : ""}/>
 
                             <div className="flex flex-col w-full">
                                 <div className="flex flex-row w-full px-[4%] relative z-10 justify-between">
@@ -61,7 +65,7 @@ const GroupFinder = () => {
                                         [...Array(2).keys()].map(ind => {
                                             return (
                                                 <div className={`flex w-1/3 rounded-full ${ind === 0 ? "ml-[4%]" : "mr-[4%]"}`} key={ind}>
-                                                    <MemberIcon img_url={groupData?.group.members[ind] ? groupData?.group.members[ind].image_url : ""} isLeader={ind === 0} />
+                                                    <MemberIcon img_url={groupData && groupData.group.members[ind] ? groupData.group.members[ind].image_url : ""} isLeader={ind === 0} />
                                                 </div>
                                             )
                                         })
@@ -79,7 +83,7 @@ const GroupFinder = () => {
                                     {
                                         [...Array(2).keys()].map(ind => {
                                             return (
-                                                <div className={`flex w-1/3 rounded-full ${ind === 0 ? "ml-[4%]" : "mr-[4%]"}`}>
+                                                <div className={`flex w-1/3 rounded-full ${ind === 0 ? "ml-[4%]" : "mr-[4%]"}`} key={ind}>
                                                     <MemberName
                                                         name={groupData?.group.members[ind] ? groupData.group.members[ind].first_name : ""}
                                                         surname={groupData?.group.members[ind] ? groupData.group.members[ind].last_name : ""}
