@@ -17,6 +17,7 @@ import { isUserRegistered } from '@/utils/user';
 import Border from '@/components/firstdate/Border';
 import CustomButton from '@/components/(main)/home/CustomButton';
 import Link from 'next/link';
+import { major } from '@/utils/register';
 
 export default function Home() {
   const router = useRouter();
@@ -47,22 +48,22 @@ export default function Home() {
           </div>
 
           <center>
-            <div className="flex flex-col items-center text-center justify-between w-[15.81vh] h-[29.2vh] self-center">
+            <div className="flex flex-col items-center text-center justify-between h-[29.2vh] self-center">
               <div
-                className="relative w-full h-[75%] rounded-t-full border-white shadow-[0px_0px_4px_.4px_#00000036]"
+                className="relative w-[15.81vh] h-[75%] rounded-t-full border-white shadow-[0px_0px_4px_.4px_#00000036]"
                 style={{ borderWidth: '0.66vh', borderStyle: 'solid' }}
               >
                 <Image
                   src={user?.photoUrl || placeholder.src}
                   alt="profile picture"
                   fill
-                  className="rounded-t-full object-cover object-center"
+                  className="rounded-t-full object-contain object-center"
                 />
               </div>
               <h1 className="text-[2.63vh] font-semibold text-center text-black">
                 {user?.firstname} {user?.lastname} #{user?.year}
                 <br />
-                {user?.faculty}
+                {major.find((m) => m.id == user?.faculty)?.name}
               </h1>
             </div>
           </center>
