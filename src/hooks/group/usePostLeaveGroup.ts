@@ -21,12 +21,14 @@ const postLeaveGroup = async (userId : string) => {
 }
 export const usePostLeaveGroup = () => {
     const queryClient = useQueryClient();
+    const { resetContext } = useAuth();
     return useMutation({
         mutationFn : postLeaveGroup,
         onSuccess : (data, variables) => {
             queryClient.invalidateQueries({
                 queryKey: ["group"]
             });
+            resetContext();
         },
         onError : () => {
             toast.error("มีบางอย่างผิดพลาด")
