@@ -10,7 +10,7 @@ import MenuList from '@/components/MenuList';
 export default function AdminInfo() {
   const { user, logout } = useAuth();
   return (
-    <main className="w-full h-screen flex justify-center items-center flex-col bg-2">
+    <main className="w-full  flex justify-center items-center flex-col bg-2">
       <Border
         variant="light-pink-2"
         className="flex flex-col"
@@ -20,11 +20,12 @@ export default function AdminInfo() {
           alt="logo"
           className="w-44 mt-5 mb-5"
         />
-        <div className="w-36 h-48 rounded-t-full bg-white drop-shadow-xl flex items-center justify-center">
+        <div className="relative w-36 h-48 rounded-t-full bg-white drop-shadow-xl flex items-center justify-center">
           <Image
             src={user?.photoUrl || placeholder}
             alt="profile"
-            className="w-full p-1"
+            fill
+            className="w-full p-1.5"
           />
         </div>
 
