@@ -15,6 +15,8 @@ import {
 import EditIcon from '@public/edit/edit-icon.svg';
 import CurvedLineIcon from '@public/curved-line.svg';
 import Button from '@/components/register/Button';
+import { major } from '@/utils/register';
+import toast from 'react-hot-toast';
 
 type RegisterUser = Pick<
   User,
@@ -94,8 +96,9 @@ export default function Register() {
 
   const handleSubmit = () => {
     if (validateForm()) {
-      updateUserProfile(formData).then(() => {
-        resetContext();
+      updateUserProfile(formData).then(async () => {
+        await resetContext();
+        toast.success('เเก้ไขข้อมูลสำเร็จ');
         router.push('/home');
       });
     }
@@ -123,88 +126,126 @@ export default function Register() {
         <div className="flex flex-col gap-4">
           <div className="flex flex-col space-y-2">
             <h3 className="text-xl font-semibold text-center">ข้อมูลส่วนตัว</h3>
-            <StyledSelect
-              name="title"
-              value={formData.title}
-              onChange={handleInputChange}
-              error={errors.includes('title')}
-            >
-              <option
-                disabled
-                value=""
-              >
-                คำนำหน้า
-              </option>
-              <option value="นาย">นาย</option>
-              <option value="นาง">นาง</option>
-              <option value="นางสาว">นางสาว</option>
-              <option value="เด็กชาย">เด็กชาย</option>
-              <option value="เด็กหญิง">เด็กหญิง</option>
-            </StyledSelect>
-            <StyledInput
-              type="text"
-              name="firstname"
-              placeholder="ชื่อจริง"
-              value={formData.firstname}
-              onChange={handleInputChange}
-              error={errors.includes('firstname')}
-            />
-            <StyledInput
-              type="text"
-              name="lastname"
-              placeholder="นามสกุล"
-              value={formData.lastname}
-              onChange={handleInputChange}
-              error={errors.includes('lastname')}
-            />
-            <StyledInput
-              type="text"
-              name="nickname"
-              placeholder="ชื่อเล่น"
-              value={formData.nickname}
-              onChange={handleInputChange}
-              error={errors.includes('nickname')}
-            />
-            <div className="flex space-x-2">
+            <label className="flex flex-col items-start w-1/2">
+              คำนำหน้าชื่อ
               <StyledSelect
-                name="faculty"
-                value={formData.faculty}
+                name="title"
+                value={formData.title}
                 onChange={handleInputChange}
-                error={errors.includes('faculty')}
+                error={errors.includes('title')}
               >
                 <option
                   disabled
                   value=""
                 >
-                  คณะ
+                  คำนำหน้า
                 </option>
-                <option value="21">วิศวกรรมศาสตร์ 1</option>
-                <option value="22">วิศวกรรมศาสตร์ 2</option>
+                <option value="นาย">นาย</option>
+                <option value="นาง">นาง</option>
+                <option value="นางสาว">นางสาว</option>
+                <option value="เด็กชาย">เด็กชาย</option>
+                <option value="เด็กหญิง">เด็กหญิง</option>
               </StyledSelect>
-              <StyledSelect
-                name="year"
-                value={formData.year}
+            </label>
+
+            <label>
+              <span>ชื่อจริง</span>
+              <StyledInput
+                type="text"
+                name="firstname"
+                placeholder="ชื่อจริง"
+                value={formData.firstname}
                 onChange={handleInputChange}
-                error={errors.includes('year')}
-              >
-                <option
-                  disabled
-                  value={0}
+                error={errors.includes('firstname')}
+              />
+            </label>
+
+            <label>
+              <span>นามสกุล</span>
+              <StyledInput
+                type="text"
+                name="lastname"
+                placeholder="นามสกุล"
+                value={formData.lastname}
+                onChange={handleInputChange}
+                error={errors.includes('lastname')}
+              />
+            </label>
+
+            <label>
+              <span>ชื่อเล่น</span>
+              <StyledInput
+                type="text"
+                name="nickname"
+                placeholder="ชื่อเล่น"
+                value={formData.nickname}
+                onChange={handleInputChange}
+                error={errors.includes('nickname')}
+              />
+            </label>
+
+            <div className="flex space-x-2">
+              <label>
+                <span>คณะ</span>
+                <StyledSelect
+                  name="faculty"
+                  value={formData.faculty}
+                  onChange={handleInputChange}
+                  error={errors.includes('faculty')}
                 >
-                  ชั้นปี
-                </option>
-                <option value={1}>1</option>
-                <option value={2}>2</option>
-              </StyledSelect>
+                  <option
+                    disabled
+                    value=""
+                  >
+                    คณะ
+                  </option>
+                  {major.map((m) => (
+                    <option
+                      value="21"
+                      key={m.id}
+                    >
+                      {m.name}
+                    </option>
+                  ))}
+                </StyledSelect>
+              </label>
+
+              <label>
+                <span>ชั้นปี</span>
+                <StyledSelect
+                  name="year"
+                  value={formData.year}
+                  onChange={handleInputChange}
+                  error={errors.includes('year')}
+                >
+                  <option
+                    disabled
+                    value={0}
+                  >
+                    ชั้นปี
+                  </option>
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                </StyledSelect>
+              </label>
             </div>
-            <StyledInput
-              type="text"
-              name="tel"
-              placeholder="เบอร์โทรศัพท์"
-              value={formData.tel}
-              onChange={handleInputChange}
-              error={errors.includes('tel')}
-            />
+
+            <label>
+              <span>เบอร์โทรศัพท์</span>
+              <div className="flex gap-4 items-center">
+                <div className="border h-[40px] border-black rounded-lg w-1/4 flex items-center justify-center">
+                  +66
+                </div>
+                <StyledInput
+                  type="text"
+                  name="tel"
+                  placeholder="เบอร์โทรศัพท์"
+                  value={formData.tel}
+                  onChange={handleInputChange}
+                  error={errors.includes('tel')}
+                />
+              </div>
+            </label>
           </div>
 
           <div className="space-y-2">
