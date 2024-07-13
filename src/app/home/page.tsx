@@ -52,7 +52,7 @@ export default function Home() {
                 style={{ borderWidth: '0.66vh', borderStyle: 'solid' }}
               >
                 <Image
-                  src={user?.photo_url ? user?.photo_url : placeholder.src}
+                  src={user?.photoUrl ? user?.photoUrl : placeholder.src}
                   alt="profile picture"
                   width={10}
                   height={10}
