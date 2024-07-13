@@ -43,7 +43,7 @@ export default function AdminInfo() {
       <div className="absolute bottom-28 flex flex-col items-center">
         <Icon
           icon="humbleicons:logout"
-          className="w-12 h-12 p-3 rounded-full bg-white text-black shadow-lg"
+          className="cursor-pointer w-12 h-12 p-3 rounded-full bg-white text-black shadow-lg"
           onClick={() => {
             logout();
           }}
