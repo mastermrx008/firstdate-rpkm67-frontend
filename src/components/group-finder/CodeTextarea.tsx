@@ -1,20 +1,21 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "@/components/rpkm/modal";
 import { useGetGroupByToken } from "@/hooks/group/useGetGroupByToken";
 import { usePostJoinGroup } from "@/hooks/group/usePostJoinGroup";
 import toast from "react-hot-toast";
 import { useDeleteGroupMember } from "@/hooks/group/useDeleteGroupMember";
 import { usePostLeaveGroup } from "@/hooks/group/usePostLeaveGroup";
+import { useSearchParams } from "next/navigation";
 
 interface CodeTextareaProps {
-    userId : string
-    userOwnToken : string
-    isPaired : boolean
-    isLeader : boolean
-    memberId : string
+    userId: string
+    userOwnToken: string
+    isPaired: boolean
+    isLeader: boolean
+    memberId: string
 }
-const CodeTextarea : React.FC<CodeTextareaProps>= ({userId, userOwnToken, isPaired, isLeader, memberId}) => {
+const CodeTextarea: React.FC<CodeTextareaProps> = ({ userId, userOwnToken, isPaired, isLeader, memberId }) => {
     const [text, setText] = useState("");
     const [inputToken, setInputToken] = useState("");
     const handleTypeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -22,7 +23,7 @@ const CodeTextarea : React.FC<CodeTextareaProps>= ({userId, userOwnToken, isPair
     }
 
     const [openModal, setOpenModal] = useState(false);
-    const {data : groupData} = useGetGroupByToken(inputToken , openModal)
+    const { data: groupData } = useGetGroupByToken(inputToken, openModal)
     const handleOpenModal = () => {
         if (text !== "") {
             if (text === userOwnToken) {
@@ -32,7 +33,7 @@ const CodeTextarea : React.FC<CodeTextareaProps>= ({userId, userOwnToken, isPair
                 setInputToken(text)
                 setText("")
             }
-        } 
+        }
     }
 
     const postJoinGroup = usePostJoinGroup()
@@ -41,15 +42,15 @@ const CodeTextarea : React.FC<CodeTextareaProps>= ({userId, userOwnToken, isPair
     const handleConfirmPairing = async () => {
         if (isLeader && isPaired) {
             await deleteMember.mutateAsync({
-                deleted_user_id : memberId,
-                requesting_user_id : userId,
+                deleted_user_id: memberId,
+                requesting_user_id: userId,
             })
         } else if (isPaired) {
             await postLeaveGroup.mutateAsync(userId)
         }
         setOpenModal(false)
         await postJoinGroup.mutateAsync({
-            token : inputToken,
+            token: inputToken,
             user_id: userId,
         })
     }
@@ -72,13 +73,13 @@ const CodeTextarea : React.FC<CodeTextareaProps>= ({userId, userOwnToken, isPair
                     />
                 </button>
             </div>
-            <Modal 
+            <Modal
                 open={openModal}
                 setOpen={setOpenModal}
                 callBackFunction={handleConfirmPairing}
                 variant="blue"
             >
-                <span className="flex w-full justify-center text-center text-white font-athiti font-medium text-2xl whitespace-pre-line mx-auto">{`ยินดีจับคู่กับ\n${groupData? groupData.leader.first_name : "ชื่อ"} ${groupData? groupData.leader.last_name : "สกุล"}`}</span>
+                <span className="flex w-full justify-center text-center text-white font-athiti font-medium text-2xl whitespace-pre-line mx-auto">{`ยินดีจับคู่กับ\n${groupData ? groupData.leader.first_name : "ชื่อ"} ${groupData ? groupData.leader.last_name : "สกุล"}`}</span>
             </Modal>
         </>
 

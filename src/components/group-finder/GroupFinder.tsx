@@ -14,7 +14,7 @@ import LeaveGroupButton from "./LeaveGroupButton";
 import CodeTextarea from "./CodeTextarea";
 
 const GroupFinder = () => {
-    const { user, resetContext } = useAuth();
+    const { user } = useAuth();
     if (!user) return;
 
     const [groupSize, setGroupSize] = useState(0);
@@ -38,16 +38,12 @@ const GroupFinder = () => {
         }
     }, [groupData]);
 
-    const handleCopyCode = () => {
+    const handleCopy = () => {
         if (!groupData) return
         const text = groupData.group.token
         navigator.clipboard.writeText(text)
-        toast.success("Copied to Clipboard");
+        toast.success("คัดลอกไปยังคลิปบอร์ดแล้ว");
     }
-
-    useEffect(() => {
-        //resetContext() // prevent another paired user join the new group, so need to update the userData
-    }, []);
 
     return (
         <div className="relative flex flex-col w-full">
@@ -56,7 +52,7 @@ const GroupFinder = () => {
                 {
                     groupSize > 0 ?
                         <div className="flex flex-col w-full gap-2 items-center ">
-                            <CodeTextarea userId={user.id} userOwnToken={groupData? groupData.group.token : ""} isPaired={groupSize === 2} isLeader={groupData?.group.leader_id === user.id} memberId={groupData && groupData.group.members.length === 2 ? groupData.group.members[1].id : ""}/>
+                            <CodeTextarea userId={user.id} userOwnToken={groupData ? groupData.group.token : ""} isPaired={groupSize === 2} isLeader={groupData?.group.leader_id === user.id} memberId={groupData && groupData.group.members.length === 2 ? groupData.group.members[1].id : ""} />
 
                             <div className="flex flex-col w-full">
                                 <div className="flex flex-row w-full px-[4%] relative z-10 justify-between">
@@ -79,7 +75,7 @@ const GroupFinder = () => {
                                 </div>
 
                                 <div className="flex flex-row w-full px-[4%] relative justify-between">
-                                    
+
                                     {
                                         [...Array(2).keys()].map(ind => {
                                             return (
@@ -116,27 +112,11 @@ const GroupFinder = () => {
                     </span>
                     :
                     <div className={`flex flex-col w-full ${groupSize === 2 ? "bg-project-red" : groupSize === 1 ? "bg-project-pastel-pink" : "hidden"} gap-3 px-4 pb-3`}>
-                        {/* Invite */}
-                        <div className="flex flex-col w-full">
-                            <span className="font-athiti font-bold text-white text-center">Invite Link</span>
-                            <button className="relative flex flex-row items-center w-full bg-project-cream rounded-xl pl-8 pr-2 py-1 gap-1" >
-                                <div className="flex justify-center hide-scrollbar overflow-y-hidden w-full">
-                                    <span className="text-center w-full font-athiti font-semibold text-project-dark-blue">{groupData ? "rpkm.sgcu.in.th/" + groupData.group.token : ""}</span>
-                                </div>
-
-                                {groupData &&
-                                    <Icon
-                                        icon="ph:link-bold"
-                                        className="flex flex-shrink-0 w-5 h-5 text-project-red"
-                                    />
-                                }
-                            </button>
-                        </div>
                         {/* Code */}
                         <div className="flex flex-col w-full">
                             <span className="font-athiti font-bold text-white text-center">Room Code</span>
                             <button className="relative flex flex-row items-center w-full bg-project-cream rounded-xl pl-8 pr-2 py-1 gap-1"
-                                onClick={handleCopyCode}
+                                onClick={handleCopy}
                             >
                                 <div className="flex justify-center hide-scrollbar overflow-y-hidden w-full">
                                     <span className="text-center w-full font-athiti font-semibold text-project-dark-blue">{groupData ? groupData.group.token : ""}</span>
@@ -153,7 +133,7 @@ const GroupFinder = () => {
                     </div>
             }
 
-            <LeaveGroupButton groupSize={groupSize} userId={user ? user.id : ""} isLeader={groupData?.group.leader_id === user.id}/>
+            <LeaveGroupButton groupSize={groupSize} userId={user ? user.id : ""} isLeader={groupData?.group.leader_id === user.id} />
         </div>
 
     );
