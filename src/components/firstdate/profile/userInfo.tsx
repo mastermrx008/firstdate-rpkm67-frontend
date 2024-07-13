@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import placeholder from '@public/placeholder.svg';
 import Image from 'next/image';
 import Link from 'next/link';
-import { major } from '@/utils/register';
+import { getMajorNameById, major } from '@/utils/register';
 
 interface UserInfoProps {
   user: User;
@@ -59,7 +59,7 @@ export default function UserInfo({ user }: UserInfoProps) {
         </div>
       </div>
       <div className="font-semibold text-xl text-center">
-        {major.find((m) => m.id == user?.faculty)?.name}
+        {getMajorNameById(user?.faculty)}
       </div>
     </div>
   );

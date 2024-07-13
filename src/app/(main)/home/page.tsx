@@ -17,7 +17,7 @@ import { isUserRegistered } from '@/utils/user';
 import Border from '@/components/firstdate/Border';
 import CustomButton from '@/components/(main)/home/CustomButton';
 import Link from 'next/link';
-import { major } from '@/utils/register';
+import { getMajorNameById, major } from '@/utils/register';
 
 export default function Home() {
   const router = useRouter();
@@ -63,7 +63,7 @@ export default function Home() {
               <h1 className="text-[2.63vh] font-semibold text-center text-black">
                 {user?.firstname} {user?.lastname} #{user?.year}
                 <br />
-                {major.find((m) => m.id == user?.faculty)?.name}
+                {user && getMajorNameById(user?.faculty)}
               </h1>
             </div>
           </center>

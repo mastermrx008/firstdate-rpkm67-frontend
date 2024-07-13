@@ -7,6 +7,7 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 import { useAuth } from '@/context/AuthContext';
 import Border from '@/components/firstdate/Border';
 import MenuList from '@/components/firstdate/MenuList';
+import { getMajorNameById, major, majorMap } from '@/utils/register';
 
 export default function AdminInfo() {
   const { user, logout } = useAuth();
@@ -33,8 +34,8 @@ export default function AdminInfo() {
         <div className="flex justify-center items-center text-2xl gap-2 font-semibold mt-4">
           <div>{user?.firstname}</div>
           <div>#{user?.year}</div>
-          <div>{user?.faculty}</div>
         </div>
+        <div>{user && getMajorNameById(user?.faculty)}</div>
         <div className="text-lg mt-2 text-gray-500">
           {user?.email.split('@')[0]}
         </div>
