@@ -100,11 +100,11 @@ const GroupFinder = () => {
                         <div className="flex flex-col w-full gap-4 text-center">
                             <span className="font-athiti font-semibold text-3xl text-white">คุณยังไม่ได้จับคู่</span>
                             <span className="font-athiti font-medium text-project-cream">*สามารถเลือกบ้านคนเดียวได้</span>
-                            <div className="inv-rad inv-rad-2 bg-project-cream w-full p-1">
-                                <div className="inv-rad inv-rad-2 bg-project-red text-center font-medium font-athiti text-project-cream py-1" onClick={handleClickPairing}>
+                            <button className="inv-rad inv-rad-2 bg-project-cream w-full p-1" onClick={handleClickPairing}>
+                                <div className="inv-rad inv-rad-2 bg-project-red text-center font-medium font-athiti text-project-cream py-1">
                                     สร้างห้องใหม่
                                 </div>
-                            </div>
+                            </button>
                         </div>
                 }
 
