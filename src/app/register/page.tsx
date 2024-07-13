@@ -18,6 +18,7 @@ import {
 } from '@/components/register/StyledComponents';
 import Button from '@/components/register/Button';
 import { major } from '@/utils/register';
+import Spinner from '@/components/Spinner';
 
 type RegisterUser = Pick<
   User,
@@ -56,6 +57,7 @@ export default function Register() {
   const router = useRouter();
   const { user, resetContext } = useAuth();
   const userId = user?.id;
+  const [upload, setUpload] = useState(false);
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -129,7 +131,9 @@ export default function Register() {
   };
 
   const handlePdpaSuccess = async () => {
+    setUpload(true)
     updateUserProfile(formData).then(() => {
+      setUpload(false)
       if (!user) return;
 
       const isStaff = user.role == 'staff';
@@ -369,6 +373,11 @@ export default function Register() {
 
   return (
     <Border variant="white-brown">
+      {upload && (
+        <div className="z-[999] fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+          <Spinner />
+        </div>
+      )}
       <div className="my-auto flex flex-col items-center justify-center">
         <Image
           src={StarIcon}
