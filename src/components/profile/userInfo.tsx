@@ -32,8 +32,9 @@ export default function UserInfo({ user }: UserInfoProps) {
             <Image
               src={user?.photo_url || placeholder}
               alt="profile"
-              className={cn('w-full rounded-t-full p-1.5 mt-5 h-[14vh]', {
-                'h-[22vh] object-cover': user?.photo_url,
+              fill
+              className={cn('w-full rounded-t-full p-1.5', {
+                'object-cover': user?.photoUrl,
               })}
             />
           </div>
