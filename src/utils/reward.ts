@@ -24,7 +24,7 @@ export const getReceiveGiftCondition = (
   });
 
   const score = workshop + club + landmark;
-  const isReceivedGift = user.receive_gift >= 0;
+  const isReceivedGift = user.receiveGift >= 0;
   const isValidPoint = !!workshop && !!club && !!landmark && score >= 6;
 
   let status: Status;
