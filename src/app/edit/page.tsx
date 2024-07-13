@@ -25,10 +25,10 @@ type RegisterUser = Pick<
   | 'faculty'
   | 'year'
   | 'tel'
-  | 'parent_tel'
+  | 'parentTel'
   | 'parent'
-  | 'food_allergy'
-  | 'drug_allergy'
+  | 'foodAllergy'
+  | 'drugAllergy'
   | 'illness'
 >;
 
@@ -45,10 +45,10 @@ export default function Register() {
     faculty: user?.faculty || '',
     year: user?.year || 0,
     tel: user?.tel || '',
-    parent_tel: user?.parent_tel || '',
+    parentTel: user?.parentTel || '',
     parent: user?.parent || '',
-    food_allergy: user?.food_allergy || '',
-    drug_allergy: user?.drug_allergy || '',
+    foodAllergy: user?.foodAllergy || '',
+    drugAllergy: user?.drugAllergy || '',
     illness: user?.illness || '',
   });
   const [errors, setErrors] = useState<string[]>([]);
@@ -72,7 +72,7 @@ export default function Register() {
     if (!formData.faculty) formErrors.push('faculty');
     if (!formData.year) formErrors.push('year');
     if (!formData.tel) formErrors.push('tel');
-    if (!formData.parent_tel) formErrors.push('parent_tel');
+    if (!formData.parentTel) formErrors.push('parentTel');
     if (!formData.parent) formErrors.push('parent');
     setErrors(formErrors);
     return formErrors.length === 0;
@@ -213,11 +213,11 @@ export default function Register() {
             </h3>
             <StyledInput
               type="text"
-              name="parent_tel"
+              name="parentTel"
               placeholder="เบอร์โทรศัพท์"
-              value={formData.parent_tel}
+              value={formData.parentTel}
               onChange={handleInputChange}
-              error={errors.includes('parent_tel')}
+              error={errors.includes('parentTel')}
             />
             <StyledSelect
               name="parent"
@@ -242,19 +242,19 @@ export default function Register() {
             </h3>
             <StyledInput
               type="text"
-              name="food_allergy"
+              name="foodAllergy"
               placeholder="อาหารที่แพ้"
-              value={formData.food_allergy}
+              value={formData.foodAllergy}
               onChange={handleInputChange}
-              error={errors.includes('food_allergy')}
+              error={errors.includes('foodAllergy')}
             />
             <StyledInput
               type="text"
-              name="drug_allergy"
+              name="drugAllergy"
               placeholder="ยาที่แพ้"
-              value={formData.drug_allergy}
+              value={formData.drugAllergy}
               onChange={handleInputChange}
-              error={errors.includes('drug_allergy')}
+              error={errors.includes('drugAllergy')}
             />
             <StyledInput
               type="text"

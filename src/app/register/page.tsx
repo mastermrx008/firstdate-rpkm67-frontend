@@ -27,10 +27,10 @@ type RegisterUser = Pick<
   | 'faculty'
   | 'year'
   | 'tel'
-  | 'parent_tel'
+  | 'parentTel'
   | 'parent'
-  | 'food_allergy'
-  | 'drug_allergy'
+  | 'foodAllergy'
+  | 'drugAllergy'
   | 'illness'
 >;
 
@@ -44,10 +44,10 @@ export default function Register() {
     faculty: '',
     year: 0,
     tel: '',
-    parent_tel: '',
+    parentTel: '',
     parent: '',
-    food_allergy: '',
-    drug_allergy: '',
+    foodAllergy: '',
+    drugAllergy: '',
     illness: '',
   });
   const [isPdpaOpen, setIsPdpaOpen] = useState(false);
@@ -82,7 +82,7 @@ export default function Register() {
         break;
       case 2:
         if (!formData.tel) stepErrors.push('tel');
-        if (!formData.parent_tel) stepErrors.push('parent_tel');
+        if (!formData.parentTel) stepErrors.push('parent_tel');
         if (!formData.parent) stepErrors.push('parent');
         break;
       case 3:
@@ -274,7 +274,7 @@ export default function Register() {
                 type="text"
                 name="parent_tel"
                 placeholder="เบอร์โทรศัพท์"
-                value={formData.parent_tel}
+                value={formData.parentTel}
                 onChange={handleInputChange}
                 error={errors.includes('parent_tel')}
               />
@@ -318,7 +318,7 @@ export default function Register() {
               type="text"
               name="food_allergy"
               placeholder="อาหารที่แพ้"
-              value={formData.food_allergy}
+              value={formData.foodAllergy}
               onChange={handleInputChange}
               error={errors.includes('food_allergy')}
             />
@@ -326,7 +326,7 @@ export default function Register() {
               type="text"
               name="drug_allergy"
               placeholder="ยาที่แพ้"
-              value={formData.drug_allergy}
+              value={formData.drugAllergy}
               onChange={handleInputChange}
               error={errors.includes('drug_allergy')}
             />
