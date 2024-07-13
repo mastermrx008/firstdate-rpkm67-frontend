@@ -2,13 +2,11 @@
 
 import { useState, ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import Border from '@/components/Border';
 import StarIcon from '@public/star.svg';
 import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { getAccessToken } from '@/utils/auth';
 import { apiClient } from '@/utils/axios';
-import Pdpa from '@/components/pdpa';
 import UploadProfilePicture from '@/components/(main)/register/UploadProfilePicture';
 import {
   StyledInput,
@@ -16,9 +14,11 @@ import {
 } from '@/components/(main)/register/StyledComponents';
 import Button from '@/components/(main)/register/Button';
 import { major } from '@/utils/register';
-import Spinner from '@/components/Spinner';
 import toast from 'react-hot-toast';
 import { UserDTO } from '@/dtos/userDTO';
+import Border from '@/components/firstdate/Border';
+import Spinner from '@/components/firstdate/Spinner';
+import Pdpa from '@/components/(main)/pdpa';
 
 type RegisterUser = Pick<
   UserDTO,

@@ -2,11 +2,11 @@ import React, { useState, useEffect, ChangeEvent } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { getAccessToken } from '@/utils/auth';
 import { apiClient } from '@/utils/axios';
-import Spinner from '../Spinner';
 import Button from './Button';
 import imgPlaceholder from '@public/register-placeholder.svg';
 import Image from 'next/image';
 import { Icon } from '@iconify/react/dist/iconify.js';
+import Spinner from '@/components/firstdate/Spinner';
 
 interface UploadProfilePictureProps {
   onNext?: () => void;

@@ -16,8 +16,8 @@ import CurvedLineIcon from '@public/curved-line.svg';
 import Button from '@/components/(main)/register/Button';
 import { major } from '@/utils/register';
 import toast from 'react-hot-toast';
-import Spinner from '@/components/Spinner';
 import { UserDTO } from '@/dtos/userDTO';
+import Spinner from '@/components/firstdate/Spinner';
 
 type RegisterUser = Pick<
   UserDTO,

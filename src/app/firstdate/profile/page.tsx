@@ -1,14 +1,14 @@
 'use client';
 
-import Border from '@/components/Border';
 import FDLogo from '@public/FIrst Date Logo.svg';
 import bowLine from '@public/stat/bowline.svg';
-import MenuList from '@/components/MenuList';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
-import UserInfo from '@/components/(main)/profile/userInfo';
 import StatBars from '@/components/firstdate/profile/statBars';
+import Border from '@/components/firstdate/Border';
+import UserInfo from '@/components/firstdate/profile/userInfo';
+import MenuList from '@/components/firstdate/MenuList';
 
 export default function Profile() {
   const { user } = useAuth();
@@ -24,7 +24,7 @@ export default function Profile() {
               alt="logo"
               className="w-[60%] mb-2"
             />
-            <UserInfo user={user} />
+            <UserInfo  user={user} />
             <Image
               src={bowLine}
               alt="bowLine"
