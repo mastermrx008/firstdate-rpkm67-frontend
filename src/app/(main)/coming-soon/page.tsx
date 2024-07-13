@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import comingsoon from '../../../public/comingsoon.svg';
 import Border from '@/components/firstdate/Border';
 import Welcome from '@/components/firstdate/Welcome';
 import Back_To_Menu from '@/components/firstdate/coming-soon/back_to_menu';
+import Coming_Soon from '@public/comingsoon.svg';
 
 export default function Home() {
   return (
@@ -16,7 +16,7 @@ export default function Home() {
         รับเพื่อนก้าวใหม่ 2024
       </h1>
       <Image
-        src={comingsoon}
+        src={Coming_Soon}
         alt="Coming Soon"
         className="w-64 h-14 mb-6"
       />

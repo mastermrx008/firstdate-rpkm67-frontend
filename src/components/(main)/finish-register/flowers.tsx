@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import flower1 from '../../../public/registered/flower1.png';
-import flower2 from '../../../public/registered/flower2.png';
+import flower1 from '@public/registered/flower1.png';
+import flower2 from '@public/registered/flower2.png';
 
 export default function Flowers() {
   return (
