@@ -9,7 +9,7 @@ export type User = {
   faculty: string;
   firstname: string;
   foodAllergy: string;
-  group_id: string;
+  groupId: string;
   id: string;
   illness: string;
   lastname: string;
