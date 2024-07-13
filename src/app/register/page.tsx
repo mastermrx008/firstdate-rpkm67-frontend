@@ -19,6 +19,7 @@ import {
 import Button from '@/components/register/Button';
 import { major } from '@/utils/register';
 import Spinner from '@/components/Spinner';
+import toast from 'react-hot-toast';
 
 type RegisterUser = Pick<
   User,
@@ -131,15 +132,16 @@ export default function Register() {
   };
 
   const handlePdpaSuccess = async () => {
-    setUpload(true)
-    updateUserProfile(formData).then(() => {
-      setUpload(false)
+    setUpload(true);
+    updateUserProfile(formData).then(async () => {
+      setUpload(false);
       if (!user) return;
+      toast.success('ลงทะเบียนสำเร็จ');
 
       const isStaff = user.role == 'staff';
       const newPath = isStaff ? '/staff/home' : '/registered';
 
-      resetContext();
+      await resetContext();
       router.push(newPath);
     });
     console.log('Form submitted', formData);
