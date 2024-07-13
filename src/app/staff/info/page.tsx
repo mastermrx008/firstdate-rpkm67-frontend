@@ -20,12 +20,12 @@ export default function AdminInfo() {
           alt="logo"
           className="w-44 mt-5 mb-5"
         />
-        <div className="relative w-36 h-48 rounded-t-full bg-white drop-shadow-xl flex items-center justify-center">
+        <div className="relative w-36 h-48 rounded-t-full bg-white drop-shadow-xl flex items-center justify-center overflow-hidden">
           <Image
             src={user?.photoUrl || placeholder}
             alt="profile"
             fill
-            className="w-full p-1.5"
+            className="p-1.5 rounded-t-full object-center object-cover"
           />
         </div>
 
@@ -36,9 +36,6 @@ export default function AdminInfo() {
         </div>
         <div className="text-lg mt-2 text-gray-500">
           {user?.email.split('@')[0]}
-        </div>
-        <div className="mt-2 w-36 font-medium text-black rounded-3xl border border-black bg-white flex justify-center items-center gap-2">
-          <div>{user?.title}</div>
         </div>
       </Border>
       <div className="absolute bottom-28 flex flex-col items-center">
