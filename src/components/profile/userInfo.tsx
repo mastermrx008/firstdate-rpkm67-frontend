@@ -30,10 +30,10 @@ export default function UserInfo({ user }: UserInfoProps) {
         <div className="flex flex-col justify-center items-center text-center">
           <div className="flex justify-center items-center w-[16vh] h-[22vh] mb-2 bg-white rounded-t-full drop-shadow">
             <Image
-              src={user?.photoUrl || placeholder}
+              src={user?.photo_url || placeholder}
               alt="profile"
               className={cn('w-full rounded-t-full p-1.5 mt-5 h-[14vh]', {
-                'h-[22vh] object-cover': user?.photoUrl,
+                'h-[22vh] object-cover': user?.photo_url,
               })}
             />
           </div>
