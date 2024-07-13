@@ -125,7 +125,11 @@ const StampPage = () => {
 
   return (
     <main className="w-full flex justify-center items-center flex-col">
-      {isLoading && <Spinner />}
+      {isLoading && (
+        <div className="fixed inset-0 bg-black bg-opacity-20 z-[999] flex items-center justify-center">
+          <Spinner />
+        </div>
+      )}
       <Toaster />
       <Border
         variant="light-pink"
