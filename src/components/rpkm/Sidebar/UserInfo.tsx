@@ -21,10 +21,11 @@ function UserInfo() {
       <h1 className="text-lg font-semibold text-center text-black">
         {user?.firstname} {user?.lastname}
       </h1>
+
+      <h1 className="text-xs font-semibold text-center text-black">
+        {user?.baan}
+      </h1>
       <button className="flex flex-col">
-        <h1 className="text-xs font-semibold text-center text-black">
-          {user?.baan}
-        </h1>
         <div className="flex justify-center justify-items-center items-center gap-x-0.5">
           <h1 className="text-xs font-semibold text-center text-black underline">
             แก้ไขข้อมูลส่วนตัว

@@ -1,10 +1,21 @@
 import React from 'react';
 import { Accordion, AccordionItem } from '@nextui-org/accordion';
+import Link from 'next/link';
 function Menu() {
   return (
     <div className="w-full h-full text-left text-base font-medium flex flex-col pb-[5vh]">
-      <button className="text-left">ลงทะเบียนเลือกบ้าน</button>
-      <button className="text-left">ลงทะเบียน Freshy Night</button>
+      <Link
+        href="/"
+        className="text-left"
+      >
+        ลงทะเบียนเลือกบ้าน
+      </Link>
+      <Link
+        href="/"
+        className="text-left"
+      >
+        ลงทะเบียน Freshy Night
+      </Link>
       <div className="w-full h-px bg-black"></div>
       <div className="w-full -px-2">
         <Accordion
@@ -17,10 +28,30 @@ function Menu() {
             title="กิจกรรม"
           >
             <div className="flex flex-col w-full justify-items-start text-xs px-xs">
-              <button className="text-left">กิจกรรมในงาน</button>
-              <button className="text-left">ข้อมูลแต่ละบ้าน</button>
-              <button className="text-left">กิจกรรมชุมชน</button>
-              <button className="text-left">กิจกรรม Walk Rally</button>
+              <Link
+                href="/"
+                className="text-left"
+              >
+                กิจกรรมในงาน
+              </Link>
+              <Link
+                href="/"
+                className="text-left"
+              >
+                ข้อมูลแต่ละบ้าน
+              </Link>
+              <Link
+                href="/"
+                className="text-left"
+              >
+                กิจกรรมชุมชน
+              </Link>
+              <Link
+                href="/"
+                className="text-left"
+              >
+                กิจกรรม Walk Rally
+              </Link>
             </div>
           </AccordionItem>
           <AccordionItem
@@ -29,15 +60,25 @@ function Menu() {
             title="แผนที่"
           >
             <div className="flex flex-col w-full justify-items-start text-xs px-xs">
-              <button className="text-left">ข้อมูลที่จัดแต่ละกิจกรรม</button>
-              <button className="text-left">กิจกรรมชุมชน</button>
+              <Link
+                href="/"
+                className="text-left"
+              >
+                ข้อมูลที่จัดแต่ละกิจกรรม
+              </Link>
+              <Link
+                href="/"
+                className="text-left"
+              >
+                กิจกรรมชุมชน
+              </Link>
             </div>
           </AccordionItem>
         </Accordion>
       </div>
       <div className="mt-auto">
         <div className="w-full h-px bg-black"></div>
-        <button>ลงทะเบียน Freshy Night</button>
+        <Link href="/">ลงทะเบียน Freshy Night</Link>
       </div>
     </div>
   );
