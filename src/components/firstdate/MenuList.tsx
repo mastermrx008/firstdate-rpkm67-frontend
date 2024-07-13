@@ -16,10 +16,12 @@ export default function MenuList({ isRewardPage }: TwoCircleMenuProps) {
   const router = useRouter();
   const currentPath = usePathname().split('/').at(-1);
   const [isCongratOpen, setIsCongratOpen] = useState(false);
+  const pathname = usePathname();
 
   const handleNavigate = useCallback(
-    (path: string, role: 'user' | 'staff'): void => {
-      const url = `/firstdate/${role == 'staff' ? 'staff' : ''}/${path}`;
+    (path: string): void => {
+      const isStaff = pathname.includes('/firstdate/staff');
+      const url = `/firstdate${isStaff ? '/staff' : ''}/${path}`;
       router.push(url);
     },
     [router]
@@ -53,7 +55,7 @@ export default function MenuList({ isRewardPage }: TwoCircleMenuProps) {
             <MenuIcon
               name="โปรไฟล์"
               isActive={isPath('profile')}
-              handleOnClick={() => handleNavigate('profile', user.role)}
+              handleOnClick={() => handleNavigate('profile')}
               iconify="icon-park-solid:people"
             />
             {!isRewardPage && giftCondition?.status != 'recieved' && (
@@ -76,7 +78,7 @@ export default function MenuList({ isRewardPage }: TwoCircleMenuProps) {
             <MenuIcon
               name="หน้าหลัก"
               isActive={isPath('home')}
-              handleOnClick={() => handleNavigate('home', user.role)}
+              handleOnClick={() => handleNavigate('home')}
               iconify="icon-park-solid:home"
             />
           </div>
