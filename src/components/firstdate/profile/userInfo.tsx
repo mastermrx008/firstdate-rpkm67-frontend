@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import placeholder from '@public/placeholder.svg';
 import Image from 'next/image';
 import Link from 'next/link';
+import { major } from '@/utils/register';
 
 interface UserInfoProps {
   user: User;
@@ -43,7 +44,6 @@ export default function UserInfo({ user }: UserInfoProps) {
             <span>{user?.lastname}</span>
             <span>#{user?.year}</span>
           </div>
-          <span className="font-semibold text-xl">{user?.faculty}</span>
         </div>
         <div className="flex justify-center items-center w-[66px]">
           <Link
@@ -57,6 +57,9 @@ export default function UserInfo({ user }: UserInfoProps) {
             <span className="text-center font-medium text-base">แผนที่</span>
           </Link>
         </div>
+      </div>
+      <div className="font-semibold text-xl text-center">
+        {major.find((m) => m.id == user?.faculty)?.name}
       </div>
     </div>
   );
