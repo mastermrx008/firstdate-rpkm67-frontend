@@ -59,7 +59,7 @@ export default function Home() {
                 />
               </div>
               <h1 className="text-[2.63vh] font-semibold text-center text-black">
-                {user?.firstname} {user?.firstname} #{user?.year}
+                {user?.firstname} {user?.lastname} #{user?.year}
                 <br />
                 {user?.faculty}
               </h1>
