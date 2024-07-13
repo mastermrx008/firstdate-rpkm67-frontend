@@ -11,9 +11,9 @@ interface LeaveGroupButtonProps {
 }
 const LeaveGroupButton: React.FC<LeaveGroupButtonProps> = ({ groupSize, userId, isLeader }) => {
     const [openModal, setOpenModal] = useState(false);
-    const postLeaveGroup = usePostLeaveGroup(userId)
+    const postLeaveGroup = usePostLeaveGroup()
     const handleConfirmLeave = () => {
-        postLeaveGroup.mutateAsync();
+        postLeaveGroup.mutateAsync(userId);
         setOpenModal(false)
     }
     return (

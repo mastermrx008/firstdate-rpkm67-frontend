@@ -4,7 +4,7 @@ interface MemberNameProps {
 }
 const MemberName: React.FC<MemberNameProps> = ({ name, surname }) => {
     return (
-        <div className="flex flex-col items-center text-clip break-all text-center w-full justify-between">
+        <div className="flex flex-col items-center text-clip break-all text-center w-full gap-1">
             {
                 name !== "" && surname !== "" ?
                     <>
