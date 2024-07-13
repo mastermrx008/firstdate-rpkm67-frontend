@@ -81,7 +81,7 @@ const OTPModal: React.FC<OTPModalProps> = ({
                 ))}
             </div>
             <div className="flex items-center justify-center flex-col">
-              <h3 className="font-normal text-xl">
+              <h3 className="font-normal text-xl text-center">
                 กรุณากรอก OTP เพื่อทำการยืนยันกิจกรรม
               </h3>
               <p className="font-normal underline">สถานที่รับ OTP</p>
