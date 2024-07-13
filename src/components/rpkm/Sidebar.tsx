@@ -1,9 +1,9 @@
 import React from 'react';
 import background from '@public/bar/sidebar-background.svg';
-import UserInfo from './Sidebar/UserInfo';
+import UserInfo from '@/components/rpkm/Sidebar/UserInfo';
 import crossIcon from '@public/bar/icon/cross.svg';
 import Image from 'next/image';
-import Menu from './Sidebar/Menu';
+import Menu from '@/components/rpkm/Sidebar/Menu';
 
 interface SidebarProps {
   sidebar: boolean;
