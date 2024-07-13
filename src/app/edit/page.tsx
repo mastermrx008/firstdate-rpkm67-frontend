@@ -17,9 +17,11 @@ import CurvedLineIcon from '@public/curved-line.svg';
 import Button from '@/components/register/Button';
 import { major } from '@/utils/register';
 import toast from 'react-hot-toast';
+import Spinner from '@/components/Spinner';
+import { UserDTO } from '@/dtos/userDTO';
 
 type RegisterUser = Pick<
-  User,
+  UserDTO,
   | 'title'
   | 'firstname'
   | 'lastname'
@@ -27,16 +29,16 @@ type RegisterUser = Pick<
   | 'faculty'
   | 'year'
   | 'tel'
-  | 'parentTel'
+  | 'parent_tel'
   | 'parent'
-  | 'foodAllergy'
-  | 'drugAllergy'
+  | 'food_allergy'
+  | 'drug_allergy'
   | 'illness'
 >;
 
 export default function Register() {
   const router = useRouter();
-
+  const [upload, setUpload] = useState(false);
   const { user, resetContext } = useAuth();
   const userId = user?.id;
   const [formData, setFormData] = useState<RegisterUser>({
@@ -47,10 +49,10 @@ export default function Register() {
     faculty: user?.faculty || '',
     year: user?.year || 0,
     tel: user?.tel || '',
-    parentTel: user?.parentTel || '',
+    parent_tel: user?.parentTel || '',
     parent: user?.parent || '',
-    foodAllergy: user?.foodAllergy || '',
-    drugAllergy: user?.drugAllergy || '',
+    food_allergy: user?.foodAllergy || '',
+    drug_allergy: user?.drugAllergy || '',
     illness: user?.illness || '',
   });
   const [errors, setErrors] = useState<string[]>([]);
@@ -74,10 +76,16 @@ export default function Register() {
     if (!formData.faculty) formErrors.push('faculty');
     if (!formData.year) formErrors.push('year');
     if (!formData.tel) formErrors.push('tel');
-    if (!formData.parentTel) formErrors.push('parentTel');
+    if (!formData.parent_tel) formErrors.push('parent_tel');
     if (!formData.parent) formErrors.push('parent');
     setErrors(formErrors);
-    return formErrors.length === 0;
+
+    const isError = formErrors.length !== 0;
+    if (isError) {
+      toast.error('โปรดกรอกข้อมูลให้ครบ');
+    }
+
+    return !isError;
   };
 
   async function updateUserProfile(userData: RegisterUser) {
@@ -96,7 +104,9 @@ export default function Register() {
 
   const handleSubmit = () => {
     if (validateForm()) {
+      setUpload(true);
       updateUserProfile(formData).then(async () => {
+        setUpload(true);
         await resetContext();
         toast.success('เเก้ไขข้อมูลสำเร็จ');
         router.push('/home');
@@ -106,6 +116,12 @@ export default function Register() {
 
   return (
     <div className="flex items-center flex-col w-[95%] min-h-[calc(95vw*(801/371))] my-[5%] mx-auto bg-white rounded-b-lg rounded-t-full  border-[1px] border-black">
+      {upload && (
+        <div className="z-[999] fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+          <Spinner />
+        </div>
+      )}
+
       <div className="flex flex-col py-10 px-10">
         <div className="flex flex-col items-center">
           <Image
@@ -249,32 +265,44 @@ export default function Register() {
           </div>
 
           <div className="space-y-2">
-            <h3 className="text-xl font-semibold text-center">
+            <h3 className="text-xl font-semibold text-center mb-2">
               ข้อมูลผู้ปกครอง
             </h3>
-            <StyledInput
-              type="text"
-              name="parentTel"
-              placeholder="เบอร์โทรศัพท์"
-              value={formData.parentTel}
-              onChange={handleInputChange}
-              error={errors.includes('parentTel')}
-            />
-            <StyledSelect
-              name="parent"
-              value={formData.parent}
-              onChange={handleInputChange}
-              error={errors.includes('parent')}
-            >
-              <option
-                disabled
-                value=""
+            <label>
+              <span>เบอร์โทรศัพท์ของผู้ปกครอง</span>
+              <div className="flex gap-4 pb-2">
+                <div className="border h-[40px] border-black rounded-lg w-1/4 flex items-center justify-center">
+                  +66
+                </div>
+                <StyledInput
+                  type="text"
+                  name="parent_tel"
+                  placeholder="เบอร์โทรศัพท์"
+                  value={formData.parent_tel}
+                  onChange={handleInputChange}
+                  error={errors.includes('parent_tel')}
+                />
+              </div>
+            </label>
+            <label>
+              <span>ความสัมพันธ์</span>
+              <StyledSelect
+                name="parent"
+                value={formData.parent}
+                onChange={handleInputChange}
+                error={errors.includes('parent')}
               >
-                ความสัมพันธ์
-              </option>
-              <option value="บิดา">บิดา</option>
-              <option value="มารดา">มารดา</option>
-            </StyledSelect>
+                <option
+                  disabled
+                  value=""
+                >
+                  ความสัมพันธ์
+                </option>
+                <option value="บิดา">บิดา</option>
+                <option value="มารดา">มารดา</option>
+                <option value="อื่นๆ">อื่นๆ</option>
+              </StyledSelect>
+            </label>
           </div>
 
           <div className="space-y-2">
@@ -283,19 +311,19 @@ export default function Register() {
             </h3>
             <StyledInput
               type="text"
-              name="foodAllergy"
+              name="food_allergy"
               placeholder="อาหารที่แพ้"
-              value={formData.foodAllergy}
+              value={formData.food_allergy}
               onChange={handleInputChange}
-              error={errors.includes('foodAllergy')}
+              error={errors.includes('food_allergy')}
             />
             <StyledInput
               type="text"
-              name="drugAllergy"
+              name="drug_allergy"
               placeholder="ยาที่แพ้"
-              value={formData.drugAllergy}
+              value={formData.drug_allergy}
               onChange={handleInputChange}
-              error={errors.includes('drugAllergy')}
+              error={errors.includes('drug_allergy')}
             />
             <StyledInput
               type="text"

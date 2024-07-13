@@ -1,3 +1,5 @@
+import { getAccessToken } from "./auth";
+
 export const major: { id: string; name: string }[] = [
   { id: '21', name: 'วิศวกรรมศาสตร์' },
   { id: '22', name: 'อักษรศาสตร์' },
@@ -19,3 +21,4 @@ export const major: { id: string; name: string }[] = [
   { id: '38', name: 'จิตวิทยา' },
   { id: '39', name: 'วิทยาศาสตร์การกีฬา' },
 ];
+
