@@ -3,19 +3,19 @@ import { apiClient } from "@/utils/axios";
 import { useQuery } from "@tanstack/react-query"
 
 interface GetGroupbyTokenResponse {
-    "id": "string",
+    "id": string,
     "leader": {
-      "first_name": "string",
-      "id": "string",
-      "image_url": "string",
-      "last_name": "string"
+      "first_name": string,
+      "id": string,
+      "image_url": string,
+      "last_name": string
     },
-    "token": "string"
+    "token": string
   }
 const getGroupbyToken = async (token : string) => {
     const accessToken = await getAccessToken();
     
-    const response = await apiClient.get<GetGroupbyTokenResponse>(`/group/token?token=${encodeURIComponent(token)}}`,
+    const response = await apiClient.get<GetGroupbyTokenResponse>(`/group/token?token=${encodeURIComponent(token)}` ,
         {
             headers: {
                 Authorization: `Bearer ${accessToken}`,

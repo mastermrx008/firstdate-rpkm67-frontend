@@ -1,3 +1,4 @@
+import { useAuth } from "@/context/AuthContext";
 import { getAccessToken } from "@/utils/auth";
 import { apiClient } from "@/utils/axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query"
@@ -18,10 +19,10 @@ const postLeaveGroup = async (userId : string) => {
     )
     return response.data;
 }
-export const usePostLeaveGroup = (userId : string) => {
+export const usePostLeaveGroup = () => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn : () => postLeaveGroup(userId),
+        mutationFn : postLeaveGroup,
         onSuccess : (data, variables) => {
             queryClient.invalidateQueries({
                 queryKey: ["group"]

@@ -7,13 +7,13 @@ interface PostJoinGroupRequest {
     token : string,
     user_id: string,
 }
-const postJoinGroup = async (token: string, userId: string) => {
+const postJoinGroup = async (request : PostJoinGroupRequest) => {
     const accessToken = await getAccessToken();
 
     const response = await apiClient.post(`/group/join`,
         {
-            token : token,
-            user_id: userId,
+            token : request.token,
+            user_id: request.user_id
         },
         {
             headers: {
@@ -26,7 +26,7 @@ const postJoinGroup = async (token: string, userId: string) => {
 export const usePostJoinGroup = () => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn : (request : PostJoinGroupRequest) => postJoinGroup(request.token, request.user_id),
+        mutationFn : postJoinGroup,
         onSuccess : (data, variables) => {
             queryClient.invalidateQueries({
                 queryKey: ["group"]

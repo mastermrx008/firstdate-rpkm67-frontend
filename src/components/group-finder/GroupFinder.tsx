@@ -18,7 +18,7 @@ const GroupFinder = () => {
     if (!user) return;
 
     const [groupSize, setGroupSize] = useState(0);
-    const { data: groupData, isFetched } = useGetGroupById(user.id);
+    const { data: groupData } = useGetGroupById(user.id);
 
     // Case not have a pair => need to click button before pairing
     const handleClickPairing = () => {
@@ -27,20 +27,16 @@ const GroupFinder = () => {
 
     // Case already have a pair => open pairing
     useEffect(() => {
-        console.log(groupData)
-        if (isFetched) {
+        if (groupData) {
             console.log(groupData)
-            if (groupData && groupData.group.members.length === 2) {
+            console.log(user)
+            if (groupData.group.members.length === 2) {
                 setGroupSize(groupData.group.members.length)
             } else {
                 setGroupSize(0)
             }
         }
     }, [groupData]);
-
-    useEffect(() => {
-        console.log(user)
-    }, [user]);
 
     const handleCopyCode = () => {
         if (!groupData) return

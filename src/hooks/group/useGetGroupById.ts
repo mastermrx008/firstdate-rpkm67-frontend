@@ -3,18 +3,18 @@ import { apiClient } from "@/utils/axios"
 import { useMutation, useQuery } from "@tanstack/react-query"
 
 type memberData = {
-    "first_name": "string",
-    "id": "string",
-    "image_url": "string",
-    "last_name": "string"
+    "first_name": string,
+    "id":string,
+    "image_url": string,
+    "last_name": string
 }
 interface GetGroupbyIdResponse {
     "group": {
-        "id": "string",
+        "id": string,
         "is_confirmed": true,
-        "leader_id": "string",
+        "leader_id": string,
         "members": memberData[],
-        "token": "string"
+        "token": string
     }
 }
 const getGroupbyId = async (userId: string) => {
