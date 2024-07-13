@@ -134,6 +134,7 @@ const UploadProfilePicture: React.FC<UploadProfilePictureProps> = ({
             />
           </div>
         </div>
+        
       </div>
       {errorMessage && (
         <div className="text-red-500 mb-2 text-center">{errorMessage}</div>

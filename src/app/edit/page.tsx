@@ -248,10 +248,7 @@ export default function Register() {
 
             <label>
               <span>เบอร์โทรศัพท์</span>
-              <div className="flex gap-4 items-center">
-                <div className="border h-[40px] border-black rounded-lg w-1/4 flex items-center justify-center">
-                  +66
-                </div>
+              <div className="flex items-center">
                 <StyledInput
                   type="text"
                   name="tel"
@@ -270,10 +267,7 @@ export default function Register() {
             </h3>
             <label>
               <span>เบอร์โทรศัพท์ของผู้ปกครอง</span>
-              <div className="flex gap-4 pb-2">
-                <div className="border h-[40px] border-black rounded-lg w-1/4 flex items-center justify-center">
-                  +66
-                </div>
+              <div className="flex pb-2">
                 <StyledInput
                   type="text"
                   name="parent_tel"
@@ -341,7 +335,7 @@ export default function Register() {
               className="mb-2"
             />
             <Button
-              variant="pink"
+              variant="fuchsia"
               onClick={handleSubmit}
             >
               ยืนยันข้อมูล

@@ -160,7 +160,8 @@ export default function Register() {
         return (
           <div className="flex flex-col space-y-4">
             <h2 className="text-2xl font-bold text-center">ข้อมูลส่วนตัว</h2>
-            <div className="w-3/5">
+            <label className="w-3/5">
+              <span>คำนำหน้า</span>
               <StyledSelect
                 name="title"
                 value={formData.title}
@@ -179,33 +180,46 @@ export default function Register() {
                 <option value="เด็กชาย">เด็กชาย</option>
                 <option value="เด็กหญิง">เด็กหญิง</option>
               </StyledSelect>
-            </div>
-            <StyledInput
-              type="text"
-              name="firstname"
-              placeholder="ชื่อจริง"
-              value={formData.firstname}
-              onChange={handleInputChange}
-              error={errors.includes('firstname')}
-            />
-            <StyledInput
-              type="text"
-              name="lastname"
-              placeholder="นามสกุล"
-              value={formData.lastname}
-              onChange={handleInputChange}
-              error={errors.includes('lastname')}
-            />
-            <StyledInput
-              type="text"
-              name="nickname"
-              placeholder="ชื่อเล่น"
-              value={formData.nickname}
-              onChange={handleInputChange}
-              error={errors.includes('nickname')}
-            />
+            </label>
+            <label>
+              <span>ชื่อจริง</span>
+              <StyledInput
+                type="text"
+                name="firstname"
+                placeholder="ชื่อจริง"
+                value={formData.firstname}
+                onChange={handleInputChange}
+                error={errors.includes('firstname')}
+              />
+            </label>
+
+            <label>
+              <span>นามสกุล</span>
+              <StyledInput
+                type="text"
+                name="lastname"
+                placeholder="นามสกุล"
+                value={formData.lastname}
+                onChange={handleInputChange}
+                error={errors.includes('lastname')}
+              />
+            </label>
+
+            <label>
+              <span>ชื่อเล่น</span>
+              <StyledInput
+                type="text"
+                name="nickname"
+                placeholder="ชื่อเล่น"
+                value={formData.nickname}
+                onChange={handleInputChange}
+                error={errors.includes('nickname')}
+              />
+            </label>
+
             <div className="flex flex-row justify-between gap-2">
-              <div className="w-4/5">
+              <label className="w-4/5 flex flex-col">
+                <span>คณะ</span>
                 <StyledSelect
                   name="faculty"
                   value={formData.faculty}
@@ -227,8 +241,9 @@ export default function Register() {
                     </option>
                   ))}
                 </StyledSelect>
-              </div>
-              <div className="w-2/5">
+              </label>
+              <label className="w-2/5 flex flex-col">
+                <span>ชั้นปี</span>
                 <StyledSelect
                   name="year"
                   value={formData.year}
@@ -244,7 +259,7 @@ export default function Register() {
                   <option value={1}>1</option>
                   <option value={2}>2</option>
                 </StyledSelect>
-              </div>
+              </label>
             </div>
             <div className="flex flex-col items-center gap-4">
               <Button
@@ -266,7 +281,8 @@ export default function Register() {
         return (
           <div className="flex flex-col space-y-4 items-center">
             <h2 className="text-2xl font-bold">ข้อมูลการติดต่อ</h2>
-            <div className="flex flex-row">
+            <label className="flex flex-col">
+              <span>เบอร์โทรศัพท์</span>
               <StyledInput
                 type="text"
                 name="tel"
@@ -275,14 +291,15 @@ export default function Register() {
                 onChange={handleInputChange}
                 error={errors.includes('tel')}
               />
-            </div>
+            </label>
             <Image
               src={CurvedLineIcon}
               alt="curved-line"
               className="mb-4"
             />
             <h2 className="text-2xl font-bold">ข้อมูลผู้ปกครอง</h2>
-            <div className="flex flex-row">
+            <label className="flex flex-col">
+              <span>เบอร์โทรศัพท์ของผู้ปกครอง</span>
               <StyledInput
                 type="text"
                 name="parentTel"
@@ -291,23 +308,26 @@ export default function Register() {
                 onChange={handleInputChange}
                 error={errors.includes('parentTel')}
               />
-            </div>
-            <StyledSelect
-              name="parent"
-              value={formData.parent}
-              onChange={handleInputChange}
-              error={errors.includes('parent')}
-            >
-              <option
-                disabled
-                value=""
+            </label>
+            <label className="flex flex-col w-full pb-10">
+              <span>ความสัมพันธ์</span>
+              <StyledSelect
+                name="parent"
+                value={formData.parent}
+                onChange={handleInputChange}
+                error={errors.includes('parent')}
               >
-                ความสัมพันธ์
-              </option>
-              <option value="บิดา">บิดา</option>
-              <option value="มารดา">มารดา</option>
-              <option value="อื่นๆ">อื่นๆ</option>
-            </StyledSelect>
+                <option
+                  disabled
+                  value=""
+                >
+                  ความสัมพันธ์
+                </option>
+                <option value="บิดา">บิดา</option>
+                <option value="มารดา">มารดา</option>
+                <option value="อื่นๆ">อื่นๆ</option>
+              </StyledSelect>
+            </label>
             <Button
               variant="pink"
               onClick={handleNextStep}
@@ -326,38 +346,50 @@ export default function Register() {
         return (
           <div className="flex flex-col space-y-4">
             <h2 className="text-2xl font-bold text-center">
-              ข้อมูลทางการแพทย์
+              ข้อมูลด้านสุขภาพ
             </h2>
-            <StyledInput
-              type="text"
-              name="foodAllergy"
-              placeholder="อาหารที่แพ้"
-              value={formData.foodAllergy}
-              onChange={handleInputChange}
-              error={errors.includes('foodAllergy')}
-            />
-            <StyledInput
-              type="text"
-              name="drugAllergy"
-              placeholder="ยาที่แพ้"
-              value={formData.drugAllergy}
-              onChange={handleInputChange}
-              error={errors.includes('drugAllergy')}
-            />
-            <StyledInput
-              type="text"
-              name="illness"
-              placeholder="โรคประจำตัว"
-              value={formData.illness}
-              onChange={handleInputChange}
-              error={errors.includes('illness')}
-            />
-            <div className="flex flex-col items-center gap-4">
+            <label className="flex flex-col">
+              <span>อาหารที่แพ้</span>
+              <StyledInput
+                type="text"
+                name="foodAllergy"
+                placeholder="อาหารที่แพ้"
+                value={formData.foodAllergy}
+                onChange={handleInputChange}
+                error={errors.includes('foodAllergy')}
+              />
+            </label>
+
+            <label className="flex flex-col">
+              <span>ยาที่เเพ้</span>
+              <StyledInput
+                type="text"
+                name="drugAllergy"
+                placeholder="ยาที่แพ้"
+                value={formData.drugAllergy}
+                onChange={handleInputChange}
+                error={errors.includes('drugAllergy')}
+              />
+            </label>
+
+            <label className="flex flex-col">
+              <span>โรคประจำตัว</span>
+              <StyledInput
+                type="text"
+                name="illness"
+                placeholder="โรคประจำตัว"
+                value={formData.illness}
+                onChange={handleInputChange}
+                error={errors.includes('illness')}
+              />
+            </label>
+
+            <div className="flex flex-col items-center gap-4 pt-12">
               <Button
-                variant="pink"
+                variant="fuchsia"
                 onClick={handleSubmit}
               >
-                ยืนยัน
+                ยืนยันข้อมูล
               </Button>
               <Button
                 variant="white"
