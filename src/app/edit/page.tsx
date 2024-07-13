@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { getAccessToken } from '@/utils/auth';
 import { apiClient } from '@/utils/axios';
-import { User } from '@/types/user';
 import UploadProfilePicture from '@/components/register/UploadProfilePicture';
 import {
   StyledInput,
