@@ -105,9 +105,8 @@ export default function Edit() {
     if (validateForm()) {
       setUpload(true);
       updateUserProfile(formData).then(async () => {
-        setUpload(true);
-        resetContext();
         toast.success('เเก้ไขข้อมูลสำเร็จ');
+        await resetContext();
         router.push('/home');
       });
     }

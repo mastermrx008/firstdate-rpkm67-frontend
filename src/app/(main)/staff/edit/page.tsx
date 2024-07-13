@@ -2,7 +2,6 @@
 
 import { useState, ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import StarIcon from '@public/star.svg';
 import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { getAccessToken } from '@/utils/auth';
@@ -12,36 +11,34 @@ import {
   StyledInput,
   StyledSelect,
 } from '@/components/(main)/register/StyledComponents';
+import EditIcon from '@public/edit/edit-icon.svg';
+import CurvedLineIcon from '@public/curved-line.svg';
 import Button from '@/components/(main)/register/Button';
 import { major } from '@/utils/register';
 import toast from 'react-hot-toast';
 import { UserDTO } from '@/dtos/userDTO';
-import Border from '@/components/firstdate/Border';
 import Spinner from '@/components/firstdate/Spinner';
-import Pdpa from '@/components/(main)/pdpa';
 
 type RegisterUser = Pick<
   UserDTO,
   'title' | 'firstname' | 'lastname' | 'nickname' | 'faculty' | 'year' | 'tel'
 >;
 
-export default function Register() {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState<RegisterUser>({
-    title: '',
-    firstname: '',
-    lastname: '',
-    nickname: '',
-    faculty: '',
-    year: 0,
-    tel: '',
-  });
-  const [isPdpaOpen, setIsPdpaOpen] = useState(false);
-  const [errors, setErrors] = useState<string[]>([]);
+export default function Edit() {
   const router = useRouter();
+  const [upload, setUpload] = useState(false);
   const { user, resetContext } = useAuth();
   const userId = user?.id;
-  const [upload, setUpload] = useState(false);
+  const [formData, setFormData] = useState<RegisterUser>({
+    title: user?.title || '',
+    firstname: user?.firstname || '',
+    lastname: user?.lastname || '',
+    nickname: user?.nickname || '',
+    faculty: user?.faculty || '',
+    year: user?.year || 0,
+    tel: user?.tel || '',
+  });
+  const [errors, setErrors] = useState<string[]>([]);
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -53,34 +50,23 @@ export default function Register() {
     });
   };
 
-  const validateStep = (): boolean => {
-    const stepErrors: string[] = [];
-    switch (currentStep) {
-      case 0:
-        // Note: validate in the UploadProfilePicture Component
-        break;
-      case 1:
-        if (!formData.title) stepErrors.push('title');
-        if (!formData.firstname) stepErrors.push('firstname');
-        if (!formData.lastname) stepErrors.push('lastname');
-        if (!formData.nickname) stepErrors.push('nickname');
-        if (!formData.faculty) stepErrors.push('faculty');
-        if (!formData.year) stepErrors.push('year');
-        if (!formData.tel) stepErrors.push('tel');
-        break;
-    }
+  const validateForm = (): boolean => {
+    const formErrors: string[] = [];
+    if (!formData.title) formErrors.push('title');
+    if (!formData.firstname) formErrors.push('firstname');
+    if (!formData.lastname) formErrors.push('lastname');
+    if (!formData.nickname) formErrors.push('nickname');
+    if (!formData.faculty) formErrors.push('faculty');
+    if (!formData.year) formErrors.push('year');
+    if (!formData.tel) formErrors.push('tel');
+    setErrors(formErrors);
 
-    setErrors(stepErrors);
-    const isError = stepErrors.length !== 0;
+    const isError = formErrors.length !== 0;
     if (isError) {
       toast.error('โปรดกรอกข้อมูลให้ครบ');
     }
 
     return !isError;
-  };
-
-  const handlePrevStep = () => {
-    setCurrentStep((currentStep) => currentStep - 1);
   };
 
   async function updateUserProfile(userData: RegisterUser) {
@@ -89,11 +75,7 @@ export default function Register() {
       const response = await apiClient.patch(
         `/user/profile/${userId}`,
         userData,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
+        { headers: { Authorization: `Bearer ${accessToken}` } }
       );
       console.log('User profile updated successfully:', response.data);
     } catch (error) {
@@ -102,43 +84,47 @@ export default function Register() {
   }
 
   const handleSubmit = () => {
-    if (validateStep()) {
-      setIsPdpaOpen(true);
+    if (validateForm()) {
+      setUpload(true);
+      updateUserProfile(formData).then(async () => {
+        setUpload(true);
+        toast.success('เเก้ไขข้อมูลสำเร็จ');
+        await resetContext();
+        router.push('/home');
+      });
     }
   };
 
-  const handlePdpaSuccess = async () => {
-    setUpload(true);
-    updateUserProfile(formData)
-      .then(async () => {
-        if (!user) return;
-        toast.success('ลงทะเบียนสำเร็จ');
+  return (
+    <div className="flex items-center flex-col w-[95%] min-h-[calc(95vw*(801/371))] my-[5%] mx-auto bg-white rounded-b-lg rounded-t-full  border-[1px] border-black">
+      {upload && (
+        <div className="z-[999] fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+          <Spinner />
+        </div>
+      )}
 
-        const isStaff = user.role == 'staff';
-        const newPath = isStaff ? '/staff/home' : '/registered';
-
-        resetContext();
-        router.push(newPath);
-      })
-      .catch(() => setUpload(false));
-    console.log('Form submitted', formData);
-  };
-
-  const renderStep = () => {
-    switch (currentStep) {
-      case 0:
-        return (
-          <div className="flex flex-col space-y-10">
-            <h2 className="text-2xl font-bold text-center">อัปโหลดรูปภาพ</h2>
-            <UploadProfilePicture onNext={() => setCurrentStep(1)} />
+      <div className="flex flex-col py-10 px-10">
+        <div className="flex flex-col items-center">
+          <Image
+            src={EditIcon}
+            alt="edit-icon"
+            className="mb-2"
+          />
+          <h2 className="text-2xl font-bold mb-4">แก้ไขข้อมูล</h2>
+          <Image
+            src={CurvedLineIcon}
+            alt="curved-line-icon"
+            className="mb-6"
+          />
+          <div className="flex flex-col mb-4">
+            <UploadProfilePicture />
           </div>
-        );
-      case 1:
-        return (
-          <div className="flex flex-col space-y-4">
-            <h2 className="text-2xl font-bold text-center">ข้อมูลส่วนตัว</h2>
-            <label className="w-3/5">
-              <span>คำนำหน้าชื่อ</span>
+        </div>
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col space-y-2">
+            <h3 className="text-xl font-semibold text-center">ข้อมูลส่วนตัว</h3>
+            <label className="flex flex-col items-start w-1/2">
+              คำนำหน้าชื่อ
               <StyledSelect
                 name="title"
                 value={formData.title}
@@ -158,6 +144,7 @@ export default function Register() {
                 <option value="เด็กหญิง">เด็กหญิง</option>
               </StyledSelect>
             </label>
+
             <label>
               <span>ชื่อจริง</span>
               <StyledInput
@@ -194,8 +181,8 @@ export default function Register() {
               />
             </label>
 
-            <div className="flex flex-row justify-between gap-2">
-              <label className="w-4/5 flex flex-col">
+            <div className="flex space-x-2">
+              <label>
                 <span>คณะ</span>
                 <StyledSelect
                   name="faculty"
@@ -211,8 +198,8 @@ export default function Register() {
                   </option>
                   {major.map((m) => (
                     <option
+                      value="21"
                       key={m.id}
-                      value={m.id}
                     >
                       {m.name}
                     </option>
@@ -220,7 +207,7 @@ export default function Register() {
                 </StyledSelect>
               </label>
 
-              <label className="w-2/5 flex flex-col">
+              <label>
                 <span>ชั้นปี</span>
                 <StyledSelect
                   name="year"
@@ -240,61 +227,42 @@ export default function Register() {
               </label>
             </div>
 
-            <label className="flex flex-col">
+            <label>
               <span>เบอร์โทรศัพท์</span>
-              <StyledInput
-                type="text"
-                name="tel"
-                placeholder="เบอร์โทรศัพท์"
-                value={formData.tel}
-                onChange={handleInputChange}
-                error={errors.includes('tel')}
-              />
+              <div className="flex items-center">
+                <StyledInput
+                  type="text"
+                  name="tel"
+                  placeholder="เบอร์โทรศัพท์"
+                  value={formData.tel}
+                  onChange={handleInputChange}
+                  error={errors.includes('tel')}
+                />
+              </div>
             </label>
-
-            <div className="flex flex-col items-center gap-4">
-              <Button
-                variant="fuchsia"
-                onClick={handleSubmit}
-              >
-                ยืนยันข้อมูล
-              </Button>
-              <Button
-                variant="white"
-                onClick={handlePrevStep}
-              >
-                ย้อนกลับ
-              </Button>
-            </div>
           </div>
-        );
-      default:
-        return null;
-    }
-  };
 
-  return (
-    <Border variant="white-brown">
-      {upload && (
-        <div className="z-[999] fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center">
-          <Spinner />
-        </div>
-      )}
-      <div className="my-auto flex flex-col items-center justify-center">
-        <Image
-          src={StarIcon}
-          alt="star"
-          className="mb-4"
-        />
-        <div className="w-full max-w-md">
-          <div className="space-y-6">{renderStep()}</div>
+          <div className="flex flex-col items-center gap-4 mt-6">
+            <Image
+              src={CurvedLineIcon}
+              alt="curved-line-icon"
+              className="mb-2"
+            />
+            <Button
+              variant="fuchsia"
+              onClick={handleSubmit}
+            >
+              ยืนยันข้อมูล
+            </Button>
+            <Button
+              variant="white"
+              onClick={() => router.push('/staff/home')}
+            >
+              ยกเลิก
+            </Button>
+          </div>
         </div>
       </div>
-      <Pdpa
-        isOpen={isPdpaOpen}
-        onOpenChange={setIsPdpaOpen}
-        onSuccess={handlePdpaSuccess}
-      />
-    </Border>
+    </div>
   );
 }

@@ -147,7 +147,7 @@ export default function Register() {
         const isStaff = user.role == 'staff';
         const newPath = isStaff ? '/staff/home' : '/registered';
 
-        resetContext();
+        await resetContext();
         router.push(newPath);
       })
       .catch(() => setUpload(false));
