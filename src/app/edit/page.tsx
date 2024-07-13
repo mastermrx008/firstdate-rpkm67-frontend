@@ -107,7 +107,7 @@ export default function Register() {
       setUpload(true);
       updateUserProfile(formData).then(async () => {
         setUpload(true);
-        await resetContext();
+        resetContext();
         toast.success('เเก้ไขข้อมูลสำเร็จ');
         router.push('/home');
       });

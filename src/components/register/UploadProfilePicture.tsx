@@ -59,7 +59,7 @@ const UploadProfilePicture: React.FC<UploadProfilePictureProps> = ({
       );
       console.log('Photo uploaded successfully:', response.data);
       setCurrentPhotoUrl(response.data.photo_url);
-      await resetContext();
+      resetContext();
     } catch (error) {
       console.error('Error uploading photo:', error);
     } finally {

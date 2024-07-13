@@ -10,7 +10,6 @@ import { useAuth } from '@/context/AuthContext';
 import { getAccessToken } from '@/utils/auth';
 import { apiClient } from '@/utils/axios';
 import Pdpa from '@/components/pdpa';
-import { User } from '@/types/user';
 import UploadProfilePicture from '@/components/register/UploadProfilePicture';
 import {
   StyledInput,
@@ -20,9 +19,10 @@ import Button from '@/components/register/Button';
 import { major } from '@/utils/register';
 import Spinner from '@/components/Spinner';
 import toast from 'react-hot-toast';
+import { UserDTO } from '@/dtos/userDTO';
 
 type RegisterUser = Pick<
-  User,
+  UserDTO,
   | 'title'
   | 'firstname'
   | 'lastname'
@@ -30,10 +30,10 @@ type RegisterUser = Pick<
   | 'faculty'
   | 'year'
   | 'tel'
-  | 'parentTel'
+  | 'parent_tel'
   | 'parent'
-  | 'foodAllergy'
-  | 'drugAllergy'
+  | 'food_allergy'
+  | 'drug_allergy'
   | 'illness'
 >;
 
@@ -47,10 +47,10 @@ export default function Register() {
     faculty: '',
     year: 0,
     tel: '',
-    parentTel: '',
+    parent_tel: '',
     parent: '',
-    foodAllergy: '',
-    drugAllergy: '',
+    food_allergy: '',
+    drug_allergy: '',
     illness: '',
   });
   const [isPdpaOpen, setIsPdpaOpen] = useState(false);
@@ -86,15 +86,21 @@ export default function Register() {
         break;
       case 2:
         if (!formData.tel) stepErrors.push('tel');
-        if (!formData.parentTel) stepErrors.push('parentTel');
+        if (!formData.parent_tel) stepErrors.push('parent_tel');
         if (!formData.parent) stepErrors.push('parent');
         break;
       case 3:
         // Note: not validate food, drug, and illness
         break;
     }
+
     setErrors(stepErrors);
-    return stepErrors.length === 0;
+    const isError = stepErrors.length !== 0;
+    if (isError) {
+      toast.error('โปรดกรอกข้อมูลให้ครบ');
+    }
+
+    return !isError;
   };
 
   const handleNextStep = () => {
@@ -133,17 +139,18 @@ export default function Register() {
 
   const handlePdpaSuccess = async () => {
     setUpload(true);
-    updateUserProfile(formData).then(async () => {
-      setUpload(false);
-      if (!user) return;
-      toast.success('ลงทะเบียนสำเร็จ');
+    updateUserProfile(formData)
+      .then(async () => {
+        if (!user) return;
+        toast.success('ลงทะเบียนสำเร็จ');
 
-      const isStaff = user.role == 'staff';
-      const newPath = isStaff ? '/staff/home' : '/registered';
+        const isStaff = user.role == 'staff';
+        const newPath = isStaff ? '/staff/home' : '/registered';
 
-      await resetContext();
-      router.push(newPath);
-    });
+        resetContext();
+        router.push(newPath);
+      })
+      .catch(() => setUpload(false));
     console.log('Form submitted', formData);
   };
 
@@ -302,11 +309,11 @@ export default function Register() {
               <span>เบอร์โทรศัพท์ของผู้ปกครอง</span>
               <StyledInput
                 type="text"
-                name="parentTel"
+                name="parent_tel"
                 placeholder="เบอร์โทรศัพท์"
-                value={formData.parentTel}
+                value={formData.parent_tel}
                 onChange={handleInputChange}
-                error={errors.includes('parentTel')}
+                error={errors.includes('parent_tel')}
               />
             </label>
             <label className="flex flex-col w-full pb-10">
@@ -345,16 +352,14 @@ export default function Register() {
       case 3:
         return (
           <div className="flex flex-col space-y-4">
-            <h2 className="text-2xl font-bold text-center">
-              ข้อมูลด้านสุขภาพ
-            </h2>
+            <h2 className="text-2xl font-bold text-center">ข้อมูลด้านสุขภาพ</h2>
             <label className="flex flex-col">
               <span>อาหารที่แพ้</span>
               <StyledInput
                 type="text"
-                name="foodAllergy"
+                name="food_allergy"
                 placeholder="อาหารที่แพ้"
-                value={formData.foodAllergy}
+                value={formData.food_allergy}
                 onChange={handleInputChange}
                 error={errors.includes('foodAllergy')}
               />
@@ -364,9 +369,9 @@ export default function Register() {
               <span>ยาที่เเพ้</span>
               <StyledInput
                 type="text"
-                name="drugAllergy"
+                name="drug_allergy"
                 placeholder="ยาที่แพ้"
-                value={formData.drugAllergy}
+                value={formData.drug_allergy}
                 onChange={handleInputChange}
                 error={errors.includes('drugAllergy')}
               />
