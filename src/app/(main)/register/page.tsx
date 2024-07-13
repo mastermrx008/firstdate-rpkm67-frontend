@@ -10,12 +10,12 @@ import { useAuth } from '@/context/AuthContext';
 import { getAccessToken } from '@/utils/auth';
 import { apiClient } from '@/utils/axios';
 import Pdpa from '@/components/pdpa';
-import UploadProfilePicture from '@/components/register/UploadProfilePicture';
+import UploadProfilePicture from '@/components/(main)/register/UploadProfilePicture';
 import {
   StyledInput,
   StyledSelect,
-} from '@/components/register/StyledComponents';
-import Button from '@/components/register/Button';
+} from '@/components/(main)/register/StyledComponents';
+import Button from '@/components/(main)/register/Button';
 import { major } from '@/utils/register';
 import Spinner from '@/components/Spinner';
 import toast from 'react-hot-toast';

@@ -7,8 +7,8 @@ import MenuList from '@/components/MenuList';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
-import UserInfo from '@/components/profile/userInfo';
-import StatBars from '@/components/profile/statBars';
+import UserInfo from '@/components/(main)/profile/userInfo';
+import StatBars from '@/components/firstdate/profile/statBars';
 
 export default function Profile() {
   const { user } = useAuth();
