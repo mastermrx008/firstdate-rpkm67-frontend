@@ -107,7 +107,7 @@ export default function Edit() {
       updateUserProfile(formData).then(async () => {
         toast.success('เเก้ไขข้อมูลสำเร็จ');
         await resetContext();
-        router.push('/home');
+        router.back();
       });
     }
   };
@@ -340,7 +340,7 @@ export default function Edit() {
             </Button>
             <Button
               variant="white"
-              onClick={() => router.push('/home')}
+              onClick={() => router.back()}
             >
               ยกเลิก
             </Button>
