@@ -3,10 +3,11 @@
 import FDLogo from '@public/FIrst Date Logo.svg';
 import spark from '@public/spark.png';
 import Image from 'next/image';
-import EndingPopupModal from '@/components/ending/popup/EndingPopupModal';
 import { useState } from 'react';
 import Link from 'next/link';
-import MenuList from '@/components/MenuList';
+import Border from '@/components/firstdate/Border';
+import MenuList from '@/components/firstdate/MenuList';
+import EndingPopupModal from '@/components/firstdate/result/popup/EndingPopupModal';
 
 export default function RewardDone() {
   const [isOpenEndingModal, setIsOpenEndingModal] = useState<boolean>(false);

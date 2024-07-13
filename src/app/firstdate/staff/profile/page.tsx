@@ -7,7 +7,7 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 import { useAuth } from '@/context/AuthContext';
 import Border from '@/components/firstdate/Border';
 import MenuList from '@/components/firstdate/MenuList';
-import { getMajorNameById, major, majorMap } from '@/utils/register';
+import { getMajorNameById } from '@/utils/register';
 
 export default function AdminInfo() {
   const { user, logout } = useAuth();

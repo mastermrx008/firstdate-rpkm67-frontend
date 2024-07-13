@@ -43,5 +43,6 @@ export const majorMap = {
 };
 
 export const getMajorNameById = (id: string): string => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return (majorMap as any)[id];
 };

@@ -24,7 +24,7 @@ export default function Profile() {
               alt="logo"
               className="w-[60%] mb-2"
             />
-            <UserInfo  user={user} />
+            <UserInfo user={user} />
             <Image
               src={bowLine}
               alt="bowLine"

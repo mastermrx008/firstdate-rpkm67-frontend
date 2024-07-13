@@ -9,8 +9,10 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { patchReward } from '@/utils/user';
 import { useRouter } from 'next/navigation';
-import NotificationModal from '@/components/congratulation/NotificationModal';
-import MenuList from '@/components/MenuList';
+import Border from '@/components/firstdate/Border';
+import ConfirmationModal from '@/components/firstdate/confirmationModal';
+import NotificationModal from '@/components/firstdate/congratulation/NotificationModal';
+import MenuList from '@/components/firstdate/MenuList';
 
 export default function Reward() {
   const [isOpen, setIsOpen] = useState(false);

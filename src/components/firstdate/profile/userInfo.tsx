@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import placeholder from '@public/placeholder.svg';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getMajorNameById, major } from '@/utils/register';
+import { getMajorNameById } from '@/utils/register';
 
 interface UserInfoProps {
   user: User;

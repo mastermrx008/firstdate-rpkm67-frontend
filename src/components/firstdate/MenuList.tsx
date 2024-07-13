@@ -24,7 +24,7 @@ export default function MenuList({ isRewardPage }: TwoCircleMenuProps) {
       const url = `/firstdate${isStaff ? '/staff' : ''}/${path}`;
       router.push(url);
     },
-    [router]
+    [router, pathname]
   );
 
   const isPath = useCallback(
