@@ -9,12 +9,22 @@ import React, {
   useState,
 } from 'react';
 import Spinner from '@/components/Spinner';
-import { useAuth } from '@/context/AuthContext'; // Make sure to use the existing AuthContext
-import { getBaan, createBaan, updateBaan } from '@/utils/baan';
+import { useAuth } from '@/context/AuthContext';
+import {
+  getCountByBaan,
+  createBaanSelection,
+  updateBaanSelection,
+  getBaanSelectionByGroupId,
+  deleteBaanSelection,
+} from '@/utils/baan';
+import { BaanCount } from '@/types/baan';
+import { BaanSelection } from '@/types/BaanSelection';
 
 interface IBaanContext {
-  baan: string | null;
-  setBaan: (baan: string) => void;
+  baanCounts: BaanCount[] | null;
+  selectedBaan: BaanSelection[] | null;
+  addBaanSelection: (baanId: string, order: number) => void;
+  removeBaanSelection: (baanId: string) => void;
   isLoading: boolean;
 }
 
@@ -24,51 +34,100 @@ export const useBaan = () => useContext(BaanContext);
 
 const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { user, resetContext } = useAuth();
-  const [baan, setBaan] = useState<string | null>(null);
+  const [baanCounts, setBaanCounts] = useState<BaanCount[] | null>(null);
+  const [selectedBaan, setSelectedBaan] = useState<BaanSelection[] | null>(
+    null
+  );
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const fetchBaan = useCallback(async () => {
+  const fetchBaanCounts = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const counts = await getCountByBaan();
+      if (counts instanceof Error) {
+        throw counts;
+      }
+      setBaanCounts(counts);
+    } catch (error) {
+      console.log('Error fetching baan counts:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const fetchSelectedBaan = useCallback(async () => {
     if (!user) return;
 
     setIsLoading(true);
     try {
-      const fetchedBaan = await getBaan(user.id);
-      if (fetchedBaan instanceof Error) {
-        throw fetchedBaan;
+      const selected = await getBaanSelectionByGroupId(user.group_id);
+      if (selected instanceof Error) {
+        throw selected;
       }
-      setBaan(fetchedBaan);
+      setSelectedBaan(selected.baanSelections);
     } catch (error) {
-      console.log('Error fetching baan:', error);
+      console.log('Error fetching selected baan:', error);
     } finally {
       setIsLoading(false);
     }
   }, [user]);
 
-  const handleSetBaan = async (newBaan: string) => {
+  const addBaanSelection = async (baanId: string, order: number) => {
     if (!user) return;
 
     setIsLoading(true);
     try {
-      if (baan) {
-        await updateBaan(user.id, newBaan);
+      if (selectedBaan) {
+        const existingSelection = selectedBaan.find(
+          (selection) => selection.baanId === baanId
+        );
+        if (existingSelection) {
+          await updateBaanSelection(baanId, user.id, order);
+        } else {
+          await createBaanSelection(baanId, user.id, order);
+        }
       } else {
-        await createBaan(user.id, newBaan);
+        await createBaanSelection(baanId, user.id, order);
       }
-      setBaan(newBaan);
+      await fetchSelectedBaan();
       resetContext();
     } catch (error) {
-      console.log('Error setting baan:', error);
+      console.log('Error selecting baan:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const removeBaanSelection = async (baanId: string) => {
+    if (!user) return;
+
+    setIsLoading(true);
+    try {
+      await deleteBaanSelection(baanId);
+      await fetchSelectedBaan();
+      resetContext();
+    } catch (error) {
+      console.log('Error removing baan:', error);
     } finally {
       setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchBaan();
-  }, [fetchBaan]);
+    fetchBaanCounts();
+    fetchSelectedBaan();
+  }, [fetchBaanCounts, fetchSelectedBaan]);
 
   return (
-    <BaanContext.Provider value={{ baan, setBaan: handleSetBaan, isLoading }}>
+    <BaanContext.Provider
+      value={{
+        baanCounts,
+        selectedBaan,
+        addBaanSelection,
+        removeBaanSelection,
+        isLoading,
+      }}
+    >
       {isLoading ? (
         <div className="w-full h-screen flex items-center justify-center bg-black bg-opacity-20">
           <Spinner />
