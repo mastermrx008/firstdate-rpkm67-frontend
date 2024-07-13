@@ -60,7 +60,7 @@ export const isUserRegistered = (user: User): boolean => {
     !!user.lastname &&
     !!user.nickname &&
     !!user.parent &&
-    !!user.parent_tel &&
+    !!user.parentTel &&
     !!user.tel &&
     !!user.title &&
     !!user.year

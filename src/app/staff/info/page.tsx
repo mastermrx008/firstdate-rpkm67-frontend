@@ -22,7 +22,7 @@ export default function AdminInfo() {
         />
         <div className="relative w-36 h-48 rounded-t-full bg-white drop-shadow-xl flex items-center justify-center overflow-hidden">
           <Image
-            src={user?.photo_url || placeholder}
+            src={user?.photoUrl || placeholder}
             alt="profile"
             fill
             className="p-1.5 rounded-t-full object-center object-cover"
