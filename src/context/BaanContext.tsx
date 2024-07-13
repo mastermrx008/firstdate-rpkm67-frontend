@@ -64,6 +64,7 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       if (selected instanceof Error) {
         throw selected;
       }
+      console.log('selected', selected);
       setSelectedBaan(selected.baanSelections);
     } catch (error) {
       console.log('Error fetching selected baan:', error);
@@ -114,9 +115,11 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchBaanCounts();
-    fetchSelectedBaan();
-  }, [fetchBaanCounts, fetchSelectedBaan]);
+    if (user) {
+      fetchBaanCounts();
+      fetchSelectedBaan();
+    }
+  }, [user, fetchBaanCounts, fetchSelectedBaan]);
 
   return (
     <BaanContext.Provider

@@ -28,6 +28,10 @@ const config: Config = {
           brown: '#AA8B84',
           yellow: '#EFD08B',
         },
+        rpkm: {
+          red: '#C94B4B',
+          cream: '#EAE3C3',
+        },
       },
       fontFamily: {
         season: ['var(--season)', 'system-ui'],

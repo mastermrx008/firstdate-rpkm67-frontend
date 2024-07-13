@@ -1,9 +1,10 @@
-import { BaanCount } from '@/types/baan';
 import {
-  BaanSelection,
-  DeleteBaanResponse,
-  GetBaanSelectionByGroupIdResponse,
-} from '@/types/BaanSelection';
+  convertBaanSelectionDTOToBaanSelection,
+  convertDeleteBaanResponseDTOToResponse,
+  convertGetBaanSelectionByGroupIdResponseDTOToResponse,
+} from '@/dtos/baanDTO';
+import { BaanCount } from '@/types/baan';
+import { GetBaanSelectionByGroupIdResponse } from '@/types/BaanSelection';
 import { Group } from '@/types/group';
 import { getAccessToken } from '@/utils/auth';
 import { apiClient } from '@/utils/axios';
@@ -81,7 +82,9 @@ export const updateBaanSelection = async (
         },
       }
     );
-    return res.data as BaanSelection;
+    const convertedData = convertBaanSelectionDTOToBaanSelection(res.data);
+
+    return convertedData;
   } catch (error) {
     return error;
   }
@@ -99,7 +102,9 @@ export const deleteBaanSelection = async (baanId: string) => {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    return res.data as DeleteBaanResponse;
+    const convertedData = convertDeleteBaanResponseDTOToResponse(res.data);
+
+    return convertedData;
   } catch (error) {
     return error;
   }
@@ -119,7 +124,10 @@ export const getBaanSelectionByGroupId = async (
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    return res.data as GetBaanSelectionByGroupIdResponse;
+    const convertedData = convertGetBaanSelectionByGroupIdResponseDTOToResponse(
+      res.data
+    );
+    return convertedData;
   } catch (error) {
     console.log('Error fetching baan selection:', error);
     return Error("Can't get baan selection");

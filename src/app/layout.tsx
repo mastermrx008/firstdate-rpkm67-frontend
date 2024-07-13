@@ -5,6 +5,7 @@ import './globals.css';
 import Footer from '@/components/Footer';
 import QueryClientWrapper from '@/components/QueryClientWrapper';
 import AuthProvider from '@/context/AuthContext';
+import BaanProvider from '@/context/BaanContext';
 import { Toaster } from 'react-hot-toast';
 
 export const metadata: Metadata = {
@@ -23,7 +24,9 @@ export default function RootLayout({
       >
         <Toaster />
         <QueryClientWrapper>
-          <AuthProvider>{children}</AuthProvider>
+          <AuthProvider>
+            <BaanProvider>{children}</BaanProvider>
+          </AuthProvider>
         </QueryClientWrapper>
         <Footer />
       </body>
