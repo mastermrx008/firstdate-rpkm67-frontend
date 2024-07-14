@@ -1,9 +1,9 @@
 import React from 'react';
-import BaanSelect from '@/components/rpkm/BaanSelect/BaanSelect';
+import BaanSelect from '@/components/rpkm/Baan/BaanSelect';
 const page = () => {
   return (
     <div className="flex items-center justify-center w-screen h-screen">
-      <BaanSelect />
+      <BaanSelect mode="edit" />
     </div>
   );
 };
