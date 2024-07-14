@@ -20,8 +20,8 @@ const FavoriteClubModal: React.FC<FavoriteClubModalProps> = ({
   };
 
   const handleConfirm = () => {
-    if(inputValue.length < 1){
-      return toast.error('กรุณากรอกข้อมูล')
+    if (inputValue.length < 1) {
+      return toast.error('กรุณากรอกข้อมูล');
     }
     onSubmit(activityId, inputValue);
     onClose();
