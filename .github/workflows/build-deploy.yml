@@ -43,7 +43,7 @@ jobs:
         id: tag_action
 
       - name: Set IMAGE_TAG
-        run:
+        run: |
           echo "IMAGE_TAG_DEV=${{ steps.tag_action.outputs.new_tag }}-dev" >> $GITHUB_ENV
           echo "IMAGE_TAG_PROD=${{ steps.tag_action.outputs.new_tag }}-prod" >> $GITHUB_ENV
 
