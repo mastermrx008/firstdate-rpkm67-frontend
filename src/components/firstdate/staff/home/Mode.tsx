@@ -1,4 +1,4 @@
-import { StaffHomeMode } from '@/app/staff/home/page';
+import { StaffHomeMode } from '@/app/firstdate/staff/home/page';
 import { cn } from '@/lib/utils';
 
 interface ModeInterface {
