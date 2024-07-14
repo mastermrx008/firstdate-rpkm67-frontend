@@ -104,7 +104,7 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
     setIsLoading(true);
     try {
-      await deleteBaanSelection(baanId);
+      await deleteBaanSelection(baanId, user.group_id);
       await fetchSelectedBaan();
       resetContext();
     } catch (error) {

@@ -9,6 +9,7 @@ interface BaanCardProps {
   title?: string;
   isEmpty?: boolean;
   mode?: 'select' | 'edit';
+  onDelete?: () => void;
 }
 
 const BaanCard: React.FC<BaanCardProps> = ({
@@ -17,6 +18,7 @@ const BaanCard: React.FC<BaanCardProps> = ({
   title,
   isEmpty = false,
   mode = 'select',
+  onDelete,
 }) => {
   return (
     <div className="flex items-center justify-center flex-col space-y-2">
@@ -58,6 +60,8 @@ const BaanCard: React.FC<BaanCardProps> = ({
           alt="ลบ"
           width={15}
           height={15}
+          onClick={onDelete}
+          className="cursor-pointer"
         />
       )}
     </div>

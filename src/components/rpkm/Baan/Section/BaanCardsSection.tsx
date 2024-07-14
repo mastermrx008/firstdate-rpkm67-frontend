@@ -1,7 +1,7 @@
-// BaanCardsSection.tsx
 import React from 'react';
 import BaanCard from '../Card/BaanCard';
 import { BaanSelection } from '@/types/BaanSelection';
+import { useBaan } from '@/context/BaanContext';
 
 interface BaanCardsSectionProps {
   allSelections: number[];
@@ -14,6 +14,7 @@ const BaanCardsSection: React.FC<BaanCardsSectionProps> = ({
   selectedBaan,
   mode,
 }) => {
+  const { removeBaanSelection } = useBaan();
   const topSelections = allSelections.slice(0, 3);
   const bottomSelections = allSelections.slice(3);
 
@@ -30,6 +31,7 @@ const BaanCardsSection: React.FC<BaanCardsSectionProps> = ({
               title={baan ? `บ้านที่ ${order}` : undefined}
               isEmpty={!baan}
               mode={mode}
+              onDelete={() => baan && removeBaanSelection(baan.baanId)}
             />
           );
         })}
@@ -45,6 +47,7 @@ const BaanCardsSection: React.FC<BaanCardsSectionProps> = ({
               title={baan ? `บ้านที่ ${order}` : undefined}
               isEmpty={!baan}
               mode={mode}
+              onDelete={() => baan && removeBaanSelection(baan.baanId)}
             />
           );
         })}

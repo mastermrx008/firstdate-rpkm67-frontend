@@ -71,8 +71,9 @@ export const updateBaanSelection = async (
 
   try {
     const res = await apiClient.patch(
-      `/selection/${baanId}`,
+      `/selection`,
       {
+        baan_id: baanId,
         ground_id: groundId,
         order,
       },
@@ -90,16 +91,20 @@ export const updateBaanSelection = async (
   }
 };
 
-export const deleteBaanSelection = async (baanId: string) => {
+export const deleteBaanSelection = async (baanId: string, groupId: string) => {
   const accessToken = await getAccessToken();
   if (!accessToken) {
     return Error('No access token');
   }
 
   try {
-    const res = await apiClient.delete(`/selection/${baanId}`, {
+    const res = await apiClient.delete('/selection', {
       headers: {
         Authorization: `Bearer ${accessToken}`,
+      },
+      data: {
+        baan_id: baanId,
+        group_id: groupId,
       },
     });
     const convertedData = convertDeleteBaanResponseDTOToResponse(res.data);
