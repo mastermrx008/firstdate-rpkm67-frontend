@@ -1,12 +1,12 @@
 export type Group = {
   id: string;
-  is_confirmed: boolean;
-  leader_id: string;
+  isConfirmed: boolean;
+  leaderId: string;
   members: {
-    first_name: string;
+    firstName: string;
     id: string;
-    image_url: string;
-    last_name: string;
+    imageUrl: string;
+    lastName: string;
   }[];
   token: string;
 };
