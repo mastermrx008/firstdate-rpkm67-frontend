@@ -4,7 +4,7 @@ import BaanEmpty from '@/components/rpkm/Baan/BaanEmpty';
 import Spinner from '@/components/firstdate/Spinner';
 import { useBaan } from '@/context/BaanContext';
 import { useAuth } from '@/context/AuthContext';
-import { getGroundByUserId } from '@/utils/group';
+import { getGroupByUserId } from '@/utils/group';
 import BaanCardsSection from './Section/BaanCardsSection';
 import BaanButtonsSection from './Section/BaanButtonsSection';
 import { ConfirmGroupSelection } from '@/utils/group';
@@ -22,7 +22,7 @@ const BaanSelect: React.FC<BaanSelectProps> = ({ mode }) => {
   useEffect(() => {
     const checkGroupStatus = async () => {
       if (user) {
-        const myGroup = await getGroundByUserId(user.id);
+        const myGroup = await getGroupByUserId(user.id);
         if (myGroup instanceof Error) {
           resetContext();
         } else if (myGroup) {

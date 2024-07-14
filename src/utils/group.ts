@@ -4,7 +4,7 @@ import { apiClient } from '@/utils/axios';
 import { Group } from '@/types/group';
 import { convertGroupDTOToGroup, GroupDTO } from '@/dtos/groupDTO';
 
-export const getGroundByUserId = async (
+export const getGroupByUserId = async (
   userId: string
 ): Promise<Group | Error> => {
   const accessToken = await getAccessToken();

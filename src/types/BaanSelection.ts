@@ -1,6 +1,6 @@
 export type BaanSelection = {
   baanId: string;
-  groundId: string;
+  groupId: string;
   order: number;
 };
 
@@ -10,5 +10,5 @@ export type GetBaanSelectionByGroupIdResponse = {
 
 export type DeleteBaanResponse = {
   baanId: string;
-  grounId: string;
+  grounpId: string;
 };

@@ -31,7 +31,7 @@ export const getCountByBaan = async (): Promise<BaanCount[] | Error> => {
 
 export const createBaanSelection = async (
   baanId: string,
-  groundId: string,
+  groupId: string,
   order: number
 ) => {
   const accessToken = await getAccessToken();
@@ -44,7 +44,7 @@ export const createBaanSelection = async (
       '/selection',
       {
         baan_id: baanId,
-        ground_id: groundId,
+        group_id: groupId,
         order,
       },
       {
@@ -61,7 +61,7 @@ export const createBaanSelection = async (
 
 export const updateBaanSelection = async (
   baanId: string,
-  groundId: string,
+  groupId: string,
   order: number
 ) => {
   const accessToken = await getAccessToken();
@@ -74,7 +74,7 @@ export const updateBaanSelection = async (
       `/selection`,
       {
         baan_id: baanId,
-        ground_id: groundId,
+        group_id: groupId,
         order,
       },
       {

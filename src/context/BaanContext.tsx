@@ -84,12 +84,12 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
           (selection) => selection.baanId === baanId
         );
         if (existingSelection) {
-          await updateBaanSelection(baanId, user.id, order);
+          await updateBaanSelection(baanId, user.groupId, order);
         } else {
-          await createBaanSelection(baanId, user.id, order);
+          await createBaanSelection(baanId, user.groupId, order);
         }
       } else {
-        await createBaanSelection(baanId, user.id, order);
+        await createBaanSelection(baanId, user.groupId, order);
       }
       await fetchSelectedBaan();
       resetContext();

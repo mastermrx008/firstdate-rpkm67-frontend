@@ -6,7 +6,7 @@ import {
 
 export type BaanSelectionDTO = {
   baan_id: string;
-  ground_id: string;
+  group_id: string;
   order: number;
 };
 
@@ -16,7 +16,7 @@ export type GetBaanSelectionByGroupIdResponseDTO = {
 
 export type DeleteBaanResponseDTO = {
   baan_id: string;
-  groun_id: string;
+  group_id: string;
 };
 
 export const convertBaanSelectionDTOToBaanSelection = (
@@ -24,7 +24,7 @@ export const convertBaanSelectionDTOToBaanSelection = (
 ): BaanSelection => {
   return {
     baanId: baanSelectionDTO.baan_id,
-    groundId: baanSelectionDTO.ground_id,
+    groupId: baanSelectionDTO.group_id,
     order: baanSelectionDTO.order,
   };
 };
@@ -44,6 +44,6 @@ export const convertDeleteBaanResponseDTOToResponse = (
 ): DeleteBaanResponse => {
   return {
     baanId: responseDTO.baan_id,
-    grounId: responseDTO.groun_id,
+    groupId: responseDTO.group_id,
   };
 };
