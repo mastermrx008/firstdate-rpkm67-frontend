@@ -5,7 +5,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: process.env.BASE_DOMAIN_IMAGES || '*',
+        hostname: process.env.BASE_DOMAIN_IMAGES ?? '*',
       },
     ],
   },
