@@ -12,7 +12,8 @@ on:
 env:
   SERVICE_NAME: rpkm67-frontend
   IMAGE_NAME: ghcr.io/${{ github.repository }}
-  IMAGE_TAG: <WILL_BE_SET>
+  IMAGE_TAG_DEV: <WILL_BE_SET>
+  IMAGE_TAG_PROD: <WILL_BE_SET>
 
 jobs:
   build:
@@ -53,18 +54,31 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ github.token }}
 
-      - name: Build and Push Docker Image
+      - name: Build and Push Docker Image (DEV)
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }},${{ env.IMAGE_NAME }}:latest
+          tags: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG_DEV }},${{ env.IMAGE_NAME }}:latest
           cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache
           cache-to: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache,mode=max
           build-args: |
-            API_BASE_URL=${{ vars.API_BASE_URL }}
-            FIRST_DATE_DATE=${{ vars.FIRST_DATE_DATE }}
-            RUP_PEUN_DATE=${{ vars.RUP_PEUN_DATE }}
-            BASE_DOMAIN_IMAGES=${{ vars.BASE_DOMAIN_IMAGES }}
+            API_BASE_URL=${{ vars.DEV_API_BASE_URL }}
+            FIRST_DATE_DATE=${{ vars.DEV_FIRST_DATE_DATE }}
+            RUP_PEUN_DATE=${{ vars.DEV_RUP_PEUN_DATE }}
+            BASE_DOMAIN_IMAGES=${{ vars.DEV_BASE_DOMAIN_IMAGES }}
+
+      - name: Build and Push Docker Image (PROD)
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG_PROD }},${{ env.IMAGE_NAME }}:latest
+          cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache
+          cache-to: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache,mode=max
+          build-args: |
+            API_BASE_URL=${{ vars.PROD_API_BASE_URL }}
+            FIRST_DATE_DATE=${{ vars.PROD_FIRST_DATE_DATE }}
+            RUP_PEUN_DATE=${{ vars.PROD_RUP_PEUN_DATE }}
+            BASE_DOMAIN_IMAGES=${{ vars.PROD_BASE_DOMAIN_IMAGES }}
 
   cd:
     name: Continuous Deployment
@@ -83,13 +97,13 @@ jobs:
       - name: Update image tag in dev
         uses: mikefarah/yq@master
         with:
-          cmd: yq -i '.[0].value = "${{ env.IMAGE_NAME }}:" + strenv(IMAGE_TAG)' isd/${{ env.SERVICE_NAME }}/deployment.yaml
+          cmd: yq -i '.[0].value = "${{ env.IMAGE_NAME }}:" + strenv(IMAGE_TAG_DEV)' isd/${{ env.SERVICE_NAME }}/deployment.yaml
 
       - name: Update image tag in prod
         uses: mikefarah/yq@master
         if: github.ref == 'refs/heads/main'
         with:
-          cmd: yq -i '.[0].value = "${{ env.IMAGE_NAME }}:" + strenv(IMAGE_TAG)' prod/${{ env.SERVICE_NAME }}/deployment.yaml
+          cmd: yq -i '.[0].value = "${{ env.IMAGE_NAME }}:" + strenv(IMAGE_TAG_PROD)' prod/${{ env.SERVICE_NAME }}/deployment.yaml
 
       - name: Commit & Push changes
         uses: actions-js/push@v1.4
