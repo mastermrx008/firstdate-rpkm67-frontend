@@ -38,7 +38,7 @@ export const UserParser = (userDTO: UserDTO): User => {
     faculty: userDTO.faculty,
     firstname: userDTO.firstname,
     foodAllergy: userDTO.food_allergy,
-    group_id: userDTO.group_id,
+    groupId: userDTO.group_id,
     id: userDTO.id,
     illness: userDTO.illness,
     lastname: userDTO.lastname,
