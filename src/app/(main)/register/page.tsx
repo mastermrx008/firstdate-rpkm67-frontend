@@ -184,7 +184,7 @@ export default function Register() {
                 <option value="นาย">นาย</option>
                 <option value="นาง">นาง</option>
                 <option value="นางสาว">นางสาว</option>
-                <option value="อื่นๆ">อื่นๆ</option>
+                <option value="ไม่ระบุ">ไม่ระบุ</option>
               </StyledSelect>
             </label>
             <label>
