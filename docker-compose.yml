@@ -5,8 +5,8 @@ services:
     build:
       context: .
     environment:
-      NEXT_PUBLIC_API_BASE_URL: https://rpkm67-dev.sgcu.in.th/api/v1
-      NEXT_PUBLIC_FIRST_DATE_DATE: '2024-07-21'
-      NEXT_PUBLIC_RUP_PEUN_DATE: '2024-07-20'
+      API_BASE_URL: https://rpkm67-dev.sgcu.in.th/api/v1
+      FIRST_DATE_DATE: '2024-07-21'
+      RUP_PEUN_DATE: '2024-07-20'
     ports:
       - 80:3000
