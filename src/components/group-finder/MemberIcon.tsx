@@ -16,6 +16,8 @@ const MemberIcon: React.FC<MemberIconProps> = ({
           src={img_url}
           alt="userPhoto"
           className="flex w-full h-full object-cover object-center rounded-full"
+          width={100}
+          height={100}
         />
       ) : (
         <div className="flex w-full aspect-square rounded-full bg-project-cream items-center justify-center p-4">
