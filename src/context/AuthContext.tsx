@@ -67,13 +67,12 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
     const isRegistered = isUserRegistered(userObj);
 
     if (isStaff) {
-      if (!isRegistered) {
-        return router.push('/staff/register');
-      }
-
-      if (!isStaffPage) {
-        return router.push('/firstdate/staff/home');
-      }
+      // if (!isRegistered) {
+      //   // return router.push('/staff/register');
+      // }
+      // if (!isStaffPage) {
+      //   return router.push('/firstdate/staff/home');
+      // }
     } else {
       if (!isRegistered) {
         return router.push('/register');

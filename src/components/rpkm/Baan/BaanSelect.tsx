@@ -1,13 +1,13 @@
-// BaanSelect.tsx
 'use client';
 import React, { useEffect, useState } from 'react';
 import BaanEmpty from '@/components/rpkm/Baan/BaanEmpty';
-import Spinner from '@/components/Spinner';
+import Spinner from '@/components/firstdate/Spinner';
 import { useBaan } from '@/context/BaanContext';
 import { useAuth } from '@/context/AuthContext';
 import { getGroundByUserId } from '@/utils/group';
 import BaanCardsSection from './Section/BaanCardsSection';
 import BaanButtonsSection from './Section/BaanButtonsSection';
+import { ConfirmGroupSelection } from '@/utils/group';
 
 interface BaanSelectProps {
   mode: 'select' | 'edit';
@@ -17,7 +17,7 @@ const BaanSelect: React.FC<BaanSelectProps> = ({ mode }) => {
   const { selectedBaan, isLoading } = useBaan();
   const { user, resetContext } = useAuth();
   const [isLeader, setIsLeader] = useState<boolean>(false);
-
+  const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
   useEffect(() => {
     const checkLeader = async () => {
       if (user) {
@@ -26,6 +26,7 @@ const BaanSelect: React.FC<BaanSelectProps> = ({ mode }) => {
           resetContext();
         } else if (myGroup) {
           setIsLeader(myGroup.leaderId === user.id);
+          setIsConfirmed(myGroup.isConfirmed);
         }
       }
     };
@@ -33,6 +34,16 @@ const BaanSelect: React.FC<BaanSelectProps> = ({ mode }) => {
     checkLeader();
   }, [user, resetContext]);
 
+  const onConfirm = async () => {
+    if (user) {
+      const confirmedGroup = await ConfirmGroupSelection(user.id);
+      if (confirmedGroup instanceof Error) {
+        resetContext();
+      } else {
+        setIsConfirmed(true);
+      }
+    }
+  };
   if (isLoading) {
     return <Spinner />;
   }
@@ -49,13 +60,16 @@ const BaanSelect: React.FC<BaanSelectProps> = ({ mode }) => {
           <BaanCardsSection
             allSelections={allSelections}
             selectedBaan={selectedBaan}
+            isConfirmed={isConfirmed}
             mode={mode}
           />
         )}
         <BaanButtonsSection
           mode={mode}
           isLeader={isLeader}
+          isConfirmed={isConfirmed}
           selectedBaan={selectedBaan}
+          onConfirm={onConfirm}
         />
       </div>
     </div>

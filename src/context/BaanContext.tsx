@@ -8,7 +8,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import Spinner from '@/components/Spinner';
+import Spinner from '@/components/firstdate/Spinner';
 import { useAuth } from '@/context/AuthContext';
 import {
   getCountByBaan,
@@ -25,6 +25,7 @@ interface IBaanContext {
   selectedBaan: BaanSelection[] | null;
   addBaanSelection: (baanId: string, order: number) => void;
   removeBaanSelection: (baanId: string) => void;
+  removeAllBaanSelection: () => void;
   isLoading: boolean;
 }
 
@@ -60,7 +61,7 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
     setIsLoading(true);
     try {
-      const selected = await getBaanSelectionByGroupId(user.group_id);
+      const selected = await getBaanSelectionByGroupId(user.groupId);
       if (selected instanceof Error) {
         throw selected;
       }
@@ -104,7 +105,28 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
     setIsLoading(true);
     try {
-      await deleteBaanSelection(baanId, user.group_id);
+      await deleteBaanSelection(baanId, user.groupId);
+      await fetchSelectedBaan();
+      resetContext();
+    } catch (error) {
+      console.log('Error removing baan:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const removeAllBaanSelection = async () => {
+    if (!user) return;
+
+    setIsLoading(true);
+    try {
+      if (selectedBaan) {
+        await Promise.all(
+          selectedBaan.map((selection) =>
+            deleteBaanSelection(selection.baanId, user.groupId)
+          )
+        );
+      }
       await fetchSelectedBaan();
       resetContext();
     } catch (error) {
@@ -128,6 +150,7 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         selectedBaan,
         addBaanSelection,
         removeBaanSelection,
+        removeAllBaanSelection,
         isLoading,
       }}
     >

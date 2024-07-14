@@ -10,6 +10,7 @@ interface BaanCardProps {
   isEmpty?: boolean;
   mode?: 'select' | 'edit';
   onDelete?: () => void;
+  isConfirmed?: boolean;
 }
 
 const BaanCard: React.FC<BaanCardProps> = ({
@@ -19,6 +20,7 @@ const BaanCard: React.FC<BaanCardProps> = ({
   isEmpty = false,
   mode = 'select',
   onDelete,
+  isConfirmed = false,
 }) => {
   return (
     <div className="flex items-center justify-center flex-col space-y-2">
@@ -54,7 +56,7 @@ const BaanCard: React.FC<BaanCardProps> = ({
           </div>
         )}
       </div>
-      {mode === 'edit' && (
+      {mode === 'edit' && !isConfirmed && (
         <Image
           src={trashIcon}
           alt="ลบ"

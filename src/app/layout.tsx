@@ -22,12 +22,9 @@ export default function RootLayout({
         className={`${athiti.variable} ${season.variable} ${sarun.variable} bg-1 font-athiti`}
       >
         <Toaster />
-        <QueryClientWrapper>
-          <AuthProvider>
-            <BaanProvider>{children}</BaanProvider>
-          </AuthProvider>
-        </QueryClientWrapper>
-
+        <AuthProvider>
+          <BaanProvider>{children}</BaanProvider>
+        </AuthProvider>
         <Footer />
       </body>
     </html>
