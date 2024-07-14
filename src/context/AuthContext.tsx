@@ -62,7 +62,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
     const userObj: User = JSON.parse(userStr);
     setUser(userObj);
 
-    const isStaff = userObj.role !== 'staff';
+    const isStaff = userObj.role == 'staff';
     const isStaffPage = path.includes('/staff');
     const isRegistered = isUserRegistered(userObj);
 
