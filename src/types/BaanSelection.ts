@@ -10,5 +10,5 @@ export type GetBaanSelectionByGroupIdResponse = {
 
 export type DeleteBaanResponse = {
   baanId: string;
-  grounpId: string;
+  groupId: string;
 };
