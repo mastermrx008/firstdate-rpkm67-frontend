@@ -1,4 +1,4 @@
-import GroupFinder from '@/components/group-finder/GroupFinder';
+import GroupFinder from '@/components/rpkm/group-finder/GroupFinder';
 
 const GroupFinderPage = () => {
   return (

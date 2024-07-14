@@ -1,11 +1,11 @@
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { useState } from 'react';
-import Modal from '@/components/rpkm/modal';
 import { useGetGroupByToken } from '@/hooks/group/useGetGroupByToken';
 import { usePostJoinGroup } from '@/hooks/group/usePostJoinGroup';
 import toast from 'react-hot-toast';
 import { useDeleteGroupMember } from '@/hooks/group/useDeleteGroupMember';
 import { usePostLeaveGroup } from '@/hooks/group/usePostLeaveGroup';
+import Modal from '@/components/rpkm/Modal/Modal';
 
 interface CodeTextareaProps {
   userId: string;

@@ -6,12 +6,11 @@ import { useEffect, useState } from 'react';
 import HandShake_color from '@public/group-finder/handshake_color.svg';
 import HandShake_gray from '@public/group-finder/handshake_gray.svg';
 import Image from 'next/image';
-import MemberIcon from './MemberIcon';
-import MemberName from './MemberName';
-import './style.css';
 import toast from 'react-hot-toast';
-import LeaveGroupButton from './LeaveGroupButton';
-import CodeTextarea from './CodeTextarea';
+import CodeTextarea from '@/components/rpkm/group-finder/CodeTextarea';
+import MemberIcon from '@/components/rpkm/group-finder/MemberIcon';
+import MemberName from '@/components/rpkm/group-finder/MemberName';
+import LeaveGroupButton from '@/components/rpkm/group-finder/LeaveGroupButton';
 
 const GroupFinder = () => {
   const { user } = useAuth();

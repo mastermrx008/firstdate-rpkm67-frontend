@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { useState } from 'react';
-import Modal from '@/components/rpkm/modal';
 import { usePostLeaveGroup } from '@/hooks/group/usePostLeaveGroup';
+import Modal from '@/components/rpkm/Modal/Modal';
 
 interface LeaveGroupButtonProps {
   groupSize: number;
