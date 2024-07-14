@@ -57,17 +57,17 @@ function Login() {
     if (!user) {
       return;
     }
-    // const isStaff = user.role == 'staff';
-    // const isRegistered = isUserRegistered(user);
-    // let newPath;
+    const isStaff = user.role == 'staff';
+    const isRegistered = isUserRegistered(user);
+    let newPath;
 
-    // if (isStaff) {
-    //   newPath = isRegistered ? '/staff/home' : '/staff/register';
-    // } else {
-    //   newPath = isRegistered ? '/home' : '/register';
-    // }
+    if (isStaff) {
+      newPath = isRegistered ? '/staff/home' : '/staff/register';
+    } else {
+      newPath = isRegistered ? '/home' : '/register';
+    }
 
-    // router.push(newPath);
+    router.push(newPath);
   }, [user, router]);
 
   const handleOnLogin = useCallback(() => {

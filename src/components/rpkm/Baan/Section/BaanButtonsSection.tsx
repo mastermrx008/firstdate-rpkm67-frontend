@@ -33,7 +33,6 @@ const BaanButtonsSection: React.FC<BaanButtonsSectionProps> = ({
   };
 
   if (isConfirmed) return null;
-
   if (mode === 'select') {
     return !selectedBaan || selectedBaan.length === 0 ? (
       <Button
@@ -83,7 +82,14 @@ const BaanButtonsSection: React.FC<BaanButtonsSectionProps> = ({
           setOpen={setModalOpen}
           callBackFunction={handleModalConfirm}
         >
-          คุณแน่ใจหรือไม่ว่าต้องการยืนยันการเลือกบ้าน?
+          <div className="flex items-center justify-center flex-col space-y-2 p-4">
+            <h1 className="text-3xl font-semibold text-white">
+              ยืนยันการเลือกบ้าน
+            </h1>
+            <p className="text-white text-xs">
+              *คุณแน่ใจที่จะยืนยันการเลือกบ้านนี้ใช่หรือไม่?
+            </p>
+          </div>
         </Modal>
       </>
     );
