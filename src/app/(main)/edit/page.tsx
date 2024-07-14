@@ -300,30 +300,44 @@ export default function Edit() {
             <h3 className="text-xl font-semibold text-center">
               ข้อมูลด้านสุขภาพ
             </h3>
-            <StyledInput
-              type="text"
-              name="food_allergy"
-              placeholder="อาหารที่แพ้"
-              value={formData.food_allergy}
-              onChange={handleInputChange}
-              error={errors.includes('food_allergy')}
-            />
-            <StyledInput
-              type="text"
-              name="drug_allergy"
-              placeholder="ยาที่แพ้"
-              value={formData.drug_allergy}
-              onChange={handleInputChange}
-              error={errors.includes('drug_allergy')}
-            />
-            <StyledInput
-              type="text"
-              name="illness"
-              placeholder="โรคประจำตัว"
-              value={formData.illness}
-              onChange={handleInputChange}
-              error={errors.includes('illness')}
-            />
+
+            <div className='flex flex-col gap-2'>
+              <label>
+                <span>อาหารที่แพ้</span>
+                <StyledInput
+                  type="text"
+                  name="food_allergy"
+                  placeholder="อาหารที่แพ้"
+                  value={formData.food_allergy}
+                  onChange={handleInputChange}
+                  error={errors.includes('food_allergy')}
+                />
+              </label>
+
+              <label>
+                <span>ยาที่แพ้</span>
+                <StyledInput
+                  type="text"
+                  name="drug_allergy"
+                  placeholder="ยาที่แพ้"
+                  value={formData.drug_allergy}
+                  onChange={handleInputChange}
+                  error={errors.includes('drug_allergy')}
+                />
+              </label>
+
+              <label>
+                <span>โรคประจำตัว</span>
+                <StyledInput
+                  type="text"
+                  name="illness"
+                  placeholder="โรคประจำตัว"
+                  value={formData.illness}
+                  onChange={handleInputChange}
+                  error={errors.includes('illness')}
+                />
+              </label>
+            </div>
           </div>
           <div className="flex flex-col items-center gap-4 mt-6">
             <Image
