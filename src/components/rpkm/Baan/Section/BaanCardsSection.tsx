@@ -2,7 +2,7 @@ import React from 'react';
 import BaanCard from '../Card/BaanCard';
 import { BaanSelection } from '@/types/BaanSelection';
 import { useBaan } from '@/context/BaanContext';
-
+import imagePlaceHolder from '@public/bg-1.svg';
 interface BaanCardsSectionProps {
   allSelections: number[];
   selectedBaan: BaanSelection[] | null;
@@ -25,7 +25,7 @@ const BaanCardsSection: React.FC<BaanCardsSectionProps> = ({
         <BaanCard
           key={order}
           number={order}
-          imageSrc={baan ? 'bg-1.svg' : undefined}
+          imageSrc={baan ? imagePlaceHolder : undefined}
           title={baan ? `บ้านที่ ${order}` : undefined}
           isEmpty={!baan}
           mode={mode}
