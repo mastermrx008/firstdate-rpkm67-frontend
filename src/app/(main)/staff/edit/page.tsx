@@ -97,7 +97,7 @@ export default function Edit() {
         setUpload(true);
         toast.success('เเก้ไขข้อมูลสำเร็จ');
         await resetContext();
-        router.push('/home');
+        router.push('/firstdate/staff/profile');
       });
     }
   };
@@ -266,7 +266,7 @@ export default function Edit() {
             </Button>
             <Button
               variant="white"
-              onClick={() => router.push('/staff/home')}
+              onClick={() => router.push('/firstdate/staff/profile')}
             >
               ยกเลิก
             </Button>
