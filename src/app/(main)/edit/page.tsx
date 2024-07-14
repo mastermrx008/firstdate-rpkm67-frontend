@@ -46,7 +46,7 @@ export default function Edit() {
     lastname: user?.lastname || '',
     nickname: user?.nickname || '',
     faculty: user?.faculty || '',
-    year: user?.year || 0,
+    year: user?.year || 1,
     tel: user?.tel || '',
     parent_tel: user?.parentTel || '',
     parent: user?.parent || '',

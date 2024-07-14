@@ -45,7 +45,7 @@ export default function Register() {
     lastname: '',
     nickname: '',
     faculty: '',
-    year: 0,
+    year: 1,
     tel: '',
     parent_tel: '',
     parent: '',
@@ -263,7 +263,6 @@ export default function Register() {
                     ชั้นปี
                   </option>
                   <option value={1}>1</option>
-                  <option value={2}>2</option>
                 </StyledSelect>
               </label>
             </div>
