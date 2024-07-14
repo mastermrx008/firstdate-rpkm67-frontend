@@ -68,7 +68,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
     if (isStaff) {
       if (!isRegistered) {
-        // return router.push('/staff/register');
+        return router.push('/staff/register');
       }
       if (!isStaffPage) {
         return router.push('/firstdate/staff/home');
