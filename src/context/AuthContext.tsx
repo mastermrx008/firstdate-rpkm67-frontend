@@ -34,6 +34,8 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const path = usePathname();
   const router = useRouter();
   const [isReady, setisReady] = useState(false);
+  console.log(user);
+  console.log(isReady);
 
   const resetContext = useCallback(async () => {
     const userData = await getUser();
@@ -108,7 +110,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
     setisReady(true);
   }, [router, path]);
-
+  console.log((user || path == '/') && isReady);
   return (
     <AuthContext.Provider value={{ user, resetContext, logout }}>
       {(user || path == '/') && isReady ? (
