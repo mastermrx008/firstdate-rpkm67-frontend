@@ -2,8 +2,7 @@ import type { Metadata } from 'next';
 import { Athiti } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
-import Footer from '@/components/Footer';
-import QueryClientWrapper from '@/components/QueryClientWrapper';
+import Footer from '@/components/(main)/Footer';
 import AuthProvider from '@/context/AuthContext';
 import BaanProvider from '@/context/BaanContext';
 import { Toaster } from 'react-hot-toast';
@@ -28,6 +27,7 @@ export default function RootLayout({
             <BaanProvider>{children}</BaanProvider>
           </AuthProvider>
         </QueryClientWrapper>
+
         <Footer />
       </body>
     </html>
