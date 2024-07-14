@@ -59,10 +59,17 @@ export default function Edit() {
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
+    let value: string = e.target.value;
+    if (['tel', 'parent_tel'].includes(e.target.name)) {
+      value =
+        '0123456789'.includes(value.at(-1) || '') && value.length <= 10
+          ? value
+          : value.slice(0, -1);
+    }
+
     setFormData({
       ...formData,
-      [e.target.name]:
-        e.target.name === 'year' ? +e.target.value : e.target.value,
+      [e.target.name]: e.target.name === 'year' ? +value : value,
     });
   };
 
@@ -301,7 +308,7 @@ export default function Edit() {
               ข้อมูลด้านสุขภาพ
             </h3>
 
-            <div className='flex flex-col gap-2'>
+            <div className="flex flex-col gap-2">
               <label>
                 <span>อาหารที่แพ้</span>
                 <StyledInput
