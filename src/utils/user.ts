@@ -55,15 +55,12 @@ export const patchReward = async (): Promise<boolean | null> => {
 
 export const isUserRegistered = (user: User): boolean => {
   return (
-    !!user.drug_allergy &&
     !!user.faculty &&
     !!user.firstname &&
-    !!user.food_allergy &&
-    !!user.illness &&
     !!user.lastname &&
     !!user.nickname &&
     !!user.parent &&
-    !!user.parent_tel &&
+    !!user.parentTel &&
     !!user.tel &&
     !!user.title &&
     !!user.year
