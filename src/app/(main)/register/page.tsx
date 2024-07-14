@@ -92,8 +92,8 @@ export default function Register() {
         if (!formData.year) stepErrors.push('year');
         break;
       case 2:
-        if (!formData.tel) stepErrors.push('tel');
-        if (!formData.parent_tel) stepErrors.push('parent_tel');
+        if (formData.tel.length != 10) stepErrors.push('tel');
+        if (formData.parent_tel.length != 10) stepErrors.push('parent_tel');
         if (!formData.parent) stepErrors.push('parent');
         break;
       case 3:

@@ -65,7 +65,7 @@ export default function Edit() {
     if (!formData.nickname) formErrors.push('nickname');
     if (!formData.faculty) formErrors.push('faculty');
     if (!formData.year) formErrors.push('year');
-    if (!formData.tel) formErrors.push('tel');
+    if (formData.tel.length != 10) formErrors.push('tel');
     setErrors(formErrors);
 
     const isError = formErrors.length !== 0;

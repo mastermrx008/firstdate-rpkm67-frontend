@@ -73,7 +73,7 @@ export default function Register() {
         if (!formData.nickname) stepErrors.push('nickname');
         if (!formData.faculty) stepErrors.push('faculty');
         if (!formData.year) stepErrors.push('year');
-        if (!formData.tel) stepErrors.push('tel');
+        if (formData.tel.length != 10) stepErrors.push('tel');
         break;
     }
 
