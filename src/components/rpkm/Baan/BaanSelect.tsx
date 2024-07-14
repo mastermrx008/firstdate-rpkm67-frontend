@@ -18,8 +18,9 @@ const BaanSelect: React.FC<BaanSelectProps> = ({ mode }) => {
   const { user, resetContext } = useAuth();
   const [isLeader, setIsLeader] = useState<boolean>(false);
   const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
+
   useEffect(() => {
-    const checkLeader = async () => {
+    const checkGroupStatus = async () => {
       if (user) {
         const myGroup = await getGroundByUserId(user.id);
         if (myGroup instanceof Error) {
@@ -31,7 +32,7 @@ const BaanSelect: React.FC<BaanSelectProps> = ({ mode }) => {
       }
     };
 
-    checkLeader();
+    checkGroupStatus();
   }, [user, resetContext]);
 
   const onConfirm = async () => {
@@ -44,6 +45,7 @@ const BaanSelect: React.FC<BaanSelectProps> = ({ mode }) => {
       }
     }
   };
+
   if (isLoading) {
     return <Spinner />;
   }

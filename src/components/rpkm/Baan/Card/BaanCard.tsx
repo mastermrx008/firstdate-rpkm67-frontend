@@ -8,7 +8,7 @@ interface BaanCardProps {
   imageSrc?: string;
   title?: string;
   isEmpty?: boolean;
-  mode?: 'select' | 'edit';
+  mode: 'select' | 'edit';
   onDelete?: () => void;
   isConfirmed?: boolean;
 }
@@ -18,7 +18,7 @@ const BaanCard: React.FC<BaanCardProps> = ({
   imageSrc,
   title,
   isEmpty = false,
-  mode = 'select',
+  mode,
   onDelete,
   isConfirmed = false,
 }) => {
@@ -33,16 +33,16 @@ const BaanCard: React.FC<BaanCardProps> = ({
         <div className="absolute -top-3 flex items-center justify-center w-8 h-8">
           <Image
             src={`/select/star/${number}.svg`}
-            alt={title ?? `Empty ${number}`}
+            alt={'Empty Baan'}
             width={32}
             height={32}
           />
         </div>
-        {!isEmpty && (
+        {!isEmpty && imageSrc && title && (
           <div className="w-full h-full flex flex-col items-center justify-center space-y-1">
             <Image
-              src={imageSrc ?? '/placeholder.png'}
-              alt={title ?? `Empty ${number}`}
+              src={imageSrc}
+              alt={title}
               width={80}
               height={80}
               className="max-h-20"
@@ -56,7 +56,7 @@ const BaanCard: React.FC<BaanCardProps> = ({
           </div>
         )}
       </div>
-      {mode === 'edit' && !isConfirmed && (
+      {mode === 'edit' && !isConfirmed && onDelete && (
         <Image
           src={trashIcon}
           alt="ลบ"

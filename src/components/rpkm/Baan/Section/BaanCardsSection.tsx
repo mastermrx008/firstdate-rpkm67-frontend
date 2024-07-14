@@ -17,44 +17,32 @@ const BaanCardsSection: React.FC<BaanCardsSectionProps> = ({
   isConfirmed,
 }) => {
   const { removeBaanSelection } = useBaan();
-  const topSelections = allSelections.slice(0, 3);
-  const bottomSelections = allSelections.slice(3);
+
+  const renderCards = (selections: number[]) => {
+    return selections.map((order) => {
+      const baan = selectedBaan?.find((b) => b.order === order);
+      return (
+        <BaanCard
+          key={order}
+          number={order}
+          imageSrc={baan ? 'bg-1.svg' : undefined}
+          title={baan ? `บ้านที่ ${order}` : undefined}
+          isEmpty={!baan}
+          mode={mode}
+          isConfirmed={isConfirmed}
+          onDelete={() => baan && removeBaanSelection(baan.baanId)}
+        />
+      );
+    });
+  };
 
   return (
     <div className="flex flex-col space-y-4">
       <div className="flex items-center justify-center space-x-4">
-        {topSelections.map((order) => {
-          const baan = selectedBaan?.find((b) => b.order === order);
-          return (
-            <BaanCard
-              key={order}
-              number={order}
-              imageSrc={baan ? 'bg-1.svg' : undefined}
-              title={baan ? `บ้านที่ ${order}` : undefined}
-              isEmpty={!baan}
-              mode={mode}
-              isConfirmed={isConfirmed}
-              onDelete={() => baan && removeBaanSelection(baan.baanId)}
-            />
-          );
-        })}
+        {renderCards(allSelections.slice(0, 3))}
       </div>
       <div className="flex items-center justify-center space-x-4">
-        {bottomSelections.map((order) => {
-          const baan = selectedBaan?.find((b) => b.order === order);
-          return (
-            <BaanCard
-              key={order}
-              number={order}
-              imageSrc={baan ? 'bg-1.svg' : undefined}
-              title={baan ? `บ้านที่ ${order}` : undefined}
-              isEmpty={!baan}
-              mode={mode}
-              isConfirmed={isConfirmed}
-              onDelete={() => baan && removeBaanSelection(baan.baanId)}
-            />
-          );
-        })}
+        {renderCards(allSelections.slice(3))}
       </div>
     </div>
   );
