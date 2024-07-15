@@ -221,7 +221,7 @@ export default function Edit() {
                   </option>
                   {major.map((m) => (
                     <option
-                      value="21"
+                      value={m.id}
                       key={m.id}
                     >
                       {m.name}
@@ -245,7 +245,6 @@ export default function Edit() {
                     ชั้นปี
                   </option>
                   <option value={1}>1</option>
-                  <option value={2}>2</option>
                 </StyledSelect>
               </label>
             </div>
