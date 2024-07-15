@@ -68,7 +68,7 @@ export default function Pdpa(props: PdpaProps) {
             </svg>
           </button>
         </div>
-        <div className='absolute top-8 flex flex-col items-center pb-8 px-2'>
+        <div className="absolute top-8 flex flex-col items-center pb-8 px-2">
           <h1 className="font-semibold text-5xl">PDPA</h1>
           <div className="my-8 border border-black h-[1px] w-[95%]"></div>
           <h2 className="text-center text-xl font-semibold">
@@ -125,8 +125,8 @@ export default function Pdpa(props: PdpaProps) {
           >
             รับทราบและยินยอม
           </button>
-                </div>
         </div>
+      </div>
     </div>
   );
 }
