@@ -151,8 +151,7 @@ export default function Register() {
         if (!user) return;
         toast.success('ลงทะเบียนสำเร็จ');
 
-        const isStaff = user.role == 'staff';
-        const newPath = isStaff ? '/staff/home' : '/registered';
+        const newPath = '/register-done';
 
         await resetContext();
         router.push(newPath);
