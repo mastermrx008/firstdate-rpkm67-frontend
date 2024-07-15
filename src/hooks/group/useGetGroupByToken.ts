@@ -16,10 +16,13 @@ const getGroupbyToken = async (token: string) => {
   const accessToken = await getAccessToken();
 
   const response = await apiClient.get<GetGroupbyTokenResponse>(
-    `/group/token?token=${encodeURIComponent(token)}`,
+    `/group/token`,
     {
       headers: {
         Authorization: `Bearer ${accessToken}`,
+      },
+      params: {
+        token: token,
       },
     }
   );

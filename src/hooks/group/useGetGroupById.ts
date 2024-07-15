@@ -21,7 +21,7 @@ const getGroupbyId = async (userId: string) => {
   const accessToken = await getAccessToken();
 
   const response = await apiClient.get<GetGroupbyIdResponse>(
-    `/group/${encodeURIComponent(userId)}`,
+    `/group/${userId}`,
     {
       headers: {
         Authorization: `Bearer ${accessToken}`,

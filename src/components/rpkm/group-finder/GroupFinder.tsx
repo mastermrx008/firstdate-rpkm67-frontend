@@ -11,6 +11,7 @@ import CodeTextarea from '@/components/rpkm/group-finder/CodeTextarea';
 import MemberIcon from '@/components/rpkm/group-finder/MemberIcon';
 import MemberName from '@/components/rpkm/group-finder/MemberName';
 import LeaveGroupButton from '@/components/rpkm/group-finder/LeaveGroupButton';
+import '@/components/rpkm/group-finder/style.css';
 
 const GroupFinder = () => {
   const { user } = useAuth();
