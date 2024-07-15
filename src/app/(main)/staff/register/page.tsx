@@ -46,10 +46,17 @@ export default function Register() {
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
+    let value: string = e.target.value;
+    if (['tel', 'parent_tel'].includes(e.target.name)) {
+      value =
+        '0123456789'.includes(value.at(-1) || '') && value.length <= 10
+          ? value
+          : value.slice(0, -1);
+    }
+
     setFormData({
       ...formData,
-      [e.target.name]:
-        e.target.name === 'year' ? +e.target.value : e.target.value,
+      [e.target.name]: e.target.name === 'year' ? +value : value,
     });
   };
 
@@ -66,7 +73,7 @@ export default function Register() {
         if (!formData.nickname) stepErrors.push('nickname');
         if (!formData.faculty) stepErrors.push('faculty');
         if (!formData.year) stepErrors.push('year');
-        if (!formData.tel) stepErrors.push('tel');
+        if (formData.tel.length != 10) stepErrors.push('tel');
         break;
     }
 
@@ -154,7 +161,7 @@ export default function Register() {
                 <option value="นาย">นาย</option>
                 <option value="นาง">นาง</option>
                 <option value="นางสาว">นางสาว</option>
-                <option value="อื่นๆ">อื่นๆ</option>
+                <option value="ไม่ระบุ">ไม่ระบุ</option>
               </StyledSelect>
             </label>
             <label>
@@ -235,6 +242,10 @@ export default function Register() {
                   </option>
                   <option value={1}>1</option>
                   <option value={2}>2</option>
+                  <option value={3}>3</option>
+                  <option value={4}>4</option>
+                  <option value={5}>5</option>
+                  <option value={6}>6</option>
                 </StyledSelect>
               </label>
             </div>

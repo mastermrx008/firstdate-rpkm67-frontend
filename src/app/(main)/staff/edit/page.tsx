@@ -43,10 +43,17 @@ export default function Edit() {
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
+    let value: string = e.target.value;
+    if (['tel', 'parent_tel'].includes(e.target.name)) {
+      value =
+        '0123456789'.includes(value.at(-1) || '') && value.length <= 10
+          ? value
+          : value.slice(0, -1);
+    }
+
     setFormData({
       ...formData,
-      [e.target.name]:
-        e.target.name === 'year' ? +e.target.value : e.target.value,
+      [e.target.name]: e.target.name === 'year' ? +value : value,
     });
   };
 
@@ -58,7 +65,7 @@ export default function Edit() {
     if (!formData.nickname) formErrors.push('nickname');
     if (!formData.faculty) formErrors.push('faculty');
     if (!formData.year) formErrors.push('year');
-    if (!formData.tel) formErrors.push('tel');
+    if (formData.tel.length != 10) formErrors.push('tel');
     setErrors(formErrors);
 
     const isError = formErrors.length !== 0;
@@ -90,7 +97,7 @@ export default function Edit() {
         setUpload(true);
         toast.success('เเก้ไขข้อมูลสำเร็จ');
         await resetContext();
-        router.push('/home');
+        router.push('/firstdate/staff/profile');
       });
     }
   };
@@ -140,7 +147,7 @@ export default function Edit() {
                 <option value="นาย">นาย</option>
                 <option value="นาง">นาง</option>
                 <option value="นางสาว">นางสาว</option>
-                <option value="อื่นๆ">อื่นๆ</option>
+                <option value="ไม่ระบุ">ไม่ระบุ</option>
               </StyledSelect>
             </label>
 
@@ -222,6 +229,10 @@ export default function Edit() {
                   </option>
                   <option value={1}>1</option>
                   <option value={2}>2</option>
+                  <option value={3}>3</option>
+                  <option value={4}>4</option>
+                  <option value={5}>5</option>
+                  <option value={6}>6</option>
                 </StyledSelect>
               </label>
             </div>
@@ -255,7 +266,7 @@ export default function Edit() {
             </Button>
             <Button
               variant="white"
-              onClick={() => router.push('/staff/home')}
+              onClick={() => router.push('/firstdate/staff/profile')}
             >
               ยกเลิก
             </Button>

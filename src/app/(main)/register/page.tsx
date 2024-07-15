@@ -45,7 +45,7 @@ export default function Register() {
     lastname: '',
     nickname: '',
     faculty: '',
-    year: 0,
+    year: 1,
     tel: '',
     parent_tel: '',
     parent: '',
@@ -63,10 +63,17 @@ export default function Register() {
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
+    let value: string = e.target.value;
+    if (['tel', 'parent_tel'].includes(e.target.name)) {
+      value =
+        '0123456789'.includes(value.at(-1) || '') && value.length <= 10
+          ? value
+          : value.slice(0, -1);
+    }
+
     setFormData({
       ...formData,
-      [e.target.name]:
-        e.target.name === 'year' ? +e.target.value : e.target.value,
+      [e.target.name]: e.target.name === 'year' ? +value : value,
     });
   };
 
@@ -85,8 +92,8 @@ export default function Register() {
         if (!formData.year) stepErrors.push('year');
         break;
       case 2:
-        if (!formData.tel) stepErrors.push('tel');
-        if (!formData.parent_tel) stepErrors.push('parent_tel');
+        if (formData.tel.length != 10) stepErrors.push('tel');
+        if (formData.parent_tel.length != 10) stepErrors.push('parent_tel');
         if (!formData.parent) stepErrors.push('parent');
         break;
       case 3:
@@ -144,8 +151,7 @@ export default function Register() {
         if (!user) return;
         toast.success('ลงทะเบียนสำเร็จ');
 
-        const isStaff = user.role == 'staff';
-        const newPath = isStaff ? '/staff/home' : '/registered';
+        const newPath = '/register-done';
 
         await resetContext();
         router.push(newPath);
@@ -184,7 +190,7 @@ export default function Register() {
                 <option value="นาย">นาย</option>
                 <option value="นาง">นาง</option>
                 <option value="นางสาว">นางสาว</option>
-                <option value="อื่นๆ">อื่นๆ</option>
+                <option value="ไม่ระบุ">ไม่ระบุ</option>
               </StyledSelect>
             </label>
             <label>
@@ -263,7 +269,6 @@ export default function Register() {
                     ชั้นปี
                   </option>
                   <option value={1}>1</option>
-                  <option value={2}>2</option>
                 </StyledSelect>
               </label>
             </div>
