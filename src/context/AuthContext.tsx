@@ -49,13 +49,11 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
   }, []);
 
   useEffect(() => {
-    if (path == '/') {
-      setisReady(true);
-      return;
-    }
+    setisReady(false);
 
     const userStr = localStorage.getItem('user');
     if (!userStr) {
+      setisReady(true);
       return router.push('/');
     }
 
@@ -68,6 +66,10 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
     const isRegisterPage = path.includes('register');
 
     if (isStaff) {
+      if (path == '/') {
+        return router.push('firstdate/staff/home');
+      }
+
       if (!isRegistered && !isRegisterPage) {
         return router.push('/staff/register');
       }
@@ -76,6 +78,10 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
         return router.push('/firstdate/staff/home');
       }
     } else {
+      if (path == '/') {
+        return router.push('/home');
+      }
+
       if (!isRegistered && !isRegisterPage) {
         return router.push('/register');
       }
