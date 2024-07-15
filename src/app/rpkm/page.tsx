@@ -1,14 +1,14 @@
-'use client'
+'use client';
 
-import UserCard from '@/components/UserCard'
-import React from 'react'
+import UserCard from '@/components/UserCard';
+import React from 'react';
 
 const page = () => {
   return (
     <div>
-        <UserCard />
+      <UserCard />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;
