@@ -10,7 +10,7 @@ const UserCard = () => {
   const { user } = useAuth();
   const name = `${user?.firstname} ${user?.lastname}`;
   const studentId = user?.email.split('@')[0];
-  const photo_url = user?.photo_url;
+  const photoUrl = user?.photoUrl;
 
   return (
     <div className="relative w-full h-full flex justify-center items-center p-4">
@@ -21,9 +21,9 @@ const UserCard = () => {
       />
       <div className="absolute top-[15%] left-[9%] w-[65%] h-[65%] flex flex-col items-center justify-center p-4 bg-blue-900 rounded-lg">
         <div className="w-[35%] h-[50%] overflow-hidden rounded-full">
-          {photo_url && (
+          {photoUrl && (
             <img
-              src={photo_url}
+              src={photoUrl}
               alt="user-picture"
               className="w-full h-full object-cover"
             />
