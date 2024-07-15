@@ -1,7 +1,7 @@
 'use client';
 
 import FDLogo from '@public/FIrst Date Logo.svg';
-import spark from '@public/spark.png';
+import RewardDoneImg from '@public/reward/reward-done.svg';
 import Image from 'next/image';
 import { useState } from 'react';
 import Link from 'next/link';
@@ -29,7 +29,7 @@ export default function RewardDone() {
           สำเร็จ!
         </h1>{' '}
         <Image
-          src={spark}
+          src={RewardDoneImg}
           alt="reward"
           className="w-48 h-auto mt-6 mb-16"
         />
