@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
+  compiler: {
+    removeConsole: process.env.APP_ENV == 'production',
+  },
   images: {
     remotePatterns: [
       {
