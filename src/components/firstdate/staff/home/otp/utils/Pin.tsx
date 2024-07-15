@@ -18,11 +18,13 @@ export default function Pin(props: PinProps) {
         </h1>
       </div>
       <div>
-        <Icon
-          icon="tabler:reload"
-          className="w-6 h-6 text-black"
-          onClick={() => handleClick(index)}
-        />
+        {index < 5 && (
+          <Icon
+            icon="tabler:reload"
+            className="w-6 h-6 text-black"
+            onClick={() => handleClick(index)}
+          />
+        )}
       </div>
     </section>
   );

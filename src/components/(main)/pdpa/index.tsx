@@ -68,62 +68,64 @@ export default function Pdpa(props: PdpaProps) {
             </svg>
           </button>
         </div>
-        <h1 className="mt-[400px] font-semibold text-5xl">PDPA</h1>
-        <div className="my-8 border border-black h-[1px] w-[95%]"></div>
-        <h2 className="text-center text-xl font-semibold">
-          {titles.map((title, index) => (
-            <p key={index}>{title}</p>
-          ))}
-        </h2>
-        <article className="mt-5 p-2 max-w-sm text-base">
-          {description.map((section, index) => (
-            <p
-              key={index}
-              className="mb-4"
-            >
-              {section}
-            </p>
-          ))}
-        </article>
-        <div className="flex justify-center items-center gap-4">
-          <div
-            className={`relative min-w-8 h-8 rounded-full 
-                        ${isChecked ? 'bg-project-fuchsia' : 'bg-white border border-black'} `}
-          >
-            <input
-              id="accept"
-              type="checkbox"
-              className="absolute h-8 w-8 opacity-0"
-              checked={isChecked}
-              onChange={() => setIsChecked(!isChecked)}
-            />
-            {isChecked && (
-              <svg
-                className="pointer-events-none absolute inset-0 m-auto h-5 w-5 fill-current text-white"
-                viewBox="0 0 20 20"
+        <div className="absolute top-8 flex flex-col items-center pb-8 px-2">
+          <h1 className="font-semibold text-5xl">PDPA</h1>
+          <div className="my-8 border border-black h-[1px] w-[95%]"></div>
+          <h2 className="text-center text-xl font-semibold">
+            {titles.map((title, index) => (
+              <p key={index}>{title}</p>
+            ))}
+          </h2>
+          <article className="mt-5 p-2 max-w-sm text-base">
+            {description.map((section, index) => (
+              <p
+                key={index}
+                className="mb-4"
               >
-                <path
-                  d="M16.7,5.3c-0.4-0.4-1-0.4-1.4,0L7.4,13.2L4.7,10.6c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l3.3,3.3c0.2,0.2,0.4,0.3,0.7,0.3
-                    s0.5-0.1,0.7-0.3l8.7-8.7C17.1,6.3,17.1,5.7,16.7,5.3z"
-                />
-              </svg>
-            )}
+                {section}
+              </p>
+            ))}
+          </article>
+          <div className="flex justify-center items-center gap-4">
+            <div
+              className={`relative min-w-8 h-8 rounded-full
+                          ${isChecked ? 'bg-project-fuchsia' : 'bg-white border border-black'} `}
+            >
+              <input
+                id="accept"
+                type="checkbox"
+                className="absolute h-8 w-8 opacity-0"
+                checked={isChecked}
+                onChange={() => setIsChecked(!isChecked)}
+              />
+              {isChecked && (
+                <svg
+                  className="pointer-events-none absolute inset-0 m-auto h-5 w-5 fill-current text-white"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M16.7,5.3c-0.4-0.4-1-0.4-1.4,0L7.4,13.2L4.7,10.6c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l3.3,3.3c0.2,0.2,0.4,0.3,0.7,0.3
+                      s0.5-0.1,0.7-0.3l8.7-8.7C17.1,6.3,17.1,5.7,16.7,5.3z"
+                  />
+                </svg>
+              )}
+            </div>
+            <label
+              htmlFor="accept"
+              className="font-medium text-base"
+            >
+              ฉันยอมรับเงื่อนไขและยินยอมให้เปิดเผยข้อมูลส่วนบุคคล
+            </label>
           </div>
-          <label
-            htmlFor="accept"
-            className="font-medium text-base"
+          <button
+            className={`mt-4 px-[10%] py-2 h-12 font-medium text-white text-xl rounded-lg bg-project-fuchsia
+                  ${isChecked ? 'opacity-100' : 'opacity-50'}`}
+            disabled={!isChecked}
+            onClick={handleOnSuccess}
           >
-            ฉันยอมรับเงื่อนไขและยินยอมให้เปิดเผยข้อมูลส่วนบุคคล
-          </label>
+            รับทราบและยินยอม
+          </button>
         </div>
-        <button
-          className={`mt-4 px-[10%] py-2 h-12 font-medium text-white text-xl rounded-lg bg-project-fuchsia
-                ${isChecked ? 'opacity-100' : 'opacity-50'}`}
-          disabled={!isChecked}
-          onClick={handleOnSuccess}
-        >
-          รับทราบและยินยอม
-        </button>
       </div>
     </div>
   );

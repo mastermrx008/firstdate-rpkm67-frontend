@@ -65,9 +65,10 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
     const isStaff = userObj.role == 'staff';
     const isStaffPage = path.includes('/staff');
     const isRegistered = isUserRegistered(userObj);
+    const isRegisterPage = path.includes('register');
 
     if (isStaff) {
-      if (!isRegistered) {
+      if (!isRegistered && !isRegisterPage) {
         return router.push('/staff/register');
       }
 
@@ -75,7 +76,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
         return router.push('/firstdate/staff/home');
       }
     } else {
-      if (!isRegistered) {
+      if (!isRegistered && !isRegisterPage) {
         return router.push('/register');
       }
 

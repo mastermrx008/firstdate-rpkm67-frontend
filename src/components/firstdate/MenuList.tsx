@@ -14,9 +14,9 @@ interface TwoCircleMenuProps {
 export default function MenuList({ isRewardPage }: TwoCircleMenuProps) {
   const { user } = useAuth();
   const router = useRouter();
-  const currentPath = usePathname().split('/').at(-1);
-  const [isCongratOpen, setIsCongratOpen] = useState(false);
   const pathname = usePathname();
+  const currentPath = pathname.split('/').at(-1);
+  const [isCongratOpen, setIsCongratOpen] = useState(false);
 
   const handleNavigate = useCallback(
     (path: string): void => {
@@ -40,13 +40,24 @@ export default function MenuList({ isRewardPage }: TwoCircleMenuProps) {
     }
   }, [user]);
 
+  const isShowReward = useMemo(() => {
+    return (
+      giftCondition &&
+      giftCondition.status != 'isStaff' &&
+      giftCondition.status != 'recieved' &&
+      !isRewardPage
+    );
+  }, [giftCondition, isRewardPage]);
+
+  console.log(giftCondition);
+
   return (
     <div>
-      {giftCondition && (
+      {giftCondition && isShowReward && (
         <CongratsModal
           isOpen={isCongratOpen}
           onOpenChange={setIsCongratOpen}
-          score={giftCondition?.score}
+          score={giftCondition.status == 'ready' ? giftCondition?.score : 0}
         />
       )}
       {user && (
@@ -58,7 +69,7 @@ export default function MenuList({ isRewardPage }: TwoCircleMenuProps) {
               handleOnClick={() => handleNavigate('profile')}
               iconify="icon-park-solid:people"
             />
-            {!isRewardPage && giftCondition?.status != 'recieved' && (
+            {giftCondition && isShowReward && (
               <div className="relative">
                 <MenuIcon
                   name="รางวัล"

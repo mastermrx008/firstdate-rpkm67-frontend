@@ -8,6 +8,7 @@ import { useAuth } from '@/context/AuthContext';
 import Border from '@/components/firstdate/Border';
 import MenuList from '@/components/firstdate/MenuList';
 import { getMajorNameById } from '@/utils/register';
+import Link from 'next/link';
 
 export default function AdminInfo() {
   const { user, logout } = useAuth();
@@ -34,6 +35,12 @@ export default function AdminInfo() {
         <div className="flex justify-center items-center text-2xl gap-2 font-semibold mt-4">
           <div>{user?.firstname}</div>
           <div>#{user?.year}</div>
+          <Link href={'/staff/edit'}>
+            <Icon
+              icon="humbleicons:pencil"
+              className="cursor-pointer w-8 h-8 p-1 rounded-full bg-white text-black shadow-lg"
+            />
+          </Link>
         </div>
         <div>{user && getMajorNameById(user?.faculty)}</div>
         <div className="text-lg mt-2 text-gray-500">
