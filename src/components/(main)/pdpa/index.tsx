@@ -1,7 +1,9 @@
 'use client';
 
+import { pdpaMarkdown } from '@/components/(main)/pdpa/pdpaMarkdown';
 import { cn } from '@/lib/utils';
 import { useCallback, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 const titles: string[] = [
   'นโยบายความเป็นส่วนตัว',
@@ -76,15 +78,11 @@ export default function Pdpa(props: PdpaProps) {
               <p key={index}>{title}</p>
             ))}
           </h2>
-          <article className="mt-5 p-2 max-w-sm text-base">
-            {description.map((section, index) => (
-              <p
-                key={index}
-                className="mb-4"
-              >
-                {section}
-              </p>
-            ))}
+          <article className="my-5 p-2 max-w-sm text-base">
+            <div className='font-athiti whitespace-pre-wrap'>
+              {pdpaMarkdown}
+            </div>
+              
           </article>
           <div className="flex justify-center items-center gap-4">
             <div
