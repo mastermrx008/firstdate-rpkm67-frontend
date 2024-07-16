@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import { Icon } from '@iconify/react';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
@@ -8,7 +8,7 @@ import BaanModal from '@/components/rpkm/Modal/BaanModal';
 import BaanFullModal from '@/components/rpkm/Modal/BaanFullModal';
 
 interface BaanCardProps {
-  image?: string;
+  image: StaticImageData;
   name: {
     th: string;
     en: string;
