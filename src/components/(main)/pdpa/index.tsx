@@ -31,7 +31,7 @@ export default function Pdpa(props: PdpaProps) {
 
   return (
     <div className={containerClassName}>
-      <div className="relative flex flex-col justify-center items-center w-[90%] h-[90%] overflow-y-scroll overflow-x-hidden bg-white p-6 rounded-[20px]">
+      <div className="relative flex flex-col w-[90%] h-[90%] overflow-y-scroll bg-white p-6 rounded-[20px]">
         <div className="absolute right-4 top-4">
           <button onClick={handleOnClose}>
             <svg
@@ -47,7 +47,7 @@ export default function Pdpa(props: PdpaProps) {
             </svg>
           </button>
         </div>
-        <div className="absolute top-8 flex flex-col items-center pb-8 px-2">
+        <div className="flex flex-col items-center pb-8 px-2">
           <h1 className="font-semibold text-5xl">PDPA</h1>
           <div className="my-8 border border-black h-[1px] w-[95%]"></div>
           <h2 className="text-center text-xl font-semibold whitespace-pre-wrap max-w-sm">
