@@ -51,6 +51,10 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
   useEffect(() => {
     setisReady(false);
 
+    if (path == '/healthz') {
+      return setisReady(true);
+    }
+
     const userStr = localStorage.getItem('user');
     if (!userStr) {
       setisReady(true);
@@ -119,7 +123,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
   return (
     <AuthContext.Provider value={{ user, resetContext, logout }}>
-      {(user || path == '/') && isReady ? (
+      {isReady ? (
         children
       ) : (
         <div className="w-full h-screen flex items-center justify-center bg-black bg-opacity-20">
