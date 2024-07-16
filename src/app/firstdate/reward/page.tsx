@@ -2,7 +2,7 @@
 
 import FDLogo from '@public/FIrst Date Logo.svg';
 import line from '@public/line.svg';
-import RewardPlaceholder from '@public/reward/reward-placeholder.svg';
+import RewardImg from '@public/reward/reward.svg';
 import gift from '@public/gift.svg';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -47,7 +47,7 @@ export default function Reward() {
         </h1>
         <div className="w-[70%] mx-auto">
           <Image
-            src={RewardPlaceholder}
+            src={RewardImg}
             alt="reward-image"
             className="mx-auto"
           />

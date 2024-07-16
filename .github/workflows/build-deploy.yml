@@ -65,6 +65,7 @@ jobs:
           cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache
           cache-to: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache,mode=max
           build-args: |
+            APP_ENV=development
             API_BASE_URL=${{ vars.DEV_API_BASE_URL }}
             FIRST_DATE_DATE=${{ vars.DEV_FIRST_DATE_DATE }}
             RUP_PEUN_DATE=${{ vars.DEV_RUP_PEUN_DATE }}
@@ -79,6 +80,7 @@ jobs:
           cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache
           cache-to: type=registry,ref=${{ env.IMAGE_NAME }}:buildcache,mode=max
           build-args: |
+            APP_ENV=production
             API_BASE_URL=${{ vars.PROD_API_BASE_URL }}
             FIRST_DATE_DATE=${{ vars.PROD_FIRST_DATE_DATE }}
             RUP_PEUN_DATE=${{ vars.PROD_RUP_PEUN_DATE }}
