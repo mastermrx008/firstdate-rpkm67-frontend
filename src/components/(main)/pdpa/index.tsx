@@ -4,13 +4,6 @@ import { pdpaMarkdown } from '@/components/(main)/pdpa/pdpaMarkdown';
 import { cn } from '@/lib/utils';
 import { useCallback, useState } from 'react';
 
-const titles: string[] = [
-  'นโยบายความเป็นส่วนตัว',
-  'ระบบลงลงทะเบียนเข้าร่วมกิจกรรม',
-  'งานวันแรกพบนิสิตใหม่ 2024',
-  'จุฬาลงกรณ์มหาวิทยาลัย',
-];
-
 interface PdpaProps {
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
@@ -57,10 +50,9 @@ export default function Pdpa(props: PdpaProps) {
         <div className="absolute top-8 flex flex-col items-center pb-8 px-2">
           <h1 className="font-semibold text-5xl">PDPA</h1>
           <div className="my-8 border border-black h-[1px] w-[95%]"></div>
-          <h2 className="text-center text-xl font-semibold">
-            {titles.map((title, index) => (
-              <p key={index}>{title}</p>
-            ))}
+          <h2 className="text-center text-xl font-semibold whitespace-pre-wrap max-w-sm">
+            หนังสือให้ความยินยอมในการเก็บรวบรวมใช้ และเปิดเผยข้อมูลส่วนบุคคลสำหรับผู้เข้าร่วมกิจกรรม
+            โครงการวันแรกพบนิสิตใหม่ ปีการศึกษา 2567
           </h2>
           <article className="my-5 p-2 max-w-sm text-base">
             <div className="font-athiti whitespace-pre-wrap">
