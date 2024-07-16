@@ -1,4 +1,4 @@
-import Pdpa from "@/components/(main)/pdpa";
+import Pdpa from '@/components/(main)/pdpa';
 
 const page = () => {
   return (
