@@ -87,7 +87,7 @@ const OTPModal: React.FC<OTPModalProps> = ({
                 กรุณากรอก OTP เพื่อทำการยืนยันกิจกรรม
               </h3>
               {reminderText && (
-                <p className="font-normal">สถานที่รับ: {reminderText}</p>
+                <p className="font-normal text-center">สถานที่รับ: {reminderText}</p>
               )}
             </div>
           </div>
