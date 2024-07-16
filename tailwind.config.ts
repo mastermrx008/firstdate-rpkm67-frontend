@@ -26,6 +26,7 @@ const config: Config = {
           'light-blue': '#D8E3FE',
           gray: '#DDDDDD',
           brown: '#AA8B84',
+          yellow: '#EFD08B',
         },
       },
       fontFamily: {
@@ -33,6 +34,9 @@ const config: Config = {
         athiti: ['var(--athiti)', 'system-ui'],
         sarun: ['var(--sarun)', 'system-ui'],
         sopha: ['var(--sopha)', 'system-ui'],
+      },
+      dropShadow: {
+        text: '0px 0px 4px 0px #00000040;',
       },
     },
   },
