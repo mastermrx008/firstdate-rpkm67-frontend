@@ -17,7 +17,7 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({
   className,
 }) => {
   return (
-    <div className="p-3 flex gap-x-2 overscroll-x-contain overflow-y-scroll">
+    <div className="px-3 pb-3 flex gap-x-2 overscroll-x-contain overflow-y-scroll">
       {cards.map((card, index) => (
         <Card
           key={index}

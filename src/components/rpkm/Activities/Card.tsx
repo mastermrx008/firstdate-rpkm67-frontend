@@ -33,7 +33,7 @@ const Card: React.FC<CardProps> = ({
           alt="activity image"
           className={cn('w-full', imageClassName)}
         />
-        <div className="flex flex-col gap-y-[2px]">
+        <div className="flex flex-col gap-y-[2px] mt-1">
           <hr className="h-[2px] bg-[#414643] w-full" />
           <hr className="h-[2px] bg-[#414643] w-full" />
         </div>

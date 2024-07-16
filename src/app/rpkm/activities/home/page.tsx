@@ -1,6 +1,7 @@
 import Banner from '@/components/rpkm/Activities/Banner';
 import Card from '@/components/rpkm/Activities/Card';
 import ScrollSection from '@/components/rpkm/Activities/ScrollSection';
+import Divider from '@/components/rpkm/Activities/Divider';
 
 import ActivitiesBanner from '@public/rpkm/activities/activities.png';
 import WalkRallyBanner from '@public/rpkm/activities/walkrally.png';
@@ -54,6 +55,7 @@ const page = () => {
         href="/rpkm/activities/details"
         className="w-[60vw]"
       />
+      <Divider />
       <Banner image={WalkRallyBanner} />
       <div className="flex justify-center w-full">
         <Card
@@ -64,12 +66,14 @@ const page = () => {
           className="w-[90vw]"
         />
       </div>
+      <Divider />
       <Banner image={CommunityBanner} />
       <ScrollSection
         cards={cards}
         href="/rpkm/activities/details"
         className="w-[60vw]"
       />
+      <Divider />
       <Banner image={BaanBanner} />
       <div className="flex justify-center w-full pb-7">
         <Card
