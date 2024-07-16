@@ -5,6 +5,7 @@ import './globals.css';
 import Footer from '@/components/(main)/Footer';
 import AuthProvider from '@/context/AuthContext';
 import { Toaster } from 'react-hot-toast';
+import { QueryProvider } from '@/components/queryProvider';
 
 export const metadata: Metadata = {
   title: 'RPKM',
@@ -20,9 +21,11 @@ export default function RootLayout({
       <body
         className={`${athiti.variable} ${season.variable} ${sarun.variable} bg-1 font-athiti`}
       >
-        <Toaster />
-        <AuthProvider>{children}</AuthProvider>
-        <Footer />
+        <QueryProvider>
+          <Toaster />
+          <AuthProvider>{children}</AuthProvider>
+          <Footer />
+        </QueryProvider>
       </body>
     </html>
   );
