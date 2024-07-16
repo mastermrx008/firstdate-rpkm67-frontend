@@ -10,6 +10,7 @@ interface OTPModalProps {
   activityName: string;
   onClose: () => void;
   onSubmit: (activityId: string, pin_code: string) => void;
+  reminderText?: string;
 }
 
 const OTPModal: React.FC<OTPModalProps> = ({
@@ -17,6 +18,7 @@ const OTPModal: React.FC<OTPModalProps> = ({
   activityName,
   onClose,
   onSubmit,
+  reminderText,
 }) => {
   const inputsRef = useRef<(HTMLInputElement | null)[]>([]);
   const pinCodeRef = useRef<string>('');
@@ -84,7 +86,11 @@ const OTPModal: React.FC<OTPModalProps> = ({
               <h3 className="font-normal text-xl text-center">
                 กรุณากรอก OTP เพื่อทำการยืนยันกิจกรรม
               </h3>
-              <p className="font-normal underline">สถานที่รับ OTP</p>
+              {reminderText && (
+                <p className="font-normal text-center">
+                  สถานที่รับ: {reminderText}
+                </p>
+              )}
             </div>
           </div>
           <button

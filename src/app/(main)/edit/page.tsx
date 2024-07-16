@@ -46,7 +46,7 @@ export default function Edit() {
     lastname: user?.lastname || '',
     nickname: user?.nickname || '',
     faculty: user?.faculty || '',
-    year: user?.year || 0,
+    year: user?.year || 1,
     tel: user?.tel || '',
     parent_tel: user?.parentTel || '',
     parent: user?.parent || '',
@@ -59,10 +59,17 @@ export default function Edit() {
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
+    let value: string = e.target.value;
+    if (['tel', 'parent_tel'].includes(e.target.name)) {
+      value =
+        '0123456789'.includes(value.at(-1) || '') && value.length <= 10
+          ? value
+          : value.slice(0, -1);
+    }
+
     setFormData({
       ...formData,
-      [e.target.name]:
-        e.target.name === 'year' ? +e.target.value : e.target.value,
+      [e.target.name]: e.target.name === 'year' ? +value : value,
     });
   };
 
@@ -74,8 +81,8 @@ export default function Edit() {
     if (!formData.nickname) formErrors.push('nickname');
     if (!formData.faculty) formErrors.push('faculty');
     if (!formData.year) formErrors.push('year');
-    if (!formData.tel) formErrors.push('tel');
-    if (!formData.parent_tel) formErrors.push('parent_tel');
+    if (formData.tel.length != 10) formErrors.push('tel');
+    if (formData.parent_tel.length != 10) formErrors.push('parent_tel');
     if (!formData.parent) formErrors.push('parent');
     setErrors(formErrors);
 
@@ -157,8 +164,7 @@ export default function Edit() {
                 <option value="นาย">นาย</option>
                 <option value="นาง">นาง</option>
                 <option value="นางสาว">นางสาว</option>
-                <option value="เด็กชาย">เด็กชาย</option>
-                <option value="เด็กหญิง">เด็กหญิง</option>
+                <option value="ไม่ระบุ">ไม่ระบุ</option>
               </StyledSelect>
             </label>
 
@@ -215,7 +221,7 @@ export default function Edit() {
                   </option>
                   {major.map((m) => (
                     <option
-                      value="21"
+                      value={m.id}
                       key={m.id}
                     >
                       {m.name}
@@ -239,7 +245,6 @@ export default function Edit() {
                     ชั้นปี
                   </option>
                   <option value={1}>1</option>
-                  <option value={2}>2</option>
                 </StyledSelect>
               </label>
             </div>
@@ -301,30 +306,44 @@ export default function Edit() {
             <h3 className="text-xl font-semibold text-center">
               ข้อมูลด้านสุขภาพ
             </h3>
-            <StyledInput
-              type="text"
-              name="food_allergy"
-              placeholder="อาหารที่แพ้"
-              value={formData.food_allergy}
-              onChange={handleInputChange}
-              error={errors.includes('food_allergy')}
-            />
-            <StyledInput
-              type="text"
-              name="drug_allergy"
-              placeholder="ยาที่แพ้"
-              value={formData.drug_allergy}
-              onChange={handleInputChange}
-              error={errors.includes('drug_allergy')}
-            />
-            <StyledInput
-              type="text"
-              name="illness"
-              placeholder="โรคประจำตัว"
-              value={formData.illness}
-              onChange={handleInputChange}
-              error={errors.includes('illness')}
-            />
+
+            <div className="flex flex-col gap-2">
+              <label>
+                <span>อาหารที่แพ้</span>
+                <StyledInput
+                  type="text"
+                  name="food_allergy"
+                  placeholder="อาหารที่แพ้"
+                  value={formData.food_allergy}
+                  onChange={handleInputChange}
+                  error={errors.includes('food_allergy')}
+                />
+              </label>
+
+              <label>
+                <span>ยาที่แพ้</span>
+                <StyledInput
+                  type="text"
+                  name="drug_allergy"
+                  placeholder="ยาที่แพ้"
+                  value={formData.drug_allergy}
+                  onChange={handleInputChange}
+                  error={errors.includes('drug_allergy')}
+                />
+              </label>
+
+              <label>
+                <span>โรคประจำตัว</span>
+                <StyledInput
+                  type="text"
+                  name="illness"
+                  placeholder="โรคประจำตัว"
+                  value={formData.illness}
+                  onChange={handleInputChange}
+                  error={errors.includes('illness')}
+                />
+              </label>
+            </div>
           </div>
           <div className="flex flex-col items-center gap-4 mt-6">
             <Image
