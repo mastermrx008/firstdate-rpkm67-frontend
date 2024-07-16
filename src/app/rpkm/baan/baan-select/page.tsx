@@ -1,9 +1,12 @@
 'use client'
 
-import home from '@public/bannlist/home.svg';
-import search from '@public/bannlist/search.svg';
+import { useState } from 'react';
+import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
+import home from '@public/baan-select/home.svg';
+import search from '@public/baan-select/search.svg';
+import { BaanInfo } from '@/components/rpkm/baan/baanInfo';
 
 //wait real data
 const mockHouseSize = [
@@ -15,6 +18,12 @@ const mockHouseSize = [
 ]
 
 export default function BaanSelect() {
+    const [selectedHouseSize, setSelectedHouseSize] = useState<string>("")
+
+    const handleSizeChange = (size: string) => {
+        setSelectedHouseSize(size);
+    };
+
     return (
         <>
         <div>{/*baanSelectComponent*/}</div>
@@ -44,13 +53,29 @@ export default function BaanSelect() {
                         />
                     </div> 
                 </div>
-                <div className="text-white font-semibold z-20 mb-2">ขนาดบ้าน</div>
+                <label className="text-white font-semibold z-20 mb-2">ขนาดบ้าน</label>
                 <div className="flex justify-center items-center flex-wrap mt-1 gap-[3%] w-[70%]">
                     {mockHouseSize.map((house, index) => (
-                            <div key={index} className="flex justify-center items-center text-white bg-rpkm-green 
-                                                        w-auto h-9 px-4 rounded-lg font-semibold drop-shadow-lg mb-4">
+                        <div key={index}>
+                            <input
+                                type="radio"
+                                name="houseSize"
+                                className="hidden"
+                                id={house.size}
+                                checked={selectedHouseSize === house.size}
+                                onChange={()=>{
+                                    handleSizeChange(house.size)
+                                }}
+                                />
+                            <label htmlFor={house.size} className={cn(`flex justify-center items-center text-white bg-rpkm-green 
+                                                                        w-auto h-9 px-4 rounded-lg font-semibold drop-shadow-lg mb-4
+                                                                        transition-all duration-300 active:scale-90`, {
+                                                            'bg-white text-rpkm-blue' : selectedHouseSize === house.size
+                                                        })}
+                                                        >
                                 {house.size} ({house.count})
-                            </div>
+                            </label>
+                        </div>
                         ))}
                 </div>
                 <div className="flex justify-center items-center flex-wrap w-[85%] h-5 mb-6">
