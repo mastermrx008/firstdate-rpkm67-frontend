@@ -32,6 +32,7 @@ const config: Config = {
         season: ['var(--season)', 'system-ui'],
         athiti: ['var(--athiti)', 'system-ui'],
         sarun: ['var(--sarun)', 'system-ui'],
+        sopha: ['var(--sopha)', 'system-ui'],
       },
     },
   },

@@ -14,7 +14,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebar, setSidebar }) => {
   return (
     <div className="z-10 w-full h-full absolute flex top-0">
       <div
-        className="w-full h-full fixed"
+        className="w-full h-full fixed bg-black opacity-50"
         onClick={() => setSidebar(false)}
       />
       <div
