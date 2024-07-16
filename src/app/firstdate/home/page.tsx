@@ -93,6 +93,30 @@ const StampPage = () => {
     }
   };
 
+  const getReminderText = (activityId: IActivity): string => {
+    if (
+      [
+        IActivity.WORKSHOP_X_WONDER,
+        IActivity.GIVING_AND_TAKING,
+        IActivity.THE_JEWEL,
+        IActivity.YOUR_PLEASING_SCENT,
+        IActivity.OBJET_D_ART,
+        IActivity.LANDMARK_4,
+      ].includes(activityId)
+    ) {
+      return 'ใกล้อาคารพิพิธพัณธ์';
+    } else if (
+      [
+        IActivity.LANDMARK_1,
+        IActivity.LANDMARK_2,
+        IActivity.LANDMARK_3,
+      ].includes(activityId)
+    ) {
+      return 'เส้นทางถนนสีชมพูฝั่งติดคณะวิทยาศาสตร์';
+    }
+    return '';
+  };
+
   const handleCreateStamp = async (activityId: string, userInput: string) => {
     setIsLoading(true);
     try {
@@ -275,6 +299,7 @@ const StampPage = () => {
           activityName={currentActivityName}
           onClose={handleModalClose}
           onSubmit={handleCreateStamp}
+          reminderText={getReminderText(currentActivityId as IActivity)}
         />
       )}
       {isFavoriteClubModalOpen && currentActivityId && (

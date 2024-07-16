@@ -1,29 +1,8 @@
 'use client';
 
+import { pdpaMarkdown } from '@/components/(main)/pdpa/pdpaMarkdown';
 import { cn } from '@/lib/utils';
 import { useCallback, useState } from 'react';
-
-const titles: string[] = [
-  'นโยบายความเป็นส่วนตัว',
-  'ระบบลงลงทะเบียนเข้าร่วมกิจกรรม',
-  'งานวันแรกพบนิสิตใหม่ 2024',
-  'จุฬาลงกรณ์มหาวิทยาลัย',
-];
-
-const description: string[] = [
-  `การเก็บรวบรวมข้อมูลส่วนบุคคลของท่านมีวัตถุประสงค์เพื่อดำเนินการในการทำงานของฝ่ายที่เกี่ยวข้อง
-     การจัดเก็บรูปภาพและวิดีโอของท่าน และให้ความช่วยเหลือระหว่างท่าน ฝ่ายเนื้อหา และฝ่ายอำนวยการ 
-     งานวันแรกพบนิสิตใหม่ 2024`,
-  `โดยข้อมูลส่วนบุคคลจะถูกเก็บโดยฝ่ายเนื้อหาและ
-    ฝ่ายอำนวยการ งานวันแรกพบนิสิตใหม่ 2024 ซึ่งมีฐานะเป็นผู้ควบคุมข้อมูลส่วนบุคคลของท่าน 
-    ได้แก่ ชื่อ นามสกุล และข้อมูลติดต่อกลับตามที่เจ้าของข้อมูลส่วนบุคคล ได้ให้ข้อมูลไว้ รวมไปถึงภาพถ่ายและวิดีโอ`,
-  `ท่านมีสิทธิตามที่บัญญัติไว้ในพระราชบัญญัติคุ้มครอง ข้อมูลส่วนบุคคล พ.ศ. 2562 ได้แก่ 
-    สิทธิในการเพิกถอนความยินยอมในการประมวลผลข้อมูลส่วนบุคคล สิทธิในการเข้าถึงข้อมูลส่วนบุคคล 
-    สิทธิในการลบข้อมูลส่วนบุคคล สิทธิในการระงับการใช้ข้อมูลส่วนบุคคล สิทธิในการแก้ไขข้อมูลส่วนบุคคล`,
-  `การใช้และเปิดเผยข้อมูลส่วนบุคคลของท่านเป็นไป
-    เพื่อวัตถุประสงค์ในการดำเนินการตาม
-    รายละเอียดที่แจ้งไว้เท่านั้น`,
-];
 
 interface PdpaProps {
   isOpen: boolean;
@@ -52,7 +31,7 @@ export default function Pdpa(props: PdpaProps) {
 
   return (
     <div className={containerClassName}>
-      <div className="relative flex flex-col justify-center items-center w-[90%] h-[90%] overflow-y-scroll overflow-x-hidden bg-white p-6 rounded-[20px]">
+      <div className="relative flex flex-col w-[90%] h-[90%] overflow-y-scroll bg-white p-6 rounded-[20px]">
         <div className="absolute right-4 top-4">
           <button onClick={handleOnClose}>
             <svg
@@ -68,23 +47,18 @@ export default function Pdpa(props: PdpaProps) {
             </svg>
           </button>
         </div>
-        <div className="absolute top-8 flex flex-col items-center pb-8 px-2">
+        <div className="flex flex-col items-center pb-8 px-2">
           <h1 className="font-semibold text-5xl">PDPA</h1>
           <div className="my-8 border border-black h-[1px] w-[95%]"></div>
-          <h2 className="text-center text-xl font-semibold">
-            {titles.map((title, index) => (
-              <p key={index}>{title}</p>
-            ))}
+          <h2 className="text-center text-xl font-semibold whitespace-pre-wrap max-w-sm">
+            หนังสือให้ความยินยอมในการเก็บรวบรวมใช้
+            และเปิดเผยข้อมูลส่วนบุคคลสำหรับผู้เข้าร่วมกิจกรรม
+            โครงการวันแรกพบนิสิตใหม่ ปีการศึกษา 2567
           </h2>
-          <article className="mt-5 p-2 max-w-sm text-base">
-            {description.map((section, index) => (
-              <p
-                key={index}
-                className="mb-4"
-              >
-                {section}
-              </p>
-            ))}
+          <article className="my-5 p-2 max-w-sm text-base">
+            <div className="font-athiti whitespace-pre-wrap">
+              {pdpaMarkdown}
+            </div>
           </article>
           <div className="flex justify-center items-center gap-4">
             <div

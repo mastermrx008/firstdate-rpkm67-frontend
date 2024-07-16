@@ -52,7 +52,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     }
   };
   const ebook = () => {
-    window.open('https://th.y8.com/', '_blank');
+    // window.open('', '_blank');
     createEbookCount();
   };
   const contactlist = () => {
@@ -68,7 +68,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       onClick: rubpeun,
     },
     'e-book': {
-      color: 'bg-project-cream',
+      color: 'bg-project-cream opacity-35 cursor-not-allowed',
       onClick: ebook,
     },
     'contact-list': {
