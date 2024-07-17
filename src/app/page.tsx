@@ -96,7 +96,7 @@ function Login() {
         welcomeClassName="text-white text-6xl"
       />
       <p className="text-center text-white mb-20 text-lg">
-        In honor of our wander,
+        In honor of our wonder,
         <br /> you are the answer.
       </p>
       <button
