@@ -53,7 +53,7 @@ export default function Pdpa(props: PdpaProps) {
           <h2 className="text-center text-xl font-semibold whitespace-pre-wrap max-w-sm">
             หนังสือให้ความยินยอมในการเก็บรวบรวมใช้
             และเปิดเผยข้อมูลส่วนบุคคลสำหรับผู้เข้าร่วมกิจกรรม
-            โครงการวันแรกพบนิสิตใหม่ ปีการศึกษา 2567
+            งานวันแรกพบนิสิตใหม่และงานรับเพื่อนก้าวใหม่ ปีการศึกษา 2567
           </h2>
           <article className="my-5 p-2 max-w-sm text-base">
             <div className="font-athiti whitespace-pre-wrap">
