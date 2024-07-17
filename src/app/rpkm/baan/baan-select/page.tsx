@@ -35,6 +35,7 @@ export default function BaanSelect() {
     const [selectedHouseSize, setSelectedHouseSize] = useState<string | null>(null)
     const [shake, setShake] = useState(false);
     const [shuffledBaan, setShuffledBaan] = useState<BaanInfoProps[]>([]);
+    const [searchBaan, setSearchBaan] = useState<string>("");
     const baanListRef = useRef<HTMLDivElement | null>(null);
 
     const handleSizeChange = (size: string) => {
@@ -63,6 +64,10 @@ export default function BaanSelect() {
     useEffect(() => {
         setShuffledBaan(shuffleArray(baanInfos));
       }, []);
+      
+    const filteredBaan = shuffledBaan.filter(house =>
+    house.name.th.toLowerCase().includes(searchBaan.toLowerCase())
+    );
 
     return (
         <>
@@ -87,8 +92,8 @@ export default function BaanSelect() {
                         <input
                             type="text"
                             placeholder="ค้นหาบ้าน"
-                            value=""
-                            //onChange=""
+                            value={searchBaan}
+                            onChange={(e) => setSearchBaan(e.target.value)}
                             className="w-full h-8 pl-4 rounded-full bg-project-yellow placeholder-rpkm-blue"
                         />
                         <Image
@@ -123,16 +128,16 @@ export default function BaanSelect() {
                 </div>
                 <div className="flex justify-center items-center flex-wrap w-[85%] h-60 mb-6">
                     {/*All house data*/}
-                        {shuffledBaan
-                        .filter((house) => selectedHouseSize === null || house.size === selectedHouseSize)
-                        .map((house, index) => (
-                            <div key={index} className="flex justify-center items-center text-white">
+                        {filteredBaan
+                            .filter((house) => selectedHouseSize === null || house.size === selectedHouseSize)
+                            .map((house, index) => (
+                                <div key={index} className="flex justify-center items-center text-white">
                                 <p>//</p>
                                 <p>{house.name.th}-</p>
                                 <p>Size: {house.size}-</p>
                                 <p>Max: {house.max}</p>
                                 <p>//</p>
-                            </div>
+                                </div>
                         ))}
                 </div>
             </div>
