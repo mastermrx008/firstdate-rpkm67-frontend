@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import { Athiti } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
-import Footer from '@/components/(main)/Footer';
 import AuthProvider from '@/context/AuthContext';
 import BaanProvider from '@/context/BaanContext';
 import { Toaster } from 'react-hot-toast';
+import { QueryProvider } from '@/components/queryProvider';
 
 export const metadata: Metadata = {
   title: 'RPKM',
@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${athiti.variable} ${season.variable} ${sarun.variable} bg-1 font-athiti`}
+        className={`${athiti.variable} ${season.variable} ${sarun.variable} font-athiti`}
       >
         <Toaster />
         <AuthProvider>
