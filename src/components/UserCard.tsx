@@ -20,12 +20,13 @@ const UserCard = () => {
         className="w-full h-auto object-cover"
       />
       <div className="absolute top-[15%] left-[9%] w-[65%] h-[65%] flex flex-col items-center justify-center p-4 bg-blue-900 rounded-lg">
-        <div className="w-[35%] h-[50%] overflow-hidden rounded-full">
+        <div className="relative w-[35%] h-[50%] overflow-hidden rounded-full">
           {photoUrl && (
             <Image
               src={photoUrl}
               alt="user-picture"
               className="w-full h-full object-cover"
+              fill
             />
           )}
         </div>
