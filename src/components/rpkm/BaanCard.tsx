@@ -50,10 +50,10 @@ export default function BaanCard({
   const [openBaanModal, setOpenBaanModal] = useState(false);
   const [openBaanFullModal, setOpenBaanFullModal] = useState(false);
 
-  const handleBaanFull = () => {
-    setOpenBaanModal(false);
-    setOpenBaanFullModal(true);
-  };
+  // const handleBaanFull = () => {
+  //   setOpenBaanModal(false);
+  //   setOpenBaanFullModal(true);
+  // };
 
   return (
     <>
