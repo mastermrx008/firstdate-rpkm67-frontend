@@ -53,7 +53,7 @@ const page = () => {
       />
       <a
         className="text-sm font-semibold flex justify-end underline mr-4 mt-2"
-        href="/"
+        href="/rpkm/activities/activities"
       >
         ดูทั้งหมด
       </a>
@@ -65,7 +65,7 @@ const page = () => {
       />
       <a
         className="text-sm font-semibold flex justify-end underline mr-4 mt-2"
-        href="/"
+        href="/rpkm/activities/walkrally"
       >
         ดูทั้งหมด
       </a>
@@ -77,7 +77,7 @@ const page = () => {
       />
       <a
         className="text-sm font-semibold flex justify-end underline mr-4 mt-2"
-        href="/"
+        href="/rpkm/activities/community"
       >
         ดูทั้งหมด
       </a>
@@ -87,18 +87,9 @@ const page = () => {
         cards={baanContent}
         className="w-[60vw]"
       />
-      {/* <div className="flex justify-center w-full">
-        <Card
-          title={baanContent.title}
-          image={baanContent.image}
-          content={baanContent.content}
-          href="/rpkm/activities/details"
-          className="w-[90vw]"
-        />
-      </div> */}
       <a
         className="pb-7 text-sm font-semibold flex justify-end underline mr-4 mt-2"
-        href="/"
+        href="/rpkm/activities/home"
       >
         ดูทั้งหมด
       </a>

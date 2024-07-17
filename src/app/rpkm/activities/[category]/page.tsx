@@ -78,7 +78,7 @@ const Page = () => {
             image={card.image}
             content={card.content}
             href={`/rpkm/details/${card.id}`}
-            className="w-[60vw] m-auto"
+            className="w-[60vw] m-auto opacity-80"
           />
         ))}
       </div>
