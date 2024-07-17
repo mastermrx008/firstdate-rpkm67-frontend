@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${athiti.variable} ${season.variable} ${sarun.variable} ${sopha.variable} bg-1 font-athiti`}
+        className={`${athiti.variable} ${season.variable} ${sarun.variable} ${sopha.variable} font-athiti`}
       >
         <Toaster />
         <AuthProvider>{children}</AuthProvider>
