@@ -3,9 +3,10 @@ import { Athiti } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
 import AuthProvider from '@/context/AuthContext';
+import BaanProvider from '@/context/BaanContext';
 import { Toaster } from 'react-hot-toast';
 import { QueryProvider } from '@/components/queryProvider';
-
+import Footer from '@/components/(main)/Footer';
 export const metadata: Metadata = {
   title: 'RPKM',
 };
@@ -22,7 +23,10 @@ export default function RootLayout({
       >
         <QueryProvider>
           <Toaster />
-          <AuthProvider>{children}</AuthProvider>
+          <AuthProvider>
+            <BaanProvider>{children}</BaanProvider>
+          </AuthProvider>
+          <Footer />
         </QueryProvider>
       </body>
     </html>
