@@ -32,11 +32,6 @@ const config: Config = {
           red: '#C94B4B',
         },
         rpkm: {
-          green: '#67AB88',
-          cream: '#EAE3C3',
-          red: '#C94B4B',
-        },
-        rpkm: {
           red: '#C94B4B',
           cream: '#EAE3C3',
           green: '#67AB88',
