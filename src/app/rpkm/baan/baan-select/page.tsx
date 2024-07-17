@@ -8,6 +8,7 @@ import home from '@public/baan-select/home.svg';
 import search from '@public/baan-select/search.svg';
 import '@/components/rpkm/baan/baan-select/style.css';
 import { baanInfos, BaanInfoProps } from '@/components/rpkm/baan/baanInfo';
+import BaanCard from '@/components/rpkm/BaanCard'
 
 interface SizeFilterProps {
   size: 'S' | 'M' | 'L' | 'XL' | 'XXL';
@@ -76,7 +77,12 @@ export default function BaanSelect() {
 
   return (
     <>
-      <div>{/*baanSelectComponent*/}</div>
+      <div className="flex justify-center items-center bg-white w-screen h-60">
+        {/*baanSelectComponent*/}
+        <button onClick={handleOnClick}>
+            click here
+        </button>
+      </div>
       <div
         ref={baanListRef}
         className="relative flex justify-center items-center flex-col"
@@ -136,7 +142,11 @@ export default function BaanSelect() {
             ))}
           </div>
           <div className="flex justify-center items-center flex-wrap w-[90%] h-60 mb-6 pl-1 pr-[3%] gap-4 overflow-y-scroll">
-            {/*All house data*/}
+          {filteredBaan
+            .filter((house) => selectedHouseSize === null || house.size === selectedHouseSize)
+            .map((house, index) => (
+              <BaanCard key={index} isShake={shake} currentPeople={0} {...house} />
+            ))}
           </div>
         </div>
       </div>

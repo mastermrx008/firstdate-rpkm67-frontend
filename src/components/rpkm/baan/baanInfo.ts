@@ -27,7 +27,7 @@ export interface BaanInfoProps {
     th: string;
     en: string;
   };
-  logo: string | StaticImageData;
+  logo: StaticImageData;
   max: number;
   size: 'S' | 'M' | 'L' | 'XL' | 'XXL';
   description: {
@@ -58,7 +58,8 @@ export const baanInfos: BaanInfoProps[] = [
     ig: 'baanlaijai',
     message: {
       th: 'ถ้ารักเดียวยังอกหัก เชิญมาพักที่เกาะหลายใจ',
-      en: '',
+      en: `Roses are red, violets are blue
+At the Laijai island, we’re waiting for you . 💖`,
     },
   },
   {
@@ -409,12 +410,14 @@ You can have a peek at our Boe’s planet at IG: baanboe 🪐`,
     size: 'XL',
     description: {
       th: 'บ้านไหนที่ใครว่าเยี่ยม ไม่อาจเทียบเทียมบ้านคุ้มจุฬาฯ บ้านคุ้ม บ้านที่มีการสันทนาการเป็นเอกลักษณ์ที่สุดในจุฬาฯ',
-      en: '',
+      en: `Which house is considered outstanding? None can compare to BAAN KOOM Chula! Known for its exceptional entertainment activities, BAAN KOOM stands out as the most unique house at Chula. It's where unforgettable memories are made and lifelong friendships are created.`,
     },
     ig: 'baankoom.chula',
     message: {
       th: 'บ้านคุ้มรับประกันความม่วน ความเริ่ด ความปัง มาอยู่บ้านคุ้มสักครั้งแล้วจะไม่ผิดหวัง ✨',
-      en: '',
+      en: `At BAAN KOOM, we guarantee fun, excitement, and a surge in popularity. Come to BAAN KOOM once, and you won't be disappointed. Immerse yourself in the vibrant activities, meet amazing people, and create stories worth sharing.
+
+Join us at BAAN KOOM – where the best moments of your Chula journey await!`,
     },
   },
   {

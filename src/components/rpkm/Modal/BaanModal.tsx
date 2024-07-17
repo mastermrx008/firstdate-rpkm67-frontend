@@ -18,15 +18,19 @@ interface BaanModalProps {
     th: string;
     en: string;
   };
-  content: {
+  description: {
     th: string;
     en: string;
   };
   size: string;
   currentPeople: number;
-  capacity: number;
-  instagram: string;
-  image: StaticImageData;
+  max: number;
+  ig: string;
+  logo: StaticImageData;
+  message: {
+    th: string;
+    en: string;
+  }
   callBackFunction: (params: unknown) => void;
 }
 
@@ -35,12 +39,13 @@ interface BaanModalProps {
  * @param open - boolean
  * @param setOpen - function
  * @param name - { th: string, en: string }
- * @param content - { th: string, en: string }
+ * @param description - { th: string, en: string }
  * @param size - string
  * @param currentPeople - number
- * @param capacity - number
+ * @param max - number
  * @param instagram - string
- * @param image - StaticImageData (next/image)
+ * @param logo - StaticImageData (next/image)
+ * @param message - { th: string, en: string }
  * @param callBackFunction - function => void
  * @returns Styled baan modal component
  */
@@ -48,12 +53,13 @@ const BaanModal: React.FC<BaanModalProps> = ({
   open,
   setOpen,
   name,
-  content,
+  description,
   size,
   currentPeople,
-  capacity,
-  instagram,
-  image,
+  max,
+  ig,
+  logo,
+  message,
   callBackFunction,
 }) => {
   const [mode, setMode] = useState<'th' | 'en'>('th');
@@ -83,7 +89,7 @@ const BaanModal: React.FC<BaanModalProps> = ({
             <div className="flex items-center">
               <p>
                 <span className="text-[#EAE3C3]">{currentPeople}</span>
-                <span className="text-white">/{capacity}</span>
+                <span className="text-white">/{max}</span>
               </p>
               <Image
                 src={PersonIcon}
@@ -114,7 +120,7 @@ const BaanModal: React.FC<BaanModalProps> = ({
         </div>
         <div className="flex justify-center w-full my-4">
           <Image
-            src={image}
+            src={logo}
             alt="baan image"
             className="w-44 p-1 border-[#F5F5F5] border-2"
           />
@@ -123,7 +129,7 @@ const BaanModal: React.FC<BaanModalProps> = ({
           <p className="text-xl font-bold">{name[mode]}</p>
           <div className="flex justify-center">
             <p className="w-4/5 text-sm max-h-20 overflow-y-scroll ">
-              {content[mode]}
+              {description[mode]}
             </p>
           </div>
         </div>
@@ -132,7 +138,7 @@ const BaanModal: React.FC<BaanModalProps> = ({
             src={InstagramIcon}
             alt="instagram icon"
           />
-          <p className="text-white">{instagram}</p>
+          <p className="text-white">{ig}</p>
         </div>
         <div className="flex flex-row gap-x-3 justify-center mt-3">
           <ModalButton
