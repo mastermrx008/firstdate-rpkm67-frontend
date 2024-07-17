@@ -3,9 +3,9 @@ import { Athiti } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
 import AuthProvider from '@/context/AuthContext';
+import BaanProvider from '@/context/BaanContext';
 import { Toaster } from 'react-hot-toast';
 import { QueryProvider } from '@/components/queryProvider';
-
 export const metadata: Metadata = {
   title: 'RPKM',
 };
@@ -18,11 +18,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${athiti.variable} ${season.variable} ${sarun.variable} font-athiti`}
+        className={`${athiti.variable} ${season.variable} ${sarun.variable} ${sopha.variable} font-athiti`}
       >
         <QueryProvider>
           <Toaster />
-          <AuthProvider>{children}</AuthProvider>
+          <AuthProvider>
+            <BaanProvider>{children}</BaanProvider>
+          </AuthProvider>
         </QueryProvider>
       </body>
     </html>
@@ -76,6 +78,16 @@ const sarun = localFont({
   src: [
     {
       path: '../../public/fonts/thai/Sarun.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+  ],
+});
+const sopha = localFont({
+  variable: '--sopha',
+  src: [
+    {
+      path: '../../public/fonts/thai/SOV_SawadiSopha.ttf',
       weight: '400',
       style: 'normal',
     },
