@@ -38,10 +38,12 @@ const BaanButtonsSection: React.FC<BaanButtonsSectionProps> = ({
         (!selectedBaan || selectedBaan.length === 0 ? (
           <Button
             content="เลือกบ้าน"
-            onClick={() => router.push('/select-baan')}
+            onClick={() => router.push('/rpkm/baan/baan-select')}
           />
         ) : isLeader ? (
-          <BaanEditButton onClick={() => router.push('/select-baan')} />
+          <BaanEditButton
+            onClick={() => router.push('/rpkm/baan/baan-select')}
+          />
         ) : (
           <div className="text-rpkm-cream text-md">
             *คุณไม่สามารถแก้ไขบ้านที่เลือกได้

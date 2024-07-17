@@ -58,7 +58,7 @@ const BaanSelect: React.FC<BaanSelectProps> = ({ mode }) => {
     <div className="flex flex-col items-center bg-zinc-800 w-80 h-auto p-5 space-y-10">
       <h1 className="text-xl text-amber-100 font-bold">บ้านที่เลือกไว้</h1>
       <div className="flex items-center justify-center flex-col space-y-8">
-        {!selectedBaan || selectedBaan.length === 0 ? (
+        {(!selectedBaan || selectedBaan.length === 0) && mode == 'select' ? (
           <BaanEmpty />
         ) : (
           <BaanCardsSection
