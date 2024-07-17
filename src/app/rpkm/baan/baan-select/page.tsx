@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import home from '@public/baan-select/home.svg';
 import search from '@public/baan-select/search.svg';
+import '@/components/rpkm/baan/baan-select/style.css'
 import { baanInfos, BaanInfoProps } from '@/components/rpkm/baan/baanInfo';
 
 interface SizeFilterProps {
@@ -71,12 +72,9 @@ export default function BaanSelect() {
 
     return (
         <>
-        <div className="flex justify-center items-center bg-white w-screen h-60">
+        <div>
             {/*baanSelectComponent*/}
-            <button onClick={handleOnClick}>
-                click here
-            </button>
-            </div>
+        </div>
         <div ref={baanListRef} className="relative flex justify-center items-center flex-col">
             <div className="absolute inset-0 bg-black opacity-70"></div>
             <div className="relative flex flex-col items-center mt-4 w-full">
@@ -104,7 +102,7 @@ export default function BaanSelect() {
                     </div> 
                 </div>
                 <label className="text-white font-semibold z-20 mb-2">ขนาดบ้าน</label>
-                <div className="flex justify-center items-center flex-wrap mt-1 gap-[3%] w-[70%]">
+                <div className="flex justify-center items-center flex-wrap mt-1 gap-[6%] w-72">
                     {sizeFilter.map((house, index) => (
                         <div key={index}>
                             <input
@@ -116,7 +114,7 @@ export default function BaanSelect() {
                                 onChange={() => handleSizeChange(house.size)}
                             />
                             <label htmlFor={house.size} className={cn(`flex justify-center items-center text-white bg-rpkm-green 
-                                                                        w-auto h-9 px-4 rounded-lg font-semibold drop-shadow-lg mb-4
+                                                                        w-auto h-9 px-4 rounded-lg font-semibold drop-shadow-lg mb-5
                                                                         transition-all duration-300 active:scale-90`, {
                                                             'bg-white text-rpkm-blue' : selectedHouseSize === house.size
                                                         })}
@@ -126,19 +124,8 @@ export default function BaanSelect() {
                         </div>
                         ))}
                 </div>
-                <div className="flex justify-center items-center flex-wrap w-[85%] h-60 mb-6">
+                <div className="flex justify-center items-center flex-wrap w-[90%] h-60 mb-6 pl-1 pr-[3%] gap-4 overflow-y-scroll">
                     {/*All house data*/}
-                        {filteredBaan
-                            .filter((house) => selectedHouseSize === null || house.size === selectedHouseSize)
-                            .map((house, index) => (
-                                <div key={index} className="flex justify-center items-center text-white">
-                                <p>//</p>
-                                <p>{house.name.th}-</p>
-                                <p>Size: {house.size}-</p>
-                                <p>Max: {house.max}</p>
-                                <p>//</p>
-                                </div>
-                        ))}
                 </div>
             </div>
         </div>
