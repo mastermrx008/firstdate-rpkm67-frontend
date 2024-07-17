@@ -18,7 +18,7 @@ const config: Config = {
         project: {
           fuchsia: '#F75471',
           pink: '#FFBBD2',
-          'pastel-pink' : '#EB9096',
+          'pastel-pink': '#EB9096',
           apricot: '#E9A49B',
           cream: '#F1DFC1',
           blue: '#678CEC',
@@ -29,7 +29,10 @@ const config: Config = {
           gray: '#DDDDDD',
           brown: '#AA8B84',
           yellow: '#EFD08B',
-          red: "#C94B4B",
+          red: '#C94B4B',
+        },
+        rpkm: {
+          green: '#67AB88',
         },
       },
       fontFamily: {
