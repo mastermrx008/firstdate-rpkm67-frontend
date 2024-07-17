@@ -47,8 +47,8 @@ export default function UserInfo({ user }: UserInfoProps) {
         </div>
         <div className="flex justify-center items-center w-[66px]">
           <Link
-            className="mt-8 flex items-center flex-col"
-            href="/firstdate/map"
+            className="mt-8 flex items-center flex-col opacity-30"
+            href=""
           >
             <Icon
               icon="material-symbols:map"
