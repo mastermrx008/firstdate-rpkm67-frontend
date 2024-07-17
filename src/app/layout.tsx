@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${athiti.variable} ${season.variable} ${sarun.variable} font-athiti`}
+        className={`${athiti.variable} ${season.variable} ${sarun.variable} ${sopha.variable} font-athiti`}
       >
         <QueryProvider>
           <Toaster />
@@ -80,6 +80,16 @@ const sarun = localFont({
   src: [
     {
       path: '../../public/fonts/thai/Sarun.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+  ],
+});
+const sopha = localFont({
+  variable: '--sopha',
+  src: [
+    {
+      path: '../../public/fonts/thai/SOV_SawadiSopha.ttf',
       weight: '400',
       style: 'normal',
     },

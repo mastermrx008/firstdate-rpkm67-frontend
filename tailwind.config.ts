@@ -41,6 +41,7 @@ const config: Config = {
         season: ['var(--season)', 'system-ui'],
         athiti: ['var(--athiti)', 'system-ui'],
         sarun: ['var(--sarun)', 'system-ui'],
+        sopha: ['var(--sopha)', 'system-ui'],
       },
       dropShadow: {
         text: '0px 0px 4px 0px #00000040;',
