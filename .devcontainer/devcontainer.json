@@ -1,0 +1,18 @@
+{
+	"name": "RPKM67 Frontend",
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"aaron-bond.better-comments",
+				"ms-azuretools.vscode-docker",
+				"GitHub.copilot",
+				"GitHub.copilot-chat",
+				"VisualStudioExptTeam.vscodeintellicode",
+				"ZainChen.json",
+				"esbenp.prettier-vscode",
+				"bradlc.vscode-tailwindcss"
+			]
+		}
+	}
+}
