@@ -18,7 +18,7 @@ const config: Config = {
         project: {
           fuchsia: '#F75471',
           pink: '#FFBBD2',
-          'pastel-pink' : '#EB9096',
+          'pastel-pink': '#EB9096',
           apricot: '#E9A49B',
           cream: '#F1DFC1',
           blue: '#678CEC',
@@ -29,16 +29,33 @@ const config: Config = {
           gray: '#DDDDDD',
           brown: '#AA8B84',
           yellow: '#EFD08B',
-          red: "#C94B4B",
+          red: '#C94B4B',
+        },
+        rpkm: {
+          green: '#67AB88',
+          cream: '#EAE3C3',
+          red: '#C94B4B',
         },
       },
       fontFamily: {
         season: ['var(--season)', 'system-ui'],
         athiti: ['var(--athiti)', 'system-ui'],
         sarun: ['var(--sarun)', 'system-ui'],
+        sopha: ['var(--sopha)', 'system-ui'],
       },
       dropShadow: {
         text: '0px 0px 4px 0px #00000040;',
+      },
+      animation: {
+        shake: 'shaking 60ms infinite',
+      },
+      keyframes: {
+        shaking: {
+          '0%': { top: '0px' },
+          '50%': { transform: 'rotate(1deg)' },
+          '80%': { transform: 'rotate(-1deg)' },
+          '100%': { top: '10px' },
+        },
       },
     },
   },
