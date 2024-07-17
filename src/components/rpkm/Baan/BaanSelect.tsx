@@ -8,6 +8,7 @@ import { getGroupByUserId } from '@/utils/group';
 import BaanCardsSection from './Section/BaanCardsSection';
 import BaanButtonsSection from './Section/BaanButtonsSection';
 import { ConfirmGroupSelection } from '@/utils/group';
+import toast from 'react-hot-toast';
 
 interface BaanSelectProps {
   mode: 'select' | 'edit';
@@ -23,8 +24,9 @@ const BaanSelect: React.FC<BaanSelectProps> = ({ mode }) => {
     const checkGroupStatus = async () => {
       if (user) {
         const myGroup = await getGroupByUserId(user.id);
+
         if (myGroup instanceof Error) {
-          resetContext();
+          toast.error('ไม่สามารถเช็คสถานะของกลุ่มได้');
         } else if (myGroup) {
           setIsLeader(myGroup.leaderId === user.id);
           setIsConfirmed(myGroup.isConfirmed);
@@ -39,7 +41,7 @@ const BaanSelect: React.FC<BaanSelectProps> = ({ mode }) => {
     if (user) {
       const confirmedGroup = await ConfirmGroupSelection(user.id);
       if (confirmedGroup instanceof Error) {
-        resetContext();
+        toast.error('ไม่สามารถยืนยันการเลือกบ้านได้');
       } else {
         setIsConfirmed(true);
       }

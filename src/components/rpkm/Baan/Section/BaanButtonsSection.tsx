@@ -4,6 +4,7 @@ import BaanEditButton from '@/components/rpkm/Baan/Button/BaanEditButton';
 import { BaanSelection } from '@/types/BaanSelection';
 import { useBaan } from '@/context/BaanContext';
 import Modal from '@/components/rpkm/Modal/Modal';
+import { useRouter } from 'next/navigation';
 
 interface BaanButtonsSectionProps {
   mode: 'select' | 'edit';
@@ -22,7 +23,7 @@ const BaanButtonsSection: React.FC<BaanButtonsSectionProps> = ({
 }) => {
   const { removeAllBaanSelection } = useBaan();
   const [isModalOpen, setModalOpen] = useState(false);
-
+  const router = useRouter();
   const handleConfirm = () => setModalOpen(true);
   const handleModalConfirm = () => {
     setModalOpen(false);
@@ -37,10 +38,10 @@ const BaanButtonsSection: React.FC<BaanButtonsSectionProps> = ({
         (!selectedBaan || selectedBaan.length === 0 ? (
           <Button
             content="เลือกบ้าน"
-            onClick={() => console.log('บ้านถูกเลือกแล้ว')}
+            onClick={() => router.push('/select-baan')}
           />
         ) : isLeader ? (
-          <BaanEditButton onClick={() => console.log('บ้านถูกเลือกแล้ว')} />
+          <BaanEditButton onClick={() => router.push('/select-baan')} />
         ) : (
           <div className="text-rpkm-cream text-md">
             *คุณไม่สามารถแก้ไขบ้านที่เลือกได้
@@ -53,7 +54,7 @@ const BaanButtonsSection: React.FC<BaanButtonsSectionProps> = ({
               *กรุณาเลือกให้ครบ 5 บ้าน
             </div>
           )}
-          {selectedBaan && selectedBaan.length === 5 && (
+          {selectedBaan && selectedBaan.length > 0 && (
             <div className="text-xs text-rpkm-cream">
               <button
                 className="underline"
