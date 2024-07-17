@@ -33,6 +33,7 @@ const config: Config = {
         },
         rpkm: {
           green: '#67AB88',
+          cream: '#EAE3C3'
         },
       },
       fontFamily: {
