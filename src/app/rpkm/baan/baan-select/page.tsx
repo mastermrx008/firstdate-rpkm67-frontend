@@ -7,8 +7,11 @@ import Link from 'next/link';
 import home from '@public/baan-select/home.svg';
 import search from '@public/baan-select/search.svg';
 import '@/components/rpkm/baan/baan-select/style.css';
-import { baanInfos, BaanInfoProps } from '@/components/rpkm/baan/baanInfo';
+import { baanInfos, BaanInfoProps } from '@/components/rpkm/Baan/baanInfo';
+import { useBaan } from '@/context/BaanContext'
+import RpkmLogo from '@public/Rpkm67Logo.svg';
 import BaanCard from '@/components/rpkm/BaanCard'
+import BaanSelect from '@/components/rpkm/Baan/BaanSelect';
 
 interface SizeFilterProps {
   size: 'S' | 'M' | 'L' | 'XL' | 'XXL';
@@ -33,7 +36,7 @@ const shuffleArray = (baan: BaanInfoProps[]): BaanInfoProps[] => {
   return [...baan].sort(() => Math.random() - 0.5);
 };
 
-export default function BaanSelect() {
+export default function BaanSelectPage() {
   const [selectedHouseSize, setSelectedHouseSize] = useState<string | null>(
     null
   );
@@ -41,6 +44,7 @@ export default function BaanSelect() {
   const [shuffledBaan, setShuffledBaan] = useState<BaanInfoProps[]>([]);
   const [searchBaan, setSearchBaan] = useState<string>('');
   const baanListRef = useRef<HTMLDivElement | null>(null);
+  const { baanCounts } = useBaan();
 
   const handleSizeChange = (size: string) => {
     setSelectedHouseSize((prevSize) => (prevSize === size ? null : size));
@@ -72,22 +76,26 @@ export default function BaanSelect() {
   }, []);
 
   const filteredBaan = shuffledBaan.filter((house) =>
-    house.name.th.toLowerCase().includes(searchBaan.toLowerCase())
+    house.name.th.toLowerCase().includes(searchBaan.toLowerCase()) ||
+    house.name.en.toLowerCase().includes(searchBaan.toLowerCase())
   );
 
   return (
-    <>
-      <div className="flex justify-center items-center bg-white w-screen h-60">
-        {/*baanSelectComponent*/}
-        <button onClick={handleOnClick}>
-            click here
-        </button>
+    <div className="flex justify-center items-center flex-col">
+      <div className="mt-[15%]">
+        <Image
+          src={RpkmLogo}
+          alt="rpkm67Logo"
+        />
+      </div>
+      <div className="my-3">
+        <BaanSelect mode={'edit'}/>
       </div>
       <div
         ref={baanListRef}
-        className="relative flex justify-center items-center flex-col"
+        className="relative flex justify-center items-center flex-col w-screen"
       >
-        <div className="absolute inset-0 bg-black opacity-70"></div>
+        <div className="absolute inset-0 bg-rpkm-gray opacity-90"></div>
         <div className="relative flex flex-col items-center mt-4 w-full">
           <div className="flex justify-center items-center mb-1 gap-[4%] w-full">
             <Link href="/rpkm/baan/home">
@@ -141,15 +149,18 @@ export default function BaanSelect() {
               </div>
             ))}
           </div>
-          <div className="flex justify-center items-center flex-wrap w-[90%] h-60 mb-6 pl-1 pr-[3%] gap-4 overflow-y-scroll">
+          <div className="flex justify-center flex-wrap w-full h-80 mb-6 mr-[4%] pl-[3%] gap-4 overflow-y-scroll">
           {filteredBaan
-            .filter((house) => selectedHouseSize === null || house.size === selectedHouseSize)
-            .map((house, index) => (
-              <BaanCard key={index} isShake={shake} currentPeople={0} {...house} />
-            ))}
+              .filter((house) => selectedHouseSize === null || house.size === selectedHouseSize)
+              .map((house, index) => {
+                const currentPeople = baanCounts?.find(b => b.baanId === house.name.en)?.count || 0;
+                return (
+                  <BaanCard key={index} isShake={shake} currentPeople={currentPeople} {...house} />
+                );
+              })}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

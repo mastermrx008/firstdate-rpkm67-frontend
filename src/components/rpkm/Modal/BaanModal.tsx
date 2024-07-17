@@ -4,6 +4,7 @@ import Image, { StaticImageData } from 'next/image';
 import { cn } from '@/lib/utils';
 
 import modalStyles from './ModalStyle';
+import '@/components/rpkm/Modal/style.css'
 
 import BaseModal from '@/components/rpkm/Modal/BaseModal';
 import ModalButton from '@/components/rpkm/Modal/ModalButton';
@@ -122,14 +123,20 @@ const BaanModal: React.FC<BaanModalProps> = ({
           <Image
             src={logo}
             alt="baan image"
-            className="w-44 p-1 border-[#F5F5F5] border-2"
+            className="w-44 p-1 border-[#F5F5F5] bg-[#F5F5F5] border-2"
           />
         </div>
         <div className="text-center text-white">
-          <p className="text-xl font-bold">{name[mode]}</p>
+          <p className="text-xl font-bold">{mode === 'th' ? 'บ้าน' : 'Baan '}{name[mode]}</p>
           <div className="flex justify-center">
-            <p className="w-4/5 text-sm max-h-20 overflow-y-scroll ">
+            <p className="w-4/5 text-sm max-h-20 overflow-y-scroll pr-[2%]">
               {description[mode]}
+            </p>
+          </div>
+          <p className="mt-4 text-xl font-bold">ฝากถึงน้อง ๆ</p>
+          <div className="flex justify-center">
+            <p className="mb-2 w-4/5 text-sm max-h-20 overflow-y-scroll pr-[2%]">
+              {message[mode]}
             </p>
           </div>
         </div>
