@@ -6,20 +6,35 @@ import Image from 'next/image';
 import Link from 'next/link';
 import home from '@public/baan-select/home.svg';
 import search from '@public/baan-select/search.svg';
-import { BaanInfo } from '@/components/rpkm/baan/baanInfo';
+import { baanInfos, BaanInfoProps } from '@/components/rpkm/baan/baanInfo';
 
-//wait real data
-const mockHouseSize = [
-    { size: 'S', count: 10 },
-    { size: 'M', count: 15 },
-    { size: 'L', count: 8 },
-    { size: 'XL', count: 5 },
-    { size: 'XXL', count: 3}
-]
+interface SizeFilterProps {
+    size: 'S' | 'M' | 'L' | 'XL' | 'XXL';
+    count: number;
+}
+
+const calculateSizeFilter = (baan: BaanInfoProps[]): SizeFilterProps[] => {
+    const sizeCounts: { [key: string]: number } = {};
+    baan.forEach(house => {
+        sizeCounts[house.size] = (sizeCounts[house.size] || 0) + 1;
+    });
+
+    return Object.entries(sizeCounts).map(([size, count]) => ({
+        size: size as 'S' | 'M' | 'L' | 'XL' | 'XXL',
+        count,
+    }));
+};
+
+const sizeFilter = calculateSizeFilter(baanInfos);
+
+const shuffleArray = (baan: BaanInfoProps[]): BaanInfoProps[] => {
+    return [...baan].sort(() => Math.random() - 0.5);
+  };
 
 export default function BaanSelect() {
     const [selectedHouseSize, setSelectedHouseSize] = useState<string | null>(null)
     const [shake, setShake] = useState(false);
+    const [shuffledBaan, setShuffledBaan] = useState<BaanInfoProps[]>([]);
     const baanListRef = useRef<HTMLDivElement | null>(null);
 
     const handleSizeChange = (size: string) => {
@@ -44,6 +59,10 @@ export default function BaanSelect() {
             document.removeEventListener('click', handleDocumentClick);
         };
     }, [shake]);
+
+    useEffect(() => {
+        setShuffledBaan(shuffleArray(baanInfos));
+      }, []);
 
     return (
         <>
@@ -78,7 +97,7 @@ export default function BaanSelect() {
                 </div>
                 <label className="text-white font-semibold z-20 mb-2">ขนาดบ้าน</label>
                 <div className="flex justify-center items-center flex-wrap mt-1 gap-[3%] w-[70%]">
-                    {mockHouseSize.map((house, index) => (
+                    {sizeFilter.map((house, index) => (
                         <div key={index}>
                             <input
                                 type="radio"

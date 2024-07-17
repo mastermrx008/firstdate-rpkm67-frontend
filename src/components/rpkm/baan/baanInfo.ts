@@ -22,7 +22,7 @@ import JoLogo from '@public/baan-logo/BaanJo+.png';
 import RangsLogo from '@public/baan-logo/BaanRangs.png';
 import YimLogo from '@public/baan-logo/BaanYim.jpeg';
 
-export interface BaanInfo {
+export interface BaanInfoProps {
     name: {
         th: string;
         en: string;
@@ -42,7 +42,7 @@ export interface BaanInfo {
     };
 };
 
-export const baanInfos: BaanInfo[] = [
+export const baanInfos: BaanInfoProps[] = [
     {
         name: {
             th: "หลายใจ",
