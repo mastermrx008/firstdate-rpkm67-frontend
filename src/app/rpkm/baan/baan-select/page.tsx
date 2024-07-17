@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -18,16 +18,39 @@ const mockHouseSize = [
 ]
 
 export default function BaanSelect() {
-    const [selectedHouseSize, setSelectedHouseSize] = useState<string>("")
+    const [selectedHouseSize, setSelectedHouseSize] = useState<string | null>(null)
+    const [shake, setShake] = useState(false);
+    const baanListRef = useRef<HTMLDivElement | null>(null);
 
     const handleSizeChange = (size: string) => {
-        setSelectedHouseSize(size);
+        setSelectedHouseSize(prevSize => (prevSize === size ? null : size));
     };
+
+    const handleOnClick = () => {
+        baanListRef.current ? baanListRef.current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        }) : console.error("Element not found.");
+        setShake(true);
+    }
+
+    useEffect(() => {
+        if (!shake) return;
+        const handleDocumentClick = () => {
+            setShake(false);
+        };
+        document.addEventListener('click', handleDocumentClick);
+        return () => {
+            document.removeEventListener('click', handleDocumentClick);
+        };
+    }, [shake]);
 
     return (
         <>
-        <div>{/*baanSelectComponent*/}</div>
-        <div className="relative flex justify-center items-center flex-col">
+        <div className="flex justify-center items-center bg-white w-screen h-60">
+            {/*baanSelectComponent*/}
+            </div>
+        <div ref={baanListRef} className="relative flex justify-center items-center flex-col">
             <div className="absolute inset-0 bg-black opacity-70"></div>
             <div className="relative flex flex-col items-center mt-4 w-full">
                 <div className="flex justify-center items-center mb-1 gap-[4%] w-full">
@@ -78,7 +101,7 @@ export default function BaanSelect() {
                         </div>
                         ))}
                 </div>
-                <div className="flex justify-center items-center flex-wrap w-[85%] h-5 mb-6">
+                <div className="flex justify-center items-center flex-wrap w-[85%] h-60 mb-6">
                     {/*All house data*/}
                 </div>
             </div>
