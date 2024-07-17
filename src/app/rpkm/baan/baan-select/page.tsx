@@ -50,7 +50,7 @@ export default function BaanSelectPage() {
     setSelectedHouseSize((prevSize) => (prevSize === size ? null : size));
   };
 
-  const handleOnClick = () => {
+  const scrollToBaanList = () => {
     baanListRef.current
       ? baanListRef.current.scrollIntoView({
           behavior: 'smooth',
@@ -120,7 +120,7 @@ export default function BaanSelectPage() {
               />
             </div>
           </div>
-          <label className="text-white font-semibold z-20 mb-2">ขนาดบ้าน</label>
+          <label className="text-white font-semibold mb-2">ขนาดบ้าน</label>
           <div className="flex justify-center items-center flex-wrap mt-1 gap-[6%] w-72">
             {sizeFilter.map((house, index) => (
               <div key={index}>
