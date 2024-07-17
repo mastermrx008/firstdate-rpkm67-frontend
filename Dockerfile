@@ -23,6 +23,14 @@ COPY . .
 
 RUN pnpm build
 
+FROM node:21-alpine3.18 AS production
+
+WORKDIR /app
+
+COPY --from=base /app/.next/standalone .
+COPY --from=base /app/.next/static ./.next/static
+COPY --from=base /app/public ./public
+
 EXPOSE 3000
 
-CMD ["pnpm", "start"]
+CMD ["node", "server.js"]
