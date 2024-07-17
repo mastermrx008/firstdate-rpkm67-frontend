@@ -1,10 +1,9 @@
-import { StaticImageData } from 'next/image';
 import Card from './Card';
 
 interface ScrollSectionProps {
   cards: {
     title: string;
-    image: StaticImageData;
+    image: string;
     content: string;
   }[];
   href: string;

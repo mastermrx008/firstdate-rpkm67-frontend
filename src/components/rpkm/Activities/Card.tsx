@@ -1,10 +1,10 @@
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 
 import { cn } from '@/lib/utils';
 
 interface CardProps {
   title: string;
-  image: StaticImageData;
+  image: string;
   imageClassName?: string;
   content: string;
   href: string;
@@ -31,6 +31,10 @@ const Card: React.FC<CardProps> = ({
         <Image
           src={image}
           alt="activity image"
+          width={0}
+          height={0}
+          sizes="100vw"
+          style={{ width: 'auto', height: 'auto' }}
           className={cn('w-full', imageClassName)}
         />
         <div className="flex flex-col gap-y-[2px] mt-1">

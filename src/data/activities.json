@@ -1,0 +1,56 @@
+{
+  "activities": [
+    {
+      "title": "Activity 1",
+      "image": "/user-card/tv.png",
+      "content": "This is the content of activity 1"
+    },
+    {
+      "title": "Activity 1",
+      "image": "/user-card/tv.png",
+      "content": "This is the content of activity 1"
+    },
+    {
+      "title": "Activity 1",
+      "image": "/user-card/tv.png",
+      "content": "This is the content of activity 1"
+    },
+    {
+      "title": "Activity 1",
+      "image": "/user-card/tv.png",
+      "content": "This is the content of activity 1"
+    }
+  ],
+  "walk-rally": {
+    "title": "Walk Rally",
+    "image": "/user-card/tv.png",
+    "content": "This is the content of Walk Rally"
+  },
+  "community": [
+    {
+      "title": "Community 1",
+      "image": "/user-card/tv.png",
+      "content": "This is the content of community 1"
+    },
+    {
+      "title": "Community 2",
+      "image": "/user-card/tv.png",
+      "content": "This is the content of community 2"
+    },
+    {
+      "title": "Community 3",
+      "image": "/user-card/tv.png",
+      "content": "This is the content of community 3"
+    },
+    {
+      "title": "Community 4",
+      "image": "/user-card/tv.png",
+      "content": "This is the content of community 4"
+    }
+  ],
+  "baan": {
+    "title": "Baan",
+    "image": "/user-card/tv.png",
+    "content": "This is the content of Baan"
+  }
+}
