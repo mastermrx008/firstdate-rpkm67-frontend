@@ -7,7 +7,7 @@ const layout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <main className="bg-1">
+    <main className="bg-1 overflow-auto">
       {children}
       <Footer />
     </main>
