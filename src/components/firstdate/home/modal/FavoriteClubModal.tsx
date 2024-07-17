@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import TextModal from '@/components/firstdate/home/modal/TextModal';
+import toast from 'react-hot-toast';
 
 interface FavoriteClubModalProps {
   activityId: string;
@@ -19,6 +20,9 @@ const FavoriteClubModal: React.FC<FavoriteClubModalProps> = ({
   };
 
   const handleConfirm = () => {
+    if (inputValue.length < 1) {
+      return toast.error('กรุณากรอกข้อมูล');
+    }
     onSubmit(activityId, inputValue);
     onClose();
   };

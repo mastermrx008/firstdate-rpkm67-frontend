@@ -13,7 +13,7 @@ const MenuIcon = (props: MenuIconProps) => {
   const { isActive, handleOnClick, name, iconify } = props;
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center drop-shadow-md">
       <Icon
         icon={iconify}
         className={cn('w-11 h-11 p-3 rounded-full cursor-pointer', {
