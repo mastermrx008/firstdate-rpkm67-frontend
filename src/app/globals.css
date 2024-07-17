@@ -4,13 +4,13 @@
 
 @layer {
     .bg-1 {
-        background-image: url('/bg-1.svg');
+        background-image: url('https://rpkm67.sgp1.cdn.digitaloceanspaces.com/assets/bg-1.svg');
         background-repeat: repeat;
         background-size: cover;
     }
 
     .bg-2 {
-        background-image: url('/bg-2.svg');
+        background-image: url('https://rpkm67.sgp1.cdn.digitaloceanspaces.com/assets/bg-2.svg');
         background-repeat: repeat;
         background-size: cover;
     }
