@@ -11,7 +11,6 @@ import CommunityBanner from '@public/rpkm/activities/communitybanner-yellow.png'
 import activities from '@/data/activities';
 
 export const getStaticPaths = async () => {
-  // unique paths
   const paths = activities
     .reduce((acc: string[], curr) => {
       if (!acc.includes(curr.category)) {
@@ -55,12 +54,12 @@ const Page = () => {
   };
 
   return (
-    <section className="min-h-screen bg-[url('/rpkm/activities/detailsbackground.png')] bg-cover bg-[#EAE3C3]">
+    <section className="flex flex-col min-h-screen bg-[url('/rpkm/activities/detailsbackground.png')] bg-cover bg-[#EAE3C3]">
       <a href="/rpkm/activities/home">
         <Image
           src={BackButton}
           alt="back"
-          className="w-auto pt-3"
+          className="w-auto pt-3 pl-3"
         />
       </a>
       <div className="flex justify-center">
