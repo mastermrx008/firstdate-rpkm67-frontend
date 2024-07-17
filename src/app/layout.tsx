@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Athiti } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
-import Footer from '@/components/(main)/Footer';
 import AuthProvider from '@/context/AuthContext';
 import { Toaster } from 'react-hot-toast';
 import { QueryProvider } from '@/components/queryProvider';
@@ -19,12 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${athiti.variable} ${season.variable} ${sarun.variable} bg-1 font-athiti`}
+        className={`${athiti.variable} ${season.variable} ${sarun.variable} font-athiti`}
       >
         <QueryProvider>
           <Toaster />
           <AuthProvider>{children}</AuthProvider>
-          <Footer />
         </QueryProvider>
       </body>
     </html>
