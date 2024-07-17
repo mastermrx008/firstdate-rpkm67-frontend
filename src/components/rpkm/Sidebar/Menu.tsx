@@ -25,29 +25,29 @@ function Menu() {
           <AccordionItem
             key="1"
             aria-label="Accordion 1"
-            title="กิจกรรม"
+            title={<Link href="/rpkm/activities">กิจกรรม</Link>}
           >
             <div className="flex flex-col w-full justify-items-start text-xs px-xs">
               <Link
-                href="/"
+                href="/rpkm/activities/"
                 className="text-left"
               >
                 กิจกรรมในงาน
               </Link>
               <Link
-                href="/"
+                href="/rpkm/baan/home"
                 className="text-left"
               >
                 ข้อมูลแต่ละบ้าน
               </Link>
               <Link
-                href="/"
+                href="/rpkm/activities/"
                 className="text-left"
               >
                 กิจกรรมชุมชน
               </Link>
               <Link
-                href="/"
+                href="/rpkm/activities/"
                 className="text-left"
               >
                 กิจกรรม Walk Rally
@@ -57,7 +57,7 @@ function Menu() {
           <AccordionItem
             key="2"
             aria-label="Accordion 2"
-            title="แผนที่"
+            title={<Link href="/rpkm/activities/map">แผนที่</Link>}
           >
             <div className="flex flex-col w-full justify-items-start text-xs px-xs">
               <Link
@@ -67,7 +67,7 @@ function Menu() {
                 ข้อมูลที่จัดแต่ละกิจกรรม
               </Link>
               <Link
-                href="/"
+                href="/rpkm/activities/"
                 className="text-left"
               >
                 กิจกรรมชุมชน
