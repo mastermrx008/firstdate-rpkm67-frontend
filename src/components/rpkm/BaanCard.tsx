@@ -21,7 +21,7 @@ interface BaanCardProps {
     en: string;
   };
   ig: string;
-  message:{
+  message: {
     th: string;
     en: string;
   };

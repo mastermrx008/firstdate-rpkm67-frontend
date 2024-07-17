@@ -8,9 +8,9 @@ import home from '@public/baan-select/home.svg';
 import search from '@public/baan-select/search.svg';
 import '@/components/rpkm/baan/baan-select/style.css';
 import { baanInfos, BaanInfoProps } from '@/components/rpkm/Baan/baanInfo';
-import { useBaan } from '@/context/BaanContext'
+import { useBaan } from '@/context/BaanContext';
 import RpkmLogo from '@public/Rpkm67Logo.svg';
-import BaanCard from '@/components/rpkm/BaanCard'
+import BaanCard from '@/components/rpkm/BaanCard';
 import BaanSelect from '@/components/rpkm/Baan/BaanSelect';
 
 interface SizeFilterProps {
@@ -75,9 +75,10 @@ export default function BaanSelectPage() {
     setShuffledBaan(shuffleArray(baanInfos));
   }, []);
 
-  const filteredBaan = shuffledBaan.filter((house) =>
-    house.name.th.toLowerCase().includes(searchBaan.toLowerCase()) ||
-    house.name.en.toLowerCase().includes(searchBaan.toLowerCase())
+  const filteredBaan = shuffledBaan.filter(
+    (house) =>
+      house.name.th.toLowerCase().includes(searchBaan.toLowerCase()) ||
+      house.name.en.toLowerCase().includes(searchBaan.toLowerCase())
   );
 
   return (
@@ -89,7 +90,7 @@ export default function BaanSelectPage() {
         />
       </div>
       <div className="my-3">
-        <BaanSelect mode={'edit'}/>
+        <BaanSelect mode={'edit'} />
       </div>
       <div
         ref={baanListRef}
@@ -150,12 +151,22 @@ export default function BaanSelectPage() {
             ))}
           </div>
           <div className="flex justify-center flex-wrap w-full h-80 mb-6 mr-[4%] pl-[3%] gap-4 overflow-y-scroll">
-          {filteredBaan
-              .filter((house) => selectedHouseSize === null || house.size === selectedHouseSize)
+            {filteredBaan
+              .filter(
+                (house) =>
+                  selectedHouseSize === null || house.size === selectedHouseSize
+              )
               .map((house, index) => {
-                const currentPeople = baanCounts?.find(b => b.baanId === house.name.en)?.count || 0;
+                const currentPeople =
+                  baanCounts?.find((b) => b.baanId === house.name.en)?.count ||
+                  0;
                 return (
-                  <BaanCard key={index} isShake={shake} currentPeople={currentPeople} {...house} />
+                  <BaanCard
+                    key={index}
+                    isShake={shake}
+                    currentPeople={currentPeople}
+                    {...house}
+                  />
                 );
               })}
           </div>

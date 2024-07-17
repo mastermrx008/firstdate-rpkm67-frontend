@@ -4,7 +4,7 @@ import Image, { StaticImageData } from 'next/image';
 import { cn } from '@/lib/utils';
 
 import modalStyles from './ModalStyle';
-import '@/components/rpkm/Modal/style.css'
+import '@/components/rpkm/Modal/style.css';
 
 import BaseModal from '@/components/rpkm/Modal/BaseModal';
 import ModalButton from '@/components/rpkm/Modal/ModalButton';
@@ -31,7 +31,7 @@ interface BaanModalProps {
   message: {
     th: string;
     en: string;
-  }
+  };
   callBackFunction: (params: unknown) => void;
 }
 
@@ -127,7 +127,10 @@ const BaanModal: React.FC<BaanModalProps> = ({
           />
         </div>
         <div className="text-center text-white">
-          <p className="text-xl font-bold">{mode === 'th' ? 'บ้าน' : 'Baan '}{name[mode]}</p>
+          <p className="text-xl font-bold">
+            {mode === 'th' ? 'บ้าน' : 'Baan '}
+            {name[mode]}
+          </p>
           <div className="flex justify-center">
             <p className="w-4/5 text-sm max-h-20 overflow-y-scroll pr-[2%]">
               {description[mode]}

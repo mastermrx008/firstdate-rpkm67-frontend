@@ -1,21 +1,26 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
- 
+
 interface ButtonProps {
   content: string;
   onClick: () => void;
   disabled?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({ content, onClick, disabled = false }) => {
+const Button: React.FC<ButtonProps> = ({
+  content,
+  onClick,
+  disabled = false,
+}) => {
   return (
     <button
       onClick={onClick}
       className={cn(
-        'flex items-center justify-center w-48 h-10 inv-rad inv-rad-2 border-8 border-rpkm-cream',{
-          'opacity-60' : disabled
-        })
-      }
+        'flex items-center justify-center w-48 h-10 inv-rad inv-rad-2 border-8 border-rpkm-cream',
+        {
+          'opacity-60': disabled,
+        }
+      )}
       disabled={disabled}
     >
       <div
