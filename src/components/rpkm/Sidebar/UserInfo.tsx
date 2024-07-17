@@ -9,13 +9,13 @@ function UserInfo() {
   const { user } = useAuth();
   return (
     <div className="flex flex-col items-center text-center w-full h-[34.03vh] self-center relative gap-y-[0.47vh]">
-      <div className="w-[15.25vh] h-[19.59vh] rounded-t-full shadow-[0px_0px_4px_.4px_#00000036] overflow-hidden">
+      <div className="relative w-[15.25vh] h-[19.59vh] rounded-t-full shadow-[0px_0px_4px_.4px_#00000036] overflow-hidden">
         <Image
           src={user?.photoUrl ? user?.photoUrl : placeholder.src}
           alt="profile picture"
-          width={10}
-          height={10}
-          style={{ width: '100%', height: '22.066vh', top: '-2.934vh' }}
+          fill
+          objectFit="contain"
+          objectPosition="center"
         />
       </div>
       <h1 className="text-lg font-semibold text-center text-black">

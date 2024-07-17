@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import Sidebar from '@/components/rpkm/Sidebar';
 import { Icon } from '@iconify/react';
