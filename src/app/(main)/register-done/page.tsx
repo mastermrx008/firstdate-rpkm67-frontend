@@ -61,7 +61,7 @@ export default function Registered() {
           <p>วันที่ 21 กรกฎาคม | เวลา 8.00 น.</p>
           <p>จุฬาลงกรณ์มหาวิทยาลัย</p>
         </div>
-        <div className="w-5/6 mt-9 z-10">
+        <div className="w-5/6 mt-9 z-[999]">
           <Link
             href="/home"
             className="flex flex-row items-center justify-center bg-project-fuchsia px-2 py-[10px] gap-x-2 rounded-lg text-white"
