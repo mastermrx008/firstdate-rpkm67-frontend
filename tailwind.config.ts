@@ -18,15 +18,18 @@ const config: Config = {
         project: {
           fuchsia: '#F75471',
           pink: '#FFBBD2',
+          'pastel-pink' : '#EB9096',
           apricot: '#E9A49B',
           cream: '#F1DFC1',
           blue: '#678CEC',
+          'dark-blue': '#183F86',
           'dark-gray': '#979797',
           'light-gray': '#313131',
           'light-blue': '#D8E3FE',
           gray: '#DDDDDD',
           brown: '#AA8B84',
           yellow: '#EFD08B',
+          red: "#C94B4B",
         },
         rpkm: {
           red: '#C94B4B',

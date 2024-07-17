@@ -22,7 +22,7 @@ const UserCard = () => {
       <div className="absolute top-[15%] left-[9%] w-[65%] h-[65%] flex flex-col items-center justify-center p-4 bg-blue-900 rounded-lg">
         <div className="w-[35%] h-[50%] overflow-hidden rounded-full">
           {photoUrl && (
-            <img
+            <Image
               src={photoUrl}
               alt="user-picture"
               className="w-full h-full object-cover"
