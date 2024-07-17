@@ -7,6 +7,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: process.env.BASE_DOMAIN_IMAGES ?? '*',
       },
+      {
+        protocol: 'https',
+        hostname: 'rpkm67.spg1.cdn.digitaloceanspaces.com',
+      },
     ],
   },
   env: {

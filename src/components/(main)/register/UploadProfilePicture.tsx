@@ -87,13 +87,13 @@ const UploadProfilePicture: React.FC<UploadProfilePictureProps> = ({
       <div className="relative mb-4">
         <div className="w-40 h-56 rounded-t-full p-2 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-gray-300 shadow-md">
           {photo ? (
-            <img
+            <Image
               src={URL.createObjectURL(photo)}
               alt="Profile"
               className="w-full h-full object-contain object-center rounded-t-full"
             />
           ) : currentPhotoUrl ? (
-            <img
+            <Image
               src={currentPhotoUrl}
               alt="Profile"
               className="w-full h-full object-contain object-center rounded-t-full"
