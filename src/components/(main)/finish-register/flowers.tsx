@@ -4,7 +4,7 @@ import flower2 from '@public/registered/flower2.png';
 
 export default function Flowers() {
   return (
-    <div className="overflow-hidden absolute inset-0 z-[999]">
+    <div className="overflow-hidden absolute inset-0">
       <Image
         src={flower2}
         alt="top left flower"
