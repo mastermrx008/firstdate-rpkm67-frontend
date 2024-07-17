@@ -1,7 +1,6 @@
 import Image from 'next/image';
 
 import Banner from '@/components/rpkm/Activities/Banner';
-import Card from '@/components/rpkm/Activities/Card';
 import ScrollSection from '@/components/rpkm/Activities/ScrollSection';
 import Divider from '@/components/rpkm/Activities/Divider';
 
@@ -12,13 +11,21 @@ import WalkRallyBanner from '@public/rpkm/activities/walkrally.png';
 import CommunityBanner from '@public/rpkm/activities/community.png';
 import BaanBanner from '@public/rpkm/activities/baan.png';
 
-import activitiesData from '@/data/activities.json';
+import activities from '@/data/activities';
 
 const page = () => {
-  const activitiesContent = activitiesData['activities'];
-  const walkRallyContent = activitiesData['walk-rally'];
-  const communityContent = activitiesData['community'];
-  const baanContent = activitiesData['baan'];
+  const activitiesContent = activities.filter(
+    (activity) => activity.category === 'activities'
+  );
+  const walkRallyContent = activities.filter(
+    (activity) => activity.category === 'walkrally'
+  );
+  const communityContent = activities.filter(
+    (activity) => activity.category === 'community'
+  );
+  const baanContent = activities.filter(
+    (activity) => activity.category === 'baan'
+  );
 
   return (
     <section className="flex flex-col bg-[url('/rpkm/activities/background.png')] bg-cover bg-[#EB9096]">
@@ -42,7 +49,6 @@ const page = () => {
       <Banner image={ActivitiesBanner} />
       <ScrollSection
         cards={activitiesContent}
-        href="/rpkm/activities/details"
         className="w-[60vw]"
       />
       <a
@@ -53,15 +59,10 @@ const page = () => {
       </a>
       <Divider />
       <Banner image={WalkRallyBanner} />
-      <div className="flex justify-center w-full">
-        <Card
-          title={walkRallyContent.title}
-          image={walkRallyContent.image}
-          content={walkRallyContent.content}
-          href="/rpkm/activities/details"
-          className="w-[90vw]"
-        />
-      </div>
+      <ScrollSection
+        cards={walkRallyContent}
+        className="w-[60vw]"
+      />
       <a
         className="text-sm font-semibold flex justify-end underline mr-4 mt-2"
         href="/"
@@ -72,7 +73,6 @@ const page = () => {
       <Banner image={CommunityBanner} />
       <ScrollSection
         cards={communityContent}
-        href="/rpkm/activities/details"
         className="w-[60vw]"
       />
       <a
@@ -83,7 +83,11 @@ const page = () => {
       </a>
       <Divider />
       <Banner image={BaanBanner} />
-      <div className="flex justify-center w-full">
+      <ScrollSection
+        cards={baanContent}
+        className="w-[60vw]"
+      />
+      {/* <div className="flex justify-center w-full">
         <Card
           title={baanContent.title}
           image={baanContent.image}
@@ -91,7 +95,7 @@ const page = () => {
           href="/rpkm/activities/details"
           className="w-[90vw]"
         />
-      </div>
+      </div> */}
       <a
         className="pb-7 text-sm font-semibold flex justify-end underline mr-4 mt-2"
         href="/"

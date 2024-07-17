@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
 interface CardProps {
-  title: string;
+  name: string;
   image: string;
   imageClassName?: string;
   content: string;
@@ -12,7 +12,7 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({
-  title,
+  name,
   className,
   image,
   imageClassName,
@@ -27,7 +27,7 @@ const Card: React.FC<CardProps> = ({
           className
         )}
       >
-        <p className="font-semibold text-center w-full">{title}</p>
+        <p className="font-semibold text-center w-full">{name}</p>
         <Image
           src={image}
           alt="activity image"
