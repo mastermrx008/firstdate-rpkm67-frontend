@@ -68,6 +68,9 @@ export default function BaanSelect() {
         <>
         <div className="flex justify-center items-center bg-white w-screen h-60">
             {/*baanSelectComponent*/}
+            <button onClick={handleOnClick}>
+                click here
+            </button>
             </div>
         <div ref={baanListRef} className="relative flex justify-center items-center flex-col">
             <div className="absolute inset-0 bg-black opacity-70"></div>
@@ -100,15 +103,13 @@ export default function BaanSelect() {
                     {sizeFilter.map((house, index) => (
                         <div key={index}>
                             <input
-                                type="radio"
+                                type="checkbox"
                                 name="houseSize"
                                 className="hidden"
                                 id={house.size}
                                 checked={selectedHouseSize === house.size}
-                                onChange={()=>{
-                                    handleSizeChange(house.size)
-                                }}
-                                />
+                                onChange={() => handleSizeChange(house.size)}
+                            />
                             <label htmlFor={house.size} className={cn(`flex justify-center items-center text-white bg-rpkm-green 
                                                                         w-auto h-9 px-4 rounded-lg font-semibold drop-shadow-lg mb-4
                                                                         transition-all duration-300 active:scale-90`, {
@@ -122,6 +123,17 @@ export default function BaanSelect() {
                 </div>
                 <div className="flex justify-center items-center flex-wrap w-[85%] h-60 mb-6">
                     {/*All house data*/}
+                        {shuffledBaan
+                        .filter((house) => selectedHouseSize === null || house.size === selectedHouseSize)
+                        .map((house, index) => (
+                            <div key={index} className="flex justify-center items-center text-white">
+                                <p>//</p>
+                                <p>{house.name.th}-</p>
+                                <p>Size: {house.size}-</p>
+                                <p>Max: {house.max}</p>
+                                <p>//</p>
+                            </div>
+                        ))}
                 </div>
             </div>
         </div>
