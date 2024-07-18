@@ -10,7 +10,7 @@ function Navbar() {
   const currentPath = usePathname();
   if (currentPath.startsWith('/rpkm/activities'))
     return (
-      <div>
+      <div className="z-10 fixed w-full">
         <Sidebar
           sidebar={sidebar}
           setSidebar={setSidebar}

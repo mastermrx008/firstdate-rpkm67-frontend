@@ -1,11 +1,7 @@
-import Image from 'next/image';
-
 import Banner from '@/components/rpkm/Activities/Banner';
 import ScrollSection from '@/components/rpkm/Activities/ScrollSection';
 import Divider from '@/components/rpkm/Activities/Divider';
 
-import RPKM67 from '@public/rpkm/activities/rpkm67.png';
-import RPKMTEXT from '@public/rpkm/activities/rpkmtext.png';
 import ActivitiesBanner from '@public/rpkm/activities/activities.png';
 import WalkRallyBanner from '@public/rpkm/activities/walkrally.png';
 import CommunityBanner from '@public/rpkm/activities/community.png';
@@ -31,71 +27,90 @@ const page = () => {
   return (
     <>
       <Navbar />
-      <section className="flex flex-col bg-[url('/rpkm/activities/background.png')] bg-cover bg-[#EB9096] z-10">
-        <div className="flex justify-center w-full h-[16rem] bg-[url('/rpkm/activities/herobackground.png')] bg-cover bg-[#68A987] -translate-y-5 z-0"></div>
-        <div className="w-full h-1 bg-white"></div>
-        <div className="flex justify-center">
+      <section className="flex flex-col bg-[url('/rpkm/activities/background.png')] bg-cover bg-[#EB9096] pt-12">
+        <div className="flex justify-center items-center w-full h-[40vh] bg-[url('/rpkm/activities/herobackground.png')] bg-cover bg-[#68A987] -translate-y-5"></div>
+        <div className="w-full h-1 bg-white -translate-y-6"></div>
+        <div className="flex justify-center -translate-y-24">
           <div className="flex flex-col items-center -translate-y-8">
-            <Image
-              src={RPKMTEXT}
-              alt="rpkmtext"
-              className="w-[60vw]"
-            />
-            <Image
-              src={RPKM67}
-              alt="rpkm67"
-              className="w-[20vw] mt-1"
-            />
+            <h1
+              className="font-sopha text-[20vh] text-rpkm-green tracking-wider"
+              style={{
+                textShadow:
+                  '1.5px 1.5px 0 #313131, -1.5px -1.5px 0 #313131, 1.5px -1.5px 0 #313131, -1.5px 1.5px 0 #313131',
+              }}
+            >
+              รับเพื่อน
+            </h1>
+            <h2
+              className="font-sopha text-[14vh] text-project-yellow tracking-wider -translate-y-24"
+              style={{
+                textShadow:
+                  '1.5px 1.5px 0 #313131, -1.5px -1.5px 0 #313131, 1.5px -1.5px 0 #313131, -1.5px 1.5px 0 #313131',
+              }}
+            >
+              ก้าวใหม่
+            </h2>
+            <h2
+              className="font-sopha text-[20vh] text-rpkm-red tracking-wider -translate-y-52"
+              style={{
+                textShadow:
+                  '1.5px 1.5px 0 #EAE3C3, -1.5px -1.5px 0 #EAE3C3, 1.5px -1.5px 0 #EAE3C3, -1.5px 1.5px 0 #EAE3C3',
+              }}
+            >
+              67
+            </h2>
           </div>
         </div>
-        <Divider />
-        <Banner image={ActivitiesBanner} />
-        <ScrollSection
-          cards={activitiesContent}
-          className="w-[60vw]"
-        />
-        <a
-          className="text-sm font-semibold flex justify-end underline mr-4 mt-2"
-          href="/rpkm/activities/activities"
-        >
-          ดูทั้งหมด
-        </a>
-        <Divider />
-        <Banner image={WalkRallyBanner} />
-        <ScrollSection
-          cards={walkRallyContent}
-          className="w-[60vw]"
-        />
-        <a
-          className="text-sm font-semibold flex justify-end underline mr-4 mt-2"
-          href="/rpkm/activities/walkrally"
-        >
-          ดูทั้งหมด
-        </a>
-        <Divider />
-        <Banner image={CommunityBanner} />
-        <ScrollSection
-          cards={communityContent}
-          className="w-[60vw]"
-        />
-        <a
-          className="text-sm font-semibold flex justify-end underline mr-4 mt-2"
-          href="/rpkm/activities/community"
-        >
-          ดูทั้งหมด
-        </a>
-        <Divider />
-        <Banner image={BaanBanner} />
-        <ScrollSection
-          cards={baanContent}
-          className="w-[60vw]"
-        />
-        <a
-          className="pb-7 text-sm font-semibold flex justify-end underline mr-4 mt-2"
-          href="/rpkm/activities/home"
-        >
-          ดูทั้งหมด
-        </a>
+        <div className="-mt-80">
+          <Divider />
+          <Banner image={ActivitiesBanner} />
+          <ScrollSection
+            cards={activitiesContent}
+            className="w-[60vw]"
+          />
+          <a
+            className="text-sm font-semibold flex justify-end underline mr-4 mt-2"
+            href="/rpkm/activities/activities"
+          >
+            ดูทั้งหมด
+          </a>
+          <Divider />
+          <Banner image={WalkRallyBanner} />
+          <ScrollSection
+            cards={walkRallyContent}
+            className="w-[60vw]"
+          />
+          <a
+            className="text-sm font-semibold flex justify-end underline mr-4 mt-2"
+            href="/rpkm/activities/walkrally"
+          >
+            ดูทั้งหมด
+          </a>
+          <Divider />
+          <Banner image={CommunityBanner} />
+          <ScrollSection
+            cards={communityContent}
+            className="w-[60vw]"
+          />
+          <a
+            className="text-sm font-semibold flex justify-end underline mr-4 mt-2"
+            href="/rpkm/activities/community"
+          >
+            ดูทั้งหมด
+          </a>
+          <Divider />
+          <Banner image={BaanBanner} />
+          <ScrollSection
+            cards={baanContent}
+            className="w-[60vw]"
+          />
+          <a
+            className="pb-7 text-sm font-semibold flex justify-end underline mr-4 mt-2"
+            href="/rpkm/activities/home"
+          >
+            ดูทั้งหมด
+          </a>
+        </div>
       </section>
     </>
   );
