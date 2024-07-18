@@ -32,15 +32,18 @@ const config: Config = {
           red: '#C94B4B',
         },
         rpkm: {
-          green: '#67AB88',
+          red: '#C94B4B',
           cream: '#EAE3C3',
-          grey: '#D9D9D9',
+          green: '#67AB88',
+          blue: '#183F86',
+          gray: '#313131',
         },
       },
       fontFamily: {
         season: ['var(--season)', 'system-ui'],
         athiti: ['var(--athiti)', 'system-ui'],
         sarun: ['var(--sarun)', 'system-ui'],
+        sopha: ['var(--sopha)', 'system-ui'],
       },
       dropShadow: {
         text: '0px 0px 4px 0px #00000040;',
