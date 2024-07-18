@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import Spinner from '@/components/firstdate/Spinner';
 import toast from 'react-hot-toast';
+import imageCompression from 'browser-image-compression';
 
 interface UploadProfilePictureProps {
   onNext?: () => void;
@@ -32,13 +33,20 @@ const UploadProfilePicture: React.FC<UploadProfilePictureProps> = ({
   const handlePhotoChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      if (file.size > 1048576) {
-        return toast.error('ไฟล์ใหญ่เกิน 1mb');
+      const options = {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 1920,
+        useWebWorker: true,
+      };
+      try {
+        const compressedFile = await imageCompression(file, options);
+        setPhoto(compressedFile);
+        setErrorMessage(null);
+        setCurrentPhotoUrl(null);
+        await handlePhotoUpload(compressedFile);
+      } catch (error) {
+        console.log('error compress file:', error);
       }
-      setPhoto(file);
-      setErrorMessage(null);
-      setCurrentPhotoUrl(null);
-      await handlePhotoUpload(file);
     }
   };
 
