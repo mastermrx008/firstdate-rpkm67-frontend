@@ -1,4 +1,5 @@
 export const major: { id: string; name: string }[] = [
+  { id: '20', name: 'บัณฑิตวิทยาลัย' },
   { id: '21', name: 'วิศวกรรมศาสตร์' },
   { id: '22', name: 'อักษรศาสตร์' },
   { id: '23', name: 'วิทยาศาสตร์' },
@@ -19,9 +20,11 @@ export const major: { id: string; name: string }[] = [
   { id: '38', name: 'จิตวิทยา' },
   { id: '39', name: 'วิทยาศาสตร์การกีฬา' },
   { id: '40', name: 'สำนักวิชาทรัพยากรการเกษตร' },
+  { id: '56', name: 'นวัตกรรมบูรณาการ (BAScii)' },
 ];
 
 export const majorMap = {
+  '20': 'บัณฑิตวิทยาลัย',
   '21': 'วิศวกรรมศาสตร์',
   '22': 'อักษรศาสตร์',
   '23': 'วิทยาศาสตร์',
@@ -42,6 +45,7 @@ export const majorMap = {
   '38': 'จิตวิทยา',
   '39': 'วิทยาศาสตร์การกีฬา',
   '40': 'สำนักวิชาทรัพยากรการเกษตร',
+  '56': 'นวัตกรรมบูรณาการ (BAScii)'
 };
 
 export const getMajorNameById = (id: string): string => {
