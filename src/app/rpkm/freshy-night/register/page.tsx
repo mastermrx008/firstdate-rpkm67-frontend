@@ -9,7 +9,9 @@ export default function Register() {
   return (
     <div className="min-h-screen w-full grid place-items-center">
       <Base className="p-[10%] h-[calc(60vw*(801/371))] gap-6">
-        <h1>FRESHY NIGHT</h1>
+        <span className="font-sopha text-6xl text-rpkm-yellow">
+          FRESHY NIGHT
+        </span>
         <main className="bg-rpkm-grey h-full w-4/5 rounded-xl"></main>
         <ModalButton
           callBackFunction={() => console.log('Fuck you')}
