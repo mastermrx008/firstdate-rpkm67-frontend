@@ -1,57 +1,39 @@
-'use client'
+'use client';
 import FDLogo from '@public/FIrst Date Logo.svg';
-import MapImage from '@public/map.svg';
+import MapImage from '@public/mapPR.png';
 import Image from 'next/image';
 import Border from '@/components/firstdate/Border';
 import Zoom from "next-image-zoom";
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import Link from 'next/link';
 
 export default function Map() {
-  const router = useRouter();
-  const handleBack = () => {
-    router.back();
-  };
-  const [isZoomed, setIsZoomed] = useState(false);
-  const handleZoomChange = () => {
-    setIsZoomed(prev => !prev)
-  }
-
   return (
     <Border
       variant="white"
-      className="gap-4 pt-[5%] px-[8%]"
+      className="gap-4 pt-[5%] pb-[30%] px-[8%] justify-between"
     >
-      <div className="flex w-full justify-center">
-        <Image
-          src={FDLogo}
-          alt="logo"
-          className="w-44"
-        />
+      <div className='flex flex-col gap-4'>
+        <div className="flex w-full justify-center">
+          <Image
+            src={FDLogo}
+            alt="logo"
+            className="w-44"
+          />
+        </div>
+        <div className="font-season italic text-2xl text-center">Map</div>
       </div>
-      <div className="font-season italic text-2xl">Map</div>
 
       <div className='flex w-full items-center'>
-        <Zoom src={MapImage} alt='map' className='object-cover'>
-          {/* <Image
-          src={MapImage}
-          alt="map"
-          className="object-cover"
-        /> */}
+        <Zoom src={MapImage} alt='map' className='object-cover w-full aspect-[1524/1080]'>
         </Zoom>
       </div>
 
-
-      <div className="font-season italic text-2xl text-center p-4 w-full bg-project-fuchsia">
-        Lorem ipsum dolor sit
-      </div>
-
-      <button
-        onClick={handleBack}
+      <Link
+        href="/firstdate/profile"
         className="w-3/4 h-12 font-medium text-black text-xl rounded-lg border-black border flex justify-center items-center"
       >
         กลับ
-      </button>
+      </Link>
     </Border>
   );
 }
