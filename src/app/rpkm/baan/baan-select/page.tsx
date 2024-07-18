@@ -12,6 +12,7 @@ import RpkmLogo from '@public/Rpkm67Logo.svg';
 import BaanCard from '@/components/rpkm/BaanCard';
 import BaanSelect from '@/components/rpkm/Baan/BaanSelect';
 import { BaanInfoProps, baanInfos } from '@/components/rpkm/Baan/baanInfos';
+import { BaanSelection } from '@/types/BaanSelection';
 
 interface SizeFilterProps {
   size: 'S' | 'M' | 'L' | 'XL' | 'XXL';
@@ -36,6 +37,18 @@ const shuffleArray = (baan: BaanInfoProps[]): BaanInfoProps[] => {
   return [...baan].sort(() => Math.random() - 0.5);
 };
 
+const filterArray = (
+  selectedBaan: BaanSelection[],
+  baan: BaanInfoProps[]
+): BaanInfoProps[] => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const lookupTable: any = {};
+  selectedBaan?.forEach((baan) => {
+    lookupTable[baan.baanId] = baan.groupId;
+  });
+  return baan.filter((b) => !(b.name.en in lookupTable));
+};
+
 export default function BaanSelectPage() {
   const [selectedHouseSize, setSelectedHouseSize] = useState<string | null>(
     null
@@ -44,7 +57,7 @@ export default function BaanSelectPage() {
   const [shuffledBaan, setShuffledBaan] = useState<BaanInfoProps[]>([]);
   const [searchBaan, setSearchBaan] = useState<string>('');
   const baanListRef = useRef<HTMLDivElement | null>(null);
-  const { baanCounts } = useBaan();
+  const { baanCounts, selectedBaan } = useBaan();
 
   const handleSizeChange = (size: string) => {
     setSelectedHouseSize((prevSize) => (prevSize === size ? null : size));
@@ -72,8 +85,12 @@ export default function BaanSelectPage() {
   }, [shake]);
 
   useEffect(() => {
-    setShuffledBaan(shuffleArray(baanInfos));
-  }, []);
+    let baan = baanInfos;
+    if (selectedBaan) {
+      baan = filterArray(selectedBaan, baanInfos);
+    }
+    setShuffledBaan(shuffleArray(baan));
+  }, [selectedBaan]);
 
   const filteredBaan = shuffledBaan.filter(
     (house) =>

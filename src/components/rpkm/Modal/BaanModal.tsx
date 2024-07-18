@@ -11,6 +11,7 @@ import ModalButton from '@/components/rpkm/Modal/ModalButton';
 import PersonIcon from '@public/rpkm/person-icon.svg';
 import InstagramIcon from '@public/rpkm/instagram-icon.svg';
 import Star from '@public/rpkm/star.svg';
+import { useBaan } from '@/context/BaanContext';
 
 interface BaanModalProps {
   open: boolean;

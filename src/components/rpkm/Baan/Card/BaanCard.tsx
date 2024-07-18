@@ -1,11 +1,11 @@
 import React from 'react';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import { cn } from '@/lib/utils';
 import trashIcon from '@public/select/icon/trash.svg';
 
 interface BaanCardProps {
   number: number;
-  imageSrc?: string;
+  imageSrc?: StaticImageData;
   title?: string;
   isEmpty?: boolean;
   mode: 'select' | 'edit';
@@ -27,7 +27,9 @@ const BaanCard: React.FC<BaanCardProps> = ({
   return (
     <div className="flex items-center justify-center flex-col space-y-2">
       <div
-        onClick={isEmpty ? onClick : () => {}}
+        onClick={() => {
+          isEmpty && onClick && onClick();
+        }}
         className={cn(
           'relative flex flex-col justify-center items-center px-1 bg-white w-20 h-28',
           isEmpty && 'border-2 border-dashed border-rpkm-green bg-opacity-0'

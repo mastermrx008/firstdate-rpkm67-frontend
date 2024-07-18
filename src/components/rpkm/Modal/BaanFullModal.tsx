@@ -30,13 +30,6 @@ export default function FullBannModal({ open, setOpen }: BaanFullModalProps) {
       <div className="flex flex-row gap-x-3 justify-center mt-7">
         <ModalButton
           callBackFunction={() => setOpen(false)}
-          borderClassName={modalStyles.blue.button['cancel-border']}
-          backgroundClassName={modalStyles.blue.button['cancel-background']}
-        >
-          ยกเลิก
-        </ModalButton>
-        <ModalButton
-          callBackFunction={() => setOpen(false)}
           borderClassName={modalStyles.blue.button['accept-border']}
           backgroundClassName={modalStyles.blue.button['accept-background']}
         >

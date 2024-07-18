@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import BaanEmpty from '@/components/rpkm/Baan/BaanEmpty';
-import Spinner from '@/components/firstdate/Spinner';
 import { useBaan } from '@/context/BaanContext';
 import { useAuth } from '@/context/AuthContext';
 import { getGroupByUserId } from '@/utils/group';
@@ -17,7 +16,7 @@ interface BaanSelectProps {
 }
 
 const BaanSelect: React.FC<BaanSelectProps> = ({ mode, onClick }) => {
-  const { selectedBaan, isLoading } = useBaan();
+  const { selectedBaan } = useBaan();
   const { user, resetContext } = useAuth();
   const [isLeader, setIsLeader] = useState<boolean>(false);
   const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
@@ -49,10 +48,6 @@ const BaanSelect: React.FC<BaanSelectProps> = ({ mode, onClick }) => {
       }
     }
   };
-
-  if (isLoading) {
-    return <Spinner />;
-  }
 
   const allSelections = Array.from({ length: 5 }, (_, i) => i + 1);
 

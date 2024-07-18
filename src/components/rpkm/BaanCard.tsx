@@ -6,6 +6,7 @@ import { useState } from 'react';
 import Badge from '@/components/rpkm/SizeBadge';
 import BaanModal from '@/components/rpkm/Modal/BaanModal';
 import BaanFullModal from '@/components/rpkm/Modal/BaanFullModal';
+import { useBaan } from '@/context/BaanContext';
 
 interface BaanCardProps {
   logo: StaticImageData;
@@ -55,11 +56,20 @@ export default function BaanCard({
 }: BaanCardProps) {
   const [openBaanModal, setOpenBaanModal] = useState(false);
   const [openBaanFullModal, setOpenBaanFullModal] = useState(false);
+  const { addBaanSelection, selectedBaan } = useBaan();
 
-  // const handleBaanFull = () => {
-  //   setOpenBaanModal(false);
-  //   setOpenBaanFullModal(true);
-  // };
+  const handleOnSubmit = () => {
+    setOpenBaanModal(false);
+    if (selectedBaan && selectedBaan?.length < 5) {
+      addBaanSelection(name.en);
+    } else {
+      handleBaanFull();
+    }
+  };
+
+  const handleBaanFull = () => {
+    setOpenBaanFullModal(true);
+  };
 
   return (
     <>
@@ -119,7 +129,7 @@ export default function BaanCard({
         ig={ig}
         message={message}
         logo={logo}
-        callBackFunction={() => console.log('To be implemented')}
+        callBackFunction={handleOnSubmit}
       />
       <BaanFullModal
         open={openBaanFullModal}
