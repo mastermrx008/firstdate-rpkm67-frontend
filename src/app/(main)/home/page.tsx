@@ -7,6 +7,7 @@ import eBookIcon from '@public/home/icon/ebook.svg';
 import contactIcon from '@public/home/icon/contactlist.svg';
 import qrcodeIcon from '@public/home/icon/qrcode.svg';
 import editIcon from '@public/home/icon/edit.svg';
+import logoutIcon from '@public/home/icon/logout.svg';
 import { useState } from 'react';
 import QrCodeModal from '@/components/(main)/home/QrCodeModal';
 import { useAuth } from '@/context/AuthContext';
@@ -21,7 +22,7 @@ import { getMajorNameById } from '@/utils/register';
 
 export default function Home() {
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [qrModal, setQrModal] = useState<boolean>(false);
   const [waitModal, setWaitModal] = useState<boolean>(false);
   const [interestedEvent, setInterestedEvent] = useState<
@@ -125,6 +126,11 @@ export default function Home() {
               onClick={() => router.push('/edit')}
               src={editIcon}
               text="แก้ไขข้อมูล"
+            />
+            <BottomButton
+              onClick={logout}
+              src={logoutIcon}
+              text="logout"
             />
           </div>
         </div>
