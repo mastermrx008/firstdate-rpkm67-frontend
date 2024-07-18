@@ -62,9 +62,9 @@ const CodeTextarea: React.FC<CodeTextareaProps> = ({
 
   return (
     <>
-      <div className="flex flex-row items-center gap-1 bg-project-yellow rounded-3xl py-1 pl-4 pr-2 w-3/4">
+      <div className="relative gap-1 bg-project-yellow rounded-3xl py-[2%] pl-[6%] pr-[6%] w-4/5 overflow-hidden">
         <textarea
-          className="flex flex-1 hide-scrollbar bg-transparent focus:outline-none font-athiti font-semibold text-project-red whitespace-nowrap placeholder:text-project-red placeholder:text-opacity-50 resize-none"
+          className="w-[90%] flex hide-scrollbar bg-transparent focus:outline-none font-athiti font-semibold text-project-red whitespace-nowrap placeholder:text-project-red placeholder:text-opacity-50 resize-none"
           rows={1}
           placeholder="โปรดกรอกรหัสห้อง"
           value={text}
@@ -72,7 +72,7 @@ const CodeTextarea: React.FC<CodeTextareaProps> = ({
         />
 
         <button
-          className="w-8 h-8 rounded-full p-2 bg-project-cream"
+          className="absolute top-[10%] right-[2%] w-7 h-7 rounded-full p-2 bg-project-cream"
           onClick={handleOpenModal}
         >
           <Icon
