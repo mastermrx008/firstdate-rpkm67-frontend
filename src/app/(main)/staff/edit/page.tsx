@@ -204,7 +204,7 @@ export default function Edit() {
                   </option>
                   {major.map((m) => (
                     <option
-                      value="21"
+                      value={m.id}
                       key={m.id}
                     >
                       {m.name}
