@@ -25,12 +25,12 @@ const page = () => {
   );
 
   return (
-    <>
+    <div className="min-h-screen bg-rpkm-pink">
       <Navbar />
-      <section className="flex flex-col bg-[url('/rpkm/activities/background.png')] bg-cover bg-[#EB9096] pt-12">
-        <div className="flex justify-center items-center w-full h-[40vh] bg-[url('/rpkm/activities/herobackground.png')] bg-cover bg-[#68A987] -translate-y-5"></div>
-        <div className="w-full h-1 bg-white -translate-y-6"></div>
-        <div className="flex justify-center -translate-y-24">
+      <section className="flex flex-col bg-[url('/rpkm/activities/background.png')] bg-rpkm-pink bg-cover bg-center">
+        <div className="flex justify-center items-center w-full h-[22rem] bg-[url('/rpkm/activities/herobackground.png')] bg-cover bg-center bg-[#68A987] -translate-y-5"></div>
+        <div className="w-full h-1 bg-white -translate-y-[1.25rem]"></div>
+        <div className="flex justify-center -translate-y-[15vh]">
           <div className="flex flex-col items-center -translate-y-8">
             <h1
               className="font-sopha text-[20vh] text-rpkm-green tracking-wider"
@@ -42,7 +42,7 @@ const page = () => {
               รับเพื่อน
             </h1>
             <h2
-              className="font-sopha text-[14vh] text-project-yellow tracking-wider -translate-y-24"
+              className="font-sopha text-[14vh] text-project-yellow tracking-wider -translate-y-[15vh]"
               style={{
                 textShadow:
                   '1.5px 1.5px 0 #313131, -1.5px -1.5px 0 #313131, 1.5px -1.5px 0 #313131, -1.5px 1.5px 0 #313131',
@@ -51,7 +51,7 @@ const page = () => {
               ก้าวใหม่
             </h2>
             <h2
-              className="font-sopha text-[20vh] text-rpkm-red tracking-wider -translate-y-52"
+              className="font-sopha text-[20vh] text-rpkm-red tracking-wider -translate-y-[33vh]"
               style={{
                 textShadow:
                   '1.5px 1.5px 0 #EAE3C3, -1.5px -1.5px 0 #EAE3C3, 1.5px -1.5px 0 #EAE3C3, -1.5px 1.5px 0 #EAE3C3',
@@ -61,7 +61,7 @@ const page = () => {
             </h2>
           </div>
         </div>
-        <div className="-mt-80">
+        <div className="-mt-[60vh]">
           <Divider />
           <Banner image={ActivitiesBanner} />
           <ScrollSection
@@ -112,7 +112,7 @@ const page = () => {
           </a>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 
