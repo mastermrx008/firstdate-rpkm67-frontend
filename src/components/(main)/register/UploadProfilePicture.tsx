@@ -7,7 +7,6 @@ import imgPlaceholder from '@public/register-placeholder.svg';
 import Image from 'next/image';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import Spinner from '@/components/firstdate/Spinner';
-import toast from 'react-hot-toast';
 import imageCompression from 'browser-image-compression';
 
 interface UploadProfilePictureProps {
