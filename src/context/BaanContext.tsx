@@ -19,14 +19,17 @@ import {
 } from '@/utils/baan';
 import { BaanCount } from '@/types/baan';
 import { BaanSelection } from '@/types/BaanSelection';
+import toast from 'react-hot-toast';
 
 interface IBaanContext {
   baanCounts: BaanCount[] | null;
   selectedBaan: BaanSelection[] | null;
-  addBaanSelection: (baanId: string, order: number) => void;
+  addBaanSelection: (baanId: string) => void;
   removeBaanSelection: (baanId: string) => void;
   removeAllBaanSelection: () => void;
   isLoading: boolean;
+  order: number;
+  setOrder: (order: number) => void;
 }
 
 const BaanContext = createContext<IBaanContext>({} as IBaanContext);
@@ -34,12 +37,13 @@ const BaanContext = createContext<IBaanContext>({} as IBaanContext);
 export const useBaan = () => useContext(BaanContext);
 
 const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const { user, resetContext } = useAuth();
+  const { user } = useAuth();
   const [baanCounts, setBaanCounts] = useState<BaanCount[] | null>(null);
   const [selectedBaan, setSelectedBaan] = useState<BaanSelection[] | null>(
     null
   );
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [order, setOrder] = useState(1);
 
   const fetchBaanCounts = useCallback(async () => {
     setIsLoading(true);
@@ -74,7 +78,7 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
   }, [user]);
 
-  const addBaanSelection = async (baanId: string, order: number) => {
+  const addBaanSelection = async (baanId: string) => {
     if (!user) return;
 
     setIsLoading(true);
@@ -91,10 +95,11 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       } else {
         await createBaanSelection(baanId, user.groupId, order);
       }
+      toast.success('เลือกบ้านสำเร็จ');
       await fetchSelectedBaan();
-      resetContext();
     } catch (error) {
       console.log('Error selecting baan:', error);
+      toast.error('ไม่สามารถเลือกบ้านได้');
     } finally {
       setIsLoading(false);
     }
@@ -107,8 +112,9 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     try {
       await deleteBaanSelection(baanId, user.groupId);
       await fetchSelectedBaan();
-      resetContext();
+      toast.success('ลบบ้านสำเร็จ');
     } catch (error) {
+      toast.error('ไม่สามารถลบบ้านได้');
       console.log('Error removing baan:', error);
     } finally {
       setIsLoading(false);
@@ -128,8 +134,9 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         );
       }
       await fetchSelectedBaan();
-      resetContext();
+      toast.success('ลบบ้านสำเร็จ');
     } catch (error) {
+      toast.error('ไม่สามารลบบ้านได้');
       console.log('Error removing baan:', error);
     } finally {
       setIsLoading(false);
@@ -152,15 +159,16 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         removeBaanSelection,
         removeAllBaanSelection,
         isLoading,
+        order,
+        setOrder,
       }}
     >
-      {isLoading ? (
-        <div className="w-full h-screen flex items-center justify-center bg-black bg-opacity-20">
+      {isLoading && (
+        <div className="flex items-center justify-center fixed inset-0 bg-black bg-opacity-20 z-[999]">
           <Spinner />
         </div>
-      ) : (
-        children
       )}
+      {children}
     </BaanContext.Provider>
   );
 };

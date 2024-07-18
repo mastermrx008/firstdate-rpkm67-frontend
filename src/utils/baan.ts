@@ -22,7 +22,7 @@ export const getCountByBaan = async (): Promise<BaanCount[] | Error> => {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    return res.data as BaanCount[];
+    return res.data.baan_counts as BaanCount[];
   } catch (error: unknown) {
     console.log('Error fetching baan count:', error);
     return Error('Something is wrong! cannot get baan count');

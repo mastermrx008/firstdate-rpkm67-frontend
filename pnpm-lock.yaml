@@ -23,6 +23,9 @@ dependencies:
   axios:
     specifier: ^1.7.2
     version: 1.7.2
+  browser-image-compression:
+    specifier: ^2.0.2
+    version: 2.0.2
   clsx:
     specifier: ^2.1.1
     version: 2.1.1
@@ -32,6 +35,9 @@ dependencies:
   next:
     specifier: 14.2.4
     version: 14.2.4(react-dom@18.3.1)(react@18.3.1)
+  next-image-zoom:
+    specifier: ^1.1.7
+    version: 1.1.7(react-dom@18.3.1)(react@18.3.1)
   next-qrcode:
     specifier: ^2.5.1
     version: 2.5.1(react@18.3.1)
@@ -1576,6 +1582,12 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       fill-range: 7.1.1
+
+  /browser-image-compression@2.0.2:
+    resolution: {integrity: sha512-pBLlQyUf6yB8SmmngrcOw3EoS4RpQ1BcylI3T9Yqn7+4nrQTXJD4sJDe5ODnJdrvNMaio5OicFo75rDyJD2Ucw==}
+    dependencies:
+      uzip: 0.20201231.0
+    dev: false
 
   /busboy@1.6.0:
     resolution: {integrity: sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==}
@@ -3425,6 +3437,16 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
+  /next-image-zoom@1.1.7(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-dSXA/c7z6SZQQvwoCP+JK9s0A5Nx1ZtGwIM7p/j7dP2gsLhdkwrTlShkQw+SvXDKgU5iVB2XoUKS+DFBGm49og==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+    dev: false
+
   /next-qrcode@2.5.1(react@18.3.1):
     resolution: {integrity: sha512-ibiS1+p+myjurC1obVIgo7UCjFhxm0SNYTkikahQVmnyzlfREOdUCf2f77Vbz6W6q2zfx5Eww2/20vbgkLNdLw==}
     engines: {node: '>=8', npm: '>=5'}
@@ -4547,6 +4569,10 @@ packages:
       diff: 5.2.0
       kleur: 4.1.5
       sade: 1.8.1
+    dev: false
+
+  /uzip@0.20201231.0:
+    resolution: {integrity: sha512-OZeJfZP+R0z9D6TmBgLq2LHzSSptGMGDGigGiEe0pr8UBe/7fdflgHlHBNDASTXB5jnFuxHpNaJywSg8YFeGng==}
     dev: false
 
   /vfile-message@3.1.4:
