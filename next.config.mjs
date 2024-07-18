@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   reactStrictMode: true,
   compress: true,
+  compiler: {
+    removeConsole: process.env.APP_ENV == 'production',
+  },
   output: 'standalone',
   images: {
     contentDispositionType: 'attachment',
