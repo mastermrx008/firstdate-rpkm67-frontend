@@ -11,7 +11,7 @@ import { useBaan } from '@/context/BaanContext';
 import RpkmLogo from '@public/Rpkm67Logo.svg';
 import BaanCard from '@/components/rpkm/BaanCard';
 import BaanSelect from '@/components/rpkm/Baan/BaanSelect';
-import { BaanInfoProps, baanInfos } from '@/components/rpkm/Baan/baanInfo';
+import { BaanInfoProps, baanInfos } from '@/components/rpkm/Baan/baanInfos';
 
 interface SizeFilterProps {
   size: 'S' | 'M' | 'L' | 'XL' | 'XXL';
