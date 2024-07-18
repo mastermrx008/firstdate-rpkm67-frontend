@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { headers } from 'next/headers';
 
 import Card from '@/components/rpkm/Activities/Card';
+import Navbar from '@/components/rpkm/Navbar';
 
 import BackButton from '@public/rpkm/activities/back.svg';
 import ActivitiesBanner from '@public/rpkm/activities/activitiesbanner-red.png';
@@ -55,6 +56,7 @@ const Page = () => {
 
   return (
     <section className="flex flex-col min-h-screen bg-[url('/rpkm/activities/detailsbackground.png')] bg-cover bg-[#EAE3C3]">
+      <Navbar />
       <a href="/rpkm/activities/home">
         <Image
           src={BackButton}

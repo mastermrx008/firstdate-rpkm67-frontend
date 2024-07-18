@@ -35,6 +35,7 @@ const config: Config = {
           green: '#67AB88',
           cream: '#EAE3C3',
           red: '#C94B4B',
+          pink: '#EB9096',
         },
       },
       fontFamily: {

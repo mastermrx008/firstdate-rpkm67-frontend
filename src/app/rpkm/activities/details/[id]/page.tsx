@@ -1,6 +1,8 @@
 import { headers } from 'next/headers';
 import Image from 'next/image';
 
+import Navbar from '@/components/rpkm/Navbar';
+
 import BackButton from '@public/rpkm/activities/back.svg';
 
 import activities from '@/data/activities';
@@ -38,7 +40,8 @@ const Page = () => {
   }
 
   return (
-    <section className="min-h-screen bg-[url('/rpkm/activities/detailsbackground.png')] bg-cover bg-[#EAE3C3] text-black">
+    <section className="min-h-screen bg-[url('/rpkm/activities/small-background.png')] bg-cover bg-[#EAE3C3] text-black">
+      <Navbar />
       <a href="/rpkm/activities/home">
         <Image
           src={BackButton}
