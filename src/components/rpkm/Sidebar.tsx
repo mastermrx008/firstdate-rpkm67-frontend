@@ -13,9 +13,12 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ sidebar, setSidebar }) => {
   return (
     <div
-      className={cn('z-10 w-full h-full absolute flex top-0 transition ease-in', {
-        'opacity-0 pointer-events-none': !sidebar,
-      })}
+      className={cn(
+        'z-10 w-full h-full absolute flex top-0 transition ease-in',
+        {
+          'opacity-0 pointer-events-none': !sidebar,
+        }
+      )}
     >
       <div
         className="w-full h-full fixed bg-black opacity-50"
