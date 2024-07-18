@@ -69,7 +69,7 @@ const BaanButtonsSection: React.FC<BaanButtonsSectionProps> = ({
           <Button
             content="ยืนยันการเลือกบ้าน"
             onClick={handleConfirm}
-            disabled={!(!(selectedBaan && selectedBaan.length < 5))}
+            disabled={!!(selectedBaan && selectedBaan.length < 5)}
           />
           <Modal
             variant="red"

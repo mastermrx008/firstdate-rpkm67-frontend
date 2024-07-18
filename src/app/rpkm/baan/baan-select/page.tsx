@@ -90,7 +90,10 @@ export default function BaanSelectPage() {
         />
       </div>
       <div className="my-3">
-        <BaanSelect mode={'edit'} onClick={scrollToBaanList} />
+        <BaanSelect
+          mode={'edit'}
+          onClick={scrollToBaanList}
+        />
       </div>
       <div
         ref={baanListRef}
@@ -160,19 +163,19 @@ export default function BaanSelectPage() {
                 let currentPeople;
                 if (baanCounts) {
                   currentPeople =
-                    baanCounts.find((b) => b.baanId === house.name.en)
-                      ?.count || 0;
-                } else{
+                    baanCounts.find((b) => b.baanId === house.name.en)?.count ||
+                    0;
+                } else {
                   currentPeople = 0;
                 }
-                  return (
-                    <BaanCard
-                      key={index}
-                      isShake={shake}
-                      currentPeople={currentPeople}
-                      {...house}
-                    />
-                  );
+                return (
+                  <BaanCard
+                    key={index}
+                    isShake={shake}
+                    currentPeople={currentPeople}
+                    {...house}
+                  />
+                );
               })}
           </div>
         </div>

@@ -16,7 +16,7 @@ const BaanCardsSection: React.FC<BaanCardsSectionProps> = ({
   selectedBaan,
   mode,
   isConfirmed,
-  onClick
+  onClick,
 }) => {
   const { removeBaanSelection } = useBaan();
 
