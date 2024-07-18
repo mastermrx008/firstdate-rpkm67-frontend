@@ -64,7 +64,7 @@ const GroupFinder = () => {
             />
 
             <div className="flex flex-col w-full">
-              <div className="flex flex-row w-full px-[4%] relative z-10 justify-between">
+              <div className="flex flex-row w-full px-[4%] mt-[5%] relative z-10 justify-between">
                 {[...Array(2).keys()].map((ind) => {
                   return (
                     <div

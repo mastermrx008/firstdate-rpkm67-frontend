@@ -3,15 +3,15 @@ import { Accordion, AccordionItem } from '@nextui-org/accordion';
 import Link from 'next/link';
 function Menu() {
   return (
-    <div className="w-full h-full text-left text-base font-medium flex flex-col pb-[5vh]">
+    <div className="w-full h-full text-left text-lg font-medium flex flex-col pb-[5vh]">
       <Link
-        href="/"
+        href="/rpkm/baan/home"
         className="text-left"
       >
         ลงทะเบียนเลือกบ้าน
       </Link>
       <Link
-        href="/"
+        href=""
         className="text-left"
       >
         ลงทะเบียน Freshy Night
@@ -27,7 +27,7 @@ function Menu() {
             aria-label="Accordion 1"
             title={<Link href="/rpkm/activities">กิจกรรม</Link>}
           >
-            <div className="flex flex-col w-full justify-items-start text-xs px-xs">
+            <div className="flex flex-col w-full justify-items-start text-sm px-xs">
               <Link
                 href="/rpkm/activities/"
                 className="text-left"
@@ -59,7 +59,7 @@ function Menu() {
             aria-label="Accordion 2"
             title={<Link href="/rpkm/activities/map">แผนที่</Link>}
           >
-            <div className="flex flex-col w-full justify-items-start text-xs px-xs">
+            <div className="flex flex-col w-full justify-items-start text-sm px-xs">
               <Link
                 href="/"
                 className="text-left"
@@ -78,7 +78,7 @@ function Menu() {
       </div>
       <div className="mt-auto">
         <div className="w-full h-px bg-black"></div>
-        <Link href="/">ลงทะเบียน Freshy Night</Link>
+        <Link href="">ช่องทางการติดต่อ</Link>
       </div>
     </div>
   );
