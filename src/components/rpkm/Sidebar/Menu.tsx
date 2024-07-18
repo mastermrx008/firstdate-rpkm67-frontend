@@ -78,7 +78,7 @@ function Menu() {
       </div>
       <div className="mt-auto">
         <div className="w-full h-px bg-black"></div>
-        <Link href="/">ลงทะเบียน Freshy Night</Link>
+        <Link href="">ช่องทางการติดต่อ</Link>
       </div>
     </div>
   );
