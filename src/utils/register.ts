@@ -18,6 +18,7 @@ export const major: { id: string; name: string }[] = [
   { id: '37', name: 'สหเวชศาสตร์' },
   { id: '38', name: 'จิตวิทยา' },
   { id: '39', name: 'วิทยาศาสตร์การกีฬา' },
+  { id: '40', name: 'สำนักวิชาทรัพยากรการเกษตร' },
 ];
 
 export const majorMap = {
@@ -40,6 +41,7 @@ export const majorMap = {
   '37': 'สหเวชศาสตร์',
   '38': 'จิตวิทยา',
   '39': 'วิทยาศาสตร์การกีฬา',
+  '40': 'สำนักวิชาทรัพยากรการเกษตร'
 };
 
 export const getMajorNameById = (id: string): string => {

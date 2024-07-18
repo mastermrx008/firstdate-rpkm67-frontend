@@ -69,53 +69,53 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
     const isRegistered = isUserRegistered(userObj);
     const isRegisterPage = path.includes('register');
 
-    if (isStaff) {
-      if (path == '/') {
-        return router.push('firstdate/staff/home');
-      }
+    // if (isStaff) {
+    //   if (path == '/') {
+    //     return router.push('firstdate/staff/home');
+    //   }
 
-      if (!isRegistered && !isRegisterPage) {
-        return router.push('/staff/register');
-      }
-      if (!isStaffPage) {
-        return router.push('/firstdate/staff/home');
-      }
-    } else {
-      if (path == '/') {
-        return router.push('/home');
-      }
+    //   if (!isRegistered && !isRegisterPage) {
+    //     return router.push('/staff/register');
+    //   }
+    //   if (!isStaffPage) {
+    //     return router.push('/firstdate/staff/home');
+    //   }
+    // } else {
+    //   if (path == '/') {
+    //     return router.push('/home');
+    //   }
 
-      if (!isRegistered && !isRegisterPage) {
-        return router.push('/register');
-      }
+    //   if (!isRegistered && !isRegisterPage) {
+    //     return router.push('/register');
+    //   }
 
-      if (path.split('/').at(-1) == 'reward') {
-        const condition = getReceiveGiftCondition(userObj);
+    //   if (path.split('/').at(-1) == 'reward') {
+    //     const condition = getReceiveGiftCondition(userObj);
 
-        if (condition.status != 'ready') {
-          return router.push('/firstdate/home');
-        }
-      }
+    //     if (condition.status != 'ready') {
+    //       return router.push('/firstdate/home');
+    //     }
+    //   }
 
-      if (isStaffPage) {
-        return router.push('/firstdate/home');
-      }
+    //   if (isStaffPage) {
+    //     return router.push('/firstdate/home');
+    //   }
 
-      if (path !== 'home') {
-        const firstdate = new Date(
-          process.env.NEXT_PUBLIC_FIRST_DATE_DATE as string
-        );
-        const rpkm = new Date(process.env.NEXT_PUBLIC_RUP_PEUN_DATE as string);
-        const current = new Date();
+    //   if (path !== 'home') {
+    //     const firstdate = new Date(
+    //       process.env.NEXT_PUBLIC_FIRST_DATE_DATE as string
+    //     );
+    //     const rpkm = new Date(process.env.NEXT_PUBLIC_RUP_PEUN_DATE as string);
+    //     const current = new Date();
 
-        if (
-          (path.includes('firstdate') && current < firstdate) ||
-          (path.includes('rpkm') && current < rpkm)
-        ) {
-          return router.push('/home');
-        }
-      }
-    }
+    //     if (
+    //       (path.includes('firstdate') && current < firstdate) ||
+    //       (path.includes('rpkm') && current < rpkm)
+    //     ) {
+    //       return router.push('/home');
+    //     }
+    //   }
+    // }
 
     setisReady(true);
   }, [router, path]);
