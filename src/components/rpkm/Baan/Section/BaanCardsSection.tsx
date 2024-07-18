@@ -8,6 +8,7 @@ interface BaanCardsSectionProps {
   selectedBaan: BaanSelection[] | null;
   mode: 'select' | 'edit';
   isConfirmed: boolean;
+  onClick?: () => void;
 }
 
 const BaanCardsSection: React.FC<BaanCardsSectionProps> = ({
@@ -15,6 +16,7 @@ const BaanCardsSection: React.FC<BaanCardsSectionProps> = ({
   selectedBaan,
   mode,
   isConfirmed,
+  onClick
 }) => {
   const { removeBaanSelection } = useBaan();
 
@@ -31,6 +33,7 @@ const BaanCardsSection: React.FC<BaanCardsSectionProps> = ({
           mode={mode}
           isConfirmed={isConfirmed}
           onDelete={() => baan && removeBaanSelection(baan.baanId)}
+          onClick={onClick}
         />
       );
     });

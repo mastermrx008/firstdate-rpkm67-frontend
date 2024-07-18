@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useEffect, useState } from 'react';
 import BaanEmpty from '@/components/rpkm/Baan/BaanEmpty';
 import Spinner from '@/components/firstdate/Spinner';
@@ -12,9 +13,10 @@ import toast from 'react-hot-toast';
 
 interface BaanSelectProps {
   mode: 'select' | 'edit';
+  onClick?: () => void;
 }
 
-const BaanSelect: React.FC<BaanSelectProps> = ({ mode }) => {
+const BaanSelect: React.FC<BaanSelectProps> = ({ mode, onClick }) => {
   const { selectedBaan, isLoading } = useBaan();
   const { user, resetContext } = useAuth();
   const [isLeader, setIsLeader] = useState<boolean>(false);
@@ -58,9 +60,7 @@ const BaanSelect: React.FC<BaanSelectProps> = ({ mode }) => {
     <div className="relative flex flex-col items-center w-80 h-auto p-5">
       <div className="absolute inset-0 bg-rpkm-gray opacity-90 z-0"></div>
       <div className="relative z-10">
-        <h1 className="text-xl text-center text-amber-100 font-bold">
-          บ้านที่เลือกไว้
-        </h1>
+        <h1 className="text-xl text-center text-amber-100 font-bold">บ้านที่เลือกไว้</h1>
         <div className="flex items-center justify-center flex-col mt-10 space-y-8">
           {(!selectedBaan || selectedBaan.length === 0) && mode == 'select' ? (
             <BaanEmpty />
@@ -70,6 +70,7 @@ const BaanSelect: React.FC<BaanSelectProps> = ({ mode }) => {
               selectedBaan={selectedBaan}
               isConfirmed={isConfirmed}
               mode={mode}
+              onClick={onClick}
             />
           )}
           <BaanButtonsSection

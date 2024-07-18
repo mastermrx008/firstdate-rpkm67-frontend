@@ -89,7 +89,7 @@ export default function BaanCard({
           </div>
         )}
         <div className="flex flex-row justify-between items-center">
-          <div className="text-project-light-gray font-medium text-xs">
+          <div className="text-project-light-gray font-medium text-xs truncate">
             {name['en']}
           </div>
           <Badge baanSize={size}></Badge>

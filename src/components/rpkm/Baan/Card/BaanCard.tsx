@@ -10,6 +10,7 @@ interface BaanCardProps {
   isEmpty?: boolean;
   mode: 'select' | 'edit';
   onDelete?: () => void;
+  onClick?: () => void;
   isConfirmed?: boolean;
 }
 
@@ -20,11 +21,13 @@ const BaanCard: React.FC<BaanCardProps> = ({
   isEmpty = false,
   mode,
   onDelete,
+  onClick,
   isConfirmed = false,
 }) => {
   return (
     <div className="flex items-center justify-center flex-col space-y-2">
       <div
+        onClick={isEmpty ? onClick : () => {}}
         className={cn(
           'relative flex flex-col justify-center items-center px-1 bg-white w-20 h-28',
           isEmpty && 'border-2 border-dashed border-rpkm-green bg-opacity-0'

@@ -90,7 +90,7 @@ export default function BaanSelectPage() {
         />
       </div>
       <div className="my-3">
-        <BaanSelect mode={'edit'} />
+        <BaanSelect mode={'edit'} onClick={scrollToBaanList} />
       </div>
       <div
         ref={baanListRef}
@@ -157,17 +157,22 @@ export default function BaanSelectPage() {
                   selectedHouseSize === null || house.size === selectedHouseSize
               )
               .map((house, index) => {
-                const currentPeople =
-                  baanCounts?.find((b) => b.baanId === house.name.en)?.count ||
-                  0;
-                return (
-                  <BaanCard
-                    key={index}
-                    isShake={shake}
-                    currentPeople={currentPeople}
-                    {...house}
-                  />
-                );
+                let currentPeople;
+                if (baanCounts) {
+                  currentPeople =
+                    baanCounts.find((b) => b.baanId === house.name.en)
+                      ?.count || 0;
+                } else{
+                  currentPeople = 0;
+                }
+                  return (
+                    <BaanCard
+                      key={index}
+                      isShake={shake}
+                      currentPeople={currentPeople}
+                      {...house}
+                    />
+                  );
               })}
           </div>
         </div>
