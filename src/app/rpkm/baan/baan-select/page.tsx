@@ -7,11 +7,11 @@ import Link from 'next/link';
 import home from '@public/baan-select/home.svg';
 import search from '@public/baan-select/search.svg';
 import '@/components/rpkm/baan/baan-select/style.css';
-import { baanInfos, BaanInfoProps } from '@/components/rpkm/Baan/baanInfo';
 import { useBaan } from '@/context/BaanContext';
 import RpkmLogo from '@public/Rpkm67Logo.svg';
 import BaanCard from '@/components/rpkm/BaanCard';
 import BaanSelect from '@/components/rpkm/Baan/BaanSelect';
+import { BaanInfoProps, baanInfos } from '@/components/rpkm/Baan/baanInfo';
 
 interface SizeFilterProps {
   size: 'S' | 'M' | 'L' | 'XL' | 'XXL';
