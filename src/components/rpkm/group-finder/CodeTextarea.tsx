@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import { useDeleteGroupMember } from '@/hooks/group/useDeleteGroupMember';
 import { usePostLeaveGroup } from '@/hooks/group/usePostLeaveGroup';
 import Modal from '@/components/rpkm/Modal/Modal';
+import { useAuth } from '@/context/AuthContext';
 
 interface CodeTextareaProps {
   userId: string;
@@ -26,9 +27,10 @@ const CodeTextarea: React.FC<CodeTextareaProps> = ({
   const handleTypeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   };
-
+  const { resetContext } = useAuth();
   const [openModal, setOpenModal] = useState(false);
   const { data: groupData } = useGetGroupByToken(inputToken, openModal);
+
   const handleOpenModal = () => {
     if (text !== '') {
       if (text === userOwnToken) {
@@ -58,10 +60,12 @@ const CodeTextarea: React.FC<CodeTextareaProps> = ({
       token: inputToken,
       user_id: userId,
     });
+    resetContext();
   };
 
   return (
     <>
+      {}
       <div className="relative gap-1 bg-project-yellow rounded-3xl py-[2%] pl-[6%] pr-[6%] w-4/5 overflow-hidden">
         <textarea
           className="w-[90%] flex hide-scrollbar bg-transparent focus:outline-none font-athiti font-semibold text-project-red whitespace-nowrap placeholder:text-project-red placeholder:text-opacity-50 resize-none"

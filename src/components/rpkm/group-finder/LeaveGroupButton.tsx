@@ -2,6 +2,8 @@ import { Icon } from '@iconify/react/dist/iconify.js';
 import { useState } from 'react';
 import { usePostLeaveGroup } from '@/hooks/group/usePostLeaveGroup';
 import Modal from '@/components/rpkm/Modal/Modal';
+import { useAuth } from '@/context/AuthContext';
+import toast from 'react-hot-toast';
 
 interface LeaveGroupButtonProps {
   groupSize: number;
@@ -13,11 +15,19 @@ const LeaveGroupButton: React.FC<LeaveGroupButtonProps> = ({
   userId,
   isLeader,
 }) => {
+  const { resetContext } = useAuth();
   const [openModal, setOpenModal] = useState(false);
   const postLeaveGroup = usePostLeaveGroup();
-  const handleConfirmLeave = () => {
-    postLeaveGroup.mutateAsync(userId);
-    setOpenModal(false);
+  const handleConfirmLeave = async () => {
+    try {
+      setOpenModal(false);
+      postLeaveGroup.mutateAsync(userId);
+      resetContext();
+      toast.success('ออกกลุ่มสำเร็จ');
+    } catch (error) {
+      console.log('leave group error:', error);
+      toast.error('ออกกลุ่มไม่สำเร็จ');
+    }
   };
   return (
     groupSize === 2 &&

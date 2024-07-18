@@ -52,7 +52,7 @@ const BaanCard: React.FC<BaanCardProps> = ({
               height={80}
               className="max-h-20"
             />
-            <span className="text-sm font-normal">{title}</span>
+            <span className="text-sm font-normal w-full truncate">{title}</span>
           </div>
         )}
         {isEmpty && mode === 'edit' && (

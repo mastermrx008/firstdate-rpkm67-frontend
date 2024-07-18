@@ -10,20 +10,21 @@ const MemberIcon: React.FC<MemberIconProps> = ({
   isLeader = false,
 }) => {
   return (
-    <div className="relative flex flex-col w-full items-center justify-between">
+    <div className="relative flex flex-col w-full aspect-square my-auto items-center justify-between">
       {img_url !== '' ? (
         <Image
           src={img_url}
           alt="userPhoto"
-          className="flex w-full h-full object-cover object-center rounded-full"
-          width={100}
-          height={100}
+          className="flex object-cover object-center rounded-full"
+          fill
         />
       ) : (
-        <div className="flex w-full aspect-square rounded-full bg-project-cream items-center justify-center p-4">
+        <div className="flex w-full h-full rounded-full bg-project-cream items-center justify-center p-4">
           <Icon
             icon="mdi:user"
-            className="text-project-light-gray w-full h-full"
+            className="text-project-light-gray"
+            width={100}
+            height={100}
           />
         </div>
       )}

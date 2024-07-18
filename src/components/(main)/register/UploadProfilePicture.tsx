@@ -113,11 +113,10 @@ const UploadProfilePicture: React.FC<UploadProfilePictureProps> = ({
                 className="w-full h-full object-contain object-center rounded-t-full"
               />
             ) : (
-              <div className="rounded-t-full">
+              <div className="rounded-t-full -mt-6">
                 <Image
                   src={imgPlaceholder}
                   alt="image-placeholder"
-                
                 />
               </div>
             )}
