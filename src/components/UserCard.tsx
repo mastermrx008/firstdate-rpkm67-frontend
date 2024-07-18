@@ -5,7 +5,11 @@ import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 
-const UserCard = () => {
+interface UserCradProps {
+  showEditIcon?: boolean;
+}
+
+const UserCard = ({ showEditIcon }: UserCradProps) => {
   const router = useRouter();
   const { user } = useAuth();
   const name = `${user?.firstname} ${user?.lastname}`;
@@ -13,7 +17,10 @@ const UserCard = () => {
   const photoUrl = user?.photoUrl;
 
   return (
-    <div className="relative w-full h-full flex justify-center items-center p-4">
+    <div
+      className="relative w-full h-full flex justify-center items-center p-4"
+      onClick={showEditIcon ? () => window.alert() : () => {}}
+    >
       <Image
         src={TV}
         alt="tv"
@@ -34,15 +41,17 @@ const UserCard = () => {
           <p className="text-xs text-white">รหัสนิสิต {studentId}</p>
         </div>
       </div>
-      <div
-        className="absolute top-[5%] right-[2%] w-[20%]"
-        onClick={() => router.push('/edit')}
-      >
-        <Image
-          src={EditIcon}
-          alt="edit-icon"
-        />
-      </div>
+      {showEditIcon && (
+        <div
+          className="absolute top-[5%] right-[2%] w-[20%]"
+          onClick={() => router.push('/edit')}
+        >
+          <Image
+            src={EditIcon}
+            alt="edit-icon"
+          />
+        </div>
+      )}
     </div>
   );
 };

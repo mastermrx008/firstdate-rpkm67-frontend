@@ -6,12 +6,10 @@ import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { getAccessToken } from '@/utils/auth';
 import { apiClient } from '@/utils/axios';
-import UploadProfilePicture from '@/components/(main)/register/UploadProfilePicture';
 import {
   StyledInput,
   StyledSelect,
 } from '@/components/(main)/register/StyledComponents';
-import EditIcon from '@public/edit/edit-icon.svg';
 import CurvedLineIcon from '@public/curved-line.svg';
 import Button from '@/components/(main)/register/Button';
 import { major } from '@/utils/register';
@@ -132,6 +130,7 @@ export default function Edit() {
         <h2 className="text-5xl font-bold mb-4 font-season text-project-yellow drop-shadow-">
           ข้อมูลส่วนตัว
         </h2>
+        <UserCard />
         <UserCard />
       </div>
       <div className="flex flex-col py-10 px-10">
