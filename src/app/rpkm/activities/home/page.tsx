@@ -1,3 +1,6 @@
+import Link from 'next/link';
+
+import Navbar from '@/components/rpkm/Navbar';
 import Banner from '@/components/rpkm/Activities/Banner';
 import ScrollSection from '@/components/rpkm/Activities/ScrollSection';
 import Divider from '@/components/rpkm/Activities/Divider';
@@ -8,7 +11,6 @@ import CommunityBanner from '@public/rpkm/activities/community.png';
 import BaanBanner from '@public/rpkm/activities/baan.png';
 
 import activities from '@/data/activities';
-import Navbar from '@/components/rpkm/Navbar';
 
 const page = () => {
   const activitiesContent = activities.filter(
@@ -68,48 +70,48 @@ const page = () => {
             cards={activitiesContent}
             className="w-[60vw]"
           />
-          <a
+          <Link
             className="text-sm font-semibold flex justify-end underline mr-4 mt-2"
             href="/rpkm/activities/activities"
           >
             ดูทั้งหมด
-          </a>
+          </Link>
           <Divider />
           <Banner image={WalkRallyBanner} />
           <ScrollSection
             cards={walkRallyContent}
             className="w-[60vw]"
           />
-          <a
+          <Link
             className="text-sm font-semibold flex justify-end underline mr-4 mt-2"
             href="/rpkm/activities/walkrally"
           >
             ดูทั้งหมด
-          </a>
+          </Link>
           <Divider />
           <Banner image={CommunityBanner} />
           <ScrollSection
             cards={communityContent}
             className="w-[60vw]"
           />
-          <a
+          <Link
             className="text-sm font-semibold flex justify-end underline mr-4 mt-2"
             href="/rpkm/activities/community"
           >
             ดูทั้งหมด
-          </a>
+          </Link>
           <Divider />
           <Banner image={BaanBanner} />
           <ScrollSection
             cards={baanContent}
             className="w-[60vw]"
           />
-          <a
+          <Link
             className="pb-7 text-sm font-semibold flex justify-end underline mr-4 mt-2"
             href="/rpkm/activities/home"
           >
             ดูทั้งหมด
-          </a>
+          </Link>
         </div>
       </section>
     </div>

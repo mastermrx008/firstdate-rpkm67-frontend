@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import Globe from '@public/rpkm/activities/globe.svg';
 
@@ -24,12 +25,12 @@ const MapContentCard: React.FC<MapContentCardProps> = ({
           src={Globe}
           alt="globe"
         />
-        <a
+        <Link
           href={href}
           className="text-[#183F86] underline"
         >
           Show maps
-        </a>
+        </Link>
       </div>
     </div>
   );

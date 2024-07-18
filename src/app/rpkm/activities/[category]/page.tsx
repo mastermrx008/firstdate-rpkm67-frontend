@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import Card from '@/components/rpkm/Activities/Card';
 import Navbar from '@/components/rpkm/Navbar';
@@ -31,13 +32,13 @@ const Page = ({ params }: { params: { category: string } }) => {
   return (
     <section className="flex flex-col min-h-screen bg-[url('/rpkm/activities/detailsbackground.png')] bg-cover bg-[#EAE3C3]">
       <Navbar />
-      <a href="/rpkm/activities/home">
+      <Link href="/rpkm/activities/home">
         <Image
           src={BackButton}
           alt="back"
           className="w-auto pt-3 pl-3"
         />
-      </a>
+      </Link>
       <div className="flex justify-center">
         <Image
           src={getImage()}
@@ -52,7 +53,7 @@ const Page = ({ params }: { params: { category: string } }) => {
             name={card.name}
             image={card.image}
             content={card.content}
-            href={`/rpkm/details/${card.id}`}
+            href={`/rpkm/activities/details/${card.id}`}
             className="w-[60vw] m-auto opacity-80"
           />
         ))}

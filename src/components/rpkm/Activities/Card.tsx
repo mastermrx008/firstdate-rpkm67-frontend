@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
 
@@ -42,12 +43,12 @@ const Card: React.FC<CardProps> = ({
           <hr className="h-[2px] bg-[#414643] w-full" />
         </div>
         <p className="text-sm m-2">{content}</p>
-        <a
+        <Link
           className="flex w-full justify-end text-sm font-semibold underline"
           href={href}
         >
           ดูทั้งหมด
-        </a>
+        </Link>
       </div>
     </div>
   );

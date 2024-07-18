@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import Navbar from '@/components/rpkm/Navbar';
 
@@ -17,13 +18,13 @@ const Page = ({ params }: { params: { id: string } }) => {
   return (
     <section className="min-h-screen bg-[url('/rpkm/activities/small-background.png')] bg-cover bg-[#EAE3C3] text-black">
       <Navbar />
-      <a href="/rpkm/activities/home">
+      <Link href="/rpkm/activities/home">
         <Image
           src={BackButton}
           alt="back"
           className="w-auto pt-3 pl-3"
         />
-      </a>
+      </Link>
       <h1 className="text-4xl font-bold mt-16 text-center">{activity.name}</h1>
       <div className="flex justify-center">
         <Image

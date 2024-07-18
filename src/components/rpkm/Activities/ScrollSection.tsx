@@ -15,7 +15,7 @@ const ScrollSection: React.FC<ScrollSectionProps> = ({ cards, className }) => {
           name={card.name}
           image={card.image}
           content={card.content}
-          href={`/rpkm/details/${card.id}`}
+          href={`/rpkm/activities/details/${card.id}`}
           className={className}
         />
       ))}
