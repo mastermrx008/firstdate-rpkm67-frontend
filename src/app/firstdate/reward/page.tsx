@@ -62,7 +62,9 @@ export default function Reward() {
           รายละเอียด เงื่อนไขต่างๆ
         </p>
         <h1 className="text-center font-bold mt-2">สถานที่รับรางวัล</h1>
-        <div className="text-center mt-1 mx-5">รอโทนี่</div>
+        <div className="text-center mt-1 mx-5 text-sm">
+          จุดอำนวยการของที่ระลึก บริเวณหน้าอาคารพิพิธภัณฑ์
+        </div>
         <Image
           src={line}
           alt="Line"

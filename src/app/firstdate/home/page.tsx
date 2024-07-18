@@ -271,7 +271,7 @@ const StampPage = () => {
           <StampSubHeading>Club</StampSubHeading>
           <StampContainer>
             <StampCheckBox
-              text="ภายนอกอบจ."
+              text=""
               stampImage={ClubOutsideStamp}
               collected={stamps?.stamp[9] === '1'}
               onClick={() =>
@@ -279,8 +279,9 @@ const StampPage = () => {
                 handleStampClick(IActivity.CLUB_OUTSIDE, 'ภายนอกอบจ.')
               }
             />
+            <div className="my-[5%]">ชมรม/องค์กร</div>
             <StampCheckBox
-              text="ภายใต้อบจ."
+              text=""
               stampImage={ClubInsideStamp}
               collected={stamps?.stamp[10] === '1'}
               onClick={() =>
