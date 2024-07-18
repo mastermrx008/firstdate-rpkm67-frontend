@@ -45,7 +45,7 @@ export const majorMap = {
   '38': 'จิตวิทยา',
   '39': 'วิทยาศาสตร์การกีฬา',
   '40': 'สำนักวิชาทรัพยากรการเกษตร',
-  '56': 'นวัตกรรมบูรณาการ (BAScii)'
+  '56': 'นวัตกรรมบูรณาการ (BAScii)',
 };
 
 export const getMajorNameById = (id: string): string => {
