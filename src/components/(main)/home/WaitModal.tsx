@@ -69,9 +69,13 @@ const WaitModal: React.FC<WaitModalProps> = ({ modal, setModal, event }) => {
                   alt="line"
                   style={{ width: '60%' }}
                 />
-                <p className="text-[3.51vh] font-semibold">อดใจรออีกนิด</p>
+                <p className="text-[3.51vh] font-semibold">
+                  {event == 'first-date' ? 'อดใจรออีกนิด' : 'ลงทะเบียนบ้าน'}
+                </p>
                 <p className="text-[1.75vh] font-semibold">
-                  พร้อมใช้งานวันที่{' '}
+                  {event == 'first-date'
+                    ? 'พร้อมใช้งานวันที่ '
+                    : 'พร้อมกันวันที่ '}
                   {event == 'first-date' ? firstDateDate : rupPeunDate}
                 </p>
               </div>
