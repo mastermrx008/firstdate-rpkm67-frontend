@@ -29,8 +29,11 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       firstDateDate = new Date(firstDate);
     }
     if (currentDate >= firstDateDate) {
-      if (registered) router.push('/firstdate/home');
-      else router.push('/register');
+      if (registered) {
+        router.push('/firstdate/home');
+      } else {
+        router.push('/register');
+      }
     } else if (setWaitModal && setEvent) {
       setEvent('first-date');
       setWaitModal(true);
@@ -44,8 +47,11 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       rupPeunDate = new Date(rupPeun);
     }
     if (currentDate >= rupPeunDate) {
-      if (registered) console.log('registered');
-      else router.push('/register');
+      if (registered) {
+        router.push('/rpkm/baan/home');
+      } else {
+        router.push('/register');
+      }
     } else if (setWaitModal && setEvent) {
       setEvent('rup-peun');
       setWaitModal(true);
