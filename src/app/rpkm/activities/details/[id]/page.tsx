@@ -1,4 +1,3 @@
-import { headers } from 'next/headers';
 import Image from 'next/image';
 
 import Navbar from '@/components/rpkm/Navbar';
@@ -7,32 +6,8 @@ import BackButton from '@public/rpkm/activities/back.svg';
 
 import activities from '@/data/activities';
 
-export const getStaticpaths = async () => {
-  const paths = activities.map((activity) => {
-    return {
-      params: { id: activity.id },
-    };
-  });
-
-  console.log(paths);
-
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-const Page = () => {
-  const heads = headers();
-  const pathname = heads.get('x-pathname');
-
-  if (!pathname) {
-    return;
-  }
-
-  console.log(pathname);
-
-  const id = pathname.split('/').pop();
+const Page = ({ params }: { params: { id: string } }) => {
+  const id = params.id;
   const activity = activities.find((activity) => activity.id === id);
 
   if (!activity) {

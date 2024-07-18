@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { headers } from 'next/headers';
 
 import Card from '@/components/rpkm/Activities/Card';
 import Navbar from '@/components/rpkm/Navbar';
@@ -11,33 +10,8 @@ import CommunityBanner from '@public/rpkm/activities/communitybanner-yellow.png'
 
 import activities from '@/data/activities';
 
-export const getStaticPaths = async () => {
-  const paths = activities
-    .reduce((acc: string[], curr) => {
-      if (!acc.includes(curr.category)) {
-        acc.push(curr.category);
-      }
-      return acc;
-    }, [])
-    .map((category) => ({
-      params: { category },
-    }));
-
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-const Page = () => {
-  const heads = headers();
-  const pathname = heads.get('x-pathname');
-
-  if (!pathname) {
-    return;
-  }
-
-  const category = pathname.split('/').pop();
+const Page = ({ params }: { params: { category: string } }) => {
+  const category = params.category;
 
   const cardsData = activities.filter(
     (activity) => activity.category === category
