@@ -8,19 +8,23 @@ import BaanModal from '@/components/rpkm/Modal/BaanModal';
 import BaanFullModal from '@/components/rpkm/Modal/BaanFullModal';
 
 interface BaanCardProps {
-  image: StaticImageData;
+  logo: StaticImageData;
   name: {
     th: string;
     en: string;
   };
   size: 'S' | 'M' | 'L' | 'XL' | 'XXL';
   currentPeople: number;
-  capacity: number | 500;
-  content: {
+  max: number | 500;
+  description: {
     th: string;
     en: string;
   };
-  instagram: string;
+  ig: string;
+  message: {
+    th: string;
+    en: string;
+  };
   isShake: boolean;
 }
 
@@ -29,22 +33,24 @@ interface BaanCardProps {
  * @param open - boolean
  * @param setOpen - function
  * @param name - { th: string, en: string }
- * @param content - { th: string, en: string }
+ * @param description - { th: string, en: string }
  * @param size - string
  * @param currentPeople - number
- * @param capacity - number
- * @param instagram - string
- * @param image - StaticImageData (next/image)
+ * @param max - number
+ * @param ig - string
+ * @param message - { th: string, en: string }
+ * @param logo - StaticImageData (next/image)
  * @returns Full baan modal component
  */
 export default function BaanCard({
-  image,
+  logo,
   name,
   size,
   currentPeople,
-  capacity,
-  content,
-  instagram,
+  max,
+  description,
+  ig,
+  message,
   isShake,
 }: BaanCardProps) {
   const [openBaanModal, setOpenBaanModal] = useState(false);
@@ -68,9 +74,9 @@ export default function BaanCard({
           console.log(openBaanFullModal);
         }}
       >
-        {image ? (
+        {logo ? (
           <Image
-            src={image}
+            src={logo}
             alt="Baan image"
             className="w-[90px] aspect-square"
           ></Image>
@@ -83,7 +89,7 @@ export default function BaanCard({
           </div>
         )}
         <div className="flex flex-row justify-between items-center">
-          <div className="text-project-light-gray font-medium text-xs">
+          <div className="text-project-light-gray font-medium text-xs truncate">
             {name['en']}
           </div>
           <Badge baanSize={size}></Badge>
@@ -91,7 +97,7 @@ export default function BaanCard({
         <div className="flex flex-row justify-between items-center">
           <div className="flex flex-row gap-x-[2px] items-center">
             <div className="text-[9px]">
-              <span className="text-[#68A987]">{currentPeople}</span>/{capacity}
+              <span className="text-[#68A987]">{currentPeople}</span>/{max}
             </div>
             <Icon
               icon="ic:round-person"
@@ -106,12 +112,13 @@ export default function BaanCard({
         open={openBaanModal}
         setOpen={setOpenBaanModal}
         name={name}
-        content={content}
+        description={description}
         size={size}
         currentPeople={currentPeople}
-        capacity={capacity}
-        instagram={instagram}
-        image={image}
+        max={max}
+        ig={ig}
+        message={message}
+        logo={logo}
         callBackFunction={() => console.log('To be implemented')}
       />
       <BaanFullModal
