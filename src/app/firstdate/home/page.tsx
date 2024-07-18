@@ -279,7 +279,6 @@ const StampPage = () => {
                 handleStampClick(IActivity.CLUB_OUTSIDE, 'ภายนอกอบจ.')
               }
             />
-            <div className="my-[5%]">ชมรม/องค์กร</div>
             <StampCheckBox
               text=""
               stampImage={ClubInsideStamp}
@@ -290,6 +289,7 @@ const StampPage = () => {
               }
             />
           </StampContainer>
+          <div className="my-[5%] text-center">ชมรม/องค์กร</div>
         </div>
         <EndJourneyButton handleOnClick={() => setIsEndingOpen(true)} />
       </Border>

@@ -75,7 +75,7 @@ export default function BaanCard({
     <>
       <div
         className={cn(
-          'w-[100px] h-[140px] bg-white p-1 flex flex-col gap-y-1 shadow-[0_2px_4px_0px_rgba(0,0,0,0.25)]',
+          'w-[100px] h-[140px] cursor-pointer bg-white p-1 flex flex-col gap-y-1 shadow-[0_2px_4px_0px_rgba(0,0,0,0.25)]',
           { 'animate-shake': isShake }
         )}
         onClick={() => {

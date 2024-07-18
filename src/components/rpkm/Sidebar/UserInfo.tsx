@@ -27,7 +27,7 @@ function UserInfo() {
       </h1>
       <button className="flex flex-col">
         <div className="flex justify-center justify-items-center items-center gap-x-0.5">
-          <h1 className="text-xs font-semibold text-center text-black underline">
+          <h1 className="text-sm font-semibold text-center text-black underline">
             แก้ไขข้อมูลส่วนตัว
           </h1>
           <Image

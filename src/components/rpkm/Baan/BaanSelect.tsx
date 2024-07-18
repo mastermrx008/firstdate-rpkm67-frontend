@@ -52,7 +52,7 @@ const BaanSelect: React.FC<BaanSelectProps> = ({ mode, onClick }) => {
   const allSelections = Array.from({ length: 5 }, (_, i) => i + 1);
 
   return (
-    <div className="relative flex flex-col items-center w-80 h-auto p-5">
+    <div className="relative flex flex-col items-center w-full h-auto p-5">
       <div className="absolute inset-0 bg-rpkm-gray opacity-90 z-0"></div>
       <div className="relative z-10">
         <h1 className="text-xl text-center text-amber-100 font-bold">
