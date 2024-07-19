@@ -13,7 +13,6 @@ import { useAuth } from '@/context/AuthContext';
 import {
   getCountByBaan,
   createBaanSelection,
-  updateBaanSelection,
   getBaanSelectionByGroupId,
   deleteBaanSelection,
 } from '@/utils/baan';
@@ -88,7 +87,7 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
           (selection) => selection.baanId === baanId
         );
         if (existingSelection) {
-          await updateBaanSelection(baanId, user.groupId, order);
+          toast.error('อันดับนี้ถูกเลือกไปเเล้ว');
         } else {
           await createBaanSelection(baanId, user.groupId, order);
         }
