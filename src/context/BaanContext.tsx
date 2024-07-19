@@ -151,7 +151,7 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
   };
 
-  const checkGroupStatus = async () => {
+  const checkGroupStatus = useCallback(async () => {
     if (user) {
       const myGroup = await getGroupByUserId(user.id);
 
@@ -167,7 +167,7 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         }
       }
     }
-  };
+  }, [user, getGroupByUserId, setIsLeader, setIsConfirmed, router]);
 
   useEffect(() => {
     if (selectedBaan) {

@@ -7,7 +7,7 @@ interface FailModalProps {
   onClose: () => void;
 }
 
-const FailModal: React.FC<FailModalProps> = ({ isOpen, onClose }) => {
+const FailModal: React.FC<FailModalProps> = ({ isOpen, onClose, message }) => {
   const modalClasses = `fixed inset-0 z-50 overflow-y-auto bg-gray-500 bg-opacity-75 transition-all ease-in-out duration-300 ${
     isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
   }`;
@@ -28,7 +28,7 @@ const FailModal: React.FC<FailModalProps> = ({ isOpen, onClose }) => {
           />
         </div>
 
-        <h1 className="text-center mt-5">สแกนไม่สำเร็จ โปรดลองอีกครั้ง</h1>
+        <h1 className="text-center mt-5">{message}</h1>
         <div className="flex flex-col items-center mx-auto justify-center">
           <button
             onClick={onClose}
