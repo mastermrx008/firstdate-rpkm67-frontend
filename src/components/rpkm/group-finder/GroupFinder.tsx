@@ -12,17 +12,14 @@ import MemberIcon from '@/components/rpkm/group-finder/MemberIcon';
 import MemberName from '@/components/rpkm/group-finder/MemberName';
 import LeaveGroupButton from '@/components/rpkm/group-finder/LeaveGroupButton';
 import '@/components/rpkm/group-finder/style.css';
-import { usePathname } from 'next/navigation';
-import { useRouter } from 'next/router';
 
 interface GroupFinderProps {
-  groupToken ? : string
+  groupToken?: string;
 }
-const GroupFinder : React.FC<GroupFinderProps> = ({groupToken}) => {
+const GroupFinder: React.FC<GroupFinderProps> = ({ groupToken }) => {
   const { user } = useAuth();
   const [groupSize, setGroupSize] = useState(0);
   const { data: groupData } = useGetGroupById(user ? user.id : '');
-  const pathname = usePathname()
 
   // Case already have a pair => open pairing
   useEffect(() => {
@@ -33,7 +30,7 @@ const GroupFinder : React.FC<GroupFinderProps> = ({groupToken}) => {
         if (!groupToken) setGroupSize(0);
       }
     }
-  }, [groupData]);
+  }, [groupData, groupToken]);
 
   // Case click by invite link
   useEffect(() => {
@@ -58,7 +55,7 @@ const GroupFinder : React.FC<GroupFinderProps> = ({groupToken}) => {
   };
   const handleCopyLink = () => {
     if (!groupData) return;
-    const text = `${window.location.href}?token=${groupData ? groupData.group.token : ''}`
+    const text = `${window.location.href}?token=${groupData ? groupData.group.token : ''}`;
     navigator.clipboard.writeText(text);
     toast.success('คัดลอกไปยังคลิปบอร์ดแล้ว');
   };
