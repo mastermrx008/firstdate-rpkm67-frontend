@@ -78,7 +78,6 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       if (selected instanceof Error) {
         throw selected;
       }
-      console.log('selected', selected);
       setSelectedBaan(selected.baanSelections);
     } catch (error) {
       console.log('Error fetching selected baan:', error);
@@ -105,7 +104,6 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       }
 
       toast.success('เลือกบ้านสำเร็จ');
-      setOrder(null);
       await fetchSelectedBaan();
     } catch (error) {
       console.log('Error selecting baan:', error);
@@ -170,6 +168,16 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       }
     }
   };
+
+  useEffect(() => {
+    if (selectedBaan) {
+      const highestOrder = selectedBaan
+        .sort((baan1, baan2) => baan1.order - baan2.order)
+        .reduce((prev, baan) => (baan.order <= prev ? prev + 1 : prev), 1);
+
+      setOrder(highestOrder);
+    }
+  }, [selectedBaan]);
 
   useEffect(() => {
     if (user) {
