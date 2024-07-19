@@ -6,8 +6,11 @@ import logo from '@public/rpkm/baan/home/logo.svg';
 import Image from 'next/image';
 import GroupFinder from '@/components/rpkm/group-finder/GroupFinder';
 import BaanSelect from '@/components/rpkm/Baan/BaanSelect';
+import { useBaan } from '@/context/BaanContext';
 
 const page = () => {
+  const { isConfirmed } = useBaan();
+
   return (
     <main className="w-full min-h-screen">
       <div className="flex flex-col items-center justify-center gap-8 px-[5%] pb-[20%]">
@@ -22,7 +25,7 @@ const page = () => {
         </div>
         <UserCard />
         <BaanSelect mode="select" />
-        <GroupFinder />
+        {!isConfirmed && <GroupFinder />}
       </div>
     </main>
   );

@@ -1,15 +1,13 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import BaanEmpty from '@/components/rpkm/Baan/BaanEmpty';
 import { useBaan } from '@/context/BaanContext';
 import { useAuth } from '@/context/AuthContext';
-import { getGroupByUserId } from '@/utils/group';
 import BaanCardsSection from './Section/BaanCardsSection';
 import BaanButtonsSection from './Section/BaanButtonsSection';
 import { ConfirmGroupSelection } from '@/utils/group';
 import toast from 'react-hot-toast';
-import { usePathname, useRouter } from 'next/navigation';
 
 interface BaanSelectProps {
   mode: 'select' | 'edit';
@@ -17,34 +15,8 @@ interface BaanSelectProps {
 }
 
 const BaanSelect: React.FC<BaanSelectProps> = ({ mode, onClick }) => {
-  const { selectedBaan } = useBaan();
+  const { selectedBaan, isConfirmed, setIsConfirmed, isLeader } = useBaan();
   const { user } = useAuth();
-  const [isLeader, setIsLeader] = useState<boolean>(false);
-  const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
-  const router = useRouter();
-  const pathname = usePathname();
-
-  useEffect(() => {
-    const checkGroupStatus = async () => {
-      if (user) {
-        const myGroup = await getGroupByUserId(user.id);
-
-        if (myGroup instanceof Error) {
-          toast.error('ไม่สามารถเช็คสถานะของกลุ่มได้');
-        } else if (myGroup) {
-          const isLeader = myGroup.leaderId === user.id;
-          setIsLeader(isLeader);
-          setIsConfirmed(myGroup.isConfirmed);
-
-          if (!isLeader && pathname == '/rpkm/baan/baan-select') {
-            router.push('/rpkm/baan/home');
-          }
-        }
-      }
-    };
-
-    checkGroupStatus();
-  }, [user, router, pathname]);
 
   const onConfirm = async () => {
     if (user) {

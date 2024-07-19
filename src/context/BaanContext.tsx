@@ -20,6 +20,8 @@ import {
 import { BaanCount } from '@/types/baan';
 import { BaanSelection } from '@/types/BaanSelection';
 import toast from 'react-hot-toast';
+import { getGroupByUserId } from '@/utils/group';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface IBaanContext {
   baanCounts: BaanCount[] | null;
@@ -30,6 +32,9 @@ interface IBaanContext {
   isLoading: boolean;
   order: number | null;
   setOrder: (order: number) => void;
+  isLeader: boolean;
+  isConfirmed: boolean;
+  setIsConfirmed: (isConfirm: boolean) => void;
 }
 
 const BaanContext = createContext<IBaanContext>({} as IBaanContext);
@@ -44,6 +49,10 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   );
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [order, setOrder] = useState<number | null>(null);
+  const [isLeader, setIsLeader] = useState(false);
+  const [isConfirmed, setIsConfirmed] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   const fetchBaanCounts = useCallback(async () => {
     setIsLoading(true);
@@ -144,8 +153,27 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
   };
 
+  const checkGroupStatus = async () => {
+    if (user) {
+      const myGroup = await getGroupByUserId(user.id);
+
+      if (myGroup instanceof Error) {
+        toast.error('ไม่สามารถเช็คสถานะของกลุ่มได้');
+      } else if (myGroup) {
+        const isLeader = myGroup.leaderId === user.id;
+        setIsLeader(isLeader);
+        setIsConfirmed(myGroup.isConfirmed);
+
+        if (!isLeader && pathname == '/rpkm/baan/baan-select') {
+          router.push('/rpkm/baan/home');
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     if (user) {
+      checkGroupStatus();
       fetchBaanCounts();
       fetchSelectedBaan();
     }
@@ -162,6 +190,9 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         isLoading,
         order,
         setOrder,
+        isLeader,
+        isConfirmed,
+        setIsConfirmed,
       }}
     >
       {isLoading && (
