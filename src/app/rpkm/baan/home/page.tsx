@@ -10,8 +10,8 @@ import BaanSelect from '@/components/rpkm/Baan/BaanSelect';
 const page = () => {
   return (
     <main className="w-full min-h-screen">
-      <div className="flex flex-col items-center justify-center gap-8 px-[10%] pb-[20%]">
-        <div className="w-[70%] mx-auto">
+      <div className="flex flex-col items-center justify-center gap-8 px-[5%] pb-[20%]">
+        <div className="w-[78%] mx-auto">
           <Image
             src={logo}
             alt="logo"

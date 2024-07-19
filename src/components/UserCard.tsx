@@ -1,6 +1,7 @@
 import React from 'react';
 import TV from '@public/user-card/tv.png';
 import EditIcon from '@public/user-card/edit-icon.svg';
+import profilePlaceholder from '@public/placeholder.svg'
 import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
@@ -21,13 +22,13 @@ const UserCard = () => {
       />
       <div className="absolute top-[12%] left-[8%] w-[66%] h-[70%] flex flex-col items-center justify-center p-4 bg-blue-900 rounded-lg">
         <div className="relative w-[35%] h-[50%] overflow-hidden rounded-full">
-          {photoUrl && (
+          {(
             <Image
-              src={photoUrl}
+              src={photoUrl || profilePlaceholder}
               alt="user-picture"
               className="w-full h-full object-cover"
               fill
-            />
+            /> 
           )}
         </div>
         <div className="text-center">
@@ -36,7 +37,7 @@ const UserCard = () => {
         </div>
       </div>
       <div
-        className="absolute top-[5%] right-[0%] w-[20%]"
+        className="absolute top-[5%] right-[0%] w-[20%] cursor-pointer"
         onClick={() => router.push('/edit')}
       >
         <Image
