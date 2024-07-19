@@ -106,7 +106,7 @@ export default function BaanSelectPage() {
           alt="rpkm67Logo"
         />
       </div>
-      <div className="my-3">
+      <div className="my-3 w-[90vw]">
         <BaanSelect
           mode={'edit'}
           onClick={scrollToBaanList}

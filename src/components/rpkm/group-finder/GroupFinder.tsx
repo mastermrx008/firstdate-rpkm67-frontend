@@ -45,7 +45,7 @@ const GroupFinder = () => {
 
   return (
     <div className="relative flex flex-col w-full">
-      <div className="flex flex-col bg-project-light-gray bg-opacity-90 p-4 w-full items-center gap-2">
+      <div className="flex flex-col bg-project-light-gray bg-opacity-90 p-[6vw] w-full items-center gap-2">
         <span className="font-athiti font-bold text-xl text-project-cream">
           จับคู่เพื่อน [{groupSize}/2]
         </span>
@@ -124,7 +124,7 @@ const GroupFinder = () => {
               *สามารถเลือกบ้านคนเดียวได้
             </span>
             <button
-              className="inv-rad inv-rad-2 bg-project-cream w-full p-1"
+              className="inv-rad inv-rad-2 bg-project-cream w-[60%] mx-auto p-1"
               onClick={handleClickPairing}
             >
               <div className="inv-rad inv-rad-2 bg-project-red text-center font-medium font-athiti text-project-cream py-1">
