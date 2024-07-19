@@ -9,6 +9,7 @@ import BaanCardsSection from './Section/BaanCardsSection';
 import BaanButtonsSection from './Section/BaanButtonsSection';
 import { ConfirmGroupSelection } from '@/utils/group';
 import toast from 'react-hot-toast';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface BaanSelectProps {
   mode: 'select' | 'edit';
@@ -17,9 +18,11 @@ interface BaanSelectProps {
 
 const BaanSelect: React.FC<BaanSelectProps> = ({ mode, onClick }) => {
   const { selectedBaan } = useBaan();
-  const { user, resetContext } = useAuth();
+  const { user } = useAuth();
   const [isLeader, setIsLeader] = useState<boolean>(false);
   const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const checkGroupStatus = async () => {
@@ -29,14 +32,19 @@ const BaanSelect: React.FC<BaanSelectProps> = ({ mode, onClick }) => {
         if (myGroup instanceof Error) {
           toast.error('ไม่สามารถเช็คสถานะของกลุ่มได้');
         } else if (myGroup) {
-          setIsLeader(myGroup.leaderId === user.id);
+          const isLeader = myGroup.leaderId === user.id;
+          setIsLeader(isLeader);
           setIsConfirmed(myGroup.isConfirmed);
+
+          if (!isLeader && pathname == '/rpkm/baan/baan-select') {
+            router.push('/rpkm/baan/home');
+          }
         }
       }
     };
 
     checkGroupStatus();
-  }, [user, resetContext]);
+  }, [user, router, pathname]);
 
   const onConfirm = async () => {
     if (user) {
@@ -59,7 +67,9 @@ const BaanSelect: React.FC<BaanSelectProps> = ({ mode, onClick }) => {
           บ้านที่เลือกไว้
         </h1>
         <div className="flex items-center justify-center flex-col mt-10 space-y-8">
-          {(!selectedBaan || selectedBaan.length === 0) && mode == 'select' ? (
+          {(!selectedBaan || selectedBaan.length === 0) &&
+          mode == 'select' &&
+          isLeader ? (
             <BaanEmpty />
           ) : (
             <BaanCardsSection
