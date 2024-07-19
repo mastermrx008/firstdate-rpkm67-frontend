@@ -5,6 +5,7 @@ import pencilIcon from '@public/bar/icon/pencil.svg';
 import placeholder from '@public/placeholder.svg';
 import qrCodeIcon from '@public/home/icon/qrcode.svg';
 import { useAuth } from '@/context/AuthContext';
+
 function UserInfo() {
   const { user } = useAuth();
   return (
@@ -13,8 +14,8 @@ function UserInfo() {
         <Image
           src={user?.photoUrl ? user?.photoUrl : placeholder.src}
           alt="profile picture"
-          width={10}
-          height={10}
+          width={2048}
+          height={2048}
           style={{ width: '100%', height: '22.066vh', top: '-2.934vh' }}
         />
       </div>
