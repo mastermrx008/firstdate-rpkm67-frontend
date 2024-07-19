@@ -1,7 +1,7 @@
 import React from 'react';
 import TV from '@public/user-card/tv.png';
 import EditIcon from '@public/user-card/edit-icon.svg';
-import profilePlaceholder from '@public/bg-1.svg'
+import profilePlaceholder from '@public/placeholder.svg'
 import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
