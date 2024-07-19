@@ -1,7 +1,7 @@
 import React from 'react';
 import TV from '@public/user-card/tv.png';
 import EditIcon from '@public/user-card/edit-icon.svg';
-import profilePlaceholder from '@public/placeholder.svg'
+import profilePlaceholder from '@public/placeholder.svg';
 import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
@@ -22,18 +22,22 @@ const UserCard = () => {
       />
       <div className="absolute top-[12%] left-[8%] w-[66%] h-[70%] flex flex-col items-center justify-center  bg-blue-900 rounded-lg">
         <div className="relative w-[40%] aspect-square overflow-hidden rounded-full">
-          {(
+          {
             <Image
               src={photoUrl || profilePlaceholder}
               alt="user-picture"
               className="w-full h-full object-cover"
               fill
-            /> 
-          )}
+            />
+          }
         </div>
         <div className="text-center">
-          <h2 className="text-lg sm:text-2xl text-yellow-400 font-bold mt-2">{name}</h2>
-          <p className="text-sm sm:text-base text-white">รหัสนิสิต {studentId}</p>
+          <h2 className="text-lg sm:text-2xl text-yellow-400 font-bold mt-2">
+            {name}
+          </h2>
+          <p className="text-sm sm:text-base text-white">
+            รหัสนิสิต {studentId}
+          </p>
         </div>
       </div>
       <div
@@ -43,7 +47,7 @@ const UserCard = () => {
         <Image
           src={EditIcon}
           alt="edit-icon"
-          className='w-[15vw] aspect-square'
+          className="w-[15vw] aspect-square"
         />
       </div>
     </div>

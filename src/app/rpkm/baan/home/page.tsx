@@ -2,14 +2,12 @@
 
 import UserCard from '@/components/UserCard';
 import React from 'react';
-import logo from '@public/rpkm/baan/home/logo.svg';
-import Image from 'next/image';
 import GroupFinder from '@/components/rpkm/group-finder/GroupFinder';
 import BaanSelect from '@/components/rpkm/Baan/BaanSelect';
 import { useBaan } from '@/context/BaanContext';
 import Logo from '@/components/rpkm/Baan/Logo';
 
-const page = () => {
+const Page = () => {
   const { isConfirmed } = useBaan();
 
   return (
@@ -28,4 +26,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -185,7 +185,7 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       fetchBaanCounts();
       fetchSelectedBaan();
     }
-  }, [user, fetchBaanCounts, fetchSelectedBaan]);
+  }, [user, fetchBaanCounts, fetchSelectedBaan, checkGroupStatus]);
 
   return (
     <BaanContext.Provider
