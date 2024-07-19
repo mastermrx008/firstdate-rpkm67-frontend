@@ -15,6 +15,7 @@ import {
   createBaanSelection,
   getBaanSelectionByGroupId,
   deleteBaanSelection,
+  updateBaanSelection,
 } from '@/utils/baan';
 import { BaanCount } from '@/types/baan';
 import { BaanSelection } from '@/types/BaanSelection';
@@ -27,7 +28,7 @@ interface IBaanContext {
   removeBaanSelection: (baanId: string) => void;
   removeAllBaanSelection: () => void;
   isLoading: boolean;
-  order: number;
+  order: number | null;
   setOrder: (order: number) => void;
 }
 
@@ -42,7 +43,7 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     null
   );
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [order, setOrder] = useState(1);
+  const [order, setOrder] = useState<number | null>(null);
 
   const fetchBaanCounts = useCallback(async () => {
     setIsLoading(true);
@@ -79,22 +80,23 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const addBaanSelection = async (baanId: string) => {
     if (!user) return;
+    if (!order) return toast.error('กรุณาเลือกอันดับของบ้าน');
 
     setIsLoading(true);
     try {
-      if (selectedBaan) {
-        const existingSelection = selectedBaan.find(
-          (selection) => selection.baanId === baanId
-        );
-        if (existingSelection) {
-          toast.error('อันดับนี้ถูกเลือกไปเเล้ว');
-        } else {
-          await createBaanSelection(baanId, user.groupId, order);
-        }
+      const existingSelection = selectedBaan?.find(
+        (selection) => selection.order === order
+      );
+
+      if (existingSelection) {
+        await updateBaanSelection(baanId, user.groupId, order);
+        // toast.error('อันดับนี้ถูกเลือกไปเเล้ว');
       } else {
         await createBaanSelection(baanId, user.groupId, order);
       }
+
       toast.success('เลือกบ้านสำเร็จ');
+      setOrder(null);
       await fetchSelectedBaan();
     } catch (error) {
       console.log('Error selecting baan:', error);
