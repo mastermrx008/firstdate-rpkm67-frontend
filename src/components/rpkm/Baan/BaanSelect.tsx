@@ -44,7 +44,7 @@ const BaanSelect: React.FC<BaanSelectProps> = ({ mode, onClick }) => {
     };
 
     checkGroupStatus();
-  }, [user]);
+  }, [user, router, pathname]);
 
   const onConfirm = async () => {
     if (user) {
