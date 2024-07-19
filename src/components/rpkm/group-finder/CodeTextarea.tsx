@@ -97,7 +97,6 @@ const CodeTextarea: React.FC<CodeTextareaProps> = ({
     }
   }, []);
   useEffect(() => {
-    console.log(groupData);
     if (openModal && !groupData) {
       timeoutRef.current = setTimeout(() => {
         toast.error('ไม่สามารถหากลุ่มนี้ได้');
