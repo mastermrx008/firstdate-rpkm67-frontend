@@ -7,7 +7,7 @@ function Menu() {
   const { logout } = useAuth();
 
   return (
-    <div className="w-full h-full text-left text-lg font-medium flex flex-col pb-[5vh]">
+    <div className="w-full h-full text-left  font-medium flex flex-col pb-[5vh]">
       <Link
         href="/rpkm/baan/home"
         className="text-left"
@@ -16,7 +16,7 @@ function Menu() {
       </Link>
       <Link
         href=""
-        className="text-left"
+        className="text-left opacity-30"
       >
         ลงทะเบียน Freshy Night
       </Link>
@@ -25,11 +25,12 @@ function Menu() {
         <Accordion
           selectionMode="multiple"
           className="text-start self-start px-0"
+          isDisabled={true}
         >
           <AccordionItem
             key="1"
             aria-label="Accordion 1"
-            title={<Link href="/rpkm/activities">กิจกรรม</Link>}
+            title={<div className="opacity-30">กิจกรรม</div>}
           >
             <div className="flex flex-col w-full justify-items-start text-sm px-xs">
               <Link
@@ -61,7 +62,7 @@ function Menu() {
           <AccordionItem
             key="2"
             aria-label="Accordion 2"
-            title={<Link href="/rpkm/activities/map">แผนที่</Link>}
+            title={<div className="opacity-30">แผนที่</div>}
           >
             <div className="flex flex-col w-full justify-items-start text-sm px-xs">
               <Link
@@ -82,7 +83,12 @@ function Menu() {
       </div>
       <div className="mt-auto">
         <div className="w-full h-px bg-black"></div>
-        <Link href="">ช่องทางการติดต่อ</Link>
+        <Link
+          href=""
+          className="opacity-30"
+        >
+          ช่องทางการติดต่อ
+        </Link>
         <div className="flex gap-2 mt-2">
           <button onClick={logout}>
             <Icon
