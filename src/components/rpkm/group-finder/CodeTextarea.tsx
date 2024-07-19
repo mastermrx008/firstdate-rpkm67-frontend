@@ -1,11 +1,12 @@
 import { Icon } from '@iconify/react/dist/iconify.js';
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useGetGroupByToken } from '@/hooks/group/useGetGroupByToken';
 import { usePostJoinGroup } from '@/hooks/group/usePostJoinGroup';
 import toast from 'react-hot-toast';
 import { useDeleteGroupMember } from '@/hooks/group/useDeleteGroupMember';
 import { usePostLeaveGroup } from '@/hooks/group/usePostLeaveGroup';
 import Modal from '@/components/rpkm/Modal/Modal';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 interface CodeTextareaProps {
   userId: string;
@@ -13,6 +14,7 @@ interface CodeTextareaProps {
   isPaired: boolean;
   isLeader: boolean;
   memberId: string;
+  initGroupToken?: string;
 }
 const CodeTextarea: React.FC<CodeTextareaProps> = ({
   userId,
@@ -20,9 +22,16 @@ const CodeTextarea: React.FC<CodeTextareaProps> = ({
   isPaired,
   isLeader,
   memberId,
+  initGroupToken
 }) => {
   const [text, setText] = useState('');
   const [inputToken, setInputToken] = useState('');
+  const [hasInitToken, setHasInitToken] = useState(false);
+
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const pathname = usePathname()
+
   const handleTypeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   };
@@ -31,7 +40,7 @@ const CodeTextarea: React.FC<CodeTextareaProps> = ({
   const { data: groupData } = useGetGroupByToken(inputToken, openModal);
   const handleOpenModal = () => {
     if (text !== '') {
-      if (text === userOwnToken) {
+      if (userOwnToken && text === userOwnToken) {
         toast.error('ไม่สามารถจับคู่กับตัวเองได้');
       } else {
         setOpenModal(true);
@@ -59,6 +68,61 @@ const CodeTextarea: React.FC<CodeTextareaProps> = ({
       user_id: userId,
     });
   };
+
+  useEffect(() => {
+    if (initGroupToken) {
+      setText(initGroupToken);
+      setHasInitToken(true)
+    }
+  }, [initGroupToken]);
+
+  // Open modal and remove token query param
+  useEffect(() => {
+    if (hasInitToken) {
+      handleOpenModal();
+      setHasInitToken(false)
+      const nextSearchParams = new URLSearchParams(searchParams.toString())
+      nextSearchParams.delete('token')
+
+      router.replace(`${pathname}?${nextSearchParams}`)
+    }
+  }, [hasInitToken]);
+
+  // Check if not found group token in 700ms, then raise error
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const clearTimeoutRef = useCallback(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+      timeoutRef.current = null
+    }
+  } , [])
+  useEffect(() => {
+    console.log(groupData)
+    if (openModal && !groupData) {
+      timeoutRef.current = setTimeout(() => {
+        toast.error("ไม่สามารถหากลุ่มนี้ได้")
+        setOpenModal(false);
+      }, 700)
+    } else {
+      clearTimeoutRef()
+    }
+  }, [groupData, openModal]);
+
+  // Handle more case after render
+  useEffect(() => {
+    if (isPaired && openModal) {
+      toast.error("คุณได้จับคู่อยู่แล้ว")
+      setOpenModal(false);
+      clearTimeoutRef()
+    }
+  }, [isPaired, openModal]);
+  useEffect(() => {
+    if (openModal && inputToken === userOwnToken) {
+      toast.error('ไม่สามารถจับคู่กับตัวเองได้');
+      setOpenModal(false);
+      clearTimeoutRef()
+    }
+  }, [inputToken, userOwnToken , openModal]);
 
   return (
     <>
