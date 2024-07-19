@@ -84,8 +84,14 @@ function Menu() {
       <div className="mt-auto">
         <div className="w-full h-px bg-black"></div>
         <Link
+          href="/home"
+          className="opacity-30 block"
+        >
+          หน้าหลัก
+        </Link>
+        <Link
           href=""
-          className="opacity-30"
+          className="opacity-30 blockโ"
         >
           ช่องทางการติดต่อ
         </Link>
