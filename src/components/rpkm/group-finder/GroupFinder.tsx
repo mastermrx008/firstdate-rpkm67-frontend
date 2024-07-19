@@ -12,11 +12,13 @@ import MemberIcon from '@/components/rpkm/group-finder/MemberIcon';
 import MemberName from '@/components/rpkm/group-finder/MemberName';
 import LeaveGroupButton from '@/components/rpkm/group-finder/LeaveGroupButton';
 import '@/components/rpkm/group-finder/style.css';
+import { useBaan } from '@/context/BaanContext';
 
 const GroupFinder = () => {
   const { user } = useAuth();
   const [groupSize, setGroupSize] = useState(0);
   const { data: groupData } = useGetGroupById(user ? user.id : '');
+  const { isLeader, isConfirmed } = useBaan();
 
   // Case already have a pair => open pairing
   useEffect(() => {
@@ -51,17 +53,20 @@ const GroupFinder = () => {
         </span>
         {groupSize > 0 ? (
           <div className="flex flex-col w-full gap-2 items-center ">
-            <CodeTextarea
-              userId={user.id}
-              userOwnToken={groupData ? groupData.group.token : ''}
-              isPaired={groupSize === 2}
-              isLeader={groupData?.group.leader_id === user.id}
-              memberId={
-                groupData && groupData.group.members.length === 2
-                  ? groupData.group.members[1].id
-                  : ''
-              }
-            />
+            {((groupData && groupData.group.members.length == 1) ||
+              (!isLeader && !isConfirmed)) && (
+              <CodeTextarea
+                userId={user.id}
+                userOwnToken={groupData ? groupData.group.token : ''}
+                isPaired={groupSize === 2}
+                isLeader={groupData?.group.leader_id === user.id}
+                memberId={
+                  groupData && groupData.group.members.length === 2
+                    ? groupData.group.members[1].id
+                    : ''
+                }
+              />
+            )}
 
             <div className="flex flex-col w-full">
               <div className="flex flex-row w-full px-[4%] mt-[5%] relative z-10 justify-between">
@@ -167,12 +172,13 @@ const GroupFinder = () => {
           </div>
         </div>
       )}
-
-      <LeaveGroupButton
-        groupSize={groupSize}
-        userId={user ? user.id : ''}
-        isLeader={groupData?.group.leader_id === user.id}
-      />
+      {!isConfirmed && (
+        <LeaveGroupButton
+          groupSize={groupSize}
+          userId={user ? user.id : ''}
+          isLeader={groupData?.group.leader_id === user.id}
+        />
+      )}
     </div>
   );
 };

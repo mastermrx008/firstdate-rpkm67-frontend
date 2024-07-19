@@ -8,7 +8,7 @@ import { useBaan } from '@/context/BaanContext';
 import Logo from '@/components/rpkm/Baan/Logo';
 
 const Page = () => {
-  const { isConfirmed } = useBaan();
+  const { isConfirmed, groupData } = useBaan();
 
   return (
     <main className="w-full min-h-screen">
@@ -19,7 +19,9 @@ const Page = () => {
           <BaanSelect mode="select" />
         </div>
         <div className="w-full mt-[15vw]">
-          {!isConfirmed && <GroupFinder />}
+          {((groupData && groupData.members?.length > 1) || !isConfirmed) && (
+            <GroupFinder />
+          )}
         </div>
       </div>
     </main>

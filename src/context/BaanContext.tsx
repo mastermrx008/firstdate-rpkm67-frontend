@@ -22,6 +22,7 @@ import { BaanSelection } from '@/types/BaanSelection';
 import toast from 'react-hot-toast';
 import { getGroupByUserId } from '@/utils/group';
 import { usePathname, useRouter } from 'next/navigation';
+import { Group } from '@/types/group';
 
 interface IBaanContext {
   baanCounts: BaanCount[] | null;
@@ -35,6 +36,7 @@ interface IBaanContext {
   isLeader: boolean;
   isConfirmed: boolean;
   setIsConfirmed: (isConfirm: boolean) => void;
+  groupData: Group | null;
 }
 
 const BaanContext = createContext<IBaanContext>({} as IBaanContext);
@@ -53,6 +55,7 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+  const [groupData, setGroupData] = useState<Group | null>(null);
 
   const fetchBaanCounts = useCallback(async () => {
     setIsLoading(true);
@@ -161,6 +164,7 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         const isLeader = myGroup.leaderId === user.id;
         setIsLeader(isLeader);
         setIsConfirmed(myGroup.isConfirmed);
+        setGroupData(myGroup);
 
         if (!isLeader && pathname == '/rpkm/baan/baan-select') {
           router.push('/rpkm/baan/home');
@@ -201,6 +205,7 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         isLeader,
         isConfirmed,
         setIsConfirmed,
+        groupData,
       }}
     >
       {isLoading && (
