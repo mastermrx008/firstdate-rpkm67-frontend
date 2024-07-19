@@ -167,7 +167,7 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         }
       }
     }
-  }, [user, getGroupByUserId, setIsLeader, setIsConfirmed, router]);
+  }, [user, setIsLeader, setIsConfirmed, router, pathname]);
 
   useEffect(() => {
     if (selectedBaan) {
