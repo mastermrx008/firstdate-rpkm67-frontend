@@ -20,6 +20,10 @@ export default function MenuList({ isRewardPage }: TwoCircleMenuProps) {
 
   const handleNavigate = useCallback(
     (path: string): void => {
+      if (pathname == '/firstdate/home' && path == 'home') {
+        return router.push('/home');
+      }
+
       const isStaff = pathname.includes('/firstdate/staff');
       const url = `/firstdate${isStaff ? '/staff' : ''}/${path}`;
       router.push(url);
