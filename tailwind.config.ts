@@ -37,6 +37,7 @@ const config: Config = {
           green: '#67AB88',
           blue: '#183F86',
           gray: '#313131',
+          pink: '#EB9096',
         },
       },
       fontFamily: {
