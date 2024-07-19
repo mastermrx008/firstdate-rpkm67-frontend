@@ -1,7 +1,11 @@
 import React from 'react';
 import { Accordion, AccordionItem } from '@nextui-org/accordion';
 import Link from 'next/link';
+import { Icon } from '@iconify/react/dist/iconify.js';
+import { useAuth } from '@/context/AuthContext';
 function Menu() {
+  const { logout } = useAuth();
+
   return (
     <div className="w-full h-full text-left text-lg font-medium flex flex-col pb-[5vh]">
       <Link
@@ -79,6 +83,14 @@ function Menu() {
       <div className="mt-auto">
         <div className="w-full h-px bg-black"></div>
         <Link href="">ช่องทางการติดต่อ</Link>
+        <div className="flex gap-2 mt-2">
+          <button onClick={logout}>
+            <Icon
+              icon="material-symbols:logout"
+              className="size-6"
+            />
+          </button>
+        </div>
       </div>
     </div>
   );
