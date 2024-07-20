@@ -8,10 +8,11 @@ import home from '@public/baan-select/home.svg';
 import search from '@public/baan-select/search.svg';
 import '@/components/rpkm/baan/baan-select/style.css';
 import { useBaan } from '@/context/BaanContext';
-import RpkmLogo from '@public/Rpkm67Logo.svg';
 import BaanCard from '@/components/rpkm/BaanCard';
 import BaanSelect from '@/components/rpkm/Baan/BaanSelect';
 import { BaanInfoProps, baanInfos } from '@/components/rpkm/Baan/baanInfos';
+import { BaanSelection } from '@/types/BaanSelection';
+import Logo from '@/components/rpkm/Baan/Logo';
 
 interface SizeFilterProps {
   size: 'S' | 'M' | 'L' | 'XL' | 'XXL';
@@ -36,6 +37,18 @@ const shuffleArray = (baan: BaanInfoProps[]): BaanInfoProps[] => {
   return [...baan].sort(() => Math.random() - 0.5);
 };
 
+const filterArray = (
+  selectedBaan: BaanSelection[],
+  baan: BaanInfoProps[]
+): BaanInfoProps[] => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const lookupTable: any = {};
+  selectedBaan?.forEach((baan) => {
+    lookupTable[baan.baanId] = baan.groupId;
+  });
+  return baan.filter((b) => !(b.name.en in lookupTable));
+};
+
 export default function BaanSelectPage() {
   const [selectedHouseSize, setSelectedHouseSize] = useState<string | null>(
     null
@@ -44,7 +57,7 @@ export default function BaanSelectPage() {
   const [shuffledBaan, setShuffledBaan] = useState<BaanInfoProps[]>([]);
   const [searchBaan, setSearchBaan] = useState<string>('');
   const baanListRef = useRef<HTMLDivElement | null>(null);
-  const { baanCounts } = useBaan();
+  const { baanCounts, selectedBaan } = useBaan();
 
   const handleSizeChange = (size: string) => {
     setSelectedHouseSize((prevSize) => (prevSize === size ? null : size));
@@ -72,8 +85,12 @@ export default function BaanSelectPage() {
   }, [shake]);
 
   useEffect(() => {
-    setShuffledBaan(shuffleArray(baanInfos));
-  }, []);
+    let baan = baanInfos;
+    if (selectedBaan) {
+      baan = filterArray(selectedBaan, baanInfos);
+    }
+    setShuffledBaan(shuffleArray(baan));
+  }, [selectedBaan]);
 
   const filteredBaan = shuffledBaan.filter(
     (house) =>
@@ -83,13 +100,8 @@ export default function BaanSelectPage() {
 
   return (
     <div className="flex justify-center items-center flex-col">
-      <div className="mt-[15%]">
-        <Image
-          src={RpkmLogo}
-          alt="rpkm67Logo"
-        />
-      </div>
-      <div className="my-3">
+      <Logo />
+      <div className="my-3 w-[90vw]">
         <BaanSelect
           mode={'edit'}
           onClick={scrollToBaanList}

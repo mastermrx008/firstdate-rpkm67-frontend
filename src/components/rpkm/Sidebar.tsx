@@ -4,15 +4,22 @@ import UserInfo from '@/components/rpkm/Sidebar/UserInfo';
 import crossIcon from '@public/bar/icon/cross.svg';
 import Image from 'next/image';
 import Menu from '@/components/rpkm/Sidebar/Menu';
+import { cn } from '@/lib/utils';
 
 interface SidebarProps {
   sidebar: boolean;
   setSidebar: (value: boolean) => void;
 }
 const Sidebar: React.FC<SidebarProps> = ({ sidebar, setSidebar }) => {
-  if (!sidebar) return null;
   return (
-    <div className="z-10 w-full h-full absolute flex top-0">
+    <div
+      className={cn(
+        'z-10 w-full h-full absolute flex top-0 transition ease-in',
+        {
+          'opacity-0 pointer-events-none': !sidebar,
+        }
+      )}
+    >
       <div
         className="w-full h-full fixed bg-black opacity-50"
         onClick={() => setSidebar(false)}

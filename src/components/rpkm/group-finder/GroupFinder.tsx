@@ -12,6 +12,7 @@ import MemberIcon from '@/components/rpkm/group-finder/MemberIcon';
 import MemberName from '@/components/rpkm/group-finder/MemberName';
 import LeaveGroupButton from '@/components/rpkm/group-finder/LeaveGroupButton';
 import '@/components/rpkm/group-finder/style.css';
+import { useBaan } from '@/context/BaanContext';
 
 interface GroupFinderProps {
   groupToken?: string;
@@ -20,6 +21,7 @@ const GroupFinder: React.FC<GroupFinderProps> = ({ groupToken }) => {
   const { user } = useAuth();
   const [groupSize, setGroupSize] = useState(0);
   const { data: groupData } = useGetGroupById(user ? user.id : '');
+  const { isLeader, isConfirmed } = useBaan();
 
   // Case already have a pair => open pairing
   useEffect(() => {
@@ -58,27 +60,30 @@ const GroupFinder: React.FC<GroupFinderProps> = ({ groupToken }) => {
 
   return (
     <div className="relative flex flex-col w-full">
-      <div className="flex flex-col bg-project-light-gray bg-opacity-90 p-4 w-full items-center gap-2">
+      <div className="flex flex-col bg-project-light-gray bg-opacity-90 p-[6vw] w-full items-center gap-2">
         <span className="font-athiti font-bold text-xl text-project-cream">
           จับคู่เพื่อน [{groupSize}/2]
         </span>
         {groupSize > 0 ? (
           <div className="flex flex-col w-full gap-2 items-center ">
-            <CodeTextarea
-              userId={user.id}
-              userOwnToken={groupData ? groupData.group.token : ''}
-              isPaired={groupSize === 2}
-              isLeader={groupData?.group.leader_id === user.id}
-              memberId={
-                groupData && groupData.group.members.length === 2
-                  ? groupData.group.members[1].id
-                  : ''
-              }
-              initGroupToken={groupToken}
-            />
+            {((groupData && groupData.group.members.length == 1) ||
+              (!isLeader && !isConfirmed)) && (
+              <CodeTextarea
+                userId={user.id}
+                userOwnToken={groupData ? groupData.group.token : ''}
+                isPaired={groupSize === 2}
+                isLeader={groupData?.group.leader_id === user.id}
+                memberId={
+                  groupData && groupData.group.members.length === 2
+                    ? groupData.group.members[1].id
+                    : ''
+                }
+                initGroupToken={groupToken}
+              />
+            )}
 
             <div className="flex flex-col w-full">
-              <div className="flex flex-row w-full px-[4%] relative z-10 justify-between">
+              <div className="flex flex-row w-full px-[4%] mt-[5%] relative z-10 justify-between">
                 {[...Array(2).keys()].map((ind) => {
                   return (
                     <div
@@ -138,7 +143,7 @@ const GroupFinder: React.FC<GroupFinderProps> = ({ groupToken }) => {
               *สามารถเลือกบ้านคนเดียวได้
             </span>
             <button
-              className="inv-rad inv-rad-2 bg-project-cream w-full p-1"
+              className="inv-rad inv-rad-2 bg-project-cream w-[60%] mx-auto p-1"
               onClick={handleClickPairing}
             >
               <div className="inv-rad inv-rad-2 bg-project-red text-center font-medium font-athiti text-project-cream py-1">
@@ -205,12 +210,13 @@ const GroupFinder: React.FC<GroupFinderProps> = ({ groupToken }) => {
           </div>
         </div>
       )}
-
-      <LeaveGroupButton
-        groupSize={groupSize}
-        userId={user ? user.id : ''}
-        isLeader={groupData?.group.leader_id === user.id}
-      />
+      {!isConfirmed && (
+        <LeaveGroupButton
+          groupSize={groupSize}
+          userId={user ? user.id : ''}
+          isLeader={groupData?.group.leader_id === user.id}
+        />
+      )}
     </div>
   );
 };

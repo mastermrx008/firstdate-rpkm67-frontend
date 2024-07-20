@@ -11,6 +11,7 @@ import ModalButton from '@/components/rpkm/Modal/ModalButton';
 import PersonIcon from '@public/rpkm/person-icon.svg';
 import InstagramIcon from '@public/rpkm/instagram-icon.svg';
 import Star from '@public/rpkm/star.svg';
+import Link from 'next/link';
 
 interface BaanModalProps {
   open: boolean;
@@ -148,7 +149,12 @@ const BaanModal: React.FC<BaanModalProps> = ({
             src={InstagramIcon}
             alt="instagram icon"
           />
-          <p className="text-white">{ig}</p>
+          <Link
+            href={`https://www.instagram.com/${ig}/`}
+            className="text-white"
+          >
+            {ig}
+          </Link>
         </div>
         <div className="flex flex-row gap-x-3 justify-center mt-3">
           <ModalButton

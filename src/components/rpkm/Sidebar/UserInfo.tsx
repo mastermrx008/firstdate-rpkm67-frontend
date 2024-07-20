@@ -5,6 +5,7 @@ import pencilIcon from '@public/bar/icon/pencil.svg';
 import placeholder from '@public/placeholder.svg';
 import qrCodeIcon from '@public/home/icon/qrcode.svg';
 import { useAuth } from '@/context/AuthContext';
+import Link from 'next/link';
 function UserInfo() {
   const { user } = useAuth();
   return (
@@ -25,9 +26,12 @@ function UserInfo() {
       <h1 className="text-xs font-semibold text-center text-black">
         {user?.baan}
       </h1>
-      <button className="flex flex-col">
+      <Link
+        href={'/edit'}
+        className="flex flex-col"
+      >
         <div className="flex justify-center justify-items-center items-center gap-x-0.5">
-          <h1 className="text-xs font-semibold text-center text-black underline">
+          <h1 className="text-sm font-semibold text-center text-black underline">
             แก้ไขข้อมูลส่วนตัว
           </h1>
           <Image
@@ -38,9 +42,9 @@ function UserInfo() {
             style={{ width: '8px', height: '8px' }}
           />
         </div>
-      </button>
+      </Link>
       <button
-        className="w-[4.8vh] h-[4.8vh] rounded-full flex justify-center items-center shadow-[0px_3px_4px_.5px_#00000048] hover:scale-105 bg-[#F1DFC1]"
+        className="w-[4.8vh] h-[4.8vh] rounded-full flex justify-center items-center shadow-[0px_3px_4px_.5px_#00000048] hover:scale-105 bg-[#F1DFC1] opacity-30"
         onClick={() => console.log('qrcode')}
       >
         <Image

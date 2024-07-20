@@ -7,6 +7,7 @@ import { useDeleteGroupMember } from '@/hooks/group/useDeleteGroupMember';
 import { usePostLeaveGroup } from '@/hooks/group/usePostLeaveGroup';
 import Modal from '@/components/rpkm/Modal/Modal';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useAuth } from '@/context/AuthContext';
 
 interface CodeTextareaProps {
   userId: string;
@@ -35,7 +36,7 @@ const CodeTextarea: React.FC<CodeTextareaProps> = ({
   const handleTypeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   };
-
+  const { resetContext } = useAuth();
   const [openModal, setOpenModal] = useState(false);
   const { data: groupData, isError } = useGetGroupByToken(
     inputToken,
@@ -70,6 +71,7 @@ const CodeTextarea: React.FC<CodeTextareaProps> = ({
       token: inputToken,
       user_id: userId,
     });
+    resetContext();
   };
 
   useEffect(() => {

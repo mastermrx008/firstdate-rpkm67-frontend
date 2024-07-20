@@ -1,3 +1,4 @@
+import { BaanCount } from '@/types/baan';
 import {
   BaanSelection,
   GetBaanSelectionByGroupIdResponse,
@@ -17,6 +18,11 @@ export type GetBaanSelectionByGroupIdResponseDTO = {
 export type DeleteBaanResponseDTO = {
   baan_id: string;
   group_id: string;
+};
+
+export type BaanCountDTO = {
+  baan_id: string;
+  count: number;
 };
 
 export const convertBaanSelectionDTOToBaanSelection = (
@@ -45,5 +51,14 @@ export const convertDeleteBaanResponseDTOToResponse = (
   return {
     baanId: responseDTO.baan_id,
     groupId: responseDTO.group_id,
+  };
+};
+
+export const convertBaanCountDTOtoBaanCount = (
+  baanCount: BaanCountDTO
+): BaanCount => {
+  return {
+    baanId: baanCount.baan_id,
+    count: baanCount.count,
   };
 };
