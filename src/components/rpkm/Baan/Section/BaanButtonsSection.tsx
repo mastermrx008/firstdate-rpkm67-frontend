@@ -7,6 +7,7 @@ import Modal from '@/components/rpkm/Modal/Modal';
 import { useRouter } from 'next/navigation';
 import alertImg from '@public/alert.svg';
 import Image from 'next/image';
+import BackToHomeBtn from '../../BackToHomeBtn';
 
 interface BaanButtonsSectionProps {
   mode: 'select' | 'edit';
@@ -68,11 +69,14 @@ const BaanButtonsSection: React.FC<BaanButtonsSectionProps> = ({
               </button>
             </div>
           )}
-          <Button
-            content="ยืนยันการเลือกบ้าน"
-            onClick={handleConfirm}
-            disabled={!!(selectedBaan && selectedBaan.length < 5)}
-          />
+          <div className="flex gap-[4vw] items-center">
+            {mode == 'edit' && <BackToHomeBtn />}
+            <Button
+              content="ยืนยันการเลือกบ้าน"
+              onClick={handleConfirm}
+              disabled={!!(selectedBaan && selectedBaan.length < 5)}
+            />
+          </div>
           <Modal
             variant="red"
             open={isModalOpen}

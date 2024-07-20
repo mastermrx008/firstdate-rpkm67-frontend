@@ -70,7 +70,6 @@ const BaanSelect: React.FC<BaanSelectProps> = ({ mode, onClick }) => {
               onClick={onClick}
             />
           )}
-
           <BaanButtonsSection
             mode={mode}
             isLeader={isLeader}
