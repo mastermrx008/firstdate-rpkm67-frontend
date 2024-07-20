@@ -33,7 +33,7 @@ const Page = () => {
           width={0}
           height={0}
           sizes="100vw"
-          style={{ width: '60vw', height: 'auto' }}
+          style={{ width: '60vw', height: '60vw' }}
           className="my-4"
         />
       </div>
