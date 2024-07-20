@@ -4,11 +4,14 @@ import UserCard from '@/components/UserCard';
 import React from 'react';
 import GroupFinder from '@/components/rpkm/group-finder/GroupFinder';
 import BaanSelect from '@/components/rpkm/Baan/BaanSelect';
+import { useSearchParams } from 'next/navigation';
 import { useBaan } from '@/context/BaanContext';
 import Logo from '@/components/rpkm/Baan/Logo';
 
 const Page = () => {
   const { isConfirmed, groupData } = useBaan();
+  const searchParams = useSearchParams();
+  const initToken = searchParams.get('token') ?? undefined;
 
   return (
     <main className="w-full min-h-screen">
@@ -20,7 +23,7 @@ const Page = () => {
         </div>
         <div className="w-full mt-[15vw]">
           {((groupData && groupData.members?.length > 1) || !isConfirmed) && (
-            <GroupFinder />
+            <GroupFinder groupToken={initToken} />
           )}
         </div>
       </div>

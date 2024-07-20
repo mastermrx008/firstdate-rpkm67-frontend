@@ -1,11 +1,12 @@
 import { Icon } from '@iconify/react/dist/iconify.js';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useGetGroupByToken } from '@/hooks/group/useGetGroupByToken';
 import { usePostJoinGroup } from '@/hooks/group/usePostJoinGroup';
 import toast from 'react-hot-toast';
 import { useDeleteGroupMember } from '@/hooks/group/useDeleteGroupMember';
 import { usePostLeaveGroup } from '@/hooks/group/usePostLeaveGroup';
 import Modal from '@/components/rpkm/Modal/Modal';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 
 interface CodeTextareaProps {
@@ -14,6 +15,7 @@ interface CodeTextareaProps {
   isPaired: boolean;
   isLeader: boolean;
   memberId: string;
+  initGroupToken?: string;
 }
 const CodeTextarea: React.FC<CodeTextareaProps> = ({
   userId,
@@ -21,27 +23,36 @@ const CodeTextarea: React.FC<CodeTextareaProps> = ({
   isPaired,
   isLeader,
   memberId,
+  initGroupToken,
 }) => {
   const [text, setText] = useState('');
   const [inputToken, setInputToken] = useState('');
+  const [hasInitToken, setHasInitToken] = useState(false);
+
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
   const handleTypeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   };
   const { resetContext } = useAuth();
   const [openModal, setOpenModal] = useState(false);
-  const { data: groupData } = useGetGroupByToken(inputToken, openModal);
-
-  const handleOpenModal = () => {
+  const { data: groupData, isError } = useGetGroupByToken(
+    inputToken,
+    openModal
+  );
+  const handleOpenModal = useCallback(() => {
     if (text !== '') {
-      if (text === userOwnToken) {
+      if (userOwnToken && text === userOwnToken) {
         toast.error('ไม่สามารถจับคู่กับตัวเองได้');
       } else {
         setOpenModal(true);
         setInputToken(text);
-        setText('');
       }
+      setText('');
     }
-  };
+  }, [text, userOwnToken]);
 
   const postJoinGroup = usePostJoinGroup();
   const deleteMember = useDeleteGroupMember();
@@ -63,10 +74,50 @@ const CodeTextarea: React.FC<CodeTextareaProps> = ({
     resetContext();
   };
 
+  useEffect(() => {
+    if (initGroupToken) {
+      setText(initGroupToken);
+      setHasInitToken(true);
+    }
+  }, [initGroupToken]);
+
+  // Open modal and remove token query param
+  useEffect(() => {
+    if (hasInitToken) {
+      handleOpenModal();
+      setHasInitToken(false);
+      const nextSearchParams = new URLSearchParams(searchParams.toString());
+      nextSearchParams.delete('token');
+
+      router.replace(`${pathname}?${nextSearchParams}`);
+    }
+  }, [hasInitToken, handleOpenModal, pathname, router, searchParams]);
+
+  // Check if not found group token
+  useEffect(() => {
+    if (openModal && isError && !groupData) {
+      toast.error('ไม่สามารถหากลุ่มนี้ได้');
+      setOpenModal(false);
+    }
+  }, [groupData, openModal, isError]);
+
+  // Handle more case after render
+  useEffect(() => {
+    if (isPaired && openModal) {
+      toast.error('คุณได้จับคู่อยู่แล้ว');
+      setOpenModal(false);
+    }
+  }, [isPaired, openModal]);
+  useEffect(() => {
+    if (openModal && inputToken === userOwnToken) {
+      toast.error('ไม่สามารถจับคู่กับตัวเองได้');
+      setOpenModal(false);
+    }
+  }, [inputToken, userOwnToken, openModal]);
+
   return (
     <>
-      {}
-      <div className="relative gap-1 bg-project-yellow rounded-3xl py-[2%] pl-[6%] pr-[6%] w-4/5 overflow-hidden">
+      <div className="relative gap-1 bg-project-yellow rounded-3xl py-[2%] pl-[6%] pr-[3%] w-4/5 overflow-hidden flex flex-row items-center">
         <textarea
           className="w-[90%] flex hide-scrollbar bg-transparent focus:outline-none font-athiti font-semibold text-project-red whitespace-nowrap placeholder:text-project-red placeholder:text-opacity-50 resize-none"
           rows={1}
@@ -76,7 +127,7 @@ const CodeTextarea: React.FC<CodeTextareaProps> = ({
         />
 
         <button
-          className="absolute top-[10%] right-[2%] w-7 h-7 rounded-full p-2 bg-project-cream"
+          className="flex flex-shrink-0 w-7 h-7 rounded-full p-2 bg-project-cream"
           onClick={handleOpenModal}
         >
           <Icon
@@ -86,7 +137,7 @@ const CodeTextarea: React.FC<CodeTextareaProps> = ({
         </button>
       </div>
       <Modal
-        open={openModal}
+        open={openModal && groupData !== null}
         setOpen={setOpenModal}
         callBackFunction={handleConfirmPairing}
         variant="blue"
