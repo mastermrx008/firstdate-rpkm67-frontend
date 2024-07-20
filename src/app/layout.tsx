@@ -23,7 +23,7 @@ export default function RootLayout({
         <QueryProvider>
           <Toaster />
           <AuthProvider>
-            <BaanProvider>{children}</BaanProvider>
+            {children}
           </AuthProvider>
         </QueryProvider>
       </body>
