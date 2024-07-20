@@ -2,6 +2,7 @@ import { cn } from '@/lib/utils';
 import { createEbookCount } from '@/utils/count';
 import { useRouter } from 'next/navigation';
 import React from 'react';
+import { Client as NTPClient } from 'ntp-time';
 
 interface CustomButtonProps {
   varient: 'first-date' | 'rub-peun' | 'e-book' | 'contact-list';
@@ -21,8 +22,13 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   setEvent,
 }) => {
   const router = useRouter();
-  const firstdate = () => {
-    const currentDate = new Date();
+  const firstdate = async () => {
+    const ntpClient = new NTPClient();
+    const currentDate = await ntpClient.syncTime().then((time) => {
+      console.log(time);
+      return time.time;
+    });
+    console.log(currentDate);
     let firstDateDate = currentDate;
     const firstDate = process.env.NEXT_PUBLIC_FIRST_DATE_DATE;
     if (firstDate) {
@@ -39,8 +45,13 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       setWaitModal(true);
     }
   };
-  const rubpeun = () => {
-    const currentDate = new Date();
+  const rubpeun = async () => {
+    const ntpClient = new NTPClient();
+    const currentDate = await ntpClient.syncTime().then((time) => {
+      console.log(time);
+      return time.time;
+    });
+    console.log(currentDate);
     let rupPeunDate = currentDate;
     const rupPeun = process.env.NEXT_PUBLIC_RUP_PEUN_DATE;
     if (rupPeun) {
