@@ -125,7 +125,7 @@ const CodeTextarea: React.FC<CodeTextareaProps> = ({
 
   return (
     <>
-      <div className="relative gap-1 bg-project-yellow rounded-3xl py-[2%] pl-[6%] pr-[6%] w-4/5 overflow-hidden">
+      <div className="relative gap-1 bg-project-yellow rounded-3xl py-[2%] pl-[6%] pr-[3%] w-4/5 overflow-hidden flex flex-row items-center">
         <textarea
           className="w-[90%] flex hide-scrollbar bg-transparent focus:outline-none font-athiti font-semibold text-project-red whitespace-nowrap placeholder:text-project-red placeholder:text-opacity-50 resize-none"
           rows={1}
@@ -135,7 +135,7 @@ const CodeTextarea: React.FC<CodeTextareaProps> = ({
         />
 
         <button
-          className="absolute top-[10%] right-[2%] w-7 h-7 rounded-full p-2 bg-project-cream"
+          className="flex flex-shrink-0 w-7 h-7 rounded-full p-2 bg-project-cream"
           onClick={handleOpenModal}
         >
           <Icon

@@ -166,7 +166,7 @@ const GroupFinder: React.FC<GroupFinderProps> = ({ groupToken }) => {
               onClick={handleCopyLink}
             >
               <div className="flex justify-center hide-scrollbar overflow-y-hidden w-full">
-                <span className="text-center w-full font-athiti font-semibold text-project-dark-blue whitespace-nowrap overflow-x-auto overflow-y-hidden">
+                <span className="text-center w-full font-athiti font-semibold text-project-dark-blue whitespace-nowrap overflow-x-auto overflow-y-hidden hide-scrollbar">
                   {`${window.location.href}?token=${groupData ? groupData.group.token : ''}`}
                 </span>
               </div>
@@ -190,7 +190,7 @@ const GroupFinder: React.FC<GroupFinderProps> = ({ groupToken }) => {
               onClick={handleCopyToken}
             >
               <div className="flex justify-center hide-scrollbar overflow-y-hidden w-full">
-                <span className="text-center w-full font-athiti font-semibold text-project-dark-blue">
+                <span className="text-center w-full font-athiti font-semibold text-project-dark-blue hide-scrollbar">
                   {groupData ? groupData.group.token : ''}
                 </span>
               </div>
