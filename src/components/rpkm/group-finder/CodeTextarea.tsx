@@ -1,5 +1,5 @@
 import { Icon } from '@iconify/react/dist/iconify.js';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useGetGroupByToken } from '@/hooks/group/useGetGroupByToken';
 import { usePostJoinGroup } from '@/hooks/group/usePostJoinGroup';
 import toast from 'react-hot-toast';
@@ -37,7 +37,10 @@ const CodeTextarea: React.FC<CodeTextareaProps> = ({
   };
 
   const [openModal, setOpenModal] = useState(false);
-  const { data: groupData } = useGetGroupByToken(inputToken, openModal);
+  const { data: groupData, isError } = useGetGroupByToken(
+    inputToken,
+    openModal
+  );
   const handleOpenModal = useCallback(() => {
     if (text !== '') {
       if (userOwnToken && text === userOwnToken) {
@@ -88,40 +91,27 @@ const CodeTextarea: React.FC<CodeTextareaProps> = ({
     }
   }, [hasInitToken, handleOpenModal, pathname, router, searchParams]);
 
-  // Check if not found group token in 700ms, then raise error
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const clearTimeoutRef = useCallback(() => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
-  }, []);
+  // Check if not found group token
   useEffect(() => {
-    if (openModal && !groupData) {
-      timeoutRef.current = setTimeout(() => {
-        toast.error('ไม่สามารถหากลุ่มนี้ได้');
-        setOpenModal(false);
-      }, 700);
-    } else {
-      clearTimeoutRef();
+    if (openModal && isError && !groupData) {
+      toast.error('ไม่สามารถหากลุ่มนี้ได้');
+      setOpenModal(false);
     }
-  }, [groupData, openModal, clearTimeoutRef]);
+  }, [groupData, openModal, isError]);
 
   // Handle more case after render
   useEffect(() => {
     if (isPaired && openModal) {
       toast.error('คุณได้จับคู่อยู่แล้ว');
       setOpenModal(false);
-      clearTimeoutRef();
     }
-  }, [isPaired, openModal, clearTimeoutRef]);
+  }, [isPaired, openModal]);
   useEffect(() => {
     if (openModal && inputToken === userOwnToken) {
       toast.error('ไม่สามารถจับคู่กับตัวเองได้');
       setOpenModal(false);
-      clearTimeoutRef();
     }
-  }, [inputToken, userOwnToken, openModal, clearTimeoutRef]);
+  }, [inputToken, userOwnToken, openModal]);
 
   return (
     <>
@@ -145,7 +135,7 @@ const CodeTextarea: React.FC<CodeTextareaProps> = ({
         </button>
       </div>
       <Modal
-        open={openModal}
+        open={openModal && groupData !== null}
         setOpen={setOpenModal}
         callBackFunction={handleConfirmPairing}
         variant="blue"
