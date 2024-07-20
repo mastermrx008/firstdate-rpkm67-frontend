@@ -6,21 +6,26 @@ import { useState } from 'react';
 import Badge from '@/components/rpkm/SizeBadge';
 import BaanModal from '@/components/rpkm/Modal/BaanModal';
 import BaanFullModal from '@/components/rpkm/Modal/BaanFullModal';
+import { useBaan } from '@/context/BaanContext';
 
 interface BaanCardProps {
-  image: StaticImageData;
+  logo: StaticImageData;
   name: {
     th: string;
     en: string;
   };
   size: 'S' | 'M' | 'L' | 'XL' | 'XXL';
   currentPeople: number;
-  capacity: number | 500;
-  content: {
+  max: number | 500;
+  description: {
     th: string;
     en: string;
   };
-  instagram: string;
+  ig: string;
+  message: {
+    th: string;
+    en: string;
+  };
   isShake: boolean;
 }
 
@@ -29,37 +34,48 @@ interface BaanCardProps {
  * @param open - boolean
  * @param setOpen - function
  * @param name - { th: string, en: string }
- * @param content - { th: string, en: string }
+ * @param description - { th: string, en: string }
  * @param size - string
  * @param currentPeople - number
- * @param capacity - number
- * @param instagram - string
- * @param image - StaticImageData (next/image)
+ * @param max - number
+ * @param ig - string
+ * @param message - { th: string, en: string }
+ * @param logo - StaticImageData (next/image)
  * @returns Full baan modal component
  */
 export default function BaanCard({
-  image,
+  logo,
   name,
   size,
   currentPeople,
-  capacity,
-  content,
-  instagram,
+  max,
+  description,
+  ig,
+  message,
   isShake,
 }: BaanCardProps) {
   const [openBaanModal, setOpenBaanModal] = useState(false);
   const [openBaanFullModal, setOpenBaanFullModal] = useState(false);
+  const { addBaanSelection, selectedBaan } = useBaan();
 
-  // const handleBaanFull = () => {
-  //   setOpenBaanModal(false);
-  //   setOpenBaanFullModal(true);
-  // };
+  const handleOnSubmit = () => {
+    setOpenBaanModal(false);
+    if (selectedBaan && selectedBaan?.length < 5) {
+      addBaanSelection(name.en);
+    } else {
+      handleBaanFull();
+    }
+  };
+
+  const handleBaanFull = () => {
+    setOpenBaanFullModal(true);
+  };
 
   return (
     <>
       <div
         className={cn(
-          'w-[100px] h-[140px] bg-white p-1 flex flex-col gap-y-1 shadow-[0_2px_4px_0px_rgba(0,0,0,0.25)]',
+          'w-[100px] h-[140px] cursor-pointer bg-white p-1 flex flex-col gap-y-1 shadow-[0_2px_4px_0px_rgba(0,0,0,0.25)]',
           { 'animate-shake': isShake }
         )}
         onClick={() => {
@@ -68,9 +84,9 @@ export default function BaanCard({
           console.log(openBaanFullModal);
         }}
       >
-        {image ? (
+        {logo ? (
           <Image
-            src={image}
+            src={logo}
             alt="Baan image"
             className="w-[90px] aspect-square"
           ></Image>
@@ -83,7 +99,7 @@ export default function BaanCard({
           </div>
         )}
         <div className="flex flex-row justify-between items-center">
-          <div className="text-project-light-gray font-medium text-xs">
+          <div className="text-project-light-gray font-medium text-xs truncate">
             {name['en']}
           </div>
           <Badge baanSize={size}></Badge>
@@ -91,7 +107,7 @@ export default function BaanCard({
         <div className="flex flex-row justify-between items-center">
           <div className="flex flex-row gap-x-[2px] items-center">
             <div className="text-[9px]">
-              <span className="text-[#68A987]">{currentPeople}</span>/{capacity}
+              <span className="text-[#68A987]">{currentPeople}</span>/{max}
             </div>
             <Icon
               icon="ic:round-person"
@@ -106,13 +122,14 @@ export default function BaanCard({
         open={openBaanModal}
         setOpen={setOpenBaanModal}
         name={name}
-        content={content}
+        description={description}
         size={size}
         currentPeople={currentPeople}
-        capacity={capacity}
-        instagram={instagram}
-        image={image}
-        callBackFunction={() => console.log('To be implemented')}
+        max={max}
+        ig={ig}
+        message={message}
+        logo={logo}
+        callBackFunction={handleOnSubmit}
       />
       <BaanFullModal
         open={openBaanFullModal}

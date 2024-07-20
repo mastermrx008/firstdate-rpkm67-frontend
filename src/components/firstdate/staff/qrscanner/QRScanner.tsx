@@ -12,6 +12,7 @@ function Scan() {
   const [checkInData, setCheckInData] = useState<CheckIn | null>(null);
   const [status, setStatus] = useState<'success' | 'error' | 'idle'>('idle');
   const { user } = useAuth();
+  const [error] = useState('The check-in failed. Please try again.');
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleScanResult = async (scanRawData: any) => {
@@ -63,7 +64,7 @@ function Scan() {
 
           <FailureModal
             isOpen={status == 'error'}
-            message="The check-in failed. Please try again."
+            message={error}
             onClose={handleCloseModal}
           />
 

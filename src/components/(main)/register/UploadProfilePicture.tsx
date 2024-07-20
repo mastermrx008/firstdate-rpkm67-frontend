@@ -7,6 +7,7 @@ import imgPlaceholder from '@public/register-placeholder.svg';
 import Image from 'next/image';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import Spinner from '@/components/firstdate/Spinner';
+import imageCompression from 'browser-image-compression';
 
 interface UploadProfilePictureProps {
   onNext?: () => void;
@@ -31,10 +32,20 @@ const UploadProfilePicture: React.FC<UploadProfilePictureProps> = ({
   const handlePhotoChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setPhoto(file);
-      setErrorMessage(null);
-      setCurrentPhotoUrl(null);
-      await handlePhotoUpload(file);
+      const options = {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 1920,
+        useWebWorker: true,
+      };
+      try {
+        const compressedFile = await imageCompression(file, options);
+        setPhoto(compressedFile);
+        setErrorMessage(null);
+        setCurrentPhotoUrl(null);
+        await handlePhotoUpload(compressedFile);
+      } catch (error) {
+        console.log('error compress file:', error);
+      }
     }
   };
 
@@ -86,30 +97,30 @@ const UploadProfilePicture: React.FC<UploadProfilePictureProps> = ({
       )}
       <div className="relative mb-4">
         <div className="w-40 h-56 rounded-t-full p-2 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-gray-300 shadow-md">
-          {photo ? (
-            <Image
-              src={URL.createObjectURL(photo)}
-              alt="Profile"
-              className="w-full h-full object-contain object-center rounded-t-full"
-            />
-          ) : currentPhotoUrl ? (
-            <div className="relative w-full h-full">
-              {' '}
+          <div className="relative w-full h-full">
+            {photo ? (
+              <Image
+                src={URL.createObjectURL(photo)}
+                alt="Profile"
+                fill
+                className="w-full h-full object-contain object-center rounded-t-full"
+              />
+            ) : currentPhotoUrl ? (
               <Image
                 src={currentPhotoUrl}
                 alt="Profile"
                 fill
                 className="w-full h-full object-contain object-center rounded-t-full"
               />
-            </div>
-          ) : (
-            <div className="rounded-t-full -mt-6">
-              <Image
-                src={imgPlaceholder}
-                alt="image-placeholder"
-              />
-            </div>
-          )}
+            ) : (
+              <div className="rounded-t-full">
+                <Image
+                  src={imgPlaceholder}
+                  alt="image-placeholder"
+                />
+              </div>
+            )}
+          </div>
         </div>
         <input
           type="file"

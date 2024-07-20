@@ -35,19 +35,19 @@ const BaanButtonsSection: React.FC<BaanButtonsSectionProps> = ({
   return (
     <>
       {mode === 'select' &&
-        (!selectedBaan || selectedBaan.length === 0 ? (
+        (!isLeader ? (
+          <div className="text-rpkm-cream text-md">
+            *คุณไม่สามารถแก้ไขบ้านที่เลือกได้
+          </div>
+        ) : !selectedBaan || selectedBaan.length === 0 ? (
           <Button
             content="เลือกบ้าน"
             onClick={() => router.push('/rpkm/baan/baan-select')}
           />
-        ) : isLeader ? (
+        ) : (
           <BaanEditButton
             onClick={() => router.push('/rpkm/baan/baan-select')}
           />
-        ) : (
-          <div className="text-rpkm-cream text-md">
-            *คุณไม่สามารถแก้ไขบ้านที่เลือกได้
-          </div>
         ))}
       {mode === 'edit' && (
         <>
@@ -69,6 +69,7 @@ const BaanButtonsSection: React.FC<BaanButtonsSectionProps> = ({
           <Button
             content="ยืนยันการเลือกบ้าน"
             onClick={handleConfirm}
+            disabled={!!(selectedBaan && selectedBaan.length < 5)}
           />
           <Modal
             variant="red"
