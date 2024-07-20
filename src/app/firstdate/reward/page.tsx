@@ -13,15 +13,18 @@ import Border from '@/components/firstdate/Border';
 import ConfirmationModal from '@/components/firstdate/confirmationModal';
 import NotificationModal from '@/components/firstdate/congratulation/NotificationModal';
 import MenuList from '@/components/firstdate/MenuList';
+import { useAuth } from '@/context/AuthContext';
 
 export default function Reward() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const [isOpenCondition, setIsOpenCondition] = useState(false);
+  const { resetContext } = useAuth();
 
   async function handleRedeem() {
     const isSuccess = await patchReward();
     if (isSuccess) {
+      await resetContext();
       router.push('/firstdate/reward-done');
     } else {
       console.log('error patch reward');
@@ -59,7 +62,9 @@ export default function Reward() {
           รายละเอียด เงื่อนไขต่างๆ
         </p>
         <h1 className="text-center font-bold mt-2">สถานที่รับรางวัล</h1>
-        <div className="text-center mt-1 mx-5">รอโทนี่</div>
+        <div className="text-center mt-1 mx-5 text-sm">
+          จุดอำนวยการของที่ระลึก บริเวณหน้าอาคารพิพิธภัณฑ์
+        </div>
         <Image
           src={line}
           alt="Line"

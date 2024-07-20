@@ -1,11 +1,19 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: true,
+  compress: true,
+  compiler: {
+    removeConsole: process.env.APP_ENV == 'production',
+  },
+  output: 'standalone',
   images: {
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: process.env.BASE_DOMAIN_IMAGES ?? '*',
+        hostname: 'rpkm67.spg1.cdn.digitaloceanspaces.com',
       },
     ],
   },

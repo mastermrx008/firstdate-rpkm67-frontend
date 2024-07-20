@@ -2,10 +2,9 @@ import type { Metadata } from 'next';
 import { Athiti } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
-import Footer from '@/components/(main)/Footer';
 import AuthProvider from '@/context/AuthContext';
 import { Toaster } from 'react-hot-toast';
-
+import { QueryProvider } from '@/components/queryProvider';
 export const metadata: Metadata = {
   title: 'RPKM',
 };
@@ -18,11 +17,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${athiti.variable} ${season.variable} ${sarun.variable} bg-1 font-athiti`}
+        className={`${athiti.variable} ${season.variable} ${sarun.variable} ${sopha.variable} font-athiti`}
       >
-        <Toaster />
-        <AuthProvider>{children}</AuthProvider>
-        <Footer />
+        <QueryProvider>
+          <Toaster />
+          <AuthProvider>{children}</AuthProvider>
+        </QueryProvider>
       </body>
     </html>
   );
@@ -75,6 +75,16 @@ const sarun = localFont({
   src: [
     {
       path: '../../public/fonts/thai/Sarun.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+  ],
+});
+const sopha = localFont({
+  variable: '--sopha',
+  src: [
+    {
+      path: '../../public/fonts/thai/SOV_SawadiSopha.ttf',
       weight: '400',
       style: 'normal',
     },
