@@ -29,7 +29,6 @@ function Scan() {
       'firstdate'
     );
 
-
     if (newCheckInData) {
       if (newCheckInData.checkIn.isDuplicate) {
         const date = dayjs(newCheckInData.checkIn.timestamp);
