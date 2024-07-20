@@ -20,6 +20,9 @@ import {
 import { BaanCount } from '@/types/baan';
 import { BaanSelection } from '@/types/BaanSelection';
 import toast from 'react-hot-toast';
+import { getGroupByUserId } from '@/utils/group';
+import { usePathname, useRouter } from 'next/navigation';
+import { Group } from '@/types/group';
 
 interface IBaanContext {
   baanCounts: BaanCount[] | null;
@@ -30,6 +33,10 @@ interface IBaanContext {
   isLoading: boolean;
   order: number | null;
   setOrder: (order: number) => void;
+  isLeader: boolean;
+  isConfirmed: boolean;
+  setIsConfirmed: (isConfirm: boolean) => void;
+  groupData: Group | null;
 }
 
 const BaanContext = createContext<IBaanContext>({} as IBaanContext);
@@ -44,6 +51,11 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   );
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [order, setOrder] = useState<number | null>(null);
+  const [isLeader, setIsLeader] = useState(false);
+  const [isConfirmed, setIsConfirmed] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+  const [groupData, setGroupData] = useState<Group | null>(null);
 
   const fetchBaanCounts = useCallback(async () => {
     setIsLoading(true);
@@ -69,7 +81,6 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       if (selected instanceof Error) {
         throw selected;
       }
-      console.log('selected', selected);
       setSelectedBaan(selected.baanSelections);
     } catch (error) {
       console.log('Error fetching selected baan:', error);
@@ -96,7 +107,6 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       }
 
       toast.success('เลือกบ้านสำเร็จ');
-      setOrder(null);
       await fetchSelectedBaan();
     } catch (error) {
       console.log('Error selecting baan:', error);
@@ -144,12 +154,42 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
   };
 
+  const checkGroupStatus = useCallback(async () => {
+    if (user) {
+      const myGroup = await getGroupByUserId(user.id);
+
+      if (myGroup instanceof Error) {
+        toast.error('ไม่สามารถเช็คสถานะของกลุ่มได้');
+      } else if (myGroup) {
+        const isLeader = myGroup.leaderId === user.id;
+        setIsLeader(isLeader);
+        setIsConfirmed(myGroup.isConfirmed);
+        setGroupData(myGroup);
+
+        if (!isLeader && pathname == '/rpkm/baan/baan-select') {
+          router.push('/rpkm/baan/home');
+        }
+      }
+    }
+  }, [user, setIsLeader, setIsConfirmed, router, pathname]);
+
+  useEffect(() => {
+    if (selectedBaan) {
+      const highestOrder = selectedBaan
+        .sort((baan1, baan2) => baan1.order - baan2.order)
+        .reduce((prev, baan) => (baan.order <= prev ? prev + 1 : prev), 1);
+
+      setOrder(highestOrder);
+    }
+  }, [selectedBaan]);
+
   useEffect(() => {
     if (user) {
+      checkGroupStatus();
       fetchBaanCounts();
       fetchSelectedBaan();
     }
-  }, [user, fetchBaanCounts, fetchSelectedBaan]);
+  }, [user, fetchBaanCounts, fetchSelectedBaan, checkGroupStatus]);
 
   return (
     <BaanContext.Provider
@@ -162,6 +202,10 @@ const BaanProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
         isLoading,
         order,
         setOrder,
+        isLeader,
+        isConfirmed,
+        setIsConfirmed,
+        groupData,
       }}
     >
       {isLoading && (

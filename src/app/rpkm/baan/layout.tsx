@@ -8,7 +8,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
         backgroundImage: `url(${background.src})`,
         backgroundSize: '100%',
       }}
-      className="bg-rpkm-green pt-16"
+      className="bg-rpkm-green pt-[16vw]"
     >
       <div className="fixed top-0 w-full z-[999]">
         <Navbar />

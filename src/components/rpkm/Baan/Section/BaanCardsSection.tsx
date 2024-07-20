@@ -50,7 +50,7 @@ const BaanCardsSection: React.FC<BaanCardsSectionProps> = ({
   };
 
   return (
-    <div className="flex flex-col space-y-4">
+    <div className="flex flex-col space-y-4 ">
       <div className="flex items-center justify-center space-x-4">
         {renderCards(allSelections.slice(0, 3))}
       </div>
