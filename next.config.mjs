@@ -13,7 +13,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'rpkm67.spg1.cdn.digitaloceanspaces.com',
+        hostname: 'rpkm67.sgp1.cdn.digitaloceanspaces.com',
       },
     ],
   },
