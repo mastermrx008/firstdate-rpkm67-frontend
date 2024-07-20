@@ -2,13 +2,13 @@ import { cn } from '@/lib/utils';
 import { createEbookCount } from '@/utils/count';
 import { useRouter } from 'next/navigation';
 import React from 'react';
-import { Client as NTPClient } from 'ntp-time';
 
 interface CustomButtonProps {
   varient: 'first-date' | 'rub-peun' | 'e-book' | 'contact-list';
   className?: string;
   children: React.ReactNode;
   registered?: boolean;
+  currentDate: Date;
   setWaitModal?: (value: boolean) => void;
   setEvent?: (value: 'first-date' | 'rup-peun') => void;
 }
@@ -18,16 +18,12 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   className,
   children,
   registered,
+  currentDate,
   setWaitModal,
   setEvent,
 }) => {
   const router = useRouter();
   const firstdate = async () => {
-    const ntpClient = new NTPClient();
-    const currentDate = await ntpClient.syncTime().then((time) => {
-      console.log(time);
-      return time.time;
-    });
     console.log(currentDate);
     let firstDateDate = currentDate;
     const firstDate = process.env.NEXT_PUBLIC_FIRST_DATE_DATE;
@@ -46,11 +42,6 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     }
   };
   const rubpeun = async () => {
-    const ntpClient = new NTPClient();
-    const currentDate = await ntpClient.syncTime().then((time) => {
-      console.log(time);
-      return time.time;
-    });
     console.log(currentDate);
     let rupPeunDate = currentDate;
     const rupPeun = process.env.NEXT_PUBLIC_RUP_PEUN_DATE;
