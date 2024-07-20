@@ -9,6 +9,7 @@ import BaanButtonsSection from './Section/BaanButtonsSection';
 import { ConfirmGroupSelection } from '@/utils/group';
 import toast from 'react-hot-toast';
 import { cn } from '@/lib/utils';
+import BackToHomeBtn from '../BackToHomeBtn';
 
 interface BaanSelectProps {
   mode: 'select' | 'edit';
@@ -70,14 +71,16 @@ const BaanSelect: React.FC<BaanSelectProps> = ({ mode, onClick }) => {
               onClick={onClick}
             />
           )}
-
-          <BaanButtonsSection
-            mode={mode}
-            isLeader={isLeader}
-            isConfirmed={isConfirmed}
-            selectedBaan={selectedBaan}
-            onConfirm={onConfirm}
-          />
+          <div className="flex justify-center items-center gap-[5vw]">
+            {mode == 'edit' && <BackToHomeBtn />}
+            <BaanButtonsSection
+              mode={mode}
+              isLeader={isLeader}
+              isConfirmed={isConfirmed}
+              selectedBaan={selectedBaan}
+              onConfirm={onConfirm}
+            />
+          </div>
         </div>
       </div>
     </div>

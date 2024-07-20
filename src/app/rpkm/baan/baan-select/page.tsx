@@ -13,6 +13,7 @@ import BaanSelect from '@/components/rpkm/Baan/BaanSelect';
 import { BaanInfoProps, baanInfos } from '@/components/rpkm/Baan/baanInfos';
 import { BaanSelection } from '@/types/BaanSelection';
 import Logo from '@/components/rpkm/Baan/Logo';
+import BackToHomeBtn from '@/components/rpkm/BackToHomeBtn';
 
 interface SizeFilterProps {
   size: 'S' | 'M' | 'L' | 'XL' | 'XXL';
@@ -100,6 +101,9 @@ export default function BaanSelectPage() {
 
   return (
     <div className="flex justify-center items-center flex-col">
+      <div className="absolute top-20 left-4">
+        <BackToHomeBtn />
+      </div>
       <Logo />
       <div className="my-3 w-[90vw]">
         <BaanSelect
