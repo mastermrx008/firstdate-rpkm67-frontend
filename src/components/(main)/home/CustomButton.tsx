@@ -8,6 +8,7 @@ interface CustomButtonProps {
   className?: string;
   children: React.ReactNode;
   registered?: boolean;
+  currentDate: Date;
   setWaitModal?: (value: boolean) => void;
   setEvent?: (value: 'first-date' | 'rup-peun') => void;
 }
@@ -17,12 +18,13 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   className,
   children,
   registered,
+  currentDate,
   setWaitModal,
   setEvent,
 }) => {
   const router = useRouter();
-  const firstdate = () => {
-    const currentDate = new Date();
+  const firstdate = async () => {
+    console.log(currentDate);
     let firstDateDate = currentDate;
     const firstDate = process.env.NEXT_PUBLIC_FIRST_DATE_DATE;
     if (firstDate) {
@@ -39,8 +41,8 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       setWaitModal(true);
     }
   };
-  const rubpeun = () => {
-    const currentDate = new Date();
+  const rubpeun = async () => {
+    console.log(currentDate);
     let rupPeunDate = currentDate;
     const rupPeun = process.env.NEXT_PUBLIC_RUP_PEUN_DATE;
     if (rupPeun) {
