@@ -3,6 +3,7 @@ import modalStyles from '@/components/rpkm/Modal/ModalStyle';
 import Base from '@/components/rpkm/freshy-night/Base';
 import ModalButton from '@/components/rpkm/Modal/ModalButton';
 import Card from '@/components/rpkm/freshy-night/rules/Card';
+import { cn } from '@/lib/utils';
 interface RulesData {
   imgUrl?: string;
   description?: string;
@@ -14,9 +15,7 @@ const setOfRules: RulesData[] = [
   { imgUrl: '', description: 'description' },
   { imgUrl: '', description: 'description' },
   { imgUrl: '', description: 'description' },
-];
-export default function Rules() {
-  const { button } = modalStyles['red'];
+  const { button } = modalStyles['blue'];
 
   return (
     <div className="min-h-screen w-full grid place-items-center">
@@ -32,13 +31,20 @@ export default function Rules() {
             />
           ))}
         </div>
-        <ModalButton
-          callBackFunction={() => console.log('Fuck you')}
-          borderClassName={button['accept-border']}
-          backgroundClassName={button['accept-background']}
+
+        <button
+          onClick={() => console.log('Fuck you')}
+          className={cn('p-1 inv-rad inv-rad-2', button['accept-border'])}
         >
-          ยอม
-        </ModalButton>
+          <div
+            className={cn(
+              'py-[0.3rem] px-2 inv-rad inv-rad-2',
+              button['accept-background']
+            )}
+          >
+            ยอมรับข้อตกลง
+          </div>
+        </button>
       </Base>
     </div>
   );
