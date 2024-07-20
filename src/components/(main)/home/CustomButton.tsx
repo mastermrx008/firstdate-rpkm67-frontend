@@ -24,12 +24,12 @@ const CustomButton: React.FC<CustomButtonProps> = ({
 }) => {
   const router = useRouter();
   const firstdate = async () => {
-    console.log(currentDate);
     let firstDateDate = currentDate;
     const firstDate = process.env.NEXT_PUBLIC_FIRST_DATE_DATE;
     if (firstDate) {
       firstDateDate = new Date(firstDate);
     }
+    console.log(currentDate.toISOString(), firstDateDate.toISOString());
     if (currentDate >= firstDateDate) {
       if (registered) {
         router.push('/firstdate/home');
@@ -42,12 +42,12 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     }
   };
   const rubpeun = async () => {
-    console.log(currentDate);
     let rupPeunDate = currentDate;
     const rupPeun = process.env.NEXT_PUBLIC_RUP_PEUN_DATE;
     if (rupPeun) {
       rupPeunDate = new Date(rupPeun);
     }
+    console.log(currentDate.toISOString(), rupPeunDate.toISOString());
     if (currentDate >= rupPeunDate) {
       if (registered) {
         router.push('/rpkm/baan/home');
