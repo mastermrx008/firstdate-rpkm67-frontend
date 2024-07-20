@@ -13,6 +13,8 @@ export type CheckInDTO = {
     event: string;
     id: string;
     user_id: string;
+    timestamp: string;
+    is_duplicate: boolean;
   };
   firstname: string;
   lastname: string;
@@ -36,6 +38,8 @@ export const CheckInParser = (checkinDTO: CheckInDTO): CheckIn => {
       event: checkinDTO.checkin.event,
       id: checkinDTO.checkin.id,
       userId: checkinDTO.checkin.user_id,
+      timestamp: checkinDTO.checkin.timestamp,
+      isDuplicate: checkinDTO.checkin.is_duplicate,
     },
     firstName: checkinDTO.firstname,
     lastName: checkinDTO.lastname,
