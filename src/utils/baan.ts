@@ -1,4 +1,6 @@
 import {
+  BaanCountDTO,
+  convertBaanCountDTOtoBaanCount,
   convertBaanSelectionDTOToBaanSelection,
   convertDeleteBaanResponseDTOToResponse,
   convertGetBaanSelectionByGroupIdResponseDTOToResponse,
@@ -8,6 +10,7 @@ import { GetBaanSelectionByGroupIdResponse } from '@/types/BaanSelection';
 import { Group } from '@/types/group';
 import { getAccessToken } from '@/utils/auth';
 import { apiClient } from '@/utils/axios';
+import { AxiosResponse } from 'axios';
 
 export const getCountByBaan = async (): Promise<BaanCount[] | Error> => {
   const accessToken = await getAccessToken();
@@ -17,12 +20,15 @@ export const getCountByBaan = async (): Promise<BaanCount[] | Error> => {
   }
 
   try {
-    const res = await apiClient.get('/selection/count-by-baan', {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-    return res.data.baan_counts as BaanCount[];
+    const res: AxiosResponse<{ baan_counts: BaanCountDTO[] }> =
+      await apiClient.get('/selection/count-by-baan', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+    return res.data.baan_counts.map((baan) =>
+      convertBaanCountDTOtoBaanCount(baan)
+    ) as BaanCount[];
   } catch (error: unknown) {
     console.log('Error fetching baan count:', error);
     return Error('Something is wrong! cannot get baan count');
