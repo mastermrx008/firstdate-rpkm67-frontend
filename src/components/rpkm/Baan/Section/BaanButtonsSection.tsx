@@ -5,6 +5,8 @@ import { BaanSelection } from '@/types/BaanSelection';
 import { useBaan } from '@/context/BaanContext';
 import Modal from '@/components/rpkm/Modal/Modal';
 import { useRouter } from 'next/navigation';
+import alertImg from '@public/alert.svg';
+import Image from 'next/image';
 
 interface BaanButtonsSectionProps {
   mode: 'select' | 'edit';
@@ -77,12 +79,18 @@ const BaanButtonsSection: React.FC<BaanButtonsSectionProps> = ({
             setOpen={setModalOpen}
             callBackFunction={handleModalConfirm}
           >
-            <div className="flex items-center justify-center flex-col space-y-2 p-4">
+            <div className="flex items-center justify-center max-w-80 flex-col space-y-2 p-4">
+              <Image
+                src={alertImg}
+                alt="alert-img"
+                className="aspect-auto"
+              />
               <h1 className="text-3xl font-semibold text-white">
                 ยืนยันการเลือกบ้าน
               </h1>
-              <p className="text-white text-xs">
-                *คุณแน่ใจที่จะยืนยันการเลือกบ้านนี้ใช่หรือไม่?
+              <p className="text-white text-sm text-center">
+                *เมื่อยืนยันแล้วจะไม่สามารถแก้ไขรายการของบ้าน
+                และจะไม่สามารถจับคู่กับเพื่อนได้อีก
               </p>
             </div>
           </Modal>
