@@ -45,8 +45,8 @@ const CodeTextarea: React.FC<CodeTextareaProps> = ({
       } else {
         setOpenModal(true);
         setInputToken(text);
-        setText('');
       }
+      setText('');
     }
   }, [text, userOwnToken]);
 

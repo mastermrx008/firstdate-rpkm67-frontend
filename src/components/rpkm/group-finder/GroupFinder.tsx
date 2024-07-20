@@ -23,12 +23,8 @@ const GroupFinder: React.FC<GroupFinderProps> = ({ groupToken }) => {
 
   // Case already have a pair => open pairing
   useEffect(() => {
-    if (groupData) {
-      if (groupData.group.members.length === 2) {
-        setGroupSize(groupData.group.members.length);
-      } else {
-        if (!groupToken) setGroupSize(0);
-      }
+    if (groupData && groupData.group.members.length === 2) {
+      setGroupSize(2);
     }
   }, [groupData, groupToken]);
 
