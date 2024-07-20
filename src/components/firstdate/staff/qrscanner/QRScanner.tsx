@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 import { motion } from 'framer-motion';
 import { useAuth } from '@/context/AuthContext';
@@ -7,12 +7,14 @@ import ConfirmationModal from './confirmationModal';
 import FailureModal from './failureModal';
 import { createCheckIn } from '@/utils/checkin';
 import { CheckIn } from '@/types/checkIn';
+import dayjs from 'dayjs';
 
 function Scan() {
   const [checkInData, setCheckInData] = useState<CheckIn | null>(null);
   const [status, setStatus] = useState<'success' | 'error' | 'idle'>('idle');
   const { user } = useAuth();
-  const [error] = useState('The check-in failed. Please try again.');
+  const [error, setError] = useState<string | ReactNode>('');
+  const [errorTopic, setErrorTopic] = useState('');
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleScanResult = async (scanRawData: any) => {
@@ -28,10 +30,26 @@ function Scan() {
     );
 
     if (newCheckInData) {
+      if (newCheckInData.checkIn.isDuplicate) {
+        const date = dayjs(newCheckInData.checkIn.timestamp);
+        setStatus('error');
+        setError(
+          <div>
+            ผู้ใช้สแกน QR-code นี้แล้ว
+            <br />
+            {`เมื่อเวลา ${date.format('HH:mm')} น.`}
+          </div>
+        );
+        setErrorTopic('Already taken!');
+        return;
+      }
+
       setCheckInData(newCheckInData);
       setStatus('success');
     } else {
       setStatus('error');
+      setError('The check-in failed. Please try again.');
+      setErrorTopic('Invalid QR-code');
     }
   };
 
@@ -65,6 +83,7 @@ function Scan() {
           <FailureModal
             isOpen={status == 'error'}
             message={error}
+            topic={errorTopic}
             onClose={handleCloseModal}
           />
 
