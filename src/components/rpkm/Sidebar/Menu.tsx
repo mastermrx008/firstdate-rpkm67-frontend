@@ -44,18 +44,18 @@ function Menu() {
             title={<div className="py-0">กิจกรรม</div>}
           >
             <div className="flex flex-col w-full justify-items-start text-sm px-xs">
-              {/* <Link
-                href="/rpkm/activities/"
-                className="text-left"
+              <div
+                // href="/rpkm/activities/"
+                className="text-left text-gray-400 cursor-not-allowed"
               >
                 กิจกรรมในงาน
-              </Link>
-              <Link
-                href="/rpkm/activities/"
-                className="text-left"
+              </div>
+              <div
+                // href="/rpkm/activities/"
+                className="text-left text-gray-400 cursor-not-allowed"
               >
                 กิจกรรม Walk Rally
-              </Link> */}
+              </div>
               <Link
                 href="/rpkm/activities/"
                 className="text-left"
@@ -82,12 +82,12 @@ function Menu() {
               >
                 ข้อมูลที่จัดแต่ละกิจกรรม
               </Link>
-              {/* <Link
-                href="/rpkm/activities/"
-                className="text-left"
+              <div
+                // href="/rpkm/activities/"
+                className="text-left text-gray-400 cursor-not-allowed"
               >
                 กิจกรรมชุมชน
-              </Link> */}
+              </div>
             </div>
           </AccordionItem>
         </Accordion>
