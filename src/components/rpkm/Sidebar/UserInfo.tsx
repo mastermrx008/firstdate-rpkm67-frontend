@@ -27,7 +27,7 @@ function UserInfo() {
         {user?.baan}
       </h1>
       <Link
-        href={'/edit'}
+        href={'/rpkm/edit'}
         className="flex flex-col"
       >
         <div className="flex justify-center justify-items-center items-center gap-x-0.5">
