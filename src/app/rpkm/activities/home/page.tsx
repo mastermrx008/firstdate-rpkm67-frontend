@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 import Navbar from '@/components/rpkm/Navbar';
 import Banner from '@/components/rpkm/Activities/Banner';
 import Card from '@/components/rpkm/Activities/Card';

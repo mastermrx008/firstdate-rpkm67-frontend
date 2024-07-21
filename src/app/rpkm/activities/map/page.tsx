@@ -1,5 +1,4 @@
 import Navbar from '@/components/rpkm/Navbar';
-import MapContentCard from '@/components/rpkm/Activities/MapContentCard';
 import Image from 'next/image';
 
 import map1 from '@public/rpkm/activities/map/map1.png';
