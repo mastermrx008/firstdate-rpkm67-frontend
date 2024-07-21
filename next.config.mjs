@@ -15,6 +15,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'rpkm67.sgp1.cdn.digitaloceanspaces.com',
       },
+      {
+        protocol: 'https',
+        hostname: 's3.sgcu.in.th',
+      },
     ],
   },
   env: {

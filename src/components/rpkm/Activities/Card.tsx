@@ -6,19 +6,25 @@ import { cn } from '@/lib/utils';
 interface CardProps {
   name: string;
   image: string;
+  imageWidth?: string;
+  imageHeight?: string;
   imageClassName?: string;
   content: string;
   href: string;
   className?: string;
+  contentClassName?: string;
 }
 
 const Card: React.FC<CardProps> = ({
   name,
   className,
   image,
+  imageWidth,
+  imageHeight,
   imageClassName,
   href,
   content,
+  contentClassName,
 }) => {
   return (
     <div className="drop-shadow-lg">
@@ -29,20 +35,25 @@ const Card: React.FC<CardProps> = ({
         )}
       >
         <p className="font-semibold text-center w-full">{name}</p>
-        <Image
-          src={image}
-          alt="activity image"
-          width={0}
-          height={0}
-          sizes="100vw"
-          style={{ width: 'auto', height: 'auto' }}
-          className={cn('w-full', imageClassName)}
-        />
+        <div className="flex justify-center">
+          <Image
+            src={image}
+            alt="activity image"
+            width={0}
+            height={0}
+            sizes="100vw"
+            style={{
+              width: imageWidth ? imageWidth : '60vw',
+              height: imageHeight ? imageHeight : '60vw',
+            }}
+            className={cn('w-full object-cover', imageClassName)}
+          />
+        </div>
         <div className="flex flex-col gap-y-[2px] mt-1">
           <hr className="h-[2px] bg-[#414643] w-full" />
           <hr className="h-[2px] bg-[#414643] w-full" />
         </div>
-        <p className="text-sm m-2">{content}</p>
+        <p className={cn('text-sm m-2', contentClassName)}>{content}</p>
         <Link
           className="flex w-full justify-end text-sm font-semibold underline"
           href={href}
