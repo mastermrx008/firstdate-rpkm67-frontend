@@ -1,33 +1,49 @@
 import React from 'react';
-import { Accordion, AccordionItem } from '@nextui-org/accordion';
+// import { Accordion, AccordionItem } from '@nextui-org/accordion';
 import Link from 'next/link';
+import { Icon } from '@iconify/react/dist/iconify.js';
+import { useAuth } from '@/context/AuthContext';
 function Menu() {
+  const { logout } = useAuth();
+
   return (
-    <div className="w-full h-full text-left text-base font-medium flex flex-col pb-[5vh]">
+    <div className="w-full h-full text-left  font-medium flex flex-col pb-[5vh]">
       <Link
-        href="/"
+        href="/rpkm/baan/home"
         className="text-left"
       >
         ลงทะเบียนเลือกบ้าน
       </Link>
-      <Link
-        href="/"
-        className="text-left"
+      {/* <Link
+        href=""
+        className="text-left opacity-30"
       >
         ลงทะเบียน Freshy Night
-      </Link>
+      </Link> */}
       <div className="w-full h-px bg-black"></div>
+      <Link
+        href={'/rpkm/activities/home'}
+        className="mt-2"
+      >
+        กิจกรรม
+      </Link>
+      <Link
+        href={'/rpkm/activities/map'}
+        className=""
+      >
+        เเผนที่
+      </Link>
       <div className="w-full -px-2">
-        <Accordion
+        {/* <Accordion
           selectionMode="multiple"
           className="text-start self-start px-0"
         >
           <AccordionItem
             key="1"
             aria-label="Accordion 1"
-            title={<Link href="/rpkm/activities">กิจกรรม</Link>}
+            title={<div className="py-0">กิจกรรม</div>}
           >
-            <div className="flex flex-col w-full justify-items-start text-xs px-xs">
+            <div className="flex flex-col w-full justify-items-start text-sm px-xs">
               <Link
                 href="/rpkm/activities/"
                 className="text-left"
@@ -57,9 +73,9 @@ function Menu() {
           <AccordionItem
             key="2"
             aria-label="Accordion 2"
-            title={<Link href="/rpkm/activities/map">แผนที่</Link>}
+            title={<div>แผนที่</div>}
           >
-            <div className="flex flex-col w-full justify-items-start text-xs px-xs">
+            <div className="flex flex-col w-full justify-items-start text-sm px-xs">
               <Link
                 href="/"
                 className="text-left"
@@ -74,11 +90,30 @@ function Menu() {
               </Link>
             </div>
           </AccordionItem>
-        </Accordion>
+        </Accordion> */}
       </div>
       <div className="mt-auto">
         <div className="w-full h-px bg-black"></div>
-        <Link href="/">ลงทะเบียน Freshy Night</Link>
+        <Link
+          href="/home"
+          className="block"
+        >
+          หน้าหลัก
+        </Link>
+        {/* <Link
+          href=""
+          className="opacity-30 block"
+        >
+          ช่องทางการติดต่อ
+        </Link> */}
+        <div className="flex gap-2 mt-2">
+          <button onClick={logout}>
+            <Icon
+              icon="material-symbols:logout"
+              className="size-6"
+            />
+          </button>
+        </div>
       </div>
     </div>
   );

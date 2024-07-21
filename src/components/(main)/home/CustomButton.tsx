@@ -8,6 +8,7 @@ interface CustomButtonProps {
   className?: string;
   children: React.ReactNode;
   registered?: boolean;
+  currentDate: Date;
   setWaitModal?: (value: boolean) => void;
   setEvent?: (value: 'first-date' | 'rup-peun') => void;
 }
@@ -17,35 +18,42 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   className,
   children,
   registered,
+  currentDate,
   setWaitModal,
   setEvent,
 }) => {
   const router = useRouter();
-  const firstdate = () => {
-    const currentDate = new Date();
+  const firstdate = async () => {
     let firstDateDate = currentDate;
     const firstDate = process.env.NEXT_PUBLIC_FIRST_DATE_DATE;
     if (firstDate) {
       firstDateDate = new Date(firstDate);
     }
+    console.log(currentDate.toISOString(), firstDateDate.toISOString());
     if (currentDate >= firstDateDate) {
-      if (registered) router.push('/firstdate/home');
-      else router.push('/register');
+      if (registered) {
+        router.push('/firstdate/home');
+      } else {
+        router.push('/register');
+      }
     } else if (setWaitModal && setEvent) {
       setEvent('first-date');
       setWaitModal(true);
     }
   };
-  const rubpeun = () => {
-    const currentDate = new Date();
+  const rubpeun = async () => {
     let rupPeunDate = currentDate;
     const rupPeun = process.env.NEXT_PUBLIC_RUP_PEUN_DATE;
     if (rupPeun) {
       rupPeunDate = new Date(rupPeun);
     }
+    console.log(currentDate.toISOString(), rupPeunDate.toISOString());
     if (currentDate >= rupPeunDate) {
-      if (registered) console.log('registered');
-      else router.push('/register');
+      if (registered) {
+        router.push('/rpkm/baan/home');
+      } else {
+        router.push('/register');
+      }
     } else if (setWaitModal && setEvent) {
       setEvent('rup-peun');
       setWaitModal(true);

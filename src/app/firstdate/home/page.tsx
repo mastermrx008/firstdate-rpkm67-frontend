@@ -271,7 +271,7 @@ const StampPage = () => {
           <StampSubHeading>Club</StampSubHeading>
           <StampContainer>
             <StampCheckBox
-              text="ภายนอกอบจ."
+              text=""
               stampImage={ClubOutsideStamp}
               collected={stamps?.stamp[9] === '1'}
               onClick={() =>
@@ -280,7 +280,7 @@ const StampPage = () => {
               }
             />
             <StampCheckBox
-              text="ภายใต้อบจ."
+              text=""
               stampImage={ClubInsideStamp}
               collected={stamps?.stamp[10] === '1'}
               onClick={() =>
@@ -289,6 +289,7 @@ const StampPage = () => {
               }
             />
           </StampContainer>
+          <div className="my-[5%] text-center">ชมรม/องค์กร</div>
         </div>
         <EndJourneyButton handleOnClick={() => setIsEndingOpen(true)} />
       </Border>

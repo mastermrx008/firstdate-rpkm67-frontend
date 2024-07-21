@@ -5,6 +5,9 @@ import { BaanSelection } from '@/types/BaanSelection';
 import { useBaan } from '@/context/BaanContext';
 import Modal from '@/components/rpkm/Modal/Modal';
 import { useRouter } from 'next/navigation';
+import alertImg from '@public/alert.svg';
+import Image from 'next/image';
+import BackToHomeBtn from '../../BackToHomeBtn';
 
 interface BaanButtonsSectionProps {
   mode: 'select' | 'edit';
@@ -35,19 +38,19 @@ const BaanButtonsSection: React.FC<BaanButtonsSectionProps> = ({
   return (
     <>
       {mode === 'select' &&
-        (!selectedBaan || selectedBaan.length === 0 ? (
+        (!isLeader ? (
+          <div className="text-rpkm-cream text-md">
+            *คุณไม่สามารถแก้ไขบ้านที่เลือกได้
+          </div>
+        ) : !selectedBaan || selectedBaan.length === 0 ? (
           <Button
             content="เลือกบ้าน"
             onClick={() => router.push('/rpkm/baan/baan-select')}
           />
-        ) : isLeader ? (
+        ) : (
           <BaanEditButton
             onClick={() => router.push('/rpkm/baan/baan-select')}
           />
-        ) : (
-          <div className="text-rpkm-cream text-md">
-            *คุณไม่สามารถแก้ไขบ้านที่เลือกได้
-          </div>
         ))}
       {mode === 'edit' && (
         <>
@@ -66,23 +69,32 @@ const BaanButtonsSection: React.FC<BaanButtonsSectionProps> = ({
               </button>
             </div>
           )}
-          <Button
-            content="ยืนยันการเลือกบ้าน"
-            onClick={handleConfirm}
-            disabled={!!(selectedBaan && selectedBaan.length < 5)}
-          />
+          <div className="flex gap-[4vw] items-center">
+            {mode == 'edit' && <BackToHomeBtn />}
+            <Button
+              content="ยืนยันการเลือกบ้าน"
+              onClick={handleConfirm}
+              disabled={!!(selectedBaan && selectedBaan.length < 5)}
+            />
+          </div>
           <Modal
             variant="red"
             open={isModalOpen}
             setOpen={setModalOpen}
             callBackFunction={handleModalConfirm}
           >
-            <div className="flex items-center justify-center flex-col space-y-2 p-4">
+            <div className="flex items-center justify-center max-w-80 flex-col space-y-2 p-4">
+              <Image
+                src={alertImg}
+                alt="alert-img"
+                className="aspect-auto"
+              />
               <h1 className="text-3xl font-semibold text-white">
                 ยืนยันการเลือกบ้าน
               </h1>
-              <p className="text-white text-xs">
-                *คุณแน่ใจที่จะยืนยันการเลือกบ้านนี้ใช่หรือไม่?
+              <p className="text-white text-sm text-center">
+                *เมื่อยืนยันแล้วจะไม่สามารถแก้ไขรายการของบ้าน
+                และจะไม่สามารถจับคู่กับเพื่อนได้อีก
               </p>
             </div>
           </Modal>

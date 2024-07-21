@@ -1,5 +1,6 @@
 import background from '@public/rpkm/baan/background/bg.svg';
 import Navbar from '@/components/rpkm/Navbar';
+import BaanProvider from '@/context/BaanContext';
 
 const layout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -8,12 +9,12 @@ const layout = ({ children }: { children: React.ReactNode }) => {
         backgroundImage: `url(${background.src})`,
         backgroundSize: '100%',
       }}
-      className="bg-rpkm-green pt-16"
+      className="bg-rpkm-green pt-[16vw]"
     >
       <div className="fixed top-0 w-full z-[999]">
         <Navbar />
       </div>
-      {children}
+      <BaanProvider>{children}</BaanProvider>
     </div>
   );
 };
