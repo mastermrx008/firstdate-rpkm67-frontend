@@ -25,12 +25,11 @@ function Menu() {
         <Accordion
           selectionMode="multiple"
           className="text-start self-start px-0"
-          isDisabled={true}
         >
           <AccordionItem
             key="1"
             aria-label="Accordion 1"
-            title={<div className="opacity-30">กิจกรรม</div>}
+            title={<div>กิจกรรม</div>}
           >
             <div className="flex flex-col w-full justify-items-start text-sm px-xs">
               <Link

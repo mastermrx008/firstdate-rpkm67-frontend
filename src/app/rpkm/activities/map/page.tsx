@@ -1,5 +1,11 @@
 import Navbar from '@/components/rpkm/Navbar';
 import MapContentCard from '@/components/rpkm/Activities/MapContentCard';
+import Image from 'next/image';
+
+import map1 from '@public/rpkm/activities/map/map1.png';
+import map2 from '@public/rpkm/activities/map/map2.png';
+import map3 from '@public/rpkm/activities/map/map3.png';
+import map4 from '@public/rpkm/activities/map/map4.png';
 
 const page = () => {
   return (
@@ -27,22 +33,27 @@ const page = () => {
           </h2>
         </div>
       </div>
-      <div className="flex justify-center mt-4">
-        <div className="flex items-center w-[90vw] h-[90vw] bg-black"></div>
-      </div>
-      <div className="mt-6 flex justify-center pb-7">
-        <div className="bg-[#FFFEF7] [clip-path:polygon(1rem_0,calc(100%-1rem)_0,100%_1rem,100%_calc(100%-1rem),calc(100%-1rem)_100%,1rem_100%,0_calc(100%-1rem),0_1rem)] flex flex-col p-5 text-[#313131] w-[90vw] divide-y">
-          <MapContentCard
-            name="ชื่อกิจกรรม"
-            description="รายละเอียดกิจกรรม"
-            href={`/rpkm/activities/map/1`}
-          />
-          <MapContentCard
-            name="ชื่อกิจกรรม"
-            description="รายละเอียดกิจกรรม"
-            href={`/rpkm/activities/map/1`}
-          />
-        </div>
+      <div className="flex flex-col gap-8 justify-center my-4 pb-8">
+        <Image
+          src={map1}
+          className="w-[80%] mx-auto h-auto"
+          alt="map"
+        />
+        <Image
+          src={map2}
+          className="w-[80%] mx-auto h-auto"
+          alt="map"
+        />
+        <Image
+          src={map3}
+          className="w-[80%] mx-auto h-auto"
+          alt="map"
+        />
+        <Image
+          src={map4}
+          className="w-[80%] mx-auto h-auto"
+          alt="map"
+        />
       </div>
     </section>
   );
