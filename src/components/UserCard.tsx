@@ -23,8 +23,6 @@ const UserCard = ({ disableEditIcon }: UserCradProps) => {
     user?.photoUrl
   );
 
-  console.log(user);
-
   const handlePhotoChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -38,7 +36,6 @@ const UserCard = ({ disableEditIcon }: UserCradProps) => {
 
     const formData = new FormData();
     formData.append('picture', file);
-    console.log(formData);
     setUploading(true);
     try {
       const accessToken = await getAccessToken();
@@ -81,7 +78,7 @@ const UserCard = ({ disableEditIcon }: UserCradProps) => {
               type="file"
               accept="image/*"
               onChange={handlePhotoChange}
-              className="absolute inset-0 opacity-0 cursor-pointer z-1000"
+              className="absolute inset-0 opacity-0 cursor-pointer z-10"
             />
           )}
           <div className="relative w-[35%] h-[50%] overflow-hidden rounded-full">
