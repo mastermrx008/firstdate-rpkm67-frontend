@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import TV from '@public/user-card/tv.png';
 import EditIcon from '@public/user-card/edit-icon.svg';
 import profilePlaceholder from '@public/placeholder.svg';
@@ -23,6 +23,8 @@ const UserCard = ({ disableEditIcon }: UserCradProps) => {
   const [currentPhotoUrl, setCurrentPhotoUrl] = useState<string | undefined>(
     user?.photoUrl
   );
+
+  useEffect(() => setCurrentPhotoUrl(user?.photoUrl), [user]);
 
   const handlePhotoChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -104,7 +106,7 @@ const UserCard = ({ disableEditIcon }: UserCradProps) => {
         {!disableEditIcon && (
           <div
             className="absolute top-[5%] right-[0%] w-[20%] cursor-pointer"
-            onClick={() => router.push('/edit')}
+            onClick={() => router.push('/rpkm/edit')}
           >
             <Image
               src={EditIcon}
