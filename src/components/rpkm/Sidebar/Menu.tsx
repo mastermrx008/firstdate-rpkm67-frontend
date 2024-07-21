@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Accordion, AccordionItem } from '@nextui-org/accordion';
+import { Accordion, AccordionItem } from '@nextui-org/accordion';
 import Link from 'next/link';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { useAuth } from '@/context/AuthContext';
@@ -21,7 +21,7 @@ function Menu() {
         ลงทะเบียน Freshy Night
       </Link> */}
       <div className="w-full h-px bg-black"></div>
-      <Link
+      {/* <Link
         href={'/rpkm/activities/home'}
         className="mt-2"
       >
@@ -32,9 +32,9 @@ function Menu() {
         className=""
       >
         เเผนที่
-      </Link>
+      </Link> */}
       <div className="w-full -px-2">
-        {/* <Accordion
+        <Accordion
           selectionMode="multiple"
           className="text-start self-start px-0"
         >
@@ -44,18 +44,18 @@ function Menu() {
             title={<div className="py-0">กิจกรรม</div>}
           >
             <div className="flex flex-col w-full justify-items-start text-sm px-xs">
-              <Link
+              {/* <Link
                 href="/rpkm/activities/"
                 className="text-left"
               >
                 กิจกรรมในงาน
               </Link>
               <Link
-                href="/rpkm/baan/home"
+                href="/rpkm/activities/"
                 className="text-left"
               >
-                ข้อมูลแต่ละบ้าน
-              </Link>
+                กิจกรรม Walk Rally
+              </Link> */}
               <Link
                 href="/rpkm/activities/"
                 className="text-left"
@@ -63,10 +63,10 @@ function Menu() {
                 กิจกรรมชุมชน
               </Link>
               <Link
-                href="/rpkm/activities/"
+                href="/rpkm/baan/home"
                 className="text-left"
               >
-                กิจกรรม Walk Rally
+                ข้อมูลแต่ละบ้าน
               </Link>
             </div>
           </AccordionItem>
@@ -77,20 +77,20 @@ function Menu() {
           >
             <div className="flex flex-col w-full justify-items-start text-sm px-xs">
               <Link
-                href="/"
+                href="/rpkm/activities/map"
                 className="text-left"
               >
                 ข้อมูลที่จัดแต่ละกิจกรรม
               </Link>
-              <Link
+              {/* <Link
                 href="/rpkm/activities/"
                 className="text-left"
               >
                 กิจกรรมชุมชน
-              </Link>
+              </Link> */}
             </div>
           </AccordionItem>
-        </Accordion> */}
+        </Accordion>
       </div>
       <div className="mt-auto">
         <div className="w-full h-px bg-black"></div>
