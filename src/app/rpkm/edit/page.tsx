@@ -2,7 +2,6 @@
 
 import { useState, ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import { getAccessToken } from '@/utils/auth';
 import { apiClient } from '@/utils/axios';
@@ -10,8 +9,6 @@ import {
   StyledInput,
   StyledSelect,
 } from '@/components/(main)/register/StyledComponents';
-import CurvedLineIcon from '@public/curved-line.svg';
-import Button from '@/components/(main)/register/Button';
 import { major } from '@/utils/register';
 import toast from 'react-hot-toast';
 import { UserDTO } from '@/dtos/userDTO';
@@ -119,7 +116,7 @@ export default function Edit() {
   };
 
   return (
-    <div className="flex items-center flex-col w-[95%] min-h-[calc(95vw*(801/371))] my-[5%] mx-auto bg-white border-[1px] rounded-xl border-black [clip-path:polygon(1rem_0,calc(100%-1rem)_0,100%_1rem,100%_calc(100%-1rem),calc(100%-1rem)_100%,1rem_100%,0_calc(100%-1rem),0_1rem)]">
+    <div className="flex items-center flex-col w-[95%] min-h-[calc(95vw*(801/371))] my-[5%] mx-auto bg-[#FFFEF7E5] bg-opacity-90 border-[1px] rounded-xl border-black [clip-path:polygon(1rem_0,calc(100%-1rem)_0,100%_1rem,100%_calc(100%-1rem),calc(100%-1rem)_100%,1rem_100%,0_calc(100%-1rem),0_1rem)]">
       {upload && (
         <div className="z-[999] fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center">
           <Spinner />
@@ -127,7 +124,7 @@ export default function Edit() {
       )}
 
       <div className="flex flex-col items-center">
-        <h2 className="text-5xl font-bold mb-4 font-season text-project-yellow drop-shadow-">
+        <h2 className="text-8xl -mt-16 font-sopha text-project-yellow drop-shadow-md">
           ข้อมูลส่วนตัว
         </h2>
         <UserCard disableEditIcon={true} />
@@ -334,24 +331,23 @@ export default function Edit() {
               </label>
             </div>
           </div>
-          <div className="flex flex-col items-center gap-4 mt-6">
-            <Image
-              src={CurvedLineIcon}
-              alt="curved-line-icon"
-              className="mb-2"
-            />
-            <Button
-              variant="fuchsia"
+          <div className="flex flex-col items-center gap-4 mt-6 font-semibold text-lg">
+            <button
               onClick={handleSubmit}
+              className="p-1 inv-rad inv-rad-2 w-4/5 bg-[#EFD08B]"
             >
-              ยืนยันข้อมูล
-            </Button>
-            <Button
-              variant="white"
+              <div className="py-[0.3rem] px-2 inv-rad inv-rad-2 bg-[#183F86] text-[#FFFFFF]">
+                ยืนยันข้อมูล
+              </div>
+            </button>
+            <button
               onClick={() => router.back()}
+              className="p-1 inv-rad inv-rad-2 w-4/5 bg-[#EFD08B]"
             >
-              ยกเลิก
-            </Button>
+              <div className="py-[0.3rem] px-2 inv-rad inv-rad-2 bg-[#FFFEF7E5] text-[#183F86]">
+                ยกเลิก
+              </div>
+            </button>
           </div>
         </div>
       </div>
