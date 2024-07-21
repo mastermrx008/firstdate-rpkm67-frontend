@@ -81,7 +81,7 @@ const page = () => {
           >
             ดูทั้งหมด
           </Link> */}
-          <Divider />
+          {/* <Divider /> */}
           {/* <Banner image={CommunityBanner} />
           <div className="justify-center flex">
             <Card
