@@ -42,9 +42,15 @@ function Menu() {
           <AccordionItem
             key="1"
             aria-label="Accordion 1"
-            title={<div className="py-0">กิจกรรม</div>}
+            title={<div className="">กิจกรรม</div>}
           >
-            <div className="flex flex-col w-full justify-items-start text-sm px-xs">
+            <div className="flex flex-col w-full justify-items-start text-sm px-2 -mt-2">
+              <Link
+                href={'/rpkm/activities/home'}
+                className="py-0"
+              >
+                หน้าหลัก
+              </Link>
               <div
                 // href="/rpkm/activities/"
                 className="text-left text-gray-400 cursor-not-allowed"
@@ -64,7 +70,7 @@ function Menu() {
                 กิจกรรมชุมชน
               </Link>
               <Link
-                href="/rpkm/baan/home"
+                href="/rpkm/baan/baan-select"
                 className="text-left"
               >
                 ข้อมูลแต่ละบ้าน
@@ -76,7 +82,7 @@ function Menu() {
             aria-label="Accordion 2"
             title={<div>แผนที่</div>}
           >
-            <div className="flex flex-col w-full justify-items-start text-sm px-xs">
+            <div className="flex flex-col w-full justify-items-start text-sm px-2 -mt-2">
               <Link
                 href="/rpkm/activities/map"
                 className="text-left"
