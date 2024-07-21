@@ -37,6 +37,7 @@ function Menu() {
         <Accordion
           selectionMode="multiple"
           className="text-start self-start px-0"
+          isCompact={true}
         >
           <AccordionItem
             key="1"
@@ -57,7 +58,7 @@ function Menu() {
                 กิจกรรม Walk Rally
               </div>
               <Link
-                href="/rpkm/activities/"
+                href="/rpkm/activities/details/community"
                 className="text-left"
               >
                 กิจกรรมชุมชน
