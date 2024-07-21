@@ -119,7 +119,7 @@ export default function Edit() {
   };
 
   return (
-    <div className="flex items-center flex-col w-[95%] min-h-[calc(95vw*(801/371))] my-[5%] mx-auto bg-white border-[1px] rounded-xl border-black">
+    <div className="flex items-center flex-col w-[95%] min-h-[calc(95vw*(801/371))] my-[5%] mx-auto bg-white border-[1px] rounded-xl border-black [clip-path:polygon(1rem_0,calc(100%-1rem)_0,100%_1rem,100%_calc(100%-1rem),calc(100%-1rem)_100%,1rem_100%,0_calc(100%-1rem),0_1rem)]">
       {upload && (
         <div className="z-[999] fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center">
           <Spinner />
@@ -130,8 +130,7 @@ export default function Edit() {
         <h2 className="text-5xl font-bold mb-4 font-season text-project-yellow drop-shadow-">
           ข้อมูลส่วนตัว
         </h2>
-        <UserCard />
-        <UserCard />
+        <UserCard disableEditIcon={true} />
       </div>
       <div className="flex flex-col py-10 px-10">
         <div className="flex flex-col gap-4">
