@@ -8,6 +8,9 @@ import { useRouter } from 'next/navigation';
 import alertImg from '@public/alert.svg';
 import Image from 'next/image';
 import BackToHomeBtn from '../../BackToHomeBtn';
+import BaseModal from '../../Modal/BaseModal';
+import ModalButton from '../../Modal/ModalButton';
+import modalStyles from '../../Modal/ModalStyle';
 
 interface BaanButtonsSectionProps {
   mode: 'select' | 'edit';
@@ -25,12 +28,17 @@ const BaanButtonsSection: React.FC<BaanButtonsSectionProps> = ({
   onConfirm,
 }) => {
   const { removeAllBaanSelection } = useBaan();
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [modalState, setModalState] = useState<
+    'first-confirm' | 'second-confirm' | 'none'
+  >('none');
   const router = useRouter();
-  const handleConfirm = () => setModalOpen(true);
-  const handleModalConfirm = () => {
-    setModalOpen(false);
+  const handleConfirm = () => setModalState('first-confirm');
+  const handleLastConfirm = () => {
+    setModalState('none');
     onConfirm();
+  };
+  const handleFirstConfirm = () => {
+    setModalState('second-confirm');
   };
 
   if (isConfirmed) return null;
@@ -59,6 +67,7 @@ const BaanButtonsSection: React.FC<BaanButtonsSectionProps> = ({
               *กรุณาเลือกให้ครบ 5 บ้าน
             </div>
           )}
+          <div className="text-rpkm-green">*ระบบจะทำการบันทึกบ้านอัตโนมัติ</div>
           {selectedBaan && selectedBaan.length > 0 && (
             <div className="text-xs text-rpkm-cream">
               <button
@@ -79,9 +88,9 @@ const BaanButtonsSection: React.FC<BaanButtonsSectionProps> = ({
           </div>
           <Modal
             variant="red"
-            open={isModalOpen}
-            setOpen={setModalOpen}
-            callBackFunction={handleModalConfirm}
+            open={modalState == 'first-confirm'}
+            setOpen={() => setModalState('none')}
+            callBackFunction={handleFirstConfirm}
           >
             <div className="flex items-center justify-center max-w-80 flex-col space-y-2 p-4">
               <Image
@@ -98,6 +107,48 @@ const BaanButtonsSection: React.FC<BaanButtonsSectionProps> = ({
               </p>
             </div>
           </Modal>
+          <BaseModal
+            variant="red"
+            open={modalState == 'second-confirm'}
+          >
+            <div className="flex items-center justify-center max-w-80 flex-col space-y-2 p-4">
+              <Image
+                src={alertImg}
+                alt="alert-img"
+                className="aspect-auto"
+              />
+              <h1 className="text-3xl font-semibold text-white">
+                โปรดอ่านอีกครั้ง!!!
+              </h1>
+              <p className="text-white text-sm text-center">
+                *เมื่อยืนยันแล้วจะไม่สามารถแก้ไขรายการของบ้าน
+                และจะไม่สามารถจับคู่กับเพื่อนได้อีก
+              </p>
+            </div>
+            <div className="flex flex-row gap-x-3 justify-center mt-3">
+              {(() => {
+                const { button } = modalStyles['red'];
+                return (
+                  <>
+                    <ModalButton
+                      callBackFunction={handleLastConfirm}
+                      borderClassName={button['accept-border']}
+                      backgroundClassName={button['accept-background']}
+                    >
+                      ยืนยัน
+                    </ModalButton>
+                    <ModalButton
+                      callBackFunction={() => setModalState('none')}
+                      borderClassName={button['cancel-border']}
+                      backgroundClassName={button['cancel-background']}
+                    >
+                      ยกเลิก
+                    </ModalButton>
+                  </>
+                );
+              })()}
+            </div>
+          </BaseModal>
         </>
       )}
     </>
