@@ -59,9 +59,10 @@ const Page = () => {
       {selectBannAble && (
         <div className="flex justify-center pb-10 pt-3 drop-shadow-xl">
           <ActivityButton
-            href="https://lin.ee/i9Ezhg7"
+            href="/rpkm/baan/home"
             borderClassName="bg-rpkm-cream"
             backgroundClassName="bg-rpkm-red text-center text-lg text-rpkm-cream w-[60vw]"
+            target="_self"
           >
             ลงทะเบียนบ้าน
           </ActivityButton>

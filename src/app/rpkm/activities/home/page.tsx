@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 import Navbar from '@/components/rpkm/Navbar';
 import Banner from '@/components/rpkm/Activities/Banner';
 import Card from '@/components/rpkm/Activities/Card';
@@ -97,15 +95,15 @@ const page = () => {
               contentClassName="line-clamp-3"
             />
           </div>
-          <Link
+          {/* <Link
             className="text-sm font-semibold flex justify-end underline mr-4 mt-2"
             href="/rpkm/activities/community"
           >
             ดูทั้งหมด
-          </Link>
+          </Link> */}
           <Divider />
           <Banner image={BaanBanner} />
-          <div className="justify-center flex">
+          <div className="justify-center flex mb-8">
             <Card
               name="บ้านรับเพื่อน"
               image="/rpkm/activities/baanbackground.png"
@@ -117,12 +115,12 @@ const page = () => {
               contentClassName="line-clamp-3"
             />
           </div>
-          <Link
+          {/* <Link
             className="pb-7 text-sm font-semibold flex justify-end underline mr-4 mt-2"
             href="/rpkm/activities/home"
           >
             ดูทั้งหมด
-          </Link>
+          </Link> */}
         </div>
       </section>
     </div>

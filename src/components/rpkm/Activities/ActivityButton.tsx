@@ -7,6 +7,7 @@ interface ActivityButtonProps {
   borderClassName: string;
   backgroundClassName: string;
   children: React.ReactNode;
+  target?: string;
 }
 
 const ActivityButton: React.FC<ActivityButtonProps> = ({
@@ -14,10 +15,11 @@ const ActivityButton: React.FC<ActivityButtonProps> = ({
   borderClassName,
   backgroundClassName,
   children,
+  target,
 }) => {
   return (
     <button
-      onClick={() => window.open(href, '_blank')}
+      onClick={() => window.open(href, target || '_blank')}
       className={cn(
         'flex p-1 inv-rad inv-rad-2 justify-center',
         borderClassName

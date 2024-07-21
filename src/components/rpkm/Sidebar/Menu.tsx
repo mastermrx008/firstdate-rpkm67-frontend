@@ -1,5 +1,5 @@
 import React from 'react';
-import { Accordion, AccordionItem } from '@nextui-org/accordion';
+// import { Accordion, AccordionItem } from '@nextui-org/accordion';
 import Link from 'next/link';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { useAuth } from '@/context/AuthContext';
@@ -14,23 +14,34 @@ function Menu() {
       >
         ลงทะเบียนเลือกบ้าน
       </Link>
-      <Link
+      {/* <Link
         href=""
         className="text-left opacity-30"
       >
         ลงทะเบียน Freshy Night
-      </Link>
+      </Link> */}
       <div className="w-full h-px bg-black"></div>
+      <Link
+        href={'/rpkm/activities/home'}
+        className="mt-2"
+      >
+        กิจกรรม
+      </Link>
+      <Link
+        href={'/rpkm/activities/map'}
+        className=""
+      >
+        เเผนที่
+      </Link>
       <div className="w-full -px-2">
-        <Accordion
+        {/* <Accordion
           selectionMode="multiple"
           className="text-start self-start px-0"
-          isDisabled={true}
         >
           <AccordionItem
             key="1"
             aria-label="Accordion 1"
-            title={<div className="opacity-30">กิจกรรม</div>}
+            title={<div className="py-0">กิจกรรม</div>}
           >
             <div className="flex flex-col w-full justify-items-start text-sm px-xs">
               <Link
@@ -62,7 +73,7 @@ function Menu() {
           <AccordionItem
             key="2"
             aria-label="Accordion 2"
-            title={<div className="opacity-30">แผนที่</div>}
+            title={<div>แผนที่</div>}
           >
             <div className="flex flex-col w-full justify-items-start text-sm px-xs">
               <Link
@@ -79,22 +90,22 @@ function Menu() {
               </Link>
             </div>
           </AccordionItem>
-        </Accordion>
+        </Accordion> */}
       </div>
       <div className="mt-auto">
         <div className="w-full h-px bg-black"></div>
         <Link
           href="/home"
-          className="opacity-30 block"
+          className="block"
         >
           หน้าหลัก
         </Link>
-        <Link
+        {/* <Link
           href=""
-          className="opacity-30 blockโ"
+          className="opacity-30 block"
         >
           ช่องทางการติดต่อ
-        </Link>
+        </Link> */}
         <div className="flex gap-2 mt-2">
           <button onClick={logout}>
             <Icon
