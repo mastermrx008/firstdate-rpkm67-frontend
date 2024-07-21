@@ -12,22 +12,30 @@ import MemberIcon from '@/components/rpkm/group-finder/MemberIcon';
 import MemberName from '@/components/rpkm/group-finder/MemberName';
 import LeaveGroupButton from '@/components/rpkm/group-finder/LeaveGroupButton';
 import '@/components/rpkm/group-finder/style.css';
+import { useBaan } from '@/context/BaanContext';
 
-const GroupFinder = () => {
+interface GroupFinderProps {
+  groupToken?: string;
+}
+const GroupFinder: React.FC<GroupFinderProps> = ({ groupToken }) => {
   const { user } = useAuth();
   const [groupSize, setGroupSize] = useState(0);
   const { data: groupData } = useGetGroupById(user ? user.id : '');
+  const { isLeader, isConfirmed } = useBaan();
 
   // Case already have a pair => open pairing
   useEffect(() => {
-    if (groupData) {
-      if (groupData.group.members.length === 2) {
-        setGroupSize(groupData.group.members.length);
-      } else {
-        setGroupSize(0);
-      }
+    if (groupData && groupData.group.members.length === 2) {
+      setGroupSize(2);
     }
-  }, [groupData]);
+  }, [groupData, groupToken]);
+
+  // Case click by invite link
+  useEffect(() => {
+    if (groupToken) {
+      setGroupSize(1);
+    }
+  }, [groupToken]);
 
   if (!user) return;
 
@@ -36,35 +44,46 @@ const GroupFinder = () => {
     setGroupSize(1);
   };
 
-  const handleCopy = () => {
+  // Copy text
+  const handleCopyToken = () => {
     if (!groupData) return;
     const text = groupData.group.token;
+    navigator.clipboard.writeText(text);
+    toast.success('คัดลอกไปยังคลิปบอร์ดแล้ว');
+  };
+  const handleCopyLink = () => {
+    if (!groupData) return;
+    const text = `${window.location.href}?token=${groupData ? groupData.group.token : ''}`;
     navigator.clipboard.writeText(text);
     toast.success('คัดลอกไปยังคลิปบอร์ดแล้ว');
   };
 
   return (
     <div className="relative flex flex-col w-full">
-      <div className="flex flex-col bg-project-light-gray bg-opacity-90 p-4 w-full items-center gap-2">
+      <div className="flex flex-col bg-project-light-gray bg-opacity-90 p-[6vw] w-full items-center gap-2">
         <span className="font-athiti font-bold text-xl text-project-cream">
           จับคู่เพื่อน [{groupSize}/2]
         </span>
         {groupSize > 0 ? (
           <div className="flex flex-col w-full gap-2 items-center ">
-            <CodeTextarea
-              userId={user.id}
-              userOwnToken={groupData ? groupData.group.token : ''}
-              isPaired={groupSize === 2}
-              isLeader={groupData?.group.leader_id === user.id}
-              memberId={
-                groupData && groupData.group.members.length === 2
-                  ? groupData.group.members[1].id
-                  : ''
-              }
-            />
+            {((groupData && groupData.group.members.length == 1) ||
+              (!isLeader && !isConfirmed)) && (
+              <CodeTextarea
+                userId={user.id}
+                userOwnToken={groupData ? groupData.group.token : ''}
+                isPaired={groupSize === 2}
+                isLeader={groupData?.group.leader_id === user.id}
+                memberId={
+                  groupData && groupData.group.members.length === 2
+                    ? groupData.group.members[1].id
+                    : ''
+                }
+                initGroupToken={groupToken}
+              />
+            )}
 
             <div className="flex flex-col w-full">
-              <div className="flex flex-row w-full px-[4%] relative z-10 justify-between">
+              <div className="flex flex-row w-full px-[4%] mt-[5%] relative z-10 justify-between">
                 {[...Array(2).keys()].map((ind) => {
                   return (
                     <div
@@ -124,7 +143,7 @@ const GroupFinder = () => {
               *สามารถเลือกบ้านคนเดียวได้
             </span>
             <button
-              className="inv-rad inv-rad-2 bg-project-cream w-full p-1"
+              className="inv-rad inv-rad-2 bg-project-cream w-[60%] mx-auto p-1"
               onClick={handleClickPairing}
             >
               <div className="inv-rad inv-rad-2 bg-project-red text-center font-medium font-athiti text-project-cream py-1">
@@ -142,6 +161,30 @@ const GroupFinder = () => {
         <div
           className={`flex flex-col w-full ${groupSize === 2 ? 'bg-project-red' : groupSize === 1 ? 'bg-project-pastel-pink' : 'hidden'} gap-3 px-4 pb-3`}
         >
+          {/* Invite Linl */}
+          <div className="flex flex-col w-full">
+            <span className="font-athiti font-bold text-white text-center">
+              Invite Link
+            </span>
+            <button
+              className="relative flex flex-row items-center w-full bg-project-cream rounded-xl pl-8 pr-2 py-1 gap-1"
+              onClick={handleCopyLink}
+            >
+              <div className="flex justify-center hide-scrollbar overflow-y-hidden w-full">
+                <span className="text-center w-full font-athiti font-semibold text-project-dark-blue whitespace-nowrap overflow-x-auto overflow-y-hidden hide-scrollbar">
+                  {`${window.location.href}?token=${groupData ? groupData.group.token : ''}`}
+                </span>
+              </div>
+
+              {groupData && (
+                <Icon
+                  icon="nimbus:copy"
+                  className="flex flex-shrink-0 w-5 h-5 text-project-red"
+                />
+              )}
+            </button>
+          </div>
+
           {/* Code */}
           <div className="flex flex-col w-full">
             <span className="font-athiti font-bold text-white text-center">
@@ -149,10 +192,10 @@ const GroupFinder = () => {
             </span>
             <button
               className="relative flex flex-row items-center w-full bg-project-cream rounded-xl pl-8 pr-2 py-1 gap-1"
-              onClick={handleCopy}
+              onClick={handleCopyToken}
             >
               <div className="flex justify-center hide-scrollbar overflow-y-hidden w-full">
-                <span className="text-center w-full font-athiti font-semibold text-project-dark-blue">
+                <span className="text-center w-full font-athiti font-semibold text-project-dark-blue hide-scrollbar">
                   {groupData ? groupData.group.token : ''}
                 </span>
               </div>
@@ -167,12 +210,13 @@ const GroupFinder = () => {
           </div>
         </div>
       )}
-
-      <LeaveGroupButton
-        groupSize={groupSize}
-        userId={user ? user.id : ''}
-        isLeader={groupData?.group.leader_id === user.id}
-      />
+      {!isConfirmed && (
+        <LeaveGroupButton
+          groupSize={groupSize}
+          userId={user ? user.id : ''}
+          isLeader={groupData?.group.leader_id === user.id}
+        />
+      )}
     </div>
   );
 };

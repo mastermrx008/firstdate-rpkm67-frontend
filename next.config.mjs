@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   reactStrictMode: true,
   compress: true,
+  compiler: {
+    removeConsole: process.env.APP_ENV == 'production',
+  },
   output: 'standalone',
   images: {
     contentDispositionType: 'attachment',
@@ -9,11 +13,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: process.env.BASE_DOMAIN_IMAGES ?? '*',
+        hostname: 'rpkm67.sgp1.cdn.digitaloceanspaces.com',
       },
       {
         protocol: 'https',
-        hostname: 'rpkm67.spg1.cdn.digitaloceanspaces.com',
+        hostname: 's3.sgcu.in.th',
       },
     ],
   },
