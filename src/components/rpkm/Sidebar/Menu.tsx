@@ -14,16 +14,22 @@ function Menu() {
       >
         ลงทะเบียนเลือกบ้าน
       </Link>
-      <Link
+      {/* <Link
         href=""
         className="text-left opacity-30"
       >
         ลงทะเบียน Freshy Night
-      </Link>
+      </Link> */}
       <div className="w-full h-px bg-black"></div>
       <Link
+        href={'/rpkm/activities/home'}
+        className="mt-2"
+      >
+        กิจกรรม
+      </Link>
+      <Link
         href={'/rpkm/activities/map'}
-        className="my-2"
+        className=""
       >
         เเผนที่
       </Link>
@@ -94,12 +100,12 @@ function Menu() {
         >
           หน้าหลัก
         </Link>
-        <Link
+        {/* <Link
           href=""
-          className="opacity-30 blockโ"
+          className="opacity-30 block"
         >
           ช่องทางการติดต่อ
-        </Link>
+        </Link> */}
         <div className="flex gap-2 mt-2">
           <button onClick={logout}>
             <Icon
