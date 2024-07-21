@@ -6,7 +6,7 @@ import Divider from '@/components/rpkm/Activities/Divider';
 
 // import ActivitiesBanner from '@public/rpkm/activities/activities.png';
 // import WalkRallyBanner from '@public/rpkm/activities/walkrally.png';
-import CommunityBanner from '@public/rpkm/activities/community.png';
+// import CommunityBanner from '@public/rpkm/activities/community.png';
 import BaanBanner from '@public/rpkm/activities/baan.png';
 
 // import activities from '@/data/activities';
@@ -81,12 +81,12 @@ const page = () => {
           >
             ดูทั้งหมด
           </Link> */}
-          <Divider />
-          <Banner image={CommunityBanner} />
+          {/* <Divider /> */}
+          {/* <Banner image={CommunityBanner} />
           <div className="justify-center flex">
             <Card
               name="กิจกรรมชุมชน"
-              image="/rpkm/activities/communitybackground.png"
+              image="/rpkm/activities/communitybackground.svg"
               imageWidth="70vw"
               imageHeight="70vw"
               content="กิจกรรมชุมชน เป็นกิจกรรมที่จัดขึ้นเพื่อให้นิสิตใหม่ ได้ทำความรู้จักกับร้านค้า และชุมชนบริเวณโดยรอบจุฬาลงกรณ์มหาวิทยาลัยให้มากขึ้น ผ่านกิจกรรมการสะสมแต้มผ่าน Line OA ด้วยการร่วมทำกิจกรรมถ่ายรูปเช็คอิน ตะลุยทานของอร่อย ๆ รอบมอ ทำกิจกรรมอาสาเพื่อพัฒนาสังคม โดยร้านค้าและสถานที่ที่อยู่ในกิจกรรมมีตั้งแต่ร้านเก่าแก่ที่อยู่คู่จุฬาฯมาอย่างยาวนานตลอดจนร้านค้าใหม่ ๆ ที่เพิ่งเกิดขึ้นและน่าไปเช็คอิน บอกได้เลยว่า เหล่าเฟรชชี่ CU108 พลาดไม่ได้สักร้านเลยแน่นอน เพิ่มเพื่อนไลน์ OA และรับบัตรสะสมแต้มกัน เริ่มทำกิจกรรมกันได้เลย"
@@ -94,7 +94,7 @@ const page = () => {
               className="w-[80vw]"
               contentClassName="line-clamp-3"
             />
-          </div>
+          </div> */}
           {/* <Link
             className="text-sm font-semibold flex justify-end underline mr-4 mt-2"
             href="/rpkm/activities/community"
