@@ -123,12 +123,10 @@ export default function Edit() {
         </div>
       )}
 
-      <div className="flex flex-col items-center">
-        <h2 className="text-8xl -mt-16 font-sopha text-project-yellow drop-shadow-md">
-          ข้อมูลส่วนตัว
-        </h2>
-        <UserCard disableEditIcon={true} />
-      </div>
+      <h2 className="relative text-8xl -top-6 font-sopha text-project-yellow drop-shadow-md text-nowrap">
+        ข้อมูลส่วนตัว
+      </h2>
+      <UserCard disableEditIcon={true} />
       <div className="flex flex-col py-10 px-10">
         <div className="flex flex-col gap-4">
           <div className="flex flex-col space-y-2">

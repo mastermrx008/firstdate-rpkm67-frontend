@@ -9,7 +9,7 @@ const layout = ({ children }: { children: ReactNode }) => {
         backgroundImage: `url(${background.src})`,
         backgroundSize: '100%',
       }}
-      className="bg-rpkm-cream"
+      className="bg-rpkm-cream py-[5%]"
     >
       {children}
     </div>
