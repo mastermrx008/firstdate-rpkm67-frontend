@@ -40,6 +40,7 @@ const Page = () => {
           alt="activity image"
           width={0}
           height={0}
+          priority={true}
           className="my-4 object-cover"
           style={{ width: '60vw', height: '60vw' }}
         />

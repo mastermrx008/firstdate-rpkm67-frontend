@@ -47,6 +47,7 @@ const Card: React.FC<CardProps> = ({
               height: imageHeight ? imageHeight : '60vw',
             }}
             className={cn('w-full object-cover', imageClassName)}
+            priority={true}
           />
         </div>
         <div className="flex flex-col gap-y-[2px] mt-1">
