@@ -116,21 +116,23 @@ export default function Edit() {
   };
 
   return (
-    <div className="flex items-center flex-col w-[95%] min-h-[calc(95vw*(801/371))] my-[5%] mx-auto bg-[#FFFEF7E5] bg-opacity-90 border-[1px] rounded-xl border-black [clip-path:polygon(1rem_0,calc(100%-1rem)_0,100%_1rem,100%_calc(100%-1rem),calc(100%-1rem)_100%,1rem_100%,0_calc(100%-1rem),0_1rem)]">
+    <div className="flex items-center flex-col w-[95%] min-h-[calc(95vw*(801/371))] my-[5%] mx-auto bg-[#FFFEF7E5] bg-opacity-90 drop-shadow-xl rounded-xl [clip-path:polygon(1rem_0,calc(100%-1rem)_0,100%_1rem,100%_calc(100%-1rem),calc(100%-1rem)_100%,1rem_100%,0_calc(100%-1rem),0_1rem)]">
       {upload && (
         <div className="z-[999] fixed inset-0 bg-black bg-opacity-20 flex items-center justify-center">
           <Spinner />
         </div>
       )}
 
-      <h2 className="relative text-8xl -top-6 font-sopha text-project-yellow drop-shadow-md text-nowrap">
+      <h2 className="relative text-8xl top-0 font-sopha text-project-yellow drop-shadow-font text-nowrap">
         ข้อมูลส่วนตัว
       </h2>
       <UserCard disableEditIcon={true} />
-      <div className="flex flex-col py-10 px-10">
+      <div className="flex flex-col pt-2 py-10 px-10">
         <div className="flex flex-col gap-4">
           <div className="flex flex-col space-y-2">
-            <h3 className="text-xl font-semibold text-center">ข้อมูลส่วนตัว</h3>
+            <h3 className="text-2xl font-semibold text-center">
+              ข้อมูลส่วนตัว
+            </h3>
             <label className="flex flex-col items-start w-1/2">
               คำนำหน้าชื่อ
               <StyledSelect
@@ -249,7 +251,7 @@ export default function Edit() {
           </div>
 
           <div className="space-y-2">
-            <h3 className="text-xl font-semibold text-center mb-2">
+            <h3 className="text-2xl font-semibold text-center mb-2">
               ข้อมูลผู้ปกครอง
             </h3>
             <label>
@@ -287,7 +289,7 @@ export default function Edit() {
           </div>
 
           <div className="space-y-2">
-            <h3 className="text-xl font-semibold text-center">
+            <h3 className="text-2xl font-semibold text-center">
               ข้อมูลด้านสุขภาพ
             </h3>
 
@@ -329,7 +331,7 @@ export default function Edit() {
               </label>
             </div>
           </div>
-          <div className="flex flex-col items-center gap-4 mt-6 font-semibold text-lg">
+          <div className="flex flex-col items-center gap-4 mt-6 font-semibold text-lg drop-shadow-md">
             <button
               onClick={handleSubmit}
               className="p-1 inv-rad inv-rad-2 w-4/5 bg-[#EFD08B]"
