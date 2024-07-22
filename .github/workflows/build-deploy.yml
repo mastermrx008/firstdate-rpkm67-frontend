@@ -85,6 +85,19 @@ jobs:
             FIRST_DATE_DATE=${{ vars.PROD_FIRST_DATE_DATE }}
             RUP_PEUN_DATE=${{ vars.PROD_RUP_PEUN_DATE }}
             BASE_DOMAIN_IMAGES=${{ vars.PROD_BASE_DOMAIN_IMAGES }}
+  send_message_dev:
+    needs: build
+    uses: ./.github/workflows/send-message.yml
+    secrets: inherit
+    with:
+      IMAGE_TAG: ${{ needs.build.outputs.IMAGE_TAG_DEV }}
+  send_message_prod:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    uses: ./.github/workflows/send-message.yml
+    secrets: inherit
+    with:
+      IMAGE_TAG: ${{ needs.build.outputs.IMAGE_TAG_PROD }}
 
   cd:
     name: Continuous Deployment
