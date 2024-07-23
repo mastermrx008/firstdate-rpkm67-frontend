@@ -14,6 +14,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import BottomButton from '@/components/(main)/home/BottomButton';
 import WaitModal from '@/components/(main)/home/WaitModal';
+import JoinModal from '@/components/(main)/home/JoinModal';
 import { isUserRegistered } from '@/utils/user';
 import Border from '@/components/firstdate/Border';
 import CustomButton from '@/components/(main)/home/CustomButton';
@@ -30,6 +31,9 @@ export default function Home() {
   const [interestedEvent, setInterestedEvent] = useState<
     'first-date' | 'rup-peun'
   >('first-date');
+  const [joinModal, setJoinModal] = useState<boolean>(false);
+  const [announce, setAnnounce] = useState<boolean>(false);
+  const [Isjoined, setIsJoined] = useState<boolean>(false);
 
   useEffect(() => {
     getCurrentTime().then((res) => {
@@ -102,6 +106,8 @@ export default function Home() {
               registered={!!user && isUserRegistered(user)}
               setWaitModal={setWaitModal}
               setEvent={setInterestedEvent}
+              setJoinModal={setJoinModal}
+              setAnnounce={setAnnounce}
             >
               <div>Rub Peun Kao Mai 2024</div>
             </CustomButton>
@@ -158,6 +164,12 @@ export default function Home() {
         modal={waitModal}
         setModal={setWaitModal}
         event={interestedEvent}
+      />
+      <JoinModal
+        modal={joinModal}
+        setModal={setJoinModal}
+        announce={announce}
+        setIsJoined={()=>{}}
       />
     </>
   );

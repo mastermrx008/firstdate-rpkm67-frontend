@@ -11,6 +11,8 @@ interface CustomButtonProps {
   currentDate: Date;
   setWaitModal?: (value: boolean) => void;
   setEvent?: (value: 'first-date' | 'rup-peun') => void;
+  setJoinModal?: (value: boolean) => void;
+  setAnnounce?: (value: boolean) => void;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
@@ -21,6 +23,8 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   currentDate,
   setWaitModal,
   setEvent,
+  setJoinModal,
+  setAnnounce,
 }) => {
   const router = useRouter();
   const firstdate = async () => {
@@ -43,12 +47,26 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   };
   const rubpeun = async () => {
     let rupPeunDate = currentDate;
+    let closedSelectionDate = currentDate;
+    let baanAnnounceDate = currentDate;
     const rupPeun = process.env.NEXT_PUBLIC_RUP_PEUN_DATE;
+    const closedSelection = process.env.NEXT_PUBLIC_CLOSED_BAAN_SELECTION_DATE;
+    const announce = process.env.NEXT_PUBLIC_BAAN_ANNOUNCEMENT_DATE;
     if (rupPeun) {
       rupPeunDate = new Date(rupPeun);
     }
-    console.log(currentDate.toISOString(), rupPeunDate.toISOString());
-    if (currentDate >= rupPeunDate) {
+    if (closedSelection && announce) {
+      closedSelectionDate = new Date(closedSelection);
+      baanAnnounceDate = new Date(announce);
+    }
+    console.log(currentDate.toISOString(), rupPeunDate.toISOString(), closedSelectionDate.toISOString(), baanAnnounceDate.toISOString());
+    if (currentDate >= closedSelectionDate){
+      if (setJoinModal && setAnnounce){
+        setJoinModal(true);
+        (currentDate >= baanAnnounceDate) ? setAnnounce(true) : setAnnounce(false);
+      }
+    }
+    else if (currentDate >= rupPeunDate && currentDate < closedSelectionDate) {
       if (registered) {
         router.push('/rpkm/baan/home');
       } else {
