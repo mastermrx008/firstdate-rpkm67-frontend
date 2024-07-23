@@ -11,7 +11,7 @@ const page = () => {
     <section className="min-h-screen bg-[url('/rpkm/activities/small-background.png')] bg-cover bg-[#EAE3C3] text-black">
       <Navbar />
       <div className="flex justify-center -mb-20">
-        <div className="flex flex-col items-center gap-y-1 pt-16">
+        <div className="flex flex-col items-center gap-y-1 pt-4">
           <h1
             className="font-sopha text-[20vh] text-rpkm-pink tracking-wide"
             style={{

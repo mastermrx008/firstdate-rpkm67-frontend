@@ -3,7 +3,7 @@ import { getAccessToken } from './auth';
 import { apiClient } from './axios';
 import { StampDTO } from '@/dtos/stampDTO';
 import { convertStampDTOToStamp } from '@/dtos/stampDTO';
-import { Stamp } from '@/types/stamp';
+import { IActivity, Stamp } from '@/types/stamp';
 
 export const getStamp = async (userId: string): Promise<Stamp | Error> => {
   const accessToken = await getAccessToken();
@@ -44,6 +44,11 @@ export const createStamp = async (
       {
         activity_id: activityId,
         pin_code: pinCode,
+        answer: [IActivity.CLUB_OUTSIDE, IActivity.CLUB_INSIDE].includes(
+          activityId as IActivity
+        )
+          ? pinCode
+          : '',
       },
       {
         headers: {
