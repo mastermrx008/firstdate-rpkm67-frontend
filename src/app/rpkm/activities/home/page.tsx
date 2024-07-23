@@ -6,7 +6,7 @@ import Divider from '@/components/rpkm/Activities/Divider';
 
 // import ActivitiesBanner from '@public/rpkm/activities/activities.png';
 // import WalkRallyBanner from '@public/rpkm/activities/walkrally.png';
-// import CommunityBanner from '@public/rpkm/activities/community.png';
+import CommunityBanner from '@public/rpkm/activities/community.png';
 import BaanBanner from '@public/rpkm/activities/baan.png';
 
 // import activities from '@/data/activities';
@@ -81,8 +81,8 @@ const page = () => {
           >
             ดูทั้งหมด
           </Link> */}
-          {/* <Divider /> */}
-          {/* <Banner image={CommunityBanner} />
+          <Divider />
+          <Banner image={CommunityBanner} />
           <div className="justify-center flex">
             <Card
               name="กิจกรรมชุมชน"
@@ -94,7 +94,7 @@ const page = () => {
               className="w-[80vw]"
               contentClassName="line-clamp-3"
             />
-          </div> */}
+          </div>
           {/* <Link
             className="text-sm font-semibold flex justify-end underline mr-4 mt-2"
             href="/rpkm/activities/community"

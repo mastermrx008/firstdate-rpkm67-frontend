@@ -9,13 +9,14 @@ import ActivityButton from '@/components/rpkm/Activities/ActivityButton';
 
 import BackButton from '@public/rpkm/activities/back.svg';
 import BaanImage from '@public/rpkm/activities/baanbackground.png';
+import { getCurrentTime } from '@/utils/time';
 
 const Page = () => {
   const [selectBannAble, setSelectBannAble] = useState<boolean>(false);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const currentTime = new Date();
+    const interval = setInterval(async () => {
+      const currentTime = (await getCurrentTime()).currentTime;
       const eventTime = new Date('2024-07-24T23:59:59+07:00');
       if (currentTime <= eventTime) {
         setSelectBannAble(true);

@@ -78,7 +78,10 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     }
   };
   const ebook = () => {
-    // window.open('', '_blank');
+    window.open(
+      'https://drive.google.com/file/d/1NfAWKq_QwAnELLt7CNOxyqOO2ZJ3NgD-/view',
+      '_blank'
+    );
     createEbookCount();
   };
   const contactlist = () => {
