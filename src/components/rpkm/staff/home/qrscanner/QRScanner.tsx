@@ -8,12 +8,10 @@ import FailureModal from './failureModal';
 import { createCheckIn } from '@/utils/checkin';
 import { CheckIn } from '@/types/checkIn';
 import dayjs from 'dayjs';
-interface ScanProp{
-  event: string
+interface ScanProp {
+  event: string;
 }
-const Scan: React.FC<ScanProp> = ({
-  event
-}) => {
+const Scan: React.FC<ScanProp> = ({ event }) => {
   const [checkInData, setCheckInData] = useState<CheckIn | null>(null);
   const [taken, setTaken] = useState<boolean>(false);
   const [status, setStatus] = useState<'success' | 'error' | 'idle'>('idle');
@@ -102,6 +100,6 @@ const Scan: React.FC<ScanProp> = ({
       </div>
     </div>
   );
-}
+};
 
 export default Scan;
