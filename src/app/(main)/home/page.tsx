@@ -40,6 +40,10 @@ export default function Home() {
       setClientTime(res.currentTime);
     });
   }, []);
+  
+  useEffect(() => {
+    console.log(Isjoined)
+  }, [Isjoined]);
 
   return (
     <>
@@ -169,7 +173,8 @@ export default function Home() {
         modal={joinModal}
         setModal={setJoinModal}
         announce={announce}
-        setIsJoined={()=>{}}
+        isJoined={Isjoined}
+        setIsJoined={setIsJoined}
       />
     </>
   );
