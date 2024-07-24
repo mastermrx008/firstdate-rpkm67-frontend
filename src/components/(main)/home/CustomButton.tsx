@@ -1,3 +1,5 @@
+import { useAuth } from '@/context/AuthContext';
+import { useBaan } from '@/context/BaanContext';
 import { cn } from '@/lib/utils';
 import { createEbookCount } from '@/utils/count';
 import { useRouter } from 'next/navigation';
@@ -27,6 +29,8 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   setAnnounce,
 }) => {
   const router = useRouter();
+  const { user } = useAuth();
+  const { isConfirmed } = useBaan();
   const firstdate = async () => {
     let firstDateDate = currentDate;
     const firstDate = process.env.NEXT_PUBLIC_FIRST_DATE_DATE;
@@ -59,14 +63,30 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       closedSelectionDate = new Date(closedSelection);
       baanAnnounceDate = new Date(announce);
     }
-    console.log(currentDate.toISOString(), rupPeunDate.toISOString(), closedSelectionDate.toISOString(), baanAnnounceDate.toISOString());
-    if (currentDate >= closedSelectionDate){
-      if (setJoinModal && setAnnounce){
-        setJoinModal(true);
-        (currentDate >= baanAnnounceDate) ? setAnnounce(true) : setAnnounce(false);
+    console.log(
+      currentDate.toISOString(),
+      rupPeunDate.toISOString(),
+      closedSelectionDate.toISOString(),
+      baanAnnounceDate.toISOString()
+    );
+    if (currentDate >= closedSelectionDate) {
+      if (!isConfirmed) {
+        router.push('/rpkm/activities/home');
+      } else if (setJoinModal && setAnnounce) {
+        const checkedIn = user?.checkIns.find(
+          (checkIn) => checkIn.event === 'confirm-rpkm'
+        );
+        if (checkedIn) {
+          router.push('/rpkm/activities/home');
+        } else {
+          setJoinModal(true);
+          //setBaanAnnouncementModal
+        }
       }
-    }
-    else if (currentDate >= rupPeunDate && currentDate < closedSelectionDate) {
+    } else if (
+      currentDate >= rupPeunDate &&
+      currentDate < closedSelectionDate
+    ) {
       if (registered) {
         router.push('/rpkm/baan/home');
       } else {
@@ -97,7 +117,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       onClick: rubpeun,
     },
     'e-book': {
-      color: 'bg-project-cream opacity-35 cursor-not-allowed',
+      color: 'bg-project-cream',
       onClick: ebook,
     },
     'contact-list': {

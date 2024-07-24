@@ -33,8 +33,8 @@ const modalStyles = {
       'accept-border': 'bg-[#EAE3C3]',
       'cancel-background': 'bg-[#C94B4B] text-[#EAE3C3]',
       'cancel-border': 'bg-[#EAE3C3]',
-    }
-  }
+    },
+  },
 };
 
 export default modalStyles;

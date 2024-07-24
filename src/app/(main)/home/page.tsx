@@ -21,10 +21,13 @@ import CustomButton from '@/components/(main)/home/CustomButton';
 import Link from 'next/link';
 import { getMajorNameById } from '@/utils/register';
 import { getCurrentTime } from '@/utils/time';
+import { createCheckIn } from '@/utils/checkin';
+import { CheckIn } from '@/types/checkIn';
+import toast from 'react-hot-toast';
 
 export default function Home() {
   const router = useRouter();
-  const { user, logout } = useAuth();
+  const { user, resetContext, logout } = useAuth();
   const [clientTime, setClientTime] = useState(new Date('1980-01-01'));
   const [qrModal, setQrModal] = useState<boolean>(false);
   const [waitModal, setWaitModal] = useState<boolean>(false);
@@ -40,10 +43,29 @@ export default function Home() {
       setClientTime(res.currentTime);
     });
   }, []);
-  
-  useEffect(() => {
-    console.log(Isjoined)
-  }, [Isjoined]);
+
+  const checkInConfirm = async () => {
+    if (!user) {
+      return;
+    }
+
+    try {
+      const checkInConfirm: CheckIn | null = await createCheckIn(
+        user.id,
+        user.email,
+        'confirm-rpkm'
+      );
+
+      if (checkInConfirm) {
+        setIsJoined(true);
+      } else {
+        throw new Error('Error check in');
+      }
+      resetContext();
+    } catch (e) {
+      toast.error('ยืนยันไม่สำเร็จ');
+    }
+  };
 
   return (
     <>
@@ -174,7 +196,7 @@ export default function Home() {
         setModal={setJoinModal}
         announce={announce}
         isJoined={Isjoined}
-        setIsJoined={setIsJoined}
+        checkInConfirm={checkInConfirm}
       />
     </>
   );
