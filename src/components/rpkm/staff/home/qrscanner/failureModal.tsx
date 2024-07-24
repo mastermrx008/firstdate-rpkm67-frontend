@@ -21,7 +21,7 @@ const FailModal: React.FC<FailModalProps> = ({
     isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
   }`;
 
-  const modalContentClasses = `flex flex-col justify-center items-center justify-around relative w-80 h-96 bg-contain bg-no-repeat bg-center bg-[url('/rpkm/staff/modal-background.svg')] pt-5 pb-10`;
+  const modalContentClasses = `flex flex-col justify-center items-center justify-around relative w-80 h-96 bg-contain bg-no-repeat bg-center bg-[url('/rpkm/staff/modal-background.svg')] pt-5 pb-10 `;
   const button = taken ? (
     <button
       onClick={onClose}
