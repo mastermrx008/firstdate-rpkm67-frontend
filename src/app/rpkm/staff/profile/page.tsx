@@ -12,7 +12,7 @@ function Page() {
       <div className="bg-[url('/rpkm/staff/background.svg')] w-full h-full bg-cover bg-no-repeat">
         <Navbar />
         <div className="flex flex-row justify-items-center justify-center w-full h-[90%] py-6 overflow-hidden">
-          <div className="[clip-path:polygon(1rem_0,calc(100%-1rem)_0,100%_1rem,100%_calc(100%-1rem),calc(100%-1rem)_100%,1rem_100%,0_calc(100%-1rem),0_1rem)] flex flex-col justify-items-center items-center bg-[#FFFEF7E5] w-11/12 gap-y-10 pb-20">
+          <div className="[clip-path:polygon(1rem_0,calc(100%-1rem)_0,100%_1rem,100%_calc(100%-1rem),calc(100%-1rem)_100%,1rem_100%,0_calc(100%-1rem),0_1rem)] flex flex-col justify-items-center items-center bg-[#FFFEF7E5] w-11/12 gap-y-10">
             <div
               className="font-sopha text-8xl text-[#EB9096]"
               style={{
@@ -42,7 +42,7 @@ function Page() {
                 {user?.email.split('@')[0]}
               </h1>
             </div>
-            <div className="absolute bottom-28 flex flex-col items-center">
+            <div className="absolute bottom-[min(12vh,112px)] flex flex-col items-center">
               <Icon
                 icon="humbleicons:logout"
                 className="cursor-pointer w-12 h-12 p-3 rounded-full bg-white text-black shadow-lg"
