@@ -21,8 +21,8 @@ import CustomButton from '@/components/(main)/home/CustomButton';
 import Link from 'next/link';
 import { getMajorNameById } from '@/utils/register';
 import { getCurrentTime } from '@/utils/time';
-import { createCheckIn } from '@/utils/checkin';
-import { CheckIn } from '@/types/checkIn';
+import { createCheckIn, fetchCheckIn } from '@/utils/checkin';
+import { CheckIn, GetCheckIn } from '@/types/checkIn';
 import toast from 'react-hot-toast';
 
 export default function Home() {
@@ -36,12 +36,35 @@ export default function Home() {
   >('first-date');
   const [joinModal, setJoinModal] = useState<boolean>(false);
   const [announce, setAnnounce] = useState<boolean>(false);
-  const [Isjoined, setIsJoined] = useState<boolean>(false);
+  const [isCheckedIn, setIsCheckedIn] = useState<boolean>(false);
+  const [isJoined, setIsJoined] = useState<boolean>(false);
 
   useEffect(() => {
     getCurrentTime().then((res) => {
       setClientTime(res.currentTime);
     });
+
+    const checkedIn = async () => {
+      if (!user) {
+        return;
+      }
+
+      try {
+        const checkedIns: GetCheckIn[] | null = await fetchCheckIn();
+        if (checkedIns) {
+          const findEvent = !!checkedIns.find(
+            (checkIn) => checkIn.event === 'confirm-rpkm'
+          );
+          setIsCheckedIn(findEvent);
+        } else {
+          throw new Error('');
+        }
+      } catch (e) {
+        console.log('fetch check in', e);
+      }
+    };
+
+    checkedIn();
   }, []);
 
   const checkInConfirm = async () => {
@@ -132,6 +155,7 @@ export default function Home() {
               registered={!!user && isUserRegistered(user)}
               setWaitModal={setWaitModal}
               setEvent={setInterestedEvent}
+              isCheckedIn={isCheckedIn}
               setJoinModal={setJoinModal}
               setAnnounce={setAnnounce}
             >
@@ -195,7 +219,7 @@ export default function Home() {
         modal={joinModal}
         setModal={setJoinModal}
         announce={announce}
-        isJoined={Isjoined}
+        isJoined={isJoined}
         checkInConfirm={checkInConfirm}
       />
     </>

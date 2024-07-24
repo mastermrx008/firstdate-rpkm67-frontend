@@ -1,4 +1,3 @@
-import { useAuth } from '@/context/AuthContext';
 import { useBaan } from '@/context/BaanContext';
 import { cn } from '@/lib/utils';
 import { createEbookCount } from '@/utils/count';
@@ -11,6 +10,7 @@ interface CustomButtonProps {
   children: React.ReactNode;
   registered?: boolean;
   currentDate: Date;
+  isCheckedIn?: boolean;
   setWaitModal?: (value: boolean) => void;
   setEvent?: (value: 'first-date' | 'rup-peun') => void;
   setJoinModal?: (value: boolean) => void;
@@ -23,13 +23,13 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   children,
   registered,
   currentDate,
+  isCheckedIn,
   setWaitModal,
   setEvent,
   setJoinModal,
   setAnnounce,
 }) => {
   const router = useRouter();
-  const { user } = useAuth();
   const { isConfirmed } = useBaan();
   const firstdate = async () => {
     let firstDateDate = currentDate;
@@ -73,10 +73,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       if (!isConfirmed) {
         router.push('/rpkm/activities/home');
       } else if (setJoinModal && setAnnounce) {
-        const checkedIn = user?.checkIns.find(
-          (checkIn) => checkIn.event === 'confirm-rpkm'
-        );
-        if (checkedIn) {
+        if (isCheckedIn) {
           router.push('/rpkm/activities/home');
         } else {
           setJoinModal(true);
