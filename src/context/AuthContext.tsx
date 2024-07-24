@@ -121,6 +121,18 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
           );
           const now = (await getCurrentTime()).currentTime;
 
+          console.log(
+            'now',
+            now,
+            'firstdate',
+            firstdate,
+            'startRPKM',
+            startRPKM,
+            'endBannSelect',
+            endBannSelect,
+            'freshyNight',
+            freshyNight
+          );
           //firstdate
           if (path.includes('firstdate')) {
             if (now < firstdate) {
@@ -135,7 +147,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
             }
 
             // end baan select
-            if (path.includes('/baan')) {
+            if (path.includes('rpkm/baan')) {
               if (now > endBannSelect) {
                 return router.push('/rpkm/activities/home');
               }
