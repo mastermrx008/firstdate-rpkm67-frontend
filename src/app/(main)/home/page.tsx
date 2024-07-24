@@ -35,7 +35,7 @@ export default function Home() {
     'first-date' | 'rup-peun'
   >('first-date');
   const [joinModal, setJoinModal] = useState<boolean>(false);
-  const [announce, setAnnounce] = useState<boolean>(false);
+  //const [announce, setAnnounce] = useState<boolean>(false);
   const [isCheckedIn, setIsCheckedIn] = useState<boolean>(false);
   const [isJoined, setIsJoined] = useState<boolean>(false);
 
@@ -157,7 +157,6 @@ export default function Home() {
               setEvent={setInterestedEvent}
               isCheckedIn={isCheckedIn}
               setJoinModal={setJoinModal}
-              setAnnounce={setAnnounce}
             >
               <div>Rub Peun Kao Mai 2024</div>
             </CustomButton>
@@ -218,7 +217,6 @@ export default function Home() {
       <JoinModal
         modal={joinModal}
         setModal={setJoinModal}
-        announce={announce}
         isJoined={isJoined}
         checkInConfirm={checkInConfirm}
       />

@@ -14,7 +14,6 @@ interface CustomButtonProps {
   setWaitModal?: (value: boolean) => void;
   setEvent?: (value: 'first-date' | 'rup-peun') => void;
   setJoinModal?: (value: boolean) => void;
-  setAnnounce?: (value: boolean) => void;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
@@ -27,7 +26,6 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   setWaitModal,
   setEvent,
   setJoinModal,
-  setAnnounce,
 }) => {
   const router = useRouter();
   const { isConfirmed } = useBaan();
@@ -72,7 +70,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     if (currentDate >= closedSelectionDate) {
       if (!isConfirmed) {
         router.push('/rpkm/activities/home');
-      } else if (setJoinModal && setAnnounce) {
+      } else if (setJoinModal) {
         if (isCheckedIn) {
           router.push('/rpkm/activities/home');
         } else {

@@ -8,7 +8,6 @@ import modalStyles from '@/components/rpkm/Modal/ModalStyle';
 interface JoinModalProps {
   modal: boolean;
   setModal: (value: boolean) => void;
-  announce: boolean;
   isJoined: boolean;
   checkInConfirm: () => void;
 }
@@ -16,7 +15,6 @@ interface JoinModalProps {
 const JoinModal: React.FC<JoinModalProps> = ({
   modal,
   setModal,
-  announce,
   isJoined,
   checkInConfirm,
 }) => {
