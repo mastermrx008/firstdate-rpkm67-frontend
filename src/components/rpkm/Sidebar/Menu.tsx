@@ -9,8 +9,8 @@ function Menu() {
   return (
     <div className="w-full h-full text-left  font-medium flex flex-col pb-[5vh]">
       <Link
-        href="/rpkm/baan/home"
-        className="text-left"
+        href=""
+        className="text-left cursor-not-allowed text-gray-400"
       >
         ลงทะเบียนเลือกบ้าน
       </Link>
@@ -82,19 +82,19 @@ function Menu() {
             aria-label="Accordion 2"
             title={<div>แผนที่</div>}
           >
-            <div className="flex flex-col w-full justify-items-start text-sm px-2 -mt-2">
+            <div className="flex flex-col w-full justify-items-start text-sm px-2 -mt-2 ">
+              <div
+                //href="/rpkm/activities/map"
+                className="text-left text-gray-400 cursor-not-allowed"
+              >
+                ข้อมูลที่จัดแต่ละกิจกรรม
+              </div>
               <Link
                 href="/rpkm/activities/map"
                 className="text-left"
               >
-                ข้อมูลที่จัดแต่ละกิจกรรม
-              </Link>
-              <div
-                // href="/rpkm/activities/"
-                className="text-left text-gray-400 cursor-not-allowed"
-              >
                 กิจกรรมชุมชน
-              </div>
+              </Link>
             </div>
           </AccordionItem>
         </Accordion>

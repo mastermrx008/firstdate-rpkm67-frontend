@@ -88,6 +88,7 @@ const Page = () => {
           href="https://lin.ee/i9Ezhg7"
           borderClassName="bg-rpkm-cream"
           backgroundClassName="bg-rpkm-green text-center text-lg text-rpkm-gray w-[60vw]"
+          target="_self"
         >
           Line OA ของกิจกรรม
         </ActivityButton>
