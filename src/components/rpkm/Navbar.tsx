@@ -7,9 +7,11 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import personIcon from '@public/rpkm/staff/person-icon.svg';
+import { useAuth } from '@/context/AuthContext';
 
 function Navbar() {
   const [sidebar, setSidebar] = useState<boolean>(false);
+  const { user } = useAuth();
   const currentPath = usePathname();
   const [content, setContent] = useState<JSX.Element>(
     <div className="w-[155px] h-7 flex justify-between text-xl text-rpkm-cream">
@@ -29,7 +31,7 @@ function Navbar() {
       setContent(
         <Link
           href="/rpkm/staff/profile"
-          className="w-11 h-11 rounded-full bg-white flex justify-center justify-items-center items-center"
+          className="w-11 h-11 rounded-full bg-white flex justify-center  items-center"
         >
           <Image
             src={personIcon.src}
@@ -43,14 +45,12 @@ function Navbar() {
     if (currentPath.startsWith('/rpkm/staff/profile'))
       setContent(
         <Link
-          href="/rpkm/staff/profile"
-          className="w-11 h-11 rounded-full bg-project-pastel-pink flex justify-center justify-items-center items-center"
+          href="/rpkm/staff/home"
+          className="w-11 h-11 rounded-full bg-white flex justify-center  items-center"
         >
-          <Image
-            src={personIcon.src}
-            width="16"
-            height="16"
-            alt="person-icon"
+          <Icon
+            icon="material-symbols:home"
+            className="w-[6vw] h-[6vw]"
           />
         </Link>
       );
@@ -63,16 +63,19 @@ function Navbar() {
         setSidebar={setSidebar}
       />
       <div className="w-full h-16 bg-rpkm-gray flex items-center px-5 relative justify-between">
-        <button
-          className="w-7 h-6 bg-white flex flex-col justify-evenly items-center"
-          onClick={() => setSidebar(true)}
-        >
-          <Icon
-            icon="cil:hamburger-menu"
-            width="20px"
-            height="20px"
-          />
-        </button>
+        {user?.role === 'user' && (
+          <button
+            className="w-7 h-6 bg-white flex flex-col justify-evenly items-center"
+            onClick={() => setSidebar(true)}
+          >
+            <Icon
+              icon="cil:hamburger-menu"
+              width="20px"
+              height="20px"
+            />
+          </button>
+        )}
+        dv
         {content}
       </div>
     </div>
