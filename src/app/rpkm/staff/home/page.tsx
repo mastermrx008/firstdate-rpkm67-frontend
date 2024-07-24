@@ -6,18 +6,40 @@ import React, { useEffect, useState } from 'react';
 
 function Page() {
   const [eventText, setEventText] = useState<string>('Onsite 3 สิงหาคม 2567');
+  const [event, setEvent] = useState<string>('rpkm-day-1');
   useEffect(() => {
-    const currentTime = getCurrentTime();
-    const freshy_night = process.env.NEXT_PUBLIC_FRESHY_NIGHT;
-    const freshy_night_time = freshy_night
-      ? new Date(freshy_night)
-      : currentTime;
-    if (currentTime >= freshy_night_time) setEventText('Fresh Night');
-    else {
-      const rpkm_day_2 = process.env.NEXT_PUBLIC_RPKM_DAY_2;
-      const rpkm_day_2_time = rpkm_day_2 ? new Date(rpkm_day_2) : currentTime;
-      if (currentTime >= rpkm_day_2_time) setEventText('Onsite 4 สิงหาคม 2567');
-    }
+    const checkEvent = async () => {
+      const currentTime = (await getCurrentTime()).currentTime;
+      const freshy_night_time = new Date(
+        process.env.NEXT_PUBLIC_FRESHY_NIGHT_EVENT as string
+      );
+      const rpkm_day_1_time = new Date(
+        process.env.NEXT_PUBLIC_RPKM_DAY_1 as string
+      );
+      const rpkm_day_2_time = new Date(
+        process.env.NEXT_PUBLIC_RPKM_DAY_2 as string
+      );
+
+      if (currentTime > freshy_night_time) {
+        setEventText('Freshy Night');
+        setEvent('freshy-night');
+        return;
+      }
+
+      if (currentTime > rpkm_day_2_time) {
+        setEventText('Onsite 4 สิงหาคม 2567');
+        setEvent('rpkm-day-2');
+        return;
+      }
+
+      if (currentTime > rpkm_day_1_time) {
+        setEventText('Onsite 3 สิงหาคม 2567');
+        setEvent('rpkm-day-1');
+        return;
+      }
+    };
+
+    checkEvent();
   }, []);
   return (
     <div className="bg-[#EAE3C3]">
@@ -49,7 +71,7 @@ function Page() {
               {eventText}
             </div>
             <div className="w-4/5 h-fit">
-              <Scan />
+              <Scan event={event} />
             </div>
             <div className="text-xl font-semibold">QR-Reader</div>
           </div>
