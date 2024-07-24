@@ -47,7 +47,7 @@ function Page() {
         <Navbar />
         <div className="flex flex-row justify-items-center justify-center w-full h-fit py-6">
           <div className="relative flex flex-col justify-items-center items-center w-11/12 gap-y-10 pb-20 z-10">
-          <div className="[clip-path:polygon(1rem_0,calc(100%-1rem)_0,100%_1rem,100%_calc(100%-1rem),calc(100%-1rem)_100%,1rem_100%,0_calc(100%-1rem),0_1rem)] flex flex-col justify-items-center items-center bg-[#FFFEF7E5] w-full h-full absolute -z-10"/>
+            <div className="[clip-path:polygon(1rem_0,calc(100%-1rem)_0,100%_1rem,100%_calc(100%-1rem),calc(100%-1rem)_100%,1rem_100%,0_calc(100%-1rem),0_1rem)] flex flex-col justify-items-center items-center bg-[#FFFEF7E5] w-full h-full absolute -z-10" />
             <div className="flex flex-col items-center">
               <div
                 className="font-sopha text-8xl text-[#EB9096]"
