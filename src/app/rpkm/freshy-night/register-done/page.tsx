@@ -14,17 +14,17 @@ export default function RegisterDone() {
 
   return (
     <>
-      <div className="bg-[#FFFEF7E5] w-11/12 mx-auto py-[5%] flex flex-col gap-y-5 [clip-path:polygon(1rem_0,calc(100%-1rem)_0,100%_1rem,100%_calc(100%-1rem),calc(100%-1rem)_100%,1rem_100%,0_calc(100%-1rem),0_1rem)]">
+      <div className="bg-[#FFFEF7E5] w-11/12 mx-auto py-[10%] flex flex-col items-center gap-y-5 [clip-path:polygon(1rem_0,calc(100%-1rem)_0,100%_1rem,100%_calc(100%-1rem),calc(100%-1rem)_100%,1rem_100%,0_calc(100%-1rem),0_1rem)]">
         <div className="text-center font-sopha font-outline">
-          <p className="text-project-pastel-pink text-[64px]/[2.8rem] drop-shadow-xl">
+          <p className="text-project-pastel-pink text-8xl/[5rem] -mt-7 [text-shadow:_2px_2px_2px_rgb(0_0_0_/_30%)]">
             ลงทะเบียน
           </p>
-          <p className="text-project-yellow text-8xl/[2.9rem] drop-shadow-text2 tracking-wide">
-            สำเร็จ
+          <p className="text-project-yellow text-9xl/[2.5rem] tracking-wide [text-shadow:_2px_2px_2px_rgb(0_0_0_/_30%)]">
+            <span className="-mr-5">ส</span> ำเร็จ
           </p>
         </div>
         <div className="w-full h-[50vh] flex justify-center items-center">
-          <p className="text-4xl font-mono font-bold">Waited...</p>
+          <p className="text-3xl font-mono font-bold">Waited...</p>
         </div>
         <BottomButton
           onClick={() => setQrModal(true)}
