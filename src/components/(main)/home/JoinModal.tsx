@@ -35,7 +35,9 @@ const JoinModal: React.FC<JoinModalProps> = ({
           <h1 className="text-3xl font-semibold text-white">
             ยืนยันการเข้าร่วมงาน
           </h1>
-          <p className="text-white text-sm text-center">ยืนยันการเข้าร่วมงาน</p>
+          <p className="text-white text-sm text-center">
+            ออนไซต์วันที่ 3-4 สิงหาคม 2567
+          </p>
         </div>
         <div className="flex flex-row gap-x-5 pb-3 justify-center">
           <ModalButton
