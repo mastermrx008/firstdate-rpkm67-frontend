@@ -3,6 +3,7 @@
 import Spinner from '@/components/firstdate/Spinner';
 import { User } from '@/types/user';
 import { getReceiveGiftCondition } from '@/utils/reward';
+import { getCurrentTime } from '@/utils/time';
 import { getUser, isUserRegistered } from '@/utils/user';
 
 import { usePathname, useRouter } from 'next/navigation';
@@ -49,75 +50,123 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
   }, []);
 
   useEffect(() => {
-    setisReady(false);
+    const protectRoute = async () => {
+      setisReady(false);
 
-    if (path == '/healthz') {
-      return setisReady(true);
-    }
-
-    const userStr = localStorage.getItem('user');
-    if (!userStr) {
-      setisReady(true);
-      return router.push('/');
-    }
-
-    const userObj: User = JSON.parse(userStr);
-    setUser(userObj);
-
-    const isStaff = userObj.role == 'staff';
-    const isStaffPage = path.includes('/staff');
-    const isRegistered = isUserRegistered(userObj);
-    const isRegisterPage = path.includes('register');
-
-    if (isStaff) {
-      if (path == '/') {
-        return router.push('firstdate/staff/home');
+      // check if user is logged in
+      const userStr = localStorage.getItem('user');
+      if (!userStr) {
+        setisReady(true);
+        return router.push('/');
       }
 
-      if (!isRegistered && !isRegisterPage) {
-        return router.push('/staff/register');
-      }
-      if (!isStaffPage) {
-        return router.push('/firstdate/staff/home');
-      }
-    } else {
-      if (path == '/') {
-        return router.push('/home');
-      }
+      const userObj: User = JSON.parse(userStr);
+      setUser(userObj);
 
-      if (!isRegistered && !isRegisterPage) {
-        return router.push('/register');
-      }
+      const isStaff = userObj.role == 'staff';
+      const isStaffPage = path.includes('/staff');
+      const isRegistered = isUserRegistered(userObj);
+      const isRegisterPage = path.includes('register');
 
-      if (path.split('/').at(-1) == 'reward') {
-        const condition = getReceiveGiftCondition(userObj);
-
-        if (condition.status != 'ready') {
-          return router.push('/firstdate/home');
+      if (isStaff) {
+        // staff route protection
+        if (path == '/') {
+          return router.push('firstdate/staff/home');
         }
-      }
 
-      if (isStaffPage) {
-        return router.push('/firstdate/home');
-      }
+        if (!isRegistered && !isRegisterPage) {
+          return router.push('/staff/register');
+        }
 
-      if (path !== 'home') {
-        const firstdate = new Date(
-          process.env.NEXT_PUBLIC_FIRST_DATE_DATE as string
-        );
-        const rpkm = new Date(process.env.NEXT_PUBLIC_RUP_PEUN_DATE as string);
-        const current = new Date();
-
-        if (
-          (path.includes('firstdate') && current < firstdate) ||
-          (path.includes('rpkm') && current < rpkm)
-        ) {
+        if (!isStaffPage) {
+          return router.push('/firstdate/staff/home');
+        }
+      } else {
+        // user route protection
+        if (path == '/') {
           return router.push('/home');
         }
-      }
-    }
 
-    setisReady(true);
+        //check if user is registered
+        if (!isRegistered && !isRegisterPage) {
+          return router.push('/register');
+        }
+
+        // check if user is eligible to receive gift
+        if (path.split('/').at(-1) == 'reward') {
+          const condition = getReceiveGiftCondition(userObj);
+
+          if (condition.status != 'ready') {
+            return router.push('/firstdate/home');
+          }
+        }
+
+        // check if it is staff page
+        if (isStaffPage) {
+          return router.push('/firstdate/home');
+        }
+
+        if (path !== 'home') {
+          const firstdate = new Date(
+            process.env.NEXT_PUBLIC_FIRST_DATE_DATE as string
+          );
+          const startRPKM = new Date(
+            process.env.NEXT_PUBLIC_RUP_PEUN_DATE as string
+          );
+          const endBannSelect = new Date(
+            process.env.NEXT_PUBLIC_CLOSED_BAAN_SELECTION_DATE as string
+          );
+          const freshyNight = new Date(
+            process.env.NEXT_PUBLIC_FRESHY_NIGHT_DATE as string
+          );
+          const now = (await getCurrentTime()).currentTime;
+
+          console.log(
+            'now',
+            now,
+            'firstdate',
+            firstdate,
+            'startRPKM',
+            startRPKM,
+            'endBannSelect',
+            endBannSelect,
+            'freshyNight',
+            freshyNight
+          );
+          //firstdate
+          if (path.includes('firstdate')) {
+            if (now < firstdate) {
+              return router.push('/home');
+            }
+          }
+
+          //RPKM
+          if (path.includes('rpkm')) {
+            if (now < startRPKM) {
+              return router.push('/home');
+            }
+
+            // end baan select
+            if (path.includes('rpkm/baan')) {
+              if (now > endBannSelect) {
+                return router.push('/rpkm/activities/home');
+              }
+            }
+
+            // start freshy night
+            if (path.includes('/freshy-night')) {
+              console.log(now, freshyNight);
+              if (now < freshyNight) {
+                return router.push('/rpkm/activities/home');
+              }
+            }
+          }
+        }
+      }
+
+      setisReady(true);
+    };
+    protectRoute();
   }, [router, path]);
 
   return (

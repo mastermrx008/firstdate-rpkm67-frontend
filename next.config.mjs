@@ -13,11 +13,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: process.env.BASE_DOMAIN_IMAGES ?? '*',
+        hostname: 'rpkm67.sgp1.cdn.digitaloceanspaces.com',
       },
       {
         protocol: 'https',
-        hostname: 'rpkm67.spg1.cdn.digitaloceanspaces.com',
+        hostname: 's3.sgcu.in.th',
       },
     ],
   },

@@ -3,7 +3,6 @@ import { Athiti } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
 import AuthProvider from '@/context/AuthContext';
-import BaanProvider from '@/context/BaanContext';
 import { Toaster } from 'react-hot-toast';
 import { QueryProvider } from '@/components/queryProvider';
 export const metadata: Metadata = {
@@ -22,9 +21,7 @@ export default function RootLayout({
       >
         <QueryProvider>
           <Toaster />
-          <AuthProvider>
-            <BaanProvider>{children}</BaanProvider>
-          </AuthProvider>
+          <AuthProvider>{children}</AuthProvider>
         </QueryProvider>
       </body>
     </html>

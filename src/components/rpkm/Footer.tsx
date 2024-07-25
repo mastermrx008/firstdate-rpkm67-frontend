@@ -3,10 +3,40 @@ import Link from 'next/link';
 import INSTAGRAM from '@public/footer/instagram-logo.svg';
 import ISD_LOGO from '@public/footer/isd-logo.svg';
 import SGCU_LOGO from '@public/footer/sgcu-logo.svg';
+import SPONSOR_1 from '@public/footer/spon1.svg';
+import SPONSOR_2 from '@public/footer/spon2.svg';
+import SPONSOR_3 from '@public/footer/spon3.svg';
+import SPONSOR_4 from '@public/footer/spon4.svg';
 
 export default function Footer() {
   return (
     <footer className="relative w-full bg-blue-400 text-center">
+      <section className="bg-white flex py-4 justify-evenly">
+        <Image
+          src={SPONSOR_1}
+          alt="sponsor_1"
+          width={94}
+          height={44}
+        />
+        <Image
+          src={SPONSOR_2}
+          alt="sponsor_2"
+          width={40}
+          height={60}
+        />
+        <Image
+          src={SPONSOR_3}
+          alt="sponsor_3"
+          width={59}
+          height={57}
+        />
+        <Image
+          src={SPONSOR_4}
+          alt="sponsor_4"
+          width={78}
+          height={30}
+        />
+      </section>
       <section className="bg-project-yellow text-xs lg:text-xl font-medium grid grid-cols-1 gap-y-4 p-4">
         <div className="flex gap-4 justify-center">
           <Image

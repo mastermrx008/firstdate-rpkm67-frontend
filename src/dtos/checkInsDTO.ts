@@ -1,4 +1,4 @@
-import { CheckIn, ChildCheckIn } from '@/types/checkIn';
+import { CheckIn, ChildCheckIn, GetCheckIn } from '@/types/checkIn';
 
 export type ChildCheckInDTO = {
   email: string;
@@ -13,9 +13,22 @@ export type CheckInDTO = {
     event: string;
     id: string;
     user_id: string;
+    timestamp: string;
+    is_duplicate: boolean;
   };
   firstname: string;
   lastname: string;
+};
+
+export type GetCheckInDTO = {
+  checkins: {
+    email: string;
+    event: string;
+    id: string;
+    user_id: string;
+    timestamp: string;
+    is_duplicate: boolean;
+  }[];
 };
 
 export const ChildCheckInParser = (
@@ -36,8 +49,21 @@ export const CheckInParser = (checkinDTO: CheckInDTO): CheckIn => {
       event: checkinDTO.checkin.event,
       id: checkinDTO.checkin.id,
       userId: checkinDTO.checkin.user_id,
+      timestamp: checkinDTO.checkin.timestamp,
+      isDuplicate: checkinDTO.checkin.is_duplicate,
     },
     firstName: checkinDTO.firstname,
     lastName: checkinDTO.lastname,
   };
+};
+
+export const GetCheckInParser = (checkinDTO: GetCheckInDTO): GetCheckIn[] => {
+  return checkinDTO.checkins.map((checkin) => ({
+    email: checkin.email,
+    event: checkin.event,
+    id: checkin.id,
+    userId: checkin.user_id,
+    timestamp: checkin.timestamp,
+    isDuplicate: checkin.is_duplicate,
+  }));
 };

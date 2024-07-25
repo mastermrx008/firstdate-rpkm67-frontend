@@ -47,7 +47,7 @@ const config: Config = {
         sopha: ['var(--sopha)', 'system-ui'],
       },
       dropShadow: {
-        text: '0px 0px 4px 0px #00000040;',
+        font: '0 1.2px 1.2px rgba(0,0,0,0.8)',
         text2: '0px 2px 2px 2px #00000040',
       },
       animation: {

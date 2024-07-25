@@ -9,70 +9,88 @@ function Menu() {
   return (
     <div className="w-full h-full text-left  font-medium flex flex-col pb-[5vh]">
       <Link
-        href="/rpkm/baan/home"
-        className="text-left"
+        href=""
+        className="text-left cursor-not-allowed text-gray-400"
       >
         ลงทะเบียนเลือกบ้าน
       </Link>
-      <Link
+      {/* <Link
         href=""
         className="text-left opacity-30"
       >
         ลงทะเบียน Freshy Night
-      </Link>
+      </Link> */}
       <div className="w-full h-px bg-black"></div>
+      {/* <Link
+        href={'/rpkm/activities/home'}
+        className="mt-2"
+      >
+        กิจกรรม
+      </Link>
+      <Link
+        href={'/rpkm/activities/map'}
+        className=""
+      >
+        เเผนที่
+      </Link> */}
       <div className="w-full -px-2">
         <Accordion
           selectionMode="multiple"
           className="text-start self-start px-0"
-          isDisabled={true}
+          isCompact={true}
         >
           <AccordionItem
             key="1"
             aria-label="Accordion 1"
-            title={<div className="opacity-30">กิจกรรม</div>}
+            title={<div className="">กิจกรรม</div>}
           >
-            <div className="flex flex-col w-full justify-items-start text-sm px-xs">
+            <div className="flex flex-col w-full justify-items-start text-sm px-2 -mt-2">
               <Link
-                href="/rpkm/activities/"
-                className="text-left"
+                href={'/rpkm/activities/home'}
+                className="py-0"
+              >
+                หน้าหลัก
+              </Link>
+              <div
+                // href="/rpkm/activities/"
+                className="text-left text-gray-400 cursor-not-allowed"
               >
                 กิจกรรมในงาน
-              </Link>
-              <Link
-                href="/rpkm/baan/home"
-                className="text-left"
+              </div>
+              <div
+                // href="/rpkm/activities/"
+                className="text-left text-gray-400 cursor-not-allowed"
               >
-                ข้อมูลแต่ละบ้าน
-              </Link>
+                กิจกรรม Walk Rally
+              </div>
               <Link
-                href="/rpkm/activities/"
+                href="/rpkm/activities/details/community"
                 className="text-left"
               >
                 กิจกรรมชุมชน
               </Link>
               <Link
-                href="/rpkm/activities/"
+                href="/rpkm/baan/baan-select"
                 className="text-left"
               >
-                กิจกรรม Walk Rally
+                ข้อมูลแต่ละบ้าน
               </Link>
             </div>
           </AccordionItem>
           <AccordionItem
             key="2"
             aria-label="Accordion 2"
-            title={<div className="opacity-30">แผนที่</div>}
+            title={<div>แผนที่</div>}
           >
-            <div className="flex flex-col w-full justify-items-start text-sm px-xs">
-              <Link
-                href="/"
-                className="text-left"
+            <div className="flex flex-col w-full justify-items-start text-sm px-2 -mt-2 ">
+              <div
+                //href="/rpkm/activities/map"
+                className="text-left text-gray-400 cursor-not-allowed"
               >
                 ข้อมูลที่จัดแต่ละกิจกรรม
-              </Link>
+              </div>
               <Link
-                href="/rpkm/activities/"
+                href="/rpkm/activities/map"
                 className="text-left"
               >
                 กิจกรรมชุมชน
@@ -85,16 +103,16 @@ function Menu() {
         <div className="w-full h-px bg-black"></div>
         <Link
           href="/home"
-          className="opacity-30 block"
+          className="block"
         >
           หน้าหลัก
         </Link>
-        <Link
+        {/* <Link
           href=""
-          className="opacity-30 blockโ"
+          className="opacity-30 block"
         >
           ช่องทางการติดต่อ
-        </Link>
+        </Link> */}
         <div className="flex gap-2 mt-2">
           <button onClick={logout}>
             <Icon

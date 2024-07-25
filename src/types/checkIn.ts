@@ -11,7 +11,18 @@ export type CheckIn = {
     event: string;
     id: string;
     userId: string;
+    timestamp: string;
+    isDuplicate: boolean;
   };
   firstName: string;
   lastName: string;
+};
+
+export type GetCheckIn = {
+  email: string;
+  event: string;
+  id: string;
+  userId: string;
+  timestamp: string;
+  isDuplicate: boolean;
 };

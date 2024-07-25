@@ -16,7 +16,7 @@ const Page = ({ params }: { params: { id: string } }) => {
   }
 
   return (
-    <section className="min-h-screen bg-[url('/rpkm/activities/small-background.png')] bg-cover bg-[#EAE3C3] text-black">
+    <section className="min-h-screen bg-[url('/rpkm/activities/smaller-background.png')] bg-cover bg-[#EAE3C3] text-black">
       <Navbar />
       <Link href="/rpkm/activities/home">
         <Image

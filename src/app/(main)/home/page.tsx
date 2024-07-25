@@ -8,26 +8,87 @@ import contactIcon from '@public/home/icon/contactlist.svg';
 import qrcodeIcon from '@public/home/icon/qrcode.svg';
 import editIcon from '@public/home/icon/edit.svg';
 import logoutIcon from '@public/home/icon/logout.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import QrCodeModal from '@/components/(main)/home/QrCodeModal';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import BottomButton from '@/components/(main)/home/BottomButton';
 import WaitModal from '@/components/(main)/home/WaitModal';
+import JoinModal from '@/components/(main)/home/JoinModal';
 import { isUserRegistered } from '@/utils/user';
 import Border from '@/components/firstdate/Border';
 import CustomButton from '@/components/(main)/home/CustomButton';
 import Link from 'next/link';
 import { getMajorNameById } from '@/utils/register';
+import { getCurrentTime } from '@/utils/time';
+import { createCheckIn, fetchCheckIn } from '@/utils/checkin';
+import { CheckIn, GetCheckIn } from '@/types/checkIn';
+import toast from 'react-hot-toast';
 
 export default function Home() {
   const router = useRouter();
-  const { user, logout } = useAuth();
+  const { user, resetContext, logout } = useAuth();
+  const [clientTime, setClientTime] = useState(new Date('1980-01-01'));
   const [qrModal, setQrModal] = useState<boolean>(false);
   const [waitModal, setWaitModal] = useState<boolean>(false);
   const [interestedEvent, setInterestedEvent] = useState<
     'first-date' | 'rup-peun'
   >('first-date');
+  const [joinModal, setJoinModal] = useState<boolean>(false);
+  //const [announce, setAnnounce] = useState<boolean>(false);
+  const [isCheckedIn, setIsCheckedIn] = useState<boolean>(false);
+  const [isJoined, setIsJoined] = useState<boolean>(false);
+
+  useEffect(() => {
+    getCurrentTime().then((res) => {
+      setClientTime(res.currentTime);
+    });
+
+    const checkedIn = async () => {
+      if (!user) {
+        return;
+      }
+
+      try {
+        const checkedIns: GetCheckIn[] | null = await fetchCheckIn();
+        if (checkedIns) {
+          const findEvent = !!checkedIns.find(
+            (checkIn) => checkIn.event === 'confirm-rpkm'
+          );
+          setIsCheckedIn(findEvent);
+        } else {
+          throw new Error('');
+        }
+      } catch (e) {
+        console.log('fetch check in', e);
+      }
+    };
+
+    checkedIn();
+  }, []);
+
+  const checkInConfirm = async () => {
+    if (!user) {
+      return;
+    }
+
+    try {
+      const checkInConfirm: CheckIn | null = await createCheckIn(
+        user.id,
+        user.email,
+        'confirm-rpkm'
+      );
+
+      if (checkInConfirm) {
+        setIsJoined(true);
+      } else {
+        throw new Error('Error check in');
+      }
+      resetContext();
+    } catch (e) {
+      toast.error('ยืนยันไม่สำเร็จ');
+    }
+  };
 
   return (
     <>
@@ -80,6 +141,7 @@ export default function Home() {
 
           <div className="w-full flex items-center flex-col h-[26.34vh] justify-between font-medium text-[2.2vh]">
             <CustomButton
+              currentDate={clientTime}
               varient="first-date"
               registered={!!user && isUserRegistered(user)}
               setWaitModal={setWaitModal}
@@ -88,14 +150,20 @@ export default function Home() {
               <div>CU First Date 2024</div>
             </CustomButton>
             <CustomButton
+              currentDate={clientTime}
               varient="rub-peun"
               registered={!!user && isUserRegistered(user)}
               setWaitModal={setWaitModal}
               setEvent={setInterestedEvent}
+              isCheckedIn={isCheckedIn}
+              setJoinModal={setJoinModal}
             >
               <div>Rub Peun Kao Mai 2024</div>
             </CustomButton>
-            <CustomButton varient="e-book">
+            <CustomButton
+              currentDate={clientTime}
+              varient="e-book"
+            >
               <Image
                 src={eBookIcon}
                 alt="E-book Icon"
@@ -104,6 +172,7 @@ export default function Home() {
               <div>E-Book</div>
             </CustomButton>
             <CustomButton
+              currentDate={clientTime}
               varient="contact-list"
               className="text-white"
             >
@@ -144,6 +213,12 @@ export default function Home() {
         modal={waitModal}
         setModal={setWaitModal}
         event={interestedEvent}
+      />
+      <JoinModal
+        modal={joinModal}
+        setModal={setJoinModal}
+        isJoined={isJoined}
+        checkInConfirm={checkInConfirm}
       />
     </>
   );
