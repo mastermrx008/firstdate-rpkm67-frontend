@@ -26,6 +26,13 @@ const modalStyles = {
       'cancel-border': 'bg-[#F5F5F5]',
     },
   },
+  'dark-blue': {
+    button: {
+      'accept-background': 'bg-[#183F86] text-[#FFF]',
+      'accept-border': 'bg-[#EFD08B]',
+      width: 'w-3/4',
+    },
+  },
 };
 
 export default modalStyles;

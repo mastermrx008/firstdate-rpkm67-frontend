@@ -3,15 +3,20 @@
 @tailwind utilities;
 
 @layer {
-    .bg-1 {
-        background-image: url('https://rpkm67.sgp1.cdn.digitaloceanspaces.com/assets/bg-1.svg');
-        background-repeat: repeat;
-        background-size: cover;
-    }
+  .bg-1 {
+    background-image: url('https://rpkm67.sgp1.cdn.digitaloceanspaces.com/assets/bg-1.svg');
+    background-repeat: repeat;
+    background-size: cover;
+  }
 
-    .bg-2 {
-        background-image: url('https://rpkm67.sgp1.cdn.digitaloceanspaces.com/assets/bg-2.svg');
-        background-repeat: repeat;
-        background-size: cover;
-    }
+  .bg-2 {
+    background-image: url('https://rpkm67.sgp1.cdn.digitaloceanspaces.com/assets/bg-2.svg');
+    background-repeat: repeat;
+    background-size: cover;
+  }
+
+  .font-outline {
+    -webkit-text-stroke-width: 1pt;
+    -webkit-text-stroke-color: #183f86;
+  }
 }
