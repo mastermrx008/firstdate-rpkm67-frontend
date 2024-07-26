@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 
 import pencilIcon from '@public/bar/icon/pencil.svg';
@@ -6,8 +8,37 @@ import placeholder from '@public/placeholder.svg';
 import qrCodeIcon from '@public/home/icon/qrcode.svg';
 import { useAuth } from '@/context/AuthContext';
 import Link from 'next/link';
+import { getCurrentTime } from '@/utils/time';
 function UserInfo() {
   const { user } = useAuth();
+  const [currentTime, setCurrentTime] = useState<Date | null>(null);
+
+  useEffect(() => {
+    const initialize = async () => {
+      const now = await getCurrentTime();
+      if (now) {
+        setCurrentTime(now.currentTime);
+      }
+    };
+
+    initialize();
+  }, []);
+
+  const isShowBaan = useMemo(() => {
+    if (!user?.baan || !currentTime) {
+      return false;
+    }
+
+    const annouceBaanDate = new Date(
+      process.env.NEXT_PUBLIC_BAAN_ANNOUCE_DATE as string
+    );
+    if (currentTime >= annouceBaanDate) {
+      return true;
+    }
+
+    return false;
+  }, [currentTime, user?.baan]);
+
   return (
     <div className="flex flex-col items-center text-center w-full h-[34.03vh] self-center relative gap-y-[0.47vh]">
       <div className="relative w-[15.25vh] h-[19.59vh] rounded-t-full shadow-[0px_0px_4px_.4px_#00000036] overflow-hidden">
@@ -24,7 +55,7 @@ function UserInfo() {
       </h1>
 
       <h1 className="text-xs font-semibold text-center text-black">
-        {user?.baan}
+        {isShowBaan && user?.baan}
       </h1>
       <Link
         href={'/rpkm/edit'}
