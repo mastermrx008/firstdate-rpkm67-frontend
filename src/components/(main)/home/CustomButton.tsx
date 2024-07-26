@@ -11,6 +11,9 @@ interface CustomButtonProps {
   registered?: boolean;
   currentDate: Date;
   isCheckedIn?: boolean;
+  baanResult?: boolean; 
+  setAnnounce?: (value: boolean) => void;
+  setBaanResultModal?: (value: boolean) => void;
   setWaitModal?: (value: boolean) => void;
   setEvent?: (value: 'first-date' | 'rup-peun') => void;
   setJoinModal?: (value: boolean) => void;
@@ -23,6 +26,9 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   registered,
   currentDate,
   isCheckedIn,
+  baanResult,
+  setAnnounce,
+  setBaanResultModal,
   setWaitModal,
   setEvent,
   setJoinModal,
@@ -53,7 +59,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     let baanAnnounceDate = currentDate;
     const rupPeun = process.env.NEXT_PUBLIC_RUP_PEUN_DATE;
     const closedSelection = process.env.NEXT_PUBLIC_CLOSED_BAAN_SELECTION_DATE;
-    const announce = process.env.NEXT_PUBLIC_BAAN_ANNOUNCEMENT_DATE;
+    const announce = process.env.NEXT_PUBLIC_BAAN_ANNOUCE_DATE;
     if (rupPeun) {
       rupPeunDate = new Date(rupPeun);
     }
@@ -67,7 +73,24 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       closedSelectionDate.toISOString(),
       baanAnnounceDate.toISOString()
     );
-    if (currentDate >= closedSelectionDate) {
+    if (currentDate >= baanAnnounceDate) {
+      if (setJoinModal && setAnnounce && setBaanResultModal) {
+          if (isCheckedIn) {
+            if (baanResult) {
+              router.push('/rpkm/activities/home');
+            } else {
+              setAnnounce(true);
+              setBaanResultModal(true);
+            }
+          } else {
+            setAnnounce(true);
+            setJoinModal(true);
+          }
+      }
+    } else if (
+        currentDate >= closedSelectionDate &&
+        currentDate < baanAnnounceDate
+    ) {
       if (!isConfirmed) {
         router.push('/rpkm/activities/home');
       } else if (setJoinModal) {
@@ -75,7 +98,6 @@ const CustomButton: React.FC<CustomButtonProps> = ({
           router.push('/rpkm/activities/home');
         } else {
           setJoinModal(true);
-          //setBaanAnnouncementModal
         }
       }
     } else if (
