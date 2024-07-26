@@ -70,24 +70,24 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
     const isRegisterPage = path.includes('register');
 
     if (isStaff) {
-      //   if (path == '/') {
-      //     return router.push('firstdate/staff/home');
-      //   }
+      if (path == '/') {
+        return router.push('firstdate/staff/home');
+      }
 
-      //   if (!isRegistered && !isRegisterPage) {
-      //     return router.push('/staff/register');
-      //   }
-      //   if (!isStaffPage) {
-      //     return router.push('/firstdate/staff/home');
-      //   }
-      // } else {
-      //   if (path == '/') {
-      //     return router.push('/home');
-      //   }
+      if (!isRegistered && !isRegisterPage) {
+        return router.push('/staff/register');
+      }
+      if (!isStaffPage) {
+        return router.push('/firstdate/staff/home');
+      }
+    } else {
+      if (path == '/') {
+        return router.push('/home');
+      }
 
-      // if (!isRegistered && !isRegisterPage) {
-      //   return router.push('/register');
-      // }
+      if (!isRegistered && !isRegisterPage) {
+        return router.push('/register');
+      }
 
       if (path.split('/').at(-1) == 'reward') {
         const condition = getReceiveGiftCondition(userObj);
