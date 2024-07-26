@@ -85,9 +85,9 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
       //     return router.push('/home');
       //   }
 
-      if (!isRegistered && !isRegisterPage) {
-        return router.push('/register');
-      }
+      // if (!isRegistered && !isRegisterPage) {
+      //   return router.push('/register');
+      // }
 
       if (path.split('/').at(-1) == 'reward') {
         const condition = getReceiveGiftCondition(userObj);

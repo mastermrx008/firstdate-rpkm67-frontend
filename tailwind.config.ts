@@ -64,6 +64,9 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('@butterfail/tailwindcss-inverted-radius')],
+  plugins: [
+    require('@butterfail/tailwindcss-inverted-radius'),
+    require('@designbycode/tailwindcss-text-stroke'),
+  ],
 };
 export default config;

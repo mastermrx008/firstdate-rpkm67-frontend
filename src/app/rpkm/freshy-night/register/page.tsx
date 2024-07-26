@@ -9,10 +9,10 @@ export default function Register() {
   return (
     <div className="min-h-screen w-full grid place-items-center">
       <Base
-        className="p-[10%] h-[calc(70vw*(801/371))] gap-6"
+        className="p-[10%] h-[calc(70vw*(801/371))] gap-4"
         withBus={true}
       >
-        <span className="font-sopha text-6xl text-rpkm-yellow">
+        <span className="drop-shadow-md font-sopha text-6xl text-rpkm-yellow text-stroke text-stroke-rpkm-blue -my-3">
           FRESHY NIGHT
         </span>
         <main className="bg-rpkm-silver h-full w-full rounded-xl"></main>

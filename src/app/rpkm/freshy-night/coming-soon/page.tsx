@@ -7,9 +7,13 @@ export default function ComingSoon() {
         className="p-[10%] h-[calc(70vw*(801/371))] gap-2"
         withBus={false}
       >
-        <section className="text-center font-sopha text-5xl">
-          <h1 className="text-rpkm-pink">COMING SOON</h1>
-          <h1 className="text-rpkm-yellow">FRESHY NIGHT</h1>
+        <section className="text-center font-sopha">
+          <h1 className="drop-shadow-md text-6xl text-rpkm-pink text-stroke text-stroke-rpkm-blue -my-4">
+            COMING SOON
+          </h1>
+          <h1 className="drop-shadow-md text-5xl text-rpkm-yellow text-stroke text-stroke-rpkm-blue">
+            FRESHY NIGHT
+          </h1>
         </section>
         <main className="bg-rpkm-silver h-full w-full rounded-xl"></main>
         <section className="text-center">

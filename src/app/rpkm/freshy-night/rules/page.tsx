@@ -2,6 +2,8 @@
 import modalStyles from '@/components/rpkm/Modal/ModalStyle';
 import Base from '@/components/rpkm/freshy-night/Base';
 import Card from '@/components/rpkm/freshy-night/rules/Card';
+import MIC from '@public/rpkm/freshy-night/mic.svg';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 interface RulesData {
   imgUrl?: string;
@@ -21,10 +23,24 @@ export default function Rules() {
   return (
     <div className="min-h-screen w-full grid place-items-center">
       <Base
-        className="p-[10%] h-[calc(60vw*(801/371))] gap-6"
+        className="p-[10%] h-[calc(50vw*(801/371))] gap-6"
         withBus={true}
       >
-        <h1 className="font-sarun text-6xl">กฏกติกาภายในงาน</h1>
+        <section className="drop-shadow-lg relative font-sopha text-stroke text-stroke-rpkm-blue -mt-12 -ml-8">
+          <span className="text-9xl text-rpkm-green">กฏ</span>
+          <span className="text-8xl text-rpkm-yellow">กติกา</span>
+          <Image
+            src={MIC}
+            alt="Microphone"
+            width={60}
+            height={60}
+            className="absolute top-[30%] left-[95%]"
+          />
+          <span className="absolute text-7xl text-rpkm-pink left-[30%] w-5/6 top-[60%]">
+            ภายในงาน
+          </span>
+        </section>
+
         <div className="grid grid-cols-3 grid-rows-2 place-items-center w-full h-full gap-4">
           {setOfRules.map((e: RulesData, i: number) => (
             <Card
