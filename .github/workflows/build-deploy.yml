@@ -70,6 +70,7 @@ jobs:
             FIRST_DATE_DATE=${{ vars.DEV_FIRST_DATE_DATE }}
             RUP_PEUN_DATE=${{ vars.DEV_RUP_PEUN_DATE }}
             BASE_DOMAIN_IMAGES=${{ vars.DEV_BASE_DOMAIN_IMAGES }}
+            BAAN_ANNOUCE_DATE=${{ vars.DEV_BAAN_ANNOUCE_DATE }}
 
       - name: Build and Push Docker Image (PROD)
         uses: docker/build-push-action@v3
@@ -85,6 +86,7 @@ jobs:
             FIRST_DATE_DATE=${{ vars.PROD_FIRST_DATE_DATE }}
             RUP_PEUN_DATE=${{ vars.PROD_RUP_PEUN_DATE }}
             BASE_DOMAIN_IMAGES=${{ vars.PROD_BASE_DOMAIN_IMAGES }}
+            BAAN_ANNOUCE_DATE=${{ vars.PROD_BAAN_ANNOUCE_DATE }}
   send_message_dev:
     needs: build
     uses: ./.github/workflows/send-message.yml
