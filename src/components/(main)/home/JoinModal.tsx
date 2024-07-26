@@ -74,7 +74,7 @@ const JoinModal: React.FC<JoinModalProps> = ({
       </BaseModal>
     );
   }
-  if (!baanResult){
+  if (!baanResult) {
     const { button } = modalStyles['green'];
     return (
       <BaseModal
@@ -93,10 +93,13 @@ const JoinModal: React.FC<JoinModalProps> = ({
           </p>
         </div>
         <div className="flex flex-row gap-x-5 pb-3 justify-center">
-          {announce ? 
-          (<button
+          {announce ? (
+            <button
               onClick={HandleOnClick}
-              className={cn('p-1 inv-rad inv-rad-2 w-full', button['cancel-border'])}
+              className={cn(
+                'p-1 inv-rad inv-rad-2 w-full',
+                button['cancel-border']
+              )}
             >
               <div
                 className={cn(
@@ -106,15 +109,16 @@ const JoinModal: React.FC<JoinModalProps> = ({
               >
                 ดูผลบ้านที่เลือก
               </div>
-          </button>)
-          : 
-          (<ModalButton
-            callBackFunction={HandleOnClick}
-            borderClassName={button['cancel-border']}
-            backgroundClassName={button['cancel-background']}
-          >
-            ต่อไป
-          </ModalButton>)}
+            </button>
+          ) : (
+            <ModalButton
+              callBackFunction={HandleOnClick}
+              borderClassName={button['cancel-border']}
+              backgroundClassName={button['cancel-background']}
+            >
+              ต่อไป
+            </ModalButton>
+          )}
         </div>
       </BaseModal>
     );

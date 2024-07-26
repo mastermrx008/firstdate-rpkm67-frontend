@@ -11,7 +11,7 @@ interface CustomButtonProps {
   registered?: boolean;
   currentDate: Date;
   isCheckedIn?: boolean;
-  baanResult?: boolean; 
+  baanResult?: boolean;
   setAnnounce?: (value: boolean) => void;
   setBaanResultModal?: (value: boolean) => void;
   setWaitModal?: (value: boolean) => void;
@@ -75,21 +75,21 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     );
     if (currentDate >= baanAnnounceDate) {
       if (setJoinModal && setAnnounce && setBaanResultModal) {
-          if (isCheckedIn) {
-            if (baanResult) {
-              router.push('/rpkm/activities/home');
-            } else {
-              setAnnounce(true);
-              setBaanResultModal(true);
-            }
+        if (isCheckedIn) {
+          if (baanResult) {
+            router.push('/rpkm/activities/home');
           } else {
             setAnnounce(true);
-            setJoinModal(true);
+            setBaanResultModal(true);
           }
+        } else {
+          setAnnounce(true);
+          setJoinModal(true);
+        }
       }
     } else if (
-        currentDate >= closedSelectionDate &&
-        currentDate < baanAnnounceDate
+      currentDate >= closedSelectionDate &&
+      currentDate < baanAnnounceDate
     ) {
       if (!isConfirmed) {
         router.push('/rpkm/activities/home');
