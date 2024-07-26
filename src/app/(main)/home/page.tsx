@@ -63,6 +63,7 @@ export default function Home() {
             (checkIn) => checkIn.event === 'baan-result'
           );
           setBaanResult(findBaanResult);
+        } else {
           throw new Error('');
         }
       } catch (e) {
