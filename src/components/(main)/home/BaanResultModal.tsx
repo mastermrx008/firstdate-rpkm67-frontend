@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import CrossIcon from '@public/cross-white.svg';
 import LineWhite from '@public/line-white.png';
+import LineIconWhite from '@public/LineIcon-white.svg';
 import Baan from '@public/baan.svg';
 import InstagramIcon from '@public/rpkm/instagram-icon.svg';
 import { baanInfos } from '@/components/rpkm/Baan/baanInfos';
@@ -126,7 +127,7 @@ const BaanResultModal: React.FC<BaanResultModalProps> = ({
                   ? 'ติดตามข่าวสารต่อได้ที่'
                   : 'For more information, please visit'}
               </p>
-              <div className="flex flex-row justify-center w-full gap-x-1 mt-2 mb-3">
+              <div className="flex flex-row justify-center w-full gap-x-1 mt-2">
                 <Image
                   src={InstagramIcon}
                   alt="instagram icon"
@@ -136,6 +137,19 @@ const BaanResultModal: React.FC<BaanResultModalProps> = ({
                   className="text-white text-base text-center"
                 >
                   {baan.ig}
+                </Link>
+              </div>
+              <div className="flex justify-center text-base text-center text-white items-center w-full gap-1 mt-2 mb-3">
+                <Image
+                  src={LineIconWhite}
+                  alt="lineIcon"
+                />
+                <div className="">line group:</div>
+                <Link
+                  href={baan.line}
+                  className="text-center truncate underline underline-offset-auto decoration-from-font w-[50%]"
+                >
+                  {baan.line}
                 </Link>
               </div>
             </div>
