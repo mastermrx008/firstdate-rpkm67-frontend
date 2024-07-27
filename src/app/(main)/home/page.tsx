@@ -24,6 +24,7 @@ import { getCurrentTime } from '@/utils/time';
 import { createCheckIn, fetchCheckIn } from '@/utils/checkin';
 import { CheckIn, GetCheckIn } from '@/types/checkIn';
 import toast from 'react-hot-toast';
+import BaanResultModal from '@/components/(main)/home/BaanResultModal';
 
 export default function Home() {
   const router = useRouter();
@@ -35,9 +36,11 @@ export default function Home() {
     'first-date' | 'rup-peun'
   >('first-date');
   const [joinModal, setJoinModal] = useState<boolean>(false);
-  //const [announce, setAnnounce] = useState<boolean>(false);
   const [isCheckedIn, setIsCheckedIn] = useState<boolean>(false);
   const [isJoined, setIsJoined] = useState<boolean>(false);
+  const [baanResultModal, setBaanResultModal] = useState<boolean>(false);
+  const [announce, setAnnounce] = useState<boolean>(false);
+  const [baanResult, setBaanResult] = useState<boolean>(false);
 
   useEffect(() => {
     getCurrentTime().then((res) => {
@@ -56,6 +59,10 @@ export default function Home() {
             (checkIn) => checkIn.event === 'confirm-rpkm'
           );
           setIsCheckedIn(findEvent);
+          const findBaanResult = !!checkedIns.find(
+            (checkIn) => checkIn.event === 'baan-result'
+          );
+          setBaanResult(findBaanResult);
         } else {
           throw new Error('');
         }
@@ -87,6 +94,30 @@ export default function Home() {
       resetContext();
     } catch (e) {
       toast.error('ยืนยันไม่สำเร็จ');
+    }
+  };
+
+  const CheckBaanResult = async () => {
+    if (!user) {
+      return;
+    }
+
+    try {
+      const checkBaanResult: CheckIn | null = await createCheckIn(
+        user.id,
+        user.email,
+        'baan-result'
+      );
+
+      if (checkBaanResult) {
+        setBaanResult(true);
+        setBaanResultModal(false);
+      } else {
+        throw new Error('Error baan result');
+      }
+      resetContext();
+    } catch (e) {
+      toast.error('แสดงผลเลือกบ้านไม่สำเร็จ');
     }
   };
 
@@ -155,6 +186,9 @@ export default function Home() {
               registered={!!user && isUserRegistered(user)}
               setWaitModal={setWaitModal}
               setEvent={setInterestedEvent}
+              baanResult={baanResult}
+              setAnnounce={setAnnounce}
+              setBaanResultModal={setBaanResultModal}
               isCheckedIn={isCheckedIn}
               setJoinModal={setJoinModal}
             >
@@ -218,7 +252,16 @@ export default function Home() {
         modal={joinModal}
         setModal={setJoinModal}
         isJoined={isJoined}
+        announce={announce}
+        baanResult={baanResult}
+        baanResultModal={baanResultModal}
+        setBaanResultModal={setBaanResultModal}
         checkInConfirm={checkInConfirm}
+      />
+      <BaanResultModal
+        modal={baanResultModal}
+        setModal={setBaanResultModal}
+        checkBaanResult={CheckBaanResult}
       />
     </>
   );
