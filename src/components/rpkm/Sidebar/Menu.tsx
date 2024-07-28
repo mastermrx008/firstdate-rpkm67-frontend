@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Accordion, AccordionItem } from '@nextui-org/accordion';
+import { Accordion, AccordionItem } from '@nextui-org/accordion';
 import Link from 'next/link';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { useAuth } from '@/context/AuthContext';
@@ -9,8 +9,8 @@ function Menu() {
   return (
     <div className="w-full h-full text-left  font-medium flex flex-col pb-[5vh]">
       <Link
-        href="/rpkm/baan/home"
-        className="text-left"
+        href=""
+        className="text-left cursor-not-allowed text-gray-400"
       >
         ลงทะเบียนเลือกบ้าน
       </Link>
@@ -21,7 +21,7 @@ function Menu() {
         ลงทะเบียน Freshy Night
       </Link> */}
       <div className="w-full h-px bg-black"></div>
-      <Link
+      {/* <Link
         href={'/rpkm/activities/home'}
         className="mt-2"
       >
@@ -32,41 +32,48 @@ function Menu() {
         className=""
       >
         เเผนที่
-      </Link>
+      </Link> */}
       <div className="w-full -px-2">
-        {/* <Accordion
+        <Accordion
           selectionMode="multiple"
           className="text-start self-start px-0"
+          isCompact={true}
         >
           <AccordionItem
             key="1"
             aria-label="Accordion 1"
-            title={<div className="py-0">กิจกรรม</div>}
+            title={<div className="">กิจกรรม</div>}
           >
-            <div className="flex flex-col w-full justify-items-start text-sm px-xs">
+            <div className="flex flex-col w-full justify-items-start text-sm px-2 -mt-2">
               <Link
-                href="/rpkm/activities/"
-                className="text-left"
+                href={'/rpkm/activities/home'}
+                className="py-0"
+              >
+                หน้าหลัก
+              </Link>
+              <div
+                // href="/rpkm/activities/"
+                className="text-left text-gray-400 cursor-not-allowed"
               >
                 กิจกรรมในงาน
-              </Link>
-              <Link
-                href="/rpkm/baan/home"
-                className="text-left"
+              </div>
+              <div
+                // href="/rpkm/activities/"
+                className="text-left text-gray-400 cursor-not-allowed"
               >
-                ข้อมูลแต่ละบ้าน
-              </Link>
+                กิจกรรม Walk Rally
+              </div>
               <Link
-                href="/rpkm/activities/"
+                href="/rpkm/activities/details/community"
                 className="text-left"
               >
                 กิจกรรมชุมชน
               </Link>
               <Link
-                href="/rpkm/activities/"
+                href="/rpkm/baan/baan-select"
                 className="text-left"
               >
-                กิจกรรม Walk Rally
+                ข้อมูลแต่ละบ้าน
               </Link>
             </div>
           </AccordionItem>
@@ -75,22 +82,22 @@ function Menu() {
             aria-label="Accordion 2"
             title={<div>แผนที่</div>}
           >
-            <div className="flex flex-col w-full justify-items-start text-sm px-xs">
-              <Link
-                href="/"
-                className="text-left"
+            <div className="flex flex-col w-full justify-items-start text-sm px-2 -mt-2 ">
+              <div
+                //href="/rpkm/activities/map"
+                className="text-left text-gray-400 cursor-not-allowed"
               >
                 ข้อมูลที่จัดแต่ละกิจกรรม
-              </Link>
+              </div>
               <Link
-                href="/rpkm/activities/"
+                href="/rpkm/activities/map"
                 className="text-left"
               >
                 กิจกรรมชุมชน
               </Link>
             </div>
           </AccordionItem>
-        </Accordion> */}
+        </Accordion>
       </div>
       <div className="mt-auto">
         <div className="w-full h-px bg-black"></div>

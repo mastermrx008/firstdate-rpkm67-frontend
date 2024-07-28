@@ -5,8 +5,9 @@ import Card from '@/components/rpkm/freshy-night/rules/Card';
 import MIC from '@public/rpkm/freshy-night/mic.svg';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
-import { useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
+import { createCheckIn } from '@/utils/checkin';
+import toast from 'react-hot-toast';
 interface RulesData {
   imgUrl?: string;
   description?: string;
@@ -22,6 +23,23 @@ const setOfRules: RulesData[] = [
 export default function Rules() {
   const { button } = modalStyles['red'];
   const { user } = useAuth();
+
+  const handleClick = async () => {
+    if (!user) {
+      toast.error('เกิดข้อผิดพลาดในการดึงข้อมูล');
+      return;
+    }
+    const resp = await createCheckIn(
+      user.id,
+      user.email,
+      'freshy-night-confirm'
+    );
+    if (resp) {
+      toast.success('สำเร็จ');
+    } else {
+      toast.error('เกิดข้อผิดพลาด');
+    }
+  };
 
   return (
     <div className="min-h-screen w-full grid place-items-center">
@@ -56,7 +74,7 @@ export default function Rules() {
         </div>
 
         <button
-          onClick={() => console.log('Fuck you')}
+          onClick={handleClick}
           className="p-1 inv-rad inv-rad-2 bg-rpkm-yellow"
         >
           <div

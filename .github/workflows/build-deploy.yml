@@ -67,9 +67,14 @@ jobs:
           build-args: |
             APP_ENV=development
             API_BASE_URL=${{ vars.DEV_API_BASE_URL }}
+            BAAN_ANNOUCE_DATE=${{ vars.DEV_BAAN_ANNOUCE_DATE }}
+            CLOSED_BAAN_SELECTION_DATE=${{ vars.DEV_CLOSED_BAAN_SELECTION_DATE }}
             FIRST_DATE_DATE=${{ vars.DEV_FIRST_DATE_DATE }}
+            FRESHY_NIGHT_DATE=${{ vars.DEV_FRESHY_NIGHT_DATE }}
+            FRESHY_NIGHT_EVENT=${{ vars.DEV_FRESHY_NIGHT_EVENT }}
+            RPKM_DAY_1=${{ vars.DEV_RPKM_DAY_1 }}
+            RPKM_DAY_2=${{ vars.DEV_RPKM_DAY_2 }}
             RUP_PEUN_DATE=${{ vars.DEV_RUP_PEUN_DATE }}
-            BASE_DOMAIN_IMAGES=${{ vars.DEV_BASE_DOMAIN_IMAGES }}
 
       - name: Build and Push Docker Image (PROD)
         uses: docker/build-push-action@v3
@@ -82,9 +87,27 @@ jobs:
           build-args: |
             APP_ENV=production
             API_BASE_URL=${{ vars.PROD_API_BASE_URL }}
+            BAAN_ANNOUCE_DATE=${{ vars.PROD_BAAN_ANNOUCE_DATE }}
+            CLOSED_BAAN_SELECTION_DATE=${{ vars.PROD_CLOSED_BAAN_SELECTION_DATE }}
             FIRST_DATE_DATE=${{ vars.PROD_FIRST_DATE_DATE }}
+            FRESHY_NIGHT_DATE=${{ vars.PROD_FRESHY_NIGHT_DATE }}
+            FRESHY_NIGHT_EVENT=${{ vars.PROD_FRESHY_NIGHT_EVENT }}
+            RPKM_DAY_1=${{ vars.PROD_RPKM_DAY_1 }}
+            RPKM_DAY_2=${{ vars.PROD_RPKM_DAY_2 }}
             RUP_PEUN_DATE=${{ vars.PROD_RUP_PEUN_DATE }}
-            BASE_DOMAIN_IMAGES=${{ vars.PROD_BASE_DOMAIN_IMAGES }}
+  send_message_dev:
+    needs: build
+    uses: ./.github/workflows/send-message.yml
+    secrets: inherit
+    with:
+      IMAGE_TAG: ${{ needs.build.outputs.IMAGE_TAG_DEV }}
+  send_message_prod:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    uses: ./.github/workflows/send-message.yml
+    secrets: inherit
+    with:
+      IMAGE_TAG: ${{ needs.build.outputs.IMAGE_TAG_PROD }}
 
   cd:
     name: Continuous Deployment

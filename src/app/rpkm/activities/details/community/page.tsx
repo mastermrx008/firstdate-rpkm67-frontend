@@ -71,7 +71,7 @@ const Page = () => {
           </p>
           <h3 className="font-semibold pt-2"> การแลกรับของที่ระลึก</h3>
           <p>
-            &emsp;การแลกกแต้มเพื่อรับของที่ระลึก เมื่อเเต้มครบ 10 เเต้ม
+            &emsp;การแลกแต้มเพื่อรับของที่ระลึก เมื่อเเต้มครบ 10 เเต้ม
             สามารถกดเเลกเป็นคูปองไว้ได้เลย เมื่อจะเเลกคูปอง
             ก็ให้ไปที่บูธกิจกรรมชุมชนในงานรับเพื่อนก้าวใหม่ (3-4 สิงหาคม)
             เเละศาลเจ้าเเม่ทับทิมสะพานเหลือง
@@ -88,6 +88,7 @@ const Page = () => {
           href="https://lin.ee/i9Ezhg7"
           borderClassName="bg-rpkm-cream"
           backgroundClassName="bg-rpkm-green text-center text-lg text-rpkm-gray w-[60vw]"
+          target="_self"
         >
           Line OA ของกิจกรรม
         </ActivityButton>
