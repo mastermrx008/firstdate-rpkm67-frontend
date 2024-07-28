@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 import modalStyles from './ModalStyle';
 
 interface ModalProps {
-  variant: 'red' | 'blue' | 'black';
+  variant: 'red' | 'blue' | 'black' | 'green';
   open: boolean;
   children: React.ReactNode;
 }
