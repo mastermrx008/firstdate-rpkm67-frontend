@@ -67,7 +67,7 @@ export default function Home() {
           throw new Error('');
         }
       } catch (e) {
-        console.log('fetch check in', e);
+        console.log('error fetch checkin', e);
       }
     };
 
