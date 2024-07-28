@@ -37,7 +37,9 @@ const config: Config = {
           green: '#67AB88',
           blue: '#183F86',
           gray: '#313131',
+          yellow: '#EFD08B',
           pink: '#EB9096',
+          silver: '#D9D9D9',
         },
       },
       fontFamily: {
@@ -63,6 +65,9 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('@butterfail/tailwindcss-inverted-radius')],
+  plugins: [
+    require('@butterfail/tailwindcss-inverted-radius'),
+    require('@designbycode/tailwindcss-text-stroke'),
+  ],
 };
 export default config;
