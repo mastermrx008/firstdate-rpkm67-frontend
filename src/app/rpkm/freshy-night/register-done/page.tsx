@@ -13,8 +13,8 @@ export default function RegisterDone() {
   const { user } = useAuth();
 
   return (
-    <>
-      <div className="bg-[#FFFEF7E5] w-11/12 mx-auto py-[5%] flex flex-col items-center gap-y-5 [clip-path:polygon(1rem_0,calc(100%-1rem)_0,100%_1rem,100%_calc(100%-1rem),calc(100%-1rem)_100%,1rem_100%,0_calc(100%-1rem),0_1rem)]">
+    <div className="py-[8%]">
+      <div className="bg-[#FFFEF7E5] w-11/12 mx-auto py-[5%] flex flex-col items-center gap-y-5 [box-shadow:_0px_0px_15px_0px_rgba(0_0_0_0.50)] [clip-path:polygon(1rem_0,calc(100%-1rem)_0,100%_1rem,100%_calc(100%-1rem),calc(100%-1rem)_100%,1rem_100%,0_calc(100%-1rem),0_1rem)]">
         <div className="text-center font-sopha font-outline">
           <p className="text-project-pastel-pink text-8xl/[5rem] [text-shadow:_2px_2px_2px_rgb(0_0_0_/_30%)]">
             ลงทะเบียน
@@ -37,6 +37,6 @@ export default function RegisterDone() {
         open={qrModal}
         userId={user ? user.id : ''}
       />
-    </>
+    </div>
   );
 }

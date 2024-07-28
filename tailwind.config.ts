@@ -48,7 +48,7 @@ const config: Config = {
       },
       dropShadow: {
         font: '0 1.2px 1.2px rgba(0,0,0,0.8)',
-        text2: '0px 2px 2px 2px #00000040',
+        box: '0px 0px 15px 0px rgba(0, 0, 0, 0.50)',
       },
       animation: {
         shake: 'shaking 60ms infinite',
