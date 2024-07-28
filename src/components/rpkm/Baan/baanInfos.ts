@@ -36,6 +36,7 @@ export interface BaanInfoProps {
   };
   ig: string;
   fb?: string;
+  line: string;
   message: {
     th: string;
     en: string;
@@ -56,6 +57,7 @@ export const baanInfos: BaanInfoProps[] = [
       en: 'Dear CU108 passengers, Rub Puen Kaow Mai Airline is currently facing an uncertain state of mind. We will make a landing at ‘Lai Jai Island’ for a short vacation where CU108 can enjoy and have fun with a warm welcome by the Lai Jai Islanders. Get ready to create wonderful memories while holding hands into CU together.',
     },
     ig: 'baanlaijai',
+    line: 'https://line.me/ti/g/1FsFzqquN2',
     message: {
       th: 'ถ้ารักเดียวยังอกหัก เชิญมาพักที่เกาะหลายใจ',
       en: `Roses are red, violets are blue
@@ -76,6 +78,7 @@ At the Laijai island, we’re waiting for you . 💖`,
     },
     ig: 'baanagapechula',
     fb: 'Baan AGAPE Chula',
+    line: 'https://line.me/ti/g/IGWxssCRMY',
     message: {
       th: 'ท่านผู้โดยสารทุกท่าน ขอต้อนรับสู่สายการบินอากาเป้ เที่ยวบินที่ CU108 ซึ่งจะนำทุกท่านมุ่งขึ้นสู่อวกาศ ด้วยการบริการกว่า 25 ปีและด้วยความรักอันไม่มีเงื่อนไขของสายการบินอากาเป้ ขอให้ทุกท่านมั่นใจ เที่ยวบินนี้จะดูแลทุกท่านด้วยความรักแบบไม่มีเงื่อนไข บนท้องฟ้าแห่งความรักนี้ด้วยกัน ✈️🌌🥰',
       en: 'Attention passengers: welcome to agape Airline, Flight CU108, ready to take you, through the skies and into the space, with our unconditional love. For 25 years, agape has served countless passengers with undying love. Join us on our Flight. Join us on our loving skies. ✈️🌌🥰',
@@ -95,6 +98,7 @@ At the Laijai island, we’re waiting for you . 💖`,
     },
     ig: 'baan_wanted',
     fb: 'BaanWanted',
+    line: 'https://line.me/ti/g/aD4vI6tEgW',
     message: {
       th: 'ถึงเพื่อนๆ ที่ยังไม่รู้ว่าจะเลือกบ้านไหนดี อยากบอกว่าไม่ว่าคุณจะเป็นใคร มาจากที่ไหนบ้านว้อนท์เล็กๆบ้านนี้ก็ยินดีต้อนรับเสมอ พวกเราพร้อมที่จะมอบความสนุกให้กับทุกคน ถึงบ้านเราจะเล็กแต่ความสนุกไม่เล็กนะ แล้วมาเจอกันนะทุกคน😊',
       en: 'Dear lovely friends. If you still unsure about which house to join. We wanna say that our small house always warmly welcome all of you. We are ready to bring fun and happiness to you. Our house may be small but the fun is not. See you soon !!',
@@ -113,6 +117,7 @@ At the Laijai island, we’re waiting for you . 💖`,
       en: 'BaanWork is a small-sized (S) group full of warm-hearted crews. We are extremely excited to welcome all of our new friends to our family Especially with our theme this year from “Inside Out 2”. Everyone at BaanWork can’t wait to take an enjoying journey that awaits us in the near future.',
     },
     ig: 'baanwork.cu',
+    line: '',
     message: {
       th: 'ไม่ว่าเพื่อนๆอยากจะเข้ามาด้วยความรู้สึกแบบไหน จะอยากสนุก อยากมีเพื่อนรู้ใจ หรือต้องการเพื่อนที่พักพิง อยากจะเป็นตัวของตัวเอง...  พวกเราพร้อมที่จะโอบรับและพาทุกคนเดินทางไปด้วยกัน ระหว่างนี้ มารู้จักเรากันก่อนได้ที่ อินสตาแกรม @baanwork.cu',
       en: 'Whether you come in with any emotions, want to have fun with friends, need a shoulder to cry on, or want to express yourself out loud... We’re here!, ready to embrace all of those and step forward to the next journey together, side by side. Meanwhile, meet us on Instagram @baanwork.cu.',
@@ -139,6 +144,7 @@ At the Laijai island, we’re waiting for you . 💖`,
 Embark on the hunt for the treasures of the Baandung, Baan Site S, which gathers people seeking new friends without the need to meet many people. Enjoy fun activities and easily make new close friends. Start a new era with us,  heading towards the sea Dung piece.🏴‍☠️💰`,
     },
     ig: 'baandung.official',
+    line: '',
     message: {
       th: 'แล้วมาเป็นโจรสลัดกัน ออกล่าหาสมบัติไปกับบ้านดัง มาลงสมัครกันเยอะๆนะคะ แล้วมาทำความรู้จักเพื่อนๆพี่ๆ และรับสมบัติอันล้ำค่าของบ้านเราไป💖✨💰 #ติดจุฬามาบ้านดัง',
       en: "Let's become pirates together, sailing the seas in search of treasures with BaanDung. Let's all sign up together in great numbers. Let's get to know each other, our friends, and older siblings, bring  precious treasures from BaanDung.💖🫡💰",
@@ -157,6 +163,7 @@ Embark on the hunt for the treasures of the Baandung, Baan Site S, which gathers
       en: 'The Koh House in the stories of The Kohst Radio',
     },
     ig: 'baankohchula',
+    line: 'https://line.me/ti/g2/rvUJRXIcN3kuleqxcf8IC3Fvy4V_A_h1y2LEAA?utm_source=invitation&utm_medium=link_copy&utm_campaign=default',
     message: {
       th: 'ยินดีต้อนรับ CU108 ทุกคน เข้าสู่บ้านโคะ ในธีม The Kohst Radio พร้อมพบกับประสบการณ์ขนหัวลุกเพราะเรื่องราวสุดฮาจากชีวิตชาวโคะได้ที่นี่ ❤️‍🔥👻 รับรองว่าไม่ผิดหวัง เรามีความรัก ความอบอุ่น ความตลก และสดชื่นนนนนส์ ต้อนรับทุกคนเสมอ แล้วเจอกัน',
       en: "Welcome CU108 everyone, to the Koh House in the theme of The Kohst Radio. Get ready for a hair-raising experience with hilarious stories from the Koh community here ❤️‍🔥👻. We promise you won't be disappointed. We offer love, warmth, laughter, and freshness to welcome everyone. See you soon!",
@@ -176,6 +183,7 @@ Embark on the hunt for the treasures of the Baandung, Baan Site S, which gathers
     },
     ig: 'baankhunnoo_official',
     fb: 'Baankhunnoo',
+    line: 'https://line.me/ti/g2/OjS4x-oJ-Mh92EtQPaTU8vq3T1tEyEWaaexPjQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default',
     message: {
       th: 'ถ้าคุณหนูท่านไหนสนใจบ้านที่ไม่เน้นการเต้นสัน แต่เน้นการเล่นบอร์ดเกม ก็ขอเชิญชวนให้คุณหนูทุกท่าน #ติดจุฬามาบ้านคุณหนู กันน้า',
       en: "Join the house that's snug and right, roll the dice and meet us at #BaanKhunnoo.",
@@ -194,6 +202,7 @@ Embark on the hunt for the treasures of the Baandung, Baan Site S, which gathers
       en: 'Baanbhuem💥 Judging from the name, there’s no way we’re not fun. 🤭 Here is a creative safe space where you can be yourself to the fullest. We hope to give you the best experience and a good first impression through our fun activities and games. With our small-sized house, we guarantee you will get to make new friends. Let’s create another great memory together! See you at ‘rubpeunkaomai’.🏃‍♂️🖤',
     },
     ig: 'baanbhuem.cu',
+    line: '',
     message: {
       th: '🙋🏻🙋🏻‍♀️🙋🏻‍♂️ไหนใครจะมา ‘บ้านเบิ้ม’ 🙋🏻🙋🏻‍♀️🙋🏻‍♂️   พวกเรายินดีต้อนรับทุกท่านนน😼 รับเพื่อนก้าวใหม่นี้ใครยังเบื่อๆ ไม่รู้จะไปไหน พวกเราบ้านเบิ้มอาสาเคียงข้าง ที่ที่จะเปลี่ยนจากคนไม่รู้จักให้กลายมาเป็นเพื่อน จากเพื่อนให้เป็นเพื่อนสนิท และสร้างมิตรภาพที่น่าจดจำในรั้วจุฬาให้ CU108 ทุกคน เพราะพวกเราบ้านเบิ้มคือครอบครัว 3-4 สิงหาคมนี้ มามีโมเมนต์ดีๆไปด้วยกัน!❤️🖤',
       en: '🙋🏻🙋🏻‍♀️🙋🏻‍♂️ Who’s coming to ‘Baan Bheum’? 🙋🏻🙋🏻‍♀️🙋🏻‍♂️  We warmly welcome everyone! 😼 To all the new friends stepping forward, if you’re feeling bored and unsure of where to go, we at Baan Bheum are here for you. The place where strangers become friends, friends become best friends, and unforgettable friendships are forged within CU108. On August 3-4, let’s enjoy the moments together! ❤️🖤  Where friends become family, and Baan Bheum becomes a home.',
@@ -217,6 +226,7 @@ Majestic dragon breathtaking Recreation
     },
     ig: 'baanachuan_official',
     fb: 'บ้านเอช้วน',
+    line: 'https://line.me/ti/g2/WaPJOC6OZU8hKwk0V8q2JWlzGmqAEkJ5YWbzxQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default',
     message: {
       th: 'บ้านนี้อาจจะไม่ได้เป็นบ้านที่ใหญ่มากเเต่เป็นบ้านที่เเอบแฝงไปด้วยความยิ่งใหญ่อลังการเเละความอบอุ่น บ้านนี่รอต้อนรับน้องทุกคนเเล้วเจอกันนะ',
       en: "Even thought this home isn't particularly large, but this home is engulfed in warmth and majesty. This house is eagerly awaiting your arrival. Wish to see you all soon.",
@@ -235,6 +245,7 @@ Majestic dragon breathtaking Recreation
       en: `In English, "The" is used to hype up something epic, like "The Best," or "The One and Only." Our place, Baan THE, is the spot for new, energetic faces, filled with nonstop fun and a family vibe. We've got THE COOLEST CREW ready to welcome you.  If you choose Baan THE, you're in for THE BEST experience at Chula, totally living up to that "THE" hype!`,
     },
     ig: 'baanthechula.official',
+    line: 'https://line.me/ti/g2/uZiySHLlrQEW3NxYbjKkzY17XQoWsF38z1uNDg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default',
     message: {
       th: 'ถ้าอยากสุด ให้มาหยุดที่บ้านเดอะ',
       en: 'Get ready to be lit with Baan THE',
@@ -279,6 +290,7 @@ More importantly, Baan Boe welcomes everyone.😽 Even if you're not a dog perso
 You can have a peek at our Boe’s planet at IG: baanboe 🪐`,
     },
     ig: 'baanboe',
+    line: 'https://line.me/ti/g/85QFREbEQv',
     message: {
       th: 'โฮ่ง โฮ่ง โฮ่ง ! 🐶💥 ชาวโบ้ขอยินดีต้อนรับชาว CU108 ทุกคนอีกครั้ง♡‧₊˚  📢พร้อมหรือยังที่จะสนุกไปพร้อมกับบ้านโบ้⁉️ บ้านโบ้ของเรายินดีต้อนรับทุกคน🫶🏻 ไม่ใช่ Dog person ก็ไม่มีปัญหา🐈 มาสนุกกับบ้านโบ้ได้ เอนจอยแน่นอน !🤩 มีกิจกรรมสนุก ๆ รออยู่เพียบบบ🤸🏻‍♂️✨  มาร่วมสร้างความทรงจำที่ดีด้วยกันในงานรับเพื่อนก้าวใหม่· ˚ ༘ 🎫 เพื่อน ๆ ชาวโบ้แสนน่ารักกำลังรอทุกคนอยู่น้าาา🖐🏻💞',
       en: 'Woof woof woof ! 🐶💥 Baan Boe is greatly pleased to welcome every CU108 here.♡‧₊˚  📢Are you ready to have fun with Baan Boe⁉️ Our Baan Boe welcomes everyone.🫶🏻 Not a dog person? Not a problem!🐈 You can still have fun with us Boes. You will definitely enjoy your time here!🤩 We have tooons of fun activities waiting for y’all.🤸🏻‍♂️✨  Let’s make some good memories together at Rubpuenkaomai 2024· ˚ ༘ 🎫 We are excitedly waiting for y’all🖐🏻💞',
@@ -297,6 +309,7 @@ You can have a peek at our Boe’s planet at IG: baanboe 🪐`,
       en: 'Baan Jijah, a new house with high passion and we dare to be different. We are confident in giving all CU108 the best experience and you will not be disappointed for sure!',
     },
     ig: 'baanjijah.chula',
+    line: 'https://line.me/ti/g2/R2AoIADsEC0_1wJQXz2yIuakQmyDJz5uUqogoQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default',
     message: {
       th: 'น้อง ๆ เลือกมาบ้านจิ๊จ๊ะจะได้คอนเนคกับพวกพี่ๆแบบสนิทสุด ๆ พี่ ๆ ทุกคนอยากที่จะเจอน้อง ๆ มาก ๆ เราจะดูแลและต้อนรับน้อง ๆ สู่รั้วจามจุรีของเรา',
       en: 'At Baan Jijah, we will take care of you and make you feel welcome in the CU community. We seniors are looking forward to forming a strong bond with all of you.',
@@ -315,6 +328,7 @@ You can have a peek at our Boe’s planet at IG: baanboe 🪐`,
       en: 'Baan A-AUM is a medium-sized baan, neither too small nor too big, making one of our standout features the warmth that brings the members of Baan A-AUM closer. Everyone can chat and play comfortably together. The atmosphere in Baan A-AUM is relaxed and chill. We do not promote divisions or factions. Everyone in Baan A-AUM is considered friends and family. Graduates are always back to help and participate in Baan’s activities. Moreover, even after Rubpuenkaomai has finished, our members and staff often continue to schedule meals, play board games, engage in sports activities together, and also arrange yearly Baan’s trip and seminar to further enhance the closeness among everyone in our baan.',
     },
     ig: 'baanaaum.official',
+    line: '',
     message: {
       th: 'ถ้าน้อง ๆ กำลังมองบ้านรับเพื่อนที่มีขนาดกลาง ๆ กิจกรรมสนุก สันสนุก ได้ทำความรู้จักกับเพื่อนและรุ่นพี่อย่างทั่วถึงจากต่างคณะทั่วมหาวิทยาลัย ต้องบ้านอะอึ๋มเท่านั้น พี่ ๆ ทุกคนรอเจอน้อง ๆ อยู่น้า',
       en: 'If you are looking for a Baan that is a medium-sized, where you can have fun and get to know friends and seniors from different faculties across campus, then Baan A-AUM is the place for you! We are super excited and we cannot wait to meet you, CU108!',
@@ -340,6 +354,7 @@ You can have a peek at our Boe’s planet at IG: baanboe 🪐`,
 🎟️Sod(?): The word 'Baansod' means you won't leave single. Is it true? Let cu108 come and find out for themselves at Baansod! 💖💖")`,
     },
     ig: 'baansod.official',
+    line: 'https://line.me/ti/g/fgGIE4mWVk',
     message: {
       th: `Welcome cu108 to baansod playground 🎡🎢 บ้านสดเป็นบ้านที่เต็มไปด้วยความสนุก เฮฮา มีเพื่อนๆพี่ๆจากหลากหลายคณะมาทำกิจกรรมสุดแสนสนุกร่วมกัน เหมือนกับธีมของบ้านในปีนี้ นั่นก็คือ"สดสนุก" ทุกๆคนที่มาบ้านสดจะได้รับมิตรภาพและความอบอุ่นที่จะจำได้ไม่ลืมแน่นอน`,
       en: `Welcome cu108 to baansod playground 🎡🎢 Baan Sod is a house full of fun, hilarious. There are friends from various faculties to do fun activities together. Like the theme of this year's house That is "Baan Sod playground". Everyone who comes to the house will receive friendship and warmth that will definitely not forget.`,
@@ -358,6 +373,7 @@ You can have a peek at our Boe’s planet at IG: baanboe 🪐`,
       en: 'CHILL CHILL STYLE BAAN HAAW',
     },
     ig: 'baan.haaw',
+    line: '',
     message: {
       th: 'แอบบอกไว้ก่อนเลยว่าบ้านนี้ไม่เหมือนบ้านไหนแน่นอน เพราะบ้านเฮาเน้นความเป็นกันเอง เพราะคติประจำบ้านของเฮาคืออออออ “ชิวๆสไตล์เฮา”',
       en: 'Baan Haaw: Where Chill Vibes Rule!',
@@ -377,6 +393,7 @@ You can have a peek at our Boe’s planet at IG: baanboe 🪐`,
     },
     ig: 'baankids.official',
     fb: 'BaanKids',
+    line: 'https://line.me/ti/g/uBGJkHFZ-L',
     message: {
       th: 'ใครกำลังตามหาบ้านไซส์กลาง ๆ ที่จะได้รู้จัก เพื่อน ๆ พี่ ๆ น้อง ๆ สุดเหนียวแน่นหนึบ! บ้านคิดส์นี่แหละตอบโจทย์!🏡 เราพร้อมจะพาทุกคนย้อนกลับไปในวัยเยาว์ ค้นหาสิ่งใหม่ ๆ และร่วมผจญภัยไปด้วยกัน ในคอนเซ็ปท์ ‘Kids Story’🚂🧸 บ้านคิดส์รับประกันความสุข ความสนุก💥ความมันส์ และความอบอุ่นหัวใจ 💝  🌈 ให้บ้านคิดส์ได้เป็นหนึ่งในความทรงจำที่น่าประทับใจในรั้วมหาลัยของทุกคนน้า🌟',
       en: " If you're looking for a cozy mid-sized home and want to connect with awesome friends, look no further than BaanKids! 🏡 We're all about bringing back those childhood memories, discovering new things, and having adventures together. With our 'Kids Story' concept, 🚂🧸 BaanKids guarantees happiness, fun💃🏻, excitement, and heartwarming moments! 💝 🌈 Let BaanKids be a part of your unforgettable college memories! 🌟",
@@ -395,6 +412,7 @@ You can have a peek at our Boe’s planet at IG: baanboe 🪐`,
       en: `This year,  Jodeh 32nd comes with the theme "Fairy" in a medium house size . If you join our house, you will definitely get good feelings and experiences back because our house has a lot of seniors from various faculties, including engineering, veterinary science, accounting, education, and others`,
     },
     ig: 'jodeh_official',
+    line: '',
     message: {
       th: 'บ้านโจ๊ะเด๊ะ ฮือซา เป็นบ้านที่อยู่มานานมากกก ก่อตั้งมานานกว่า 30 ปี แน่นอนว่าเรามีรุ่นพี่หลายต่อหลายรุ่นที่คอยแวะเวียนมาอยู่ตลอด บ้านเราอยู่แล้วอบอุ่นแน่นอนไม่ต้องกลัว เพราะมีพี่ๆคอยให้ความช่วยเหลือน้องๆได้ตลอด รับรองว่าน้องๆจะได้รับความสนุกสนาน และความทรงจำดีๆ จากบ้านโจ๊ะเด๊ะ ฮือซาแน่นอนนน',
       en: `This year,  Jodeh 32nd comes with the theme "Fairy" in a medium house size . If you join our house, you will definitely get good feelings and experiences back because our house has a lot of seniors from various faculties, including engineering, veterinary science, accounting, education, and others    Baan Jodeh Huesa was established around 30 years ago. Of course, we have many seniors who often visit our staff and freshy . You definitely should not be lonely because there are seniors who are always available to help you. We guarantee that you will have fun and good memories from Baan Jodeh Huesa`,
@@ -413,6 +431,7 @@ You can have a peek at our Boe’s planet at IG: baanboe 🪐`,
       en: `Which house is considered outstanding? None can compare to BAAN KOOM Chula! Known for its exceptional entertainment activities, BAAN KOOM stands out as the most unique house at Chula. It's where unforgettable memories are made and lifelong friendships are created.`,
     },
     ig: 'baankoom.chula',
+    line: 'https://line.me/ti/g2/ZrBtpLDQ_JuQ1zteSpd-k2OXgBFbNFufGihSIg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default',
     message: {
       th: 'บ้านคุ้มรับประกันความม่วน ความเริ่ด ความปัง มาอยู่บ้านคุ้มสักครั้งแล้วจะไม่ผิดหวัง ✨',
       en: `At BAAN KOOM, we guarantee fun, excitement, and a surge in popularity. Come to BAAN KOOM once, and you won't be disappointed. Immerse yourself in the vibrant activities, meet amazing people, and create stories worth sharing.
@@ -439,6 +458,7 @@ and warmly spend time with us in Soei-pace
 invaders.`,
     },
     ig: 'baansoeiteelheemouy',
+    line: 'https://line.me/ti/g2/cSNesSJFlNNLEQgfj7m-u60-bpn7vsZHnk6Hyw?utm_source=invitation&utm_medium=QR_code&utm_campaign=default',
     message: {
       th: '‘โซ้ยตี๋หลีหมวย’ บ้านไซส์ใหญ่ที่อบอุ่นสุดๆ พี่ๆStaff จำนวนมากรอต้อนรับเพื่อนๆ CU108 ทุกคน แน่นอนว่าเพื่อนๆจะได้เจอเพื่อนใหม่จากหลากหลายคณะและได้เล่นกิจกรรมเพื่อทำความรู้จักกับเพื่อนๆพี่ๆแน่นอน บ้านเรายังมีจัดทริปไปเที่ยวและไปแฮงเอาค์บ่อยมากกก‼️ คนไหนอยากมาเป็นอาตี๋อาหมวยหรืออยากเจออาตี๋อาหมวยในบ้านเรา ก็อย่าลืมเล็งบ้านเราไว้ด้วยนะคับ ฝากโซ้ยตี๋หลีหมวยไว้ในอ้อมอกอ้อมใจทุกคนด้วยนะค้าบ🫶🏻 พวกเราบ้านโซ้ยตี๋ ทุกคนรู้ดีบ้านนี้โซ้ยอะไร🤫',
       en: "'SoeiTeeLheeMouy' is a warmly group. All staff members are welcome all CU108 friends. You will meet new friends from various faculties and play activities. Moreover, we frequently go on a trips and hang out very often‼️ Please keep 'BaanSoeiTeeLheeMouy' in everyone's hearts if you would like to join us.",
@@ -465,6 +485,7 @@ Fighting ! JO+thathep‼️
 JO+ House is back in a grand way🪭, an XL-sized, warm home where people from various faculties gather as a loving family.♥️ This year, our theme is 'JO+ THATHEP,' celebrating aristocracy, ladies, and gentlemen.💃🏻🕺🏻 Join us for a splendid time!💅🏻✨`,
     },
     ig: 'baanjochula',
+    line: '',
     message: {
       th: 'ชีวันจะถาม คุณสรุจก็แค่ตอบ✨ จะเป็นยังไง? ถ้าคุณชายทั้ง 5 กลับมารวมตัวกันอีกครั้งในยุคปัจจุบัน แต่กลับมีความทรงจำที่เลอะเลือนซะงั้น⁉️ แต่อย่างไรก็ตามยังโชคดีที่มีพี่ ๆ ย่าอ่อนคอยดูแลและให้คำปรึกษา👵🏼❤️ ขอเรียนเชิญสุภาพบุรุษและสุภาพสตรีทั้งหลายจากทั่วเขตแดนรั้วจามจุรีสีชมพูมารวมตัวกันที่วังโจ๋ฑาเทพเพื่อสร้างความทรงจำอันล้ำค่าต่อเติมส่วนที่ขาดหายให้คุณชาย🥀 แล้วพบกันที่งานเต้นรำในคืนพระจันทร์เต็มดวง 🌕💃🏻🕺🏻 มาร่วมสร้างความทรงจำดี ๆ กับบ้านโจ๋กันเยอะ ๆ น้าา🪄',
       en: "Once Cheewan asks, could you reply to me, Mr. Saruj?✨ What will happen if all 5 KhunChais are back together in the present time, but their memories are blurred⁉️ Fortunately, P'granny Orns are here to look after them and give some much-needed advice.👵🏼❤️ Dear all Chula ladies and gentlemen, you are invited to JO+ Tha Thep Palace to help recreate good memories for our KhunChais.🥀 See you at the dance party under the lunar light.🌕💃🕺 Let's create wonderful memories together with JO+family.🪄",
@@ -483,6 +504,7 @@ JO+ House is back in a grand way🪭, an XL-sized, warm home where people from v
       en: "Baanrangs is a XXL-sized house that can welcome more than 500 freshmen each year. We ensure everyone gets to know each other more and value unity above all. No matter where you come from, everyone is a friend, and Baanrangs is a family. Please keep Baanrangs in your heart and don't forget to join our activities.",
     },
     ig: 'baanrangs.official',
+    line: '',
     message: {
       th: 'สิ้นสุดการรอคอย💥❗️ บ้านแรงส์ยินดีต้อนรับน้องๆ CU108 ทุกคนเข้าสู่ยุค Rangnaissance ❤️‍🔥 มาร่วมเป็นส่วนหนึ่งในการจุดประกาย สร้างสีสัน และเติมเต็มแรงบันดาลใจไปกับพวกเราบ้านแรงส์ 🎭  แล้วพบกันวันที่ 3-4 สิงหาคมนี้',
       en: "📣 The wait is over❗️❗️ Baanrangs is pleased to welcome CU108 with Rangnaissance era🕊️  🎨 Be part of us in igniting renewal with creative passion🔥 Don't miss the chance and come join us  See you on 3-4 August this year",
@@ -501,6 +523,7 @@ JO+ House is back in a grand way🪭, an XL-sized, warm home where people from v
       en: 'Joker is the man who always run away from the police.Now it’s time for CU108 to catch this thief.BaanYim is waiting for you!!',
     },
     ig: 'baanyimchula',
+    line: 'https://line.me/ti/g2/1waDd0FAe050ZMAl8k2sZDXj03NFQRSJuT0emw?utm_source=invitation&utm_medium=link_copy&utm_campaign=default',
     message: {
       th: 'บ้านยิ้มบ้านที่จะมาพร้อมความสนุกสุดเหวี่ยง!! พร้อมกับ รอยยิ้มที่น่าจดจำของ JOKER จะเป็นยังไงถ้าเราทุกคนในบ้านขนาดไซส์XXL นี้ช่วยกันตามล่าจับหัวขโมยคนนี้ !!',
       en: 'This exclusive experience from BaanYim is for everyone!Come and join us with the largest baan.Let’s catch this thief',
