@@ -9,7 +9,7 @@ const layout = ({
 }>) => {
   return (
     <main className="bg-1 overflow-auto">
-      <BaanProvider>{children}</BaanProvider>
+      {children}
       <Footer />
     </main>
   );
