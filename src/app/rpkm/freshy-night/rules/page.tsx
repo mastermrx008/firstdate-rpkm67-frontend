@@ -5,6 +5,8 @@ import Card from '@/components/rpkm/freshy-night/rules/Card';
 import MIC from '@public/rpkm/freshy-night/mic.svg';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
+import { useEffect } from 'react';
+import { useAuth } from '@/context/AuthContext';
 interface RulesData {
   imgUrl?: string;
   description?: string;
@@ -19,6 +21,11 @@ const setOfRules: RulesData[] = [
 ];
 export default function Rules() {
   const { button } = modalStyles['red'];
+  const { user } = useAuth();
+
+  const handleClick = async () => {
+    const event = document.createEvent('freshy-night');
+  };
 
   return (
     <div className="min-h-screen w-full grid place-items-center">

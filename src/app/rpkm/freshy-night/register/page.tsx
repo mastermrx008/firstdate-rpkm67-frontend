@@ -2,6 +2,7 @@
 import modalStyles from '@/components/rpkm/Modal/ModalStyle';
 import Base from '@/components/rpkm/freshy-night/Base';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 export default function Register() {
   const { button } = modalStyles['red'];
@@ -20,14 +21,16 @@ export default function Register() {
           onClick={() => console.log('Fuck you')}
           className="p-1 inv-rad inv-rad-2 bg-rpkm-yellow"
         >
-          <div
-            className={cn(
-              'py-[0.3rem] inv-rad px-6 inv-rad-2',
-              button['accept-background']
-            )}
-          >
-            ลงทะเบียนเข้าร่วมงาน
-          </div>
+          <Link href="/rpkm/freshy-night/rules">
+            <div
+              className={cn(
+                'py-[0.3rem] inv-rad px-6 inv-rad-2',
+                button['accept-background']
+              )}
+            >
+              ลงทะเบียนเข้าร่วมงาน
+            </div>
+          </Link>
         </button>
       </Base>
     </div>
