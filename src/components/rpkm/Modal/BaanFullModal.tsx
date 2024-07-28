@@ -15,9 +15,6 @@ interface BaanFullModalProps {
  * @param setOpen - function
  */
 export default function FullBannModal({ open, setOpen }: BaanFullModalProps) {
-  useEffect(() => {
-    console.log('KJINKJIHKOJI', open);
-  }, [open]);
   return (
     <BaseModal
       variant={'black'}
