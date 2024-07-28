@@ -75,7 +75,6 @@ function Navbar() {
             />
           </button>
         )}
-        dv
         {content}
       </div>
     </div>
