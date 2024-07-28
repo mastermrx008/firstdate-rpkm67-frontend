@@ -144,8 +144,11 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
             // start freshy night
             if (path.includes('/freshy-night')) {
-              if (currentTime < freshyNight) {
-                return router.push('/rpkm/activities/home');
+              if (
+                currentTime < freshyNight &&
+                path != '/rpkm/freshy-night/coming-soon'
+              ) {
+                return router.push('/rpkm/freshy-night/coming-soon');
               }
             }
           }
