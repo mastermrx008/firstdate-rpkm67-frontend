@@ -23,10 +23,6 @@ export default function Rules() {
   const { button } = modalStyles['red'];
   const { user } = useAuth();
 
-  const handleClick = async () => {
-    const event = document.createEvent('freshy-night');
-  };
-
   return (
     <div className="min-h-screen w-full grid place-items-center">
       <Base
