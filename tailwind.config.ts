@@ -50,6 +50,7 @@ const config: Config = {
       },
       dropShadow: {
         font: '0 1.2px 1.2px rgba(0,0,0,0.8)',
+        box: '0px 0px 15px 0px rgba(0, 0, 0, 0.50)',
       },
       animation: {
         shake: 'shaking 60ms infinite',
