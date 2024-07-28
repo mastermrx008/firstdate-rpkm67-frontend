@@ -64,9 +64,10 @@ function UserInfo() {
       </h1>
 
       <h1 className="text-xs font-semibold text-center text-black">
-        {isShowBaan && user?.baan}
+        {isShowBaan &&
+          baanInfos.find((baan) => baan.name.en == user?.baan)?.name.th}
       </h1>
-      {baan ? (
+      {baan?.line ? (
         <div className="flex flex-col justify-center items-center w-full">
           <div className="flex justify-center text-xs font-semibold text-center text-black items-center w-full gap-1">
             <Image

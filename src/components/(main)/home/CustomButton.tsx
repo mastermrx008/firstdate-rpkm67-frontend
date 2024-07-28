@@ -1,4 +1,3 @@
-import { useBaan } from '@/context/BaanContext';
 import { cn } from '@/lib/utils';
 import { createEbookCount } from '@/utils/count';
 import { useRouter } from 'next/navigation';
@@ -34,71 +33,77 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   setJoinModal,
 }) => {
   const router = useRouter();
-  const { isConfirmed } = useBaan();
+
   const firstdate = async () => {
     let firstDateDate = currentDate;
     const firstDate = process.env.NEXT_PUBLIC_FIRST_DATE_DATE;
+
     if (firstDate) {
       firstDateDate = new Date(firstDate);
     }
-    console.log(currentDate.toISOString(), firstDateDate.toISOString());
-    if (currentDate >= firstDateDate) {
-      if (registered) {
-        router.push('/firstdate/home');
-      } else {
-        router.push('/register');
-      }
-    } else if (setWaitModal && setEvent) {
-      setEvent('first-date');
-      setWaitModal(true);
+
+    if (currentDate < firstDateDate) {
+      setEvent && setEvent('first-date');
+      setWaitModal && setWaitModal(true);
+      return;
+    }
+
+    if (registered) {
+      router.push('/firstdate/home');
+    } else {
+      router.push('/register');
     }
   };
+
   const rubpeun = async () => {
     let rupPeunDate = currentDate;
     let closedSelectionDate = currentDate;
     let baanAnnounceDate = currentDate;
+
     const rupPeun = process.env.NEXT_PUBLIC_RUP_PEUN_DATE;
     const closedSelection = process.env.NEXT_PUBLIC_CLOSED_BAAN_SELECTION_DATE;
     const announce = process.env.NEXT_PUBLIC_BAAN_ANNOUCE_DATE;
+
     if (rupPeun) {
       rupPeunDate = new Date(rupPeun);
     }
-    if (closedSelection && announce) {
+    if (closedSelection) {
       closedSelectionDate = new Date(closedSelection);
+    }
+
+    if (announce) {
       baanAnnounceDate = new Date(announce);
     }
-    console.log(
-      currentDate.toISOString(),
-      rupPeunDate.toISOString(),
-      closedSelectionDate.toISOString(),
-      baanAnnounceDate.toISOString()
-    );
+
     if (currentDate >= baanAnnounceDate) {
-      if (setJoinModal && setAnnounce && setBaanResultModal) {
-        if (isCheckedIn) {
-          if (baanResult) {
-            router.push('/rpkm/activities/home');
-          } else {
-            setAnnounce(true);
-            setBaanResultModal(true);
-          }
-        } else {
-          setAnnounce(true);
-          setJoinModal(true);
-        }
+      if (!setJoinModal || !setAnnounce || !setBaanResultModal) {
+        return;
       }
+
+      if (!isCheckedIn) {
+        setAnnounce(true);
+        setJoinModal(true);
+        return;
+      }
+
+      if (!baanResult) {
+        setAnnounce(true);
+        setBaanResultModal(true);
+        return;
+      }
+
+      router.push('/rpkm/activities/home');
     } else if (
       currentDate >= closedSelectionDate &&
       currentDate < baanAnnounceDate
     ) {
-      if (!isConfirmed) {
+      if (isCheckedIn) {
         router.push('/rpkm/activities/home');
-      } else if (setJoinModal) {
-        if (isCheckedIn) {
-          router.push('/rpkm/activities/home');
-        } else {
-          setJoinModal(true);
-        }
+        return;
+      }
+
+      if (setJoinModal) {
+        setJoinModal(true);
       }
     } else if (
       currentDate >= rupPeunDate &&

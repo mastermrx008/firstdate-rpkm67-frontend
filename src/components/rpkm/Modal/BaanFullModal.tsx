@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import BaseModal from '@/components/rpkm/Modal/BaseModal';
 import ModalButton from '@/components/rpkm/Modal/ModalButton';
 import modalStyles from '@/components/rpkm/Modal/ModalStyle';
@@ -15,9 +13,6 @@ interface BaanFullModalProps {
  * @param setOpen - function
  */
 export default function FullBannModal({ open, setOpen }: BaanFullModalProps) {
-  useEffect(() => {
-    console.log('KJINKJIHKOJI', open);
-  }, [open]);
   return (
     <BaseModal
       variant={'black'}

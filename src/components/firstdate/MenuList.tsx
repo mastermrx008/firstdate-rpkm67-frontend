@@ -53,8 +53,6 @@ export default function MenuList({ isRewardPage }: TwoCircleMenuProps) {
     );
   }, [giftCondition, isRewardPage]);
 
-  console.log(giftCondition);
-
   return (
     <div>
       {giftCondition && isShowReward && (

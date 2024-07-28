@@ -54,7 +54,7 @@ function Navbar() {
           />
         </Link>
       );
-  }, []);
+  }, [currentPath]);
 
   return (
     <div className="z-10 relative w-full">
@@ -75,7 +75,6 @@ function Navbar() {
             />
           </button>
         )}
-        dv
         {content}
       </div>
     </div>
