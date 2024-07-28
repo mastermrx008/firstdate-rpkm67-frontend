@@ -119,44 +119,32 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
           const freshyNight = new Date(
             process.env.NEXT_PUBLIC_FRESHY_NIGHT_DATE as string
           );
-          const now = (await getCurrentTime()).currentTime;
 
-          console.log(
-            'now',
-            now,
-            'firstdate',
-            firstdate,
-            'startRPKM',
-            startRPKM,
-            'endBannSelect',
-            endBannSelect,
-            'freshyNight',
-            freshyNight
-          );
+          const currentTime = (await getCurrentTime()).currentTime;
+
           //firstdate
           if (path.includes('firstdate')) {
-            if (now < firstdate) {
+            if (currentTime < firstdate) {
               return router.push('/home');
             }
           }
 
           //RPKM
           if (path.includes('rpkm')) {
-            if (now < startRPKM) {
+            if (currentTime < startRPKM) {
               return router.push('/home');
             }
 
             // end baan select
             if (path.includes('rpkm/baan')) {
-              if (now > endBannSelect) {
+              if (currentTime > endBannSelect) {
                 return router.push('/rpkm/activities/home');
               }
             }
 
             // start freshy night
             if (path.includes('/freshy-night')) {
-              console.log(now, freshyNight);
-              if (now < freshyNight) {
+              if (currentTime < freshyNight) {
                 return router.push('/rpkm/activities/home');
               }
             }
