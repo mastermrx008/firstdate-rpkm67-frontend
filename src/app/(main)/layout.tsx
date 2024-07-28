@@ -1,5 +1,4 @@
 import Footer from '@/components/(main)/Footer';
-import BaanProvider from '@/context/BaanContext';
 import React from 'react';
 
 const layout = ({
@@ -9,7 +8,7 @@ const layout = ({
 }>) => {
   return (
     <main className="bg-1 overflow-auto">
-      <BaanProvider>{children}</BaanProvider>
+      {children}
       <Footer />
     </main>
   );
