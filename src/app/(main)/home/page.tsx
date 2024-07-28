@@ -72,7 +72,7 @@ export default function Home() {
     };
 
     checkedIn();
-  }, []);
+  }, [user]);
 
   const checkInConfirm = async () => {
     if (!user) {

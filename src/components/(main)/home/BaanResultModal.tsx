@@ -41,7 +41,7 @@ const BaanResultModal: React.FC<BaanResultModalProps> = ({
 
   return (
     <div>
-      {!!baan ? (
+      {baan ? (
         <BaseModal
           variant="blue"
           open={modal}

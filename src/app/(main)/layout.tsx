@@ -1,5 +1,4 @@
 import Footer from '@/components/(main)/Footer';
-import BaanProvider from '@/context/BaanContext';
 import React from 'react';
 
 const layout = ({
