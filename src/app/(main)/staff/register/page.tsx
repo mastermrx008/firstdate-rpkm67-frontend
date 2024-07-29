@@ -121,8 +121,10 @@ export default function Register() {
         if (!user) return;
         toast.success('ลงทะเบียนสำเร็จ');
 
-        const isStaff = user.role == 'staff';
-        const newPath = isStaff ? '/firstdate/staff/home' : '/register-done';
+        const isRpkm =
+          new Date(process.env.NEXT_PUBLIC_RPKM_DAY_1 as string) < new Date();
+
+        let newPath = isRpkm ? '/rpkm/staff/home' : '/firstdate/staff/home';
 
         await resetContext();
         router.push(newPath);

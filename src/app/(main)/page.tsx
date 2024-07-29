@@ -62,7 +62,14 @@ function Login() {
     let newPath;
 
     if (isStaff) {
-      newPath = isRegistered ? '/firstdate/staff/home' : '/staff/register';
+      const isRpkm =
+        new Date(process.env.NEXT_PUBLIC_RPKM_DAY_1 as string) < new Date();
+
+      newPath = !isRegistered
+        ? '/staff/register'
+        : isRpkm
+          ? '/rpkm/staff/home'
+          : '/firstdate/staff/home';
     } else {
       newPath = isRegistered ? '/home' : '/register';
     }
