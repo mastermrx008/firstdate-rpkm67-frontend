@@ -37,7 +37,9 @@ const config: Config = {
           green: '#67AB88',
           blue: '#183F86',
           gray: '#313131',
+          yellow: '#EFD08B',
           pink: '#EB9096',
+          silver: '#D9D9D9',
         },
       },
       fontFamily: {
@@ -48,6 +50,7 @@ const config: Config = {
       },
       dropShadow: {
         font: '0 1.2px 1.2px rgba(0,0,0,0.8)',
+        box: '0px 0px 15px 0px rgba(0, 0, 0, 0.50)',
       },
       animation: {
         shake: 'shaking 60ms infinite',
@@ -62,6 +65,9 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('@butterfail/tailwindcss-inverted-radius')],
+  plugins: [
+    require('@butterfail/tailwindcss-inverted-radius'),
+    require('@designbycode/tailwindcss-text-stroke'),
+  ],
 };
 export default config;

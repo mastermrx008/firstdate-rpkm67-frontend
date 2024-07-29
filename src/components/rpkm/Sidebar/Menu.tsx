@@ -3,6 +3,8 @@ import { Accordion, AccordionItem } from '@nextui-org/accordion';
 import Link from 'next/link';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { useAuth } from '@/context/AuthContext';
+import FreshyNightLink from './FreshyNightLink';
+
 function Menu() {
   const { logout } = useAuth();
 
@@ -14,25 +16,10 @@ function Menu() {
       >
         ลงทะเบียนเลือกบ้าน
       </Link>
-      {/* <Link
-        href=""
-        className="text-left opacity-30"
-      >
-        ลงทะเบียน Freshy Night
-      </Link> */}
+      <FreshyNightLink>
+        <div className="text-left cursor-pointer">ลงทะเบียน Freshy Night</div>
+      </FreshyNightLink>
       <div className="w-full h-px bg-black"></div>
-      {/* <Link
-        href={'/rpkm/activities/home'}
-        className="mt-2"
-      >
-        กิจกรรม
-      </Link>
-      <Link
-        href={'/rpkm/activities/map'}
-        className=""
-      >
-        เเผนที่
-      </Link> */}
       <div className="w-full -px-2">
         <Accordion
           selectionMode="multiple"

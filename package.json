@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@butterfail/tailwindcss-inverted-radius": "^0.1.2",
+    "@designbycode/tailwindcss-text-stroke": "^1.2.1",
     "@hugocxl/react-to-image": "^0.0.9",
     "@iconify/react": "^5.0.1",
     "@nextui-org/accordion": "^2.0.38",
