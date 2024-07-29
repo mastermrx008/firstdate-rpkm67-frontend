@@ -65,11 +65,14 @@ const Scan: React.FC<ScanProp> = ({ event }) => {
   return (
     <div className="flex flex-col items-center justify-center w-full">
       <div className="relative w-full h-full">
-        <QrReader
-          className="bg-black"
-          onResult={handleScanResult}
-          constraints={{ facingMode: 'environment' }}
-        />
+        {event != '' && (
+          <QrReader
+            className="bg-black"
+            onResult={handleScanResult}
+            constraints={{ facingMode: 'environment' }}
+          />
+        )}
+
         <motion.div
           className="absolute left-1/2 top-1/2 h-48 w-48 max-w-md -translate-x-1/2 -translate-y-1/2 transform rounded-3xl border-4 border-white"
           animate={{ opacity: [0.25, 0.5, 1, 0.5, 0.25] }}

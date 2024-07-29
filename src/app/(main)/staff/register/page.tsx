@@ -124,7 +124,7 @@ export default function Register() {
         const isRpkm =
           new Date(process.env.NEXT_PUBLIC_RPKM_DAY_1 as string) < new Date();
 
-        let newPath = isRpkm ? '/rpkm/staff/home' : '/firstdate/staff/home';
+        const newPath = isRpkm ? '/rpkm/staff/home' : '/firstdate/staff/home';
 
         await resetContext();
         router.push(newPath);

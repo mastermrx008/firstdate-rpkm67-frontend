@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, ChangeEvent, useCallback } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { getAccessToken } from '@/utils/auth';
