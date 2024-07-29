@@ -108,6 +108,11 @@ export default function Page() {
     }
   }
 
+  const handleConfirmBtn = () => {
+    if (!validateForm()) return;
+    setIsModalOpen(true);
+  };
+
   const handleSubmit = async () => {
     if (!validateForm() || !user) {
       return;
@@ -353,7 +358,7 @@ export default function Page() {
             </div>
             <div className="flex flex-col items-center gap-4 mt-6 font-semibold text-lg drop-shadow-md">
               <button
-                onClick={() => setIsModalOpen(true)}
+                onClick={handleConfirmBtn}
                 className="p-1 inv-rad inv-rad-2 w-4/5 bg-[#EFD08B]"
               >
                 <div className="py-[0.3rem] px-2 inv-rad inv-rad-2 bg-[#183F86] text-[#FFFFFF]">
