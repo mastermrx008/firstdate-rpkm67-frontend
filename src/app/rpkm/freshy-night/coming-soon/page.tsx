@@ -22,7 +22,7 @@ export default function ComingSoon() {
             ตั้งแต่วันที่ <strong>3 สิงหาคม 2567</strong>
           </p>
           <p>
-            เวลา <strong>00:00</strong> เป็นต้นไป
+            เวลา <strong>12:00</strong> เป็นต้นไป
           </p>
         </section>
       </Base>

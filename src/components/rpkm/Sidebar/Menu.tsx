@@ -10,12 +10,9 @@ function Menu() {
 
   return (
     <div className="w-full h-full text-left  font-medium flex flex-col pb-[5vh]">
-      <Link
-        href=""
-        className="text-left cursor-not-allowed text-gray-400"
-      >
+      <div className="text-left text-gray-400 cursor-context-menu">
         ลงทะเบียนเลือกบ้าน
-      </Link>
+      </div>
       <FreshyNightLink>
         <div className="text-left cursor-pointer">ลงทะเบียน Freshy Night</div>
       </FreshyNightLink>

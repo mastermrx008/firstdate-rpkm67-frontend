@@ -6,11 +6,11 @@ import React, { useEffect, useState } from 'react';
 
 function Page() {
   const [eventText, setEventText] = useState<string>('');
-  const [event, setEvent] = useState<string>('');
 
   useEffect(() => {
-    const checkEvent = async () => {
+    const initialize = async () => {
       const currentTime = (await getCurrentTime()).currentTime;
+
       const freshy_night_time = new Date(
         process.env.NEXT_PUBLIC_FRESHY_NIGHT_EVENT as string
       );
@@ -21,26 +21,16 @@ function Page() {
         process.env.NEXT_PUBLIC_RPKM_DAY_2 as string
       );
 
-      if (currentTime > freshy_night_time) {
+      if (currentTime >= freshy_night_time) {
         setEventText('Freshy Night');
-        setEvent('freshy-night');
-        return;
-      }
-
-      if (currentTime > rpkm_day_2_time) {
+      } else if (currentTime >= rpkm_day_2_time) {
         setEventText('Onsite 4 สิงหาคม 2567');
-        setEvent('rpkm-day-2');
-        return;
-      }
-
-      if (currentTime > rpkm_day_1_time) {
+      } else if (currentTime >= rpkm_day_1_time) {
         setEventText('Onsite 3 สิงหาคม 2567');
-        setEvent('rpkm-day-1');
-        return;
       }
     };
 
-    checkEvent();
+    initialize();
   }, []);
 
   return (
@@ -74,7 +64,7 @@ function Page() {
               {eventText}
             </div>
             <div className="w-4/5 h-fit">
-              <Scan event={event} />
+              <Scan />
             </div>
             <div className="text-xl font-semibold">QR-Reader</div>
           </div>

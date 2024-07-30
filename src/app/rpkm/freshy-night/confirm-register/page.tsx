@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { getAccessToken } from '@/utils/auth';
@@ -16,6 +16,7 @@ import Spinner from '@/components/firstdate/Spinner';
 import UserCard from '@/components/UserCard';
 import ConfirmRegisterModal from '@/components/rpkm/freshy-night/ConfirmRegisterModal';
 import { createCheckIn } from '@/utils/checkin';
+import { getCurrentTime } from '@/utils/time';
 
 type RegisterUser = Pick<
   UserDTO,
@@ -54,6 +55,16 @@ export default function Page() {
   });
   const [errors, setErrors] = useState<string[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentTime, setCurrentTime] = useState<Date | null>(null);
+
+  useEffect(() => {
+    const initialize = async () => {
+      const now = (await getCurrentTime()).currentTime;
+      setCurrentTime(now);
+    };
+
+    initialize();
+  }, []);
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -108,8 +119,20 @@ export default function Page() {
     }
   }
 
-  const handleConfirmBtn = () => {
-    if (!validateForm()) return;
+  const handleConfirmBtn = async () => {
+    if (!validateForm()) {
+      return;
+    }
+
+    const freshyNightEndDate = new Date(
+      process.env.NEXT_PUBLIC_END_FRESHY_NIGHT_DATE as string
+    );
+
+    if (currentTime && currentTime > freshyNightEndDate) {
+      toast.error('หมดเวลาลงทะเบียน');
+      return;
+    }
+
     setIsModalOpen(true);
   };
 

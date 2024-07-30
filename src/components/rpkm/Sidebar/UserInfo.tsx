@@ -11,10 +11,12 @@ import { useAuth } from '@/context/AuthContext';
 import Link from 'next/link';
 import { baanInfos } from '../Baan/baanInfos';
 import { getCurrentTime } from '@/utils/time';
+import QrCodeModal from '../freshy-night/QrCodeModal';
 
 function UserInfo() {
   const { user } = useAuth();
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
+  const [qrModal, setQrModal] = useState(false);
   const findBaan = (result: string) => {
     return baanInfos.find((baan) => baan.name.en === result);
   };
@@ -103,8 +105,8 @@ function UserInfo() {
         </div>
       </Link>
       <button
-        className="w-[4.8vh] h-[4.8vh] rounded-full flex justify-center items-center shadow-[0px_3px_4px_.5px_#00000048] hover:scale-105 bg-[#F1DFC1] opacity-30"
-        onClick={() => console.log('qrcode')}
+        className="w-[4.8vh] h-[4.8vh] rounded-full flex justify-center items-center hover:scale-105 bg-[#F1DFC1]"
+        onClick={() => setQrModal(true)}
       >
         <Image
           src={qrCodeIcon}
@@ -112,6 +114,11 @@ function UserInfo() {
           style={{ width: '2.63vh', height: '2.63vh' }}
         />
       </button>
+      <QrCodeModal
+        setOpen={setQrModal}
+        open={qrModal}
+        userId={user ? user.id : ''}
+      />
     </div>
   );
 }
