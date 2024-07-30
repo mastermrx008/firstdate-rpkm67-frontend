@@ -67,11 +67,16 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
       const isStaffPage = path.includes('/staff');
       const isRegistered = isUserRegistered(userObj);
       const isRegisterPage = path.includes('register');
+      const currentTime = (await getCurrentTime()).currentTime;
 
       if (isStaff) {
         // staff route protection
+        const isRpkm =
+          new Date(process.env.NEXT_PUBLIC_RPKM_DAY_1 as string) < currentTime;
+        const homePage = isRpkm ? '/rpkm/staff/home' : '/firstdate/staff/home';
+
         if (path == '/') {
-          return router.push('firstdate/staff/home');
+          return router.push(homePage);
         }
 
         if (!isRegistered && !isRegisterPage) {
@@ -79,7 +84,14 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
         }
 
         if (!isStaffPage) {
-          return router.push('/firstdate/staff/home');
+          return router.push(homePage);
+        }
+
+        if (
+          (isRpkm && !path.includes('rpkm')) ||
+          (!isRpkm && !path.includes('firstdate'))
+        ) {
+          return router.push(homePage);
         }
       } else {
         // user route protection
@@ -119,8 +131,6 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
           const freshyNight = new Date(
             process.env.NEXT_PUBLIC_FRESHY_NIGHT_DATE as string
           );
-
-          const currentTime = (await getCurrentTime()).currentTime;
 
           //firstdate
           if (path.includes('firstdate')) {

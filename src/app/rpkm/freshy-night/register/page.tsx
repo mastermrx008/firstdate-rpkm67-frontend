@@ -8,7 +8,7 @@ export default function Register() {
   const { button } = modalStyles['red'];
 
   return (
-    <div className="min-h-screen w-full grid place-items-center">
+    <div className="min-h-screen w-full grid place-items-center relative">
       <Base
         className="p-[10%] h-[calc(70vw*(801/371))] gap-4"
         withBus={true}
