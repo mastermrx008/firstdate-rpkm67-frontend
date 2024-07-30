@@ -20,7 +20,7 @@ const Page = ({ params }: { params: { category: string } }) => {
 
   const getImage = () => {
     switch (category) {
-      case 'walkrally':
+      case 'walk-rally':
         return WalkRallyBanner;
       case 'community':
         return CommunityBanner;
@@ -52,9 +52,10 @@ const Page = ({ params }: { params: { category: string } }) => {
             key={index}
             name={card.name}
             image={card.image}
-            content={card.content}
+            description={card.description}
             href={`/rpkm/activities/details/${card.id}`}
-            className="w-[60vw] m-auto opacity-80"
+            className="w-[80vw] m-auto opacity-80"
+            contentClassName="line-clamp-3"
           />
         ))}
       </div>

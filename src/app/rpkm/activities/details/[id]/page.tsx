@@ -38,8 +38,18 @@ const Page = ({ params }: { params: { id: string } }) => {
         />
       </div>
       <div className="drop-shadow-lg flex justify-center pb-16">
-        <div className="bg-[#FFFEF7] [clip-path:polygon(1rem_0,calc(100%-1rem)_0,100%_1rem,100%_calc(100%-1rem),calc(100%-1rem)_100%,1rem_100%,0_calc(100%-1rem),0_1rem)] flex flex-col p-5 text-[#313131] w-[80vw] h-[60vh]">
-          <p>{activity.content}</p>
+        <div className="bg-[#FFFEF7] [clip-path:polygon(1rem_0,calc(100%-1rem)_0,100%_1rem,100%_calc(100%-1rem),calc(100%-1rem)_100%,1rem_100%,0_calc(100%-1rem),0_1rem)] flex flex-col p-5 text-[#313131] w-[80vw]">
+          <p className="underline">รูปแบบกิจกรรม</p>
+          <ul className="">
+            {activity.content.map((content, index) => (
+              <li
+                key={index}
+                className="mt-2 list-disc ml-5"
+              >
+                {content}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

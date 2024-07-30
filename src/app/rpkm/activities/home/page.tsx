@@ -5,7 +5,7 @@ import Card from '@/components/rpkm/Activities/Card';
 import Divider from '@/components/rpkm/Activities/Divider';
 
 // import ActivitiesBanner from '@public/rpkm/activities/activities.png';
-// import WalkRallyBanner from '@public/rpkm/activities/walkrally.png';
+import WalkRallyBanner from '@public/rpkm/activities/walkrally.png';
 import CommunityBanner from '@public/rpkm/activities/community.png';
 import BaanBanner from '@public/rpkm/activities/baan.png';
 
@@ -14,9 +14,6 @@ import BaanBanner from '@public/rpkm/activities/baan.png';
 const page = () => {
   // const activitiesContent = activities.filter(
   //   (activity) => activity.category === 'activities'
-  // );
-  // const walkRallyContent = activities.filter(
-  //   (activity) => activity.category === 'walkrally'
   // );
 
   return (
@@ -68,14 +65,22 @@ const page = () => {
             href="/rpkm/activities/activities"
           >
             ดูทั้งหมด
-          </Link>
+          </Link> */}
           <Divider />
           <Banner image={WalkRallyBanner} />
-          <ScrollSection
-            cards={walkRallyContent}
-            className="w-[60vw]"
-          />
-          <Link
+          <div className="justify-center flex">
+            <Card
+              name="Walk Rally"
+              image="/rpkm/activities/communitybackground.svg"
+              imageWidth="70vw"
+              imageHeight="70vw"
+              description='ขอเชิญชวนนิสิตทุกคน เข้ามาสำรวจความรู้ในด้านต่าง ๆ ร่วมกันในกิจกรรม "walk rally"  ไม่ว่าจะเป็นเรื่องวิทยาศาสตร์ สังคมและการเมือง หรือ ข้อมูล insight มหาวิทยาลัย ในรูปแบบของฐานความรู้ที่อัดแน่นไปด้วยกิจกรรมมากมาย ทั้งเกมสนุก ๆ และ workshop ที่หลากหลาย อีกทั้งยังได้สาระความรู้แบบจัดเต็ม พร้อมกับกิจกรรมที่ช่วยสานสัมพันธ์นิสิตใหม่ อย่าลืมแวะมาสนุกด้วยกันนะ'
+              href="/rpkm/activities/walk-rally"
+              className="w-[80vw]"
+              contentClassName="line-clamp-3"
+            />
+          </div>
+          {/* <Link
             className="text-sm font-semibold flex justify-end underline mr-4 mt-2"
             href="/rpkm/activities/walkrally"
           >
@@ -89,7 +94,7 @@ const page = () => {
               image="/rpkm/activities/communitybackground.svg"
               imageWidth="70vw"
               imageHeight="70vw"
-              content="กิจกรรมชุมชน เป็นกิจกรรมที่จัดขึ้นเพื่อให้นิสิตใหม่ ได้ทำความรู้จักกับร้านค้า และชุมชนบริเวณโดยรอบจุฬาลงกรณ์มหาวิทยาลัยให้มากขึ้น ผ่านกิจกรรมการสะสมแต้มผ่าน Line OA ด้วยการร่วมทำกิจกรรมถ่ายรูปเช็คอิน ตะลุยทานของอร่อย ๆ รอบมอ ทำกิจกรรมอาสาเพื่อพัฒนาสังคม โดยร้านค้าและสถานที่ที่อยู่ในกิจกรรมมีตั้งแต่ร้านเก่าแก่ที่อยู่คู่จุฬาฯมาอย่างยาวนานตลอดจนร้านค้าใหม่ ๆ ที่เพิ่งเกิดขึ้นและน่าไปเช็คอิน บอกได้เลยว่า เหล่าเฟรชชี่ CU108 พลาดไม่ได้สักร้านเลยแน่นอน เพิ่มเพื่อนไลน์ OA และรับบัตรสะสมแต้มกัน เริ่มทำกิจกรรมกันได้เลย"
+              description="กิจกรรมชุมชน เป็นกิจกรรมที่จัดขึ้นเพื่อให้นิสิตใหม่ ได้ทำความรู้จักกับร้านค้า และชุมชนบริเวณโดยรอบจุฬาลงกรณ์มหาวิทยาลัยให้มากขึ้น ผ่านกิจกรรมการสะสมแต้มผ่าน Line OA ด้วยการร่วมทำกิจกรรมถ่ายรูปเช็คอิน ตะลุยทานของอร่อย ๆ รอบมอ ทำกิจกรรมอาสาเพื่อพัฒนาสังคม โดยร้านค้าและสถานที่ที่อยู่ในกิจกรรมมีตั้งแต่ร้านเก่าแก่ที่อยู่คู่จุฬาฯมาอย่างยาวนานตลอดจนร้านค้าใหม่ ๆ ที่เพิ่งเกิดขึ้นและน่าไปเช็คอิน บอกได้เลยว่า เหล่าเฟรชชี่ CU108 พลาดไม่ได้สักร้านเลยแน่นอน เพิ่มเพื่อนไลน์ OA และรับบัตรสะสมแต้มกัน เริ่มทำกิจกรรมกันได้เลย"
               href="/rpkm/activities/details/community"
               className="w-[80vw]"
               contentClassName="line-clamp-3"
@@ -109,7 +114,7 @@ const page = () => {
               image="/rpkm/activities/baanbackground.png"
               imageWidth="70vw"
               imageHeight="70vw"
-              content="กิจกรรมสานสัมพันธ์นิสิตใหม่ CU108 ที่จัดขึ้นผ่านกิจกรรมบ้านรับเพื่อน โดยสามารถเลือกบ้านรับเพื่อนที่สนใจและมาเข้าร่วมกิจกรรมที่จะเกิดขึ้นอย่างมากมายภายในบ้านรับเพื่อน อีกทั้งยังมีกิจกรรมสันโต้ที่จะทำให้ทุกคนได้พบกับเพื่อนต่างบ้านและได้ทำกิจกรรมร่วมกัน นอกจากจะได้รับความสนุกสนานแล้วก็ยังได้รู้จักเพื่อนใหม่อีกด้วย"
+              description="กิจกรรมสานสัมพันธ์นิสิตใหม่ CU108 ที่จัดขึ้นผ่านกิจกรรมบ้านรับเพื่อน โดยสามารถเลือกบ้านรับเพื่อนที่สนใจและมาเข้าร่วมกิจกรรมที่จะเกิดขึ้นอย่างมากมายภายในบ้านรับเพื่อน อีกทั้งยังมีกิจกรรมสันโต้ที่จะทำให้ทุกคนได้พบกับเพื่อนต่างบ้านและได้ทำกิจกรรมร่วมกัน นอกจากจะได้รับความสนุกสนานแล้วก็ยังได้รู้จักเพื่อนใหม่อีกด้วย"
               href="/rpkm/activities/details/baan"
               className="w-[80vw]"
               contentClassName="line-clamp-3"

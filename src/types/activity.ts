@@ -2,7 +2,8 @@ interface IActivity {
   name: string;
   image: string;
   category: string;
-  content: string;
+  description: string;
+  content: string[];
   id: string;
 }
 

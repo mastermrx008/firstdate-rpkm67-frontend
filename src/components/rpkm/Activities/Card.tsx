@@ -9,7 +9,7 @@ interface CardProps {
   imageWidth?: string;
   imageHeight?: string;
   imageClassName?: string;
-  content: string;
+  description: string;
   href: string;
   className?: string;
   contentClassName?: string;
@@ -23,7 +23,7 @@ const Card: React.FC<CardProps> = ({
   imageHeight,
   imageClassName,
   href,
-  content,
+  description,
   contentClassName,
 }) => {
   return (
@@ -54,7 +54,7 @@ const Card: React.FC<CardProps> = ({
           <hr className="h-[2px] bg-[#414643] w-full" />
           <hr className="h-[2px] bg-[#414643] w-full" />
         </div>
-        <p className={cn('text-sm m-2', contentClassName)}>{content}</p>
+        <p className={cn('text-sm m-2', contentClassName)}>{description}</p>
         <Link
           className="flex w-full justify-end text-sm font-semibold underline"
           href={href}
