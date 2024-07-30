@@ -21,17 +21,22 @@ const FailModal: React.FC<FailModalProps> = ({
     isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
   }`;
 
+  const handleOnClose = () => {
+    onClose();
+    localStorage.setItem('enable', 'true');
+  };
+
   const modalContentClasses = `flex flex-col justify-center items-center justify-around relative w-80 h-96 bg-contain bg-no-repeat bg-center bg-[url('/rpkm/staff/modal-background.svg')] pt-5 pb-10 `;
   const button = taken ? (
     <button
-      onClick={onClose}
+      onClick={handleOnClose}
       className="drop-shadow-lg mt-5 w-32 h-10 text-white bg-[url('/rpkm/staff/black-button.svg')] bg-center bg-contain bg-no-repeat flex justify-center items-center"
     >
       กลับ
     </button>
   ) : (
     <button
-      onClick={onClose}
+      onClick={handleOnClose}
       className="drop-shadow-lg mt-5 w-32 h-10 text-white bg-[url('/rpkm/staff/button.svg')] bg-center bg-contain bg-no-repeat flex justify-center items-center"
     >
       สแกนต่อ

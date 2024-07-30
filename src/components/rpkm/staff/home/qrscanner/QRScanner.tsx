@@ -1,5 +1,5 @@
 'use client';
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { QrReader } from 'react-qr-reader';
 import { motion } from 'framer-motion';
 import { useAuth } from '@/context/AuthContext';
@@ -46,12 +46,19 @@ const Scan: React.FC = () => {
       event = 'rpkm-day-1';
     }
 
+    //need to use localstorage to prevent user scan qr code multiple time
+    //i don't useState because it not work with qrscanner
+    const enable = localStorage.getItem('enable') === 'true';
+    if (!enable) return;
+
     const userId = scanRawData.text;
     const newCheckInData: CheckIn | null = await createCheckIn(
       userId,
       user.email,
       event
     );
+
+    localStorage.setItem('enable', 'false');
 
     if (newCheckInData) {
       if (newCheckInData.checkIn.isDuplicate) {
@@ -82,6 +89,10 @@ const Scan: React.FC = () => {
   const handleCloseModal = () => {
     setStatus('idle');
   };
+
+  useEffect(() => {
+    localStorage.setItem('enable', 'true');
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center w-full">

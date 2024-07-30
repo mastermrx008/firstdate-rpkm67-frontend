@@ -15,6 +15,11 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
   onClose,
   userData,
 }) => {
+  const handleOnClose = () => {
+    onClose();
+    localStorage.setItem('enable', 'true');
+  };
+
   const modalClasses = `fixed inset-0 z-50 overflow-y-auto bg-gray-500 bg-opacity-75 transition-all ease-in-out duration-300 ${
     isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
   }`;
@@ -45,7 +50,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
         </h1>
         <div className="flex flex-col items-center mx-auto justify-center">
           <button
-            onClick={onClose}
+            onClick={handleOnClose}
             className="drop-shadow-lg mt-5 w-32 h-10 text-white bg-[url('/rpkm/staff/button.svg')] bg-center bg-contain bg-no-repeat flex justify-center items-center"
           >
             สแกนต่อ
