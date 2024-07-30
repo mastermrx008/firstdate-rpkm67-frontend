@@ -22,11 +22,12 @@ function Page() {
             >
               สตาฟ
             </div>
-            <div className="relative w-32 h-44 rounded-t-full overflow-hidden">
+            <div className="relative w-32 h-44 rounded-t-full overflow-hidden p-1">
               <Image
                 src={user?.photoUrl || placeholder.src}
                 alt="profile picture"
                 fill
+                className="object-cover object-center"
               />
             </div>
             <div className="flex flex-col gap-y-2 justify-items-center items-center">

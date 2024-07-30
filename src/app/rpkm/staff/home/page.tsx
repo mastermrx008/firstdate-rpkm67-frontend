@@ -5,8 +5,9 @@ import { getCurrentTime } from '@/utils/time';
 import React, { useEffect, useState } from 'react';
 
 function Page() {
-  const [eventText, setEventText] = useState<string>('Onsite 3 สิงหาคม 2567');
-  const [event, setEvent] = useState<string>('rpkm-day-1');
+  const [eventText, setEventText] = useState<string>('');
+  const [event, setEvent] = useState<string>('');
+
   useEffect(() => {
     const checkEvent = async () => {
       const currentTime = (await getCurrentTime()).currentTime;
@@ -41,6 +42,7 @@ function Page() {
 
     checkEvent();
   }, []);
+
   return (
     <div className="bg-[#EAE3C3]">
       <div className="bg-[url('/rpkm/staff/background.svg')] w-full bg-cover bg-no-repeat">
