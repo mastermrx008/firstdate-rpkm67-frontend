@@ -8,8 +8,9 @@ function Page() {
   const [eventText, setEventText] = useState<string>('');
 
   useEffect(() => {
-    const intervalId = setInterval(async () => {
+    const initialize = async () => {
       const currentTime = (await getCurrentTime()).currentTime;
+
       const freshy_night_time = new Date(
         process.env.NEXT_PUBLIC_FRESHY_NIGHT_EVENT as string
       );
@@ -27,11 +28,9 @@ function Page() {
       } else if (currentTime >= rpkm_day_1_time) {
         setEventText('Onsite 3 สิงหาคม 2567');
       }
-    }, 1000);
-
-    return () => {
-      clearInterval(intervalId);
     };
+
+    initialize();
   }, []);
 
   return (
