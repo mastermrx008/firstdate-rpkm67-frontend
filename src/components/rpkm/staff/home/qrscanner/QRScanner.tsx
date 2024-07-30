@@ -8,10 +8,9 @@ import FailureModal from './failureModal';
 import { createCheckIn } from '@/utils/checkin';
 import { CheckIn } from '@/types/checkIn';
 import dayjs from 'dayjs';
-interface ScanProp {
-  event: string;
-}
-const Scan: React.FC<ScanProp> = ({ event }) => {
+import { getCurrentTime } from '@/utils/time';
+
+const Scan: React.FC = () => {
   const [checkInData, setCheckInData] = useState<CheckIn | null>(null);
   const [taken, setTaken] = useState<boolean>(false);
   const [status, setStatus] = useState<'success' | 'error' | 'idle'>('idle');
@@ -23,6 +22,28 @@ const Scan: React.FC<ScanProp> = ({ event }) => {
   const handleScanResult = async (scanRawData: any) => {
     if (!scanRawData || !user) {
       return;
+    }
+
+    let event = '';
+    const currentTime = (await getCurrentTime()).currentTime;
+
+    //need to check date every time because qr component don't update function when function re-render
+    const freshy_night_time = new Date(
+      process.env.NEXT_PUBLIC_FRESHY_NIGHT_EVENT as string
+    );
+    const rpkm_day_1_time = new Date(
+      process.env.NEXT_PUBLIC_RPKM_DAY_1 as string
+    );
+    const rpkm_day_2_time = new Date(
+      process.env.NEXT_PUBLIC_RPKM_DAY_2 as string
+    );
+
+    if (currentTime > freshy_night_time) {
+      event = 'freshy-night';
+    } else if (currentTime > rpkm_day_2_time) {
+      event = 'rpkm-day-2';
+    } else if (currentTime > rpkm_day_1_time) {
+      event = 'rpkm-day-1';
     }
 
     const userId = scanRawData.text;
@@ -65,13 +86,11 @@ const Scan: React.FC<ScanProp> = ({ event }) => {
   return (
     <div className="flex flex-col items-center justify-center w-full">
       <div className="relative w-full h-full">
-        {event != '' && (
-          <QrReader
-            className="bg-black"
-            onResult={handleScanResult}
-            constraints={{ facingMode: 'environment' }}
-          />
-        )}
+        <QrReader
+          className="bg-black"
+          onResult={handleScanResult}
+          constraints={{ facingMode: 'environment' }}
+        />
 
         <motion.div
           className="absolute left-1/2 top-1/2 h-48 w-48 max-w-md -translate-x-1/2 -translate-y-1/2 transform rounded-3xl border-4 border-white"
