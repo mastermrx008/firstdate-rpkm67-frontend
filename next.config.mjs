@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   compress: true,
   compiler: {
     removeConsole: process.env.APP_ENV == 'production',
