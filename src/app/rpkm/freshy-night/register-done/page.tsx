@@ -24,7 +24,7 @@ export default function RegisterDone() {
           <p className="text-project-pastel-pink text-7xl/[3rem] [text-shadow:_2px_2px_2px_rgb(0_0_0_/_30%)]">
             ลงทะเบียน
           </p>
-          <p className="text-project-yellow text-8xl/[3.5rem] tracking-wide [text-shadow:_2px_2px_2px_rgb(0_0_0_/_30%)]">
+          <p className="text-project-yellow text-8xl/[3.5rem] tracking-wide -mt-2 [text-shadow:_2px_2px_2px_rgb(0_0_0_/_30%)]">
             <span className="-mr-4">ส</span> ำเร็จ!
           </p>
         </div>
