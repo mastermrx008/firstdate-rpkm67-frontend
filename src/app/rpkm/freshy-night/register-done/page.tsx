@@ -3,11 +3,14 @@
 import { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import BottomButton from '@/components/(main)/home/BottomButton';
 import QrCodeModal from '@/components/rpkm/freshy-night/QrCodeModal';
 import qrcodeIcon from '@public/home/icon/qrcode.svg';
 import poster from '@public/rpkm/freshy-night/poster.jpg';
+import modalStyles from '@/components/rpkm/Modal/ModalStyle';
+import ModalButton from '@/components/rpkm/freshy-night/ModalButton';
 
 export default function RegisterDone() {
   const [qrModal, setQrModal] = useState<boolean>(false);
@@ -35,6 +38,23 @@ export default function RegisterDone() {
           src={qrcodeIcon}
           text="My Qr"
         />
+        <Link
+          href="/rpkm/freshy-night"
+          className="w-full flex justify-center"
+        >
+          <ModalButton
+            callBackFunction={() => {}}
+            borderClassName={modalStyles['dark-blue'].button['accept-border']}
+            backgroundClassName={
+              modalStyles['dark-blue'].button['accept-background']
+            }
+            buttonWidth={modalStyles['dark-blue'].button.width}
+          >
+            <h1 className="font-athiti text-2xl font-medium">
+              กลับสู่หน้าหลัก
+            </h1>
+          </ModalButton>
+        </Link>
       </div>
       <QrCodeModal
         setOpen={setQrModal}
