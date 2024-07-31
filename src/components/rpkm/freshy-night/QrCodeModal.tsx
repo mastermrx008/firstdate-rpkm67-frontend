@@ -79,14 +79,5 @@ export default function QrCodeModal({
         </div>
       </div>
     </div>
-    // <div className="z-10 inset-0 fixed flex justify-center bg-black bg-opacity-50 self-center">
-    //   <div className="w-[calc(100vh*(72/156)*(9/10))] h-[64vh] relative self-center flex flex-col justify-center">
-    //     <div
-    //       className="w-4/5 h-full bg-contain bg-no-repeat bg-center flex flex-col items-center"
-    //       style={{ backgroundImage: `url(${qrInnerBackground.src})` }}
-    //     >
-    //     </div>
-    //   </div>
-    // </div>
   );
 }
