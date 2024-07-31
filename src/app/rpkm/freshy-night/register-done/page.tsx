@@ -22,7 +22,7 @@ export default function RegisterDone() {
             ลงทะเบียน
           </p>
           <p className="text-project-yellow text-8xl/[3.5rem] tracking-wide [text-shadow:_2px_2px_2px_rgb(0_0_0_/_30%)]">
-            <span className="-mr-4">ส</span> ำเร็จ
+            <span className="-mr-4">ส</span> ำเร็จ!
           </p>
         </div>
         <Image
