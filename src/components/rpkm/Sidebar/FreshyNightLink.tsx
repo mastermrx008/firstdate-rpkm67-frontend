@@ -37,7 +37,7 @@ const FreshyNightLink = ({ children }: FreshyNightLinkProps) => {
   const isRegistered = useMemo<boolean>(() => {
     return (
       !!checkins &&
-      !!checkins.find((checkin) => checkin.event === 'confirm-freshy-night')
+      !!checkins.find((checkin) => checkin.event === 'freshy-night-confirm')
     );
   }, [checkins]);
 
