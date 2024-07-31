@@ -39,7 +39,7 @@ export default function RegisterDone() {
           text="My Qr"
         />
         <Link
-          href="/rpkm/freshy-night"
+          href="/home"
           className="w-full flex justify-center"
         >
           <ModalButton
