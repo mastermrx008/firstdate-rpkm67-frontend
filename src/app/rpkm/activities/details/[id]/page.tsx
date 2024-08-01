@@ -11,6 +11,11 @@ const Page = ({ params }: { params: { id: string } }) => {
   const id = params.id;
   const activity = activities.find((activity) => activity.id === id);
 
+  const prevPage =
+    id.split('-').length - 1 === 0
+      ? 'home'
+      : id.substring(0, id.lastIndexOf('-'));
+
   if (!activity) {
     return;
   }
@@ -18,7 +23,7 @@ const Page = ({ params }: { params: { id: string } }) => {
   return (
     <section className="min-h-screen bg-[url('/rpkm/activities/smaller-background.png')] bg-cover bg-[#EAE3C3] text-black">
       <Navbar />
-      <Link href="/rpkm/activities/home">
+      <Link href={`/rpkm/activities/${prevPage}`}>
         <Image
           src={BackButton}
           alt="back"
