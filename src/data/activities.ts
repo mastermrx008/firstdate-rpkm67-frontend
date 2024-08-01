@@ -3,7 +3,7 @@ import IActivity from '@/types/activity';
 const activities: IActivity[] = [
   {
     name: 'ฐาน CU Sci แอ่น แอน แอ้น',
-    image: '/user-card/tv.png',
+    image: '/rpkm/activities/walkrally-1.JPG',
     category: 'walk-rally',
     description:
       'มีการจัดกิจกรรมเกี่ยวกับการรณรงค์ด้านสิ่งแวดล้อม และนิทรรศการเกี่ยวกับเทคโนโลยีและปัญญาประดิษฐ์',
@@ -19,7 +19,7 @@ const activities: IActivity[] = [
   },
   {
     name: 'ฐาน CU Self',
-    image: '/user-card/tv.png',
+    image: '/rpkm/activities/walkrally-2.JPG',
     category: 'walk-rally',
     description:
       'มีการจัดซุ้มและกิจกรรมภายใต้ประเด็น ‘การค้นหาตัวเอง’ รวมถึง กิจกรรม workshop สำหรับผู้เข้าร่วม',
@@ -35,7 +35,7 @@ const activities: IActivity[] = [
   },
   {
     name: 'ฐาน CU Pol Connect',
-    image: '/user-card/tv.png',
+    image: '/rpkm/activities/walkrally-3.JPG',
     category: 'walk-rally',
     description:
       'มีการจัดนิทรรศการเกี่ยวกับประเด็นสังคมและการเมือง กิจกรรมเสวนา ล้อมวงพูดคุย และบอร์ดแสดงความคิดเห็นในประเด็นต่าง ๆ',
@@ -50,7 +50,7 @@ const activities: IActivity[] = [
   },
   {
     name: 'ฐาน Our CU',
-    image: '/user-card/tv.png',
+    image: '/rpkm/activities/walkrally-4.JPG',
     category: 'walk-rally',
     description:
       'มีการจัดตั้งซุ้มแสดงความยินดีกับนิสิตใหม่ และเป็นการประชาสัมพันธ์ถึงข้อมูลรวมถึงหน่วยงานต่าง ๆ ภายในจุฬาฯ',

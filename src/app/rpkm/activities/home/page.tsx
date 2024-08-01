@@ -71,7 +71,7 @@ const page = () => {
           <div className="justify-center flex">
             <Card
               name="Walk Rally"
-              image="/rpkm/activities/communitybackground.svg"
+              image="/rpkm/activities/walkrallybackground.JPG"
               imageWidth="70vw"
               imageHeight="70vw"
               description='ขอเชิญชวนนิสิตทุกคน เข้ามาสำรวจความรู้ในด้านต่าง ๆ ร่วมกันในกิจกรรม "walk rally"  ไม่ว่าจะเป็นเรื่องวิทยาศาสตร์ สังคมและการเมือง หรือ ข้อมูล insight มหาวิทยาลัย ในรูปแบบของฐานความรู้ที่อัดแน่นไปด้วยกิจกรรมมากมาย ทั้งเกมสนุก ๆ และ workshop ที่หลากหลาย อีกทั้งยังได้สาระความรู้แบบจัดเต็ม พร้อมกับกิจกรรมที่ช่วยสานสัมพันธ์นิสิตใหม่ อย่าลืมแวะมาสนุกด้วยกันนะ'
