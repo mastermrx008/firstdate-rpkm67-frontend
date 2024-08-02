@@ -41,12 +41,12 @@ function Menu() {
               >
                 กิจกรรมในงาน
               </div>
-              <div
-                // href="/rpkm/activities/"
-                className="text-left text-gray-400 cursor-not-allowed"
+              <Link
+                href="/rpkm/activities/walk-rally"
+                className="text-left"
               >
                 กิจกรรม Walk Rally
-              </div>
+              </Link>
               <Link
                 href="/rpkm/activities/details/community"
                 className="text-left"
