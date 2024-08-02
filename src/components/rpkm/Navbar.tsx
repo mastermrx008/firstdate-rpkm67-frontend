@@ -21,9 +21,12 @@ function Navbar() {
     </div>
   );
   useEffect(() => {
-    if (currentPath.startsWith('/rpkm/activities'))
+    if (
+      currentPath.startsWith('/rpkm/activities') ||
+      currentPath.startsWith('/rpkm/freshy-night')
+    )
       setContent(
-        <div className="font-sopha absolute text-project-cream text-3xl text-center left-1/2 -translate-x-1/2">
+        <div className="font-sopha absolute text-project-cream text-3xl text-center tracking-wider left-1/2 -translate-x-1/2">
           รับเพื่อนก้าวใหม่ 67
         </div>
       );

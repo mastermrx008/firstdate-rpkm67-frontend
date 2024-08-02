@@ -1,10 +1,13 @@
 import Base from '@/components/rpkm/freshy-night/Base';
+import Image from 'next/image';
+import FRESHY_POSTER from '@public/rpkm/freshy-night/freshy_poster.svg';
+import LINE from '@public/line.svg';
 
 export default function ComingSoon() {
   return (
     <div className="min-h-screen w-full grid place-items-center">
       <Base
-        className="p-[10%] h-[calc(70vw*(801/371))] gap-2"
+        className="p-[10%] h-[calc(80vw*(801/371))] gap-2"
         withBus={false}
       >
         <section className="text-center font-sopha">
@@ -15,15 +18,34 @@ export default function ComingSoon() {
             FRESHY NIGHT
           </h1>
         </section>
-        <main className="bg-rpkm-silver h-full w-full rounded-xl"></main>
+        <main className="h-4/5 w-full rounded-xl">
+          <Image
+            src={FRESHY_POSTER}
+            alt="poster"
+            width={0}
+            height={0}
+            layout="responsive"
+            objectFit="contain"
+            className="rounded-xl"
+          />
+        </main>
+        <Image
+          src={LINE}
+          alt="Line"
+          width={150}
+          height={40}
+        />
         <section className="text-center">
-          <p>สามารถลงทะเบียนเข้างานได้</p>
-          <p>
-            ตั้งแต่วันที่ <strong>3 สิงหาคม 2567</strong>
+          <p className="font-semibold">
+            สามารถลงทะเบียนเข้างานได้ตั้งแต่วันที่{' '}
           </p>
-          <p>
-            เวลา <strong>12:00</strong> เป็นต้นไป
+          <p className="font-sopha text-rpkm-yellow text-5xl text-stroke text-stroke-rpkm-blue">
+            3 สิงหาคม 2567
           </p>
+          <p className="font-sopha text-rpkm-pink text-5xl text-stroke text-stroke-rpkm-blue">
+            12:00 น.
+          </p>
+          <p className="font-semibold">เป็นต้นไป</p>
         </section>
       </Base>
     </div>
