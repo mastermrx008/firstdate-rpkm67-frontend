@@ -11,7 +11,7 @@ interface FreshyNightLinkProps {
 
 const FreshyNightLink = ({ children }: FreshyNightLinkProps) => {
   const [checkins, setCheckins] = useState<GetCheckIn[] | null>(null);
-  const [currentTime, setCurrentTime] = useState<Date | null>(null);
+  const [currentTime, setCurrentTime] = useState<Date | null>(new Date());
   const router = useRouter();
 
   useEffect(() => {
@@ -25,6 +25,8 @@ const FreshyNightLink = ({ children }: FreshyNightLinkProps) => {
 
     initialize();
   }, []);
+
+  console.log('currentTime', currentTime);
 
   const freshyNightStartDate = useMemo<Date>(() => {
     return new Date(process.env.NEXT_PUBLIC_FRESHY_NIGHT_DATE as string);
