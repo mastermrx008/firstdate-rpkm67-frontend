@@ -1,5 +1,4 @@
 import { cn } from '@/lib/utils';
-import border from '@public/rpkm/freshy-night/border.svg';
 import Image from 'next/image';
 import NEWSPAPER from '@public/rpkm/freshy-night/newspaper.svg';
 import NEWSPAPER_1 from '@public/rpkm/freshy-night/newspaper_1.svg';
