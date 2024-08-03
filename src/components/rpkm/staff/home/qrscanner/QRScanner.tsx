@@ -7,7 +7,6 @@ import ConfirmationModal from './confirmationModal';
 import FailureModal from './failureModal';
 import { createCheckIn } from '@/utils/checkin';
 import { CheckIn } from '@/types/checkIn';
-import dayjs from 'dayjs';
 import { getCurrentTime } from '@/utils/time';
 
 const Scan: React.FC = () => {
@@ -61,7 +60,7 @@ const Scan: React.FC = () => {
     localStorage.setItem('enable', 'false');
 
     if (newCheckInData) {
-      if (newCheckInData.checkIn.isDuplicate) {
+      /*  if (newCheckInData.checkIn.isDuplicate) {
         const date = dayjs(newCheckInData.checkIn.timestamp);
         setStatus('error');
         setError(
@@ -74,7 +73,7 @@ const Scan: React.FC = () => {
         setErrorTopic('Already taken!');
         setTaken(true);
         return;
-      }
+      } */
 
       setCheckInData(newCheckInData);
       setStatus('success');
