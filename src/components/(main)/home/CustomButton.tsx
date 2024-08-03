@@ -35,7 +35,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   const router = useRouter();
 
   const firstdate = async () => {
-    let firstDateDate = currentDate;
+    /* let firstDateDate = currentDate;
     const firstDate = process.env.NEXT_PUBLIC_FIRST_DATE_DATE;
 
     if (firstDate) {
@@ -52,7 +52,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       router.push('/firstdate/home');
     } else {
       router.push('/register');
-    }
+    } */
   };
 
   const rubpeun = async () => {
@@ -131,7 +131,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   };
   const buttonProps = {
     'first-date': {
-      color: 'bg-project-pink',
+      color: 'bg-project-pink opacity-30 event-pointer-none',
       onClick: firstdate,
     },
     'rub-peun': {
