@@ -136,7 +136,6 @@ function Page() {
               {eventText}
             </div>
             <StudentCodeInput sendCheckInRequest={sendCheckInRequest} />
-            <div className="text-2xl font-semibold ">หรือ</div>
             <div className="w-4/5 h-fit">
               <Scan sendCheckInRequest={sendCheckInRequest} />
             </div>
