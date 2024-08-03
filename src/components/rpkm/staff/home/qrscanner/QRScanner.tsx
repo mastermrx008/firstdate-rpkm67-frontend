@@ -46,8 +46,8 @@ const Scan: React.FC = () => {
       event = 'rpkm-day-1';
     }
 
-    //need to use localstorage to prevent user scan qr code multiple time
-    //i don't useState because it not work with qrscanner
+    //need to use localstorage to prevent user scaning multiple time
+    //don't use useState because it's not working with qrscanner
     const enable = localStorage.getItem('enable') === 'true';
     if (!enable) return;
     localStorage.setItem('enable', 'false');
