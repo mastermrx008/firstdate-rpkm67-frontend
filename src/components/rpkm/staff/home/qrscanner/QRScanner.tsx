@@ -24,6 +24,7 @@ const Scan = ({ sendCheckInRequest }: ScanProps) => {
       <div className="relative w-full h-full">
         <div className="overflow-hidden aspect-square">
           <QrReader
+            scanDelay={0}
             className="bg-black w-[100vw] aspect-square -mt-[13vw] -ml-[14vw]"
             onResult={handleScanResult}
             constraints={{ facingMode: 'environment' }}
