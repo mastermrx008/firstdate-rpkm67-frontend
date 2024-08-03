@@ -27,7 +27,11 @@ const Scan = ({ sendCheckInRequest }: ScanProps) => {
             scanDelay={0}
             className="bg-black w-[100vw] aspect-square -mt-[13vw] -ml-[14vw]"
             onResult={handleScanResult}
-            constraints={{ facingMode: 'environment' }}
+            constraints={{
+              facingMode: 'environment',
+              //eslint-disable-next-line @typescript-eslint/no-explicit-any
+              advanced: [{ zoom: 2.5, facingMode: 'continuous' } as any],
+            }}
           />
         </div>
 
