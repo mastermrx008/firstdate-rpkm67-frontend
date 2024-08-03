@@ -6,25 +6,15 @@ import MIC from '@public/rpkm/freshy-night/mic.svg';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-interface RulesData {
-  imgUrl?: string;
-  description?: string;
-}
-const setOfRules: RulesData[] = [
-  { description: 'description' },
-  { imgUrl: '', description: 'description' },
-  { imgUrl: '', description: 'description' },
-  { imgUrl: '', description: 'description' },
-  { imgUrl: '', description: 'description' },
-  { imgUrl: '', description: 'description' },
-];
+import RULES from '@public/rpkm/freshy-night/rules.png';
+
 export default function Rules() {
   const { button } = modalStyles['red'];
 
   return (
     <div className="min-h-screen w-full grid place-items-center relative">
       <Base
-        className="p-[10%] h-[calc(50vw*(801/371))] gap-6"
+        className="py-[10%] h-[calc(50vw*(801/371))] gap-10"
         withBus={true}
       >
         <section className="drop-shadow-lg relative font-sopha text-stroke text-stroke-rpkm-blue -mt-12 -ml-8">
@@ -41,17 +31,17 @@ export default function Rules() {
             ภายในงาน
           </span>
         </section>
-
-        <div className="grid grid-cols-3 grid-rows-2 place-items-center w-full h-full gap-4">
-          {setOfRules.map((e: RulesData, i: number) => (
-            <Card
-              imgUrl={e.imgUrl}
-              description={e.description}
-              num={i + 1}
-              key={i}
-            />
-          ))}
-        </div>
+        <main className="h-full w-full rounded-xl">
+          <Image
+            src={RULES}
+            alt="poster"
+            width={0}
+            height={0}
+            layout="responsive"
+            objectFit="contain"
+            className="rounded-xl"
+          />
+        </main>
 
         <Link
           href="/rpkm/freshy-night/confirm-register"
