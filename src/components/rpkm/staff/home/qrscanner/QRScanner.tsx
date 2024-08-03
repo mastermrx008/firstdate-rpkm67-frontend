@@ -61,7 +61,7 @@ const Scan: React.FC = () => {
     localStorage.setItem('enable', 'false');
 
     if (newCheckInData) {
-      if (newCheckInData.checkIn.isDuplicate) {
+     /*  if (newCheckInData.checkIn.isDuplicate) {
         const date = dayjs(newCheckInData.checkIn.timestamp);
         setStatus('error');
         setError(
@@ -74,7 +74,7 @@ const Scan: React.FC = () => {
         setErrorTopic('Already taken!');
         setTaken(true);
         return;
-      }
+      } */
 
       setCheckInData(newCheckInData);
       setStatus('success');
