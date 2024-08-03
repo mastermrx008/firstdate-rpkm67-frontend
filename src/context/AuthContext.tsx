@@ -86,13 +86,6 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({
         if (!isStaffPage) {
           return router.push(homePage);
         }
-
-        if (
-          (isRpkm && !path.includes('rpkm')) ||
-          (!isRpkm && !path.includes('firstdate'))
-        ) {
-          return router.push(homePage);
-        }
       } else {
         // user route protection
         if (path == '/') {
