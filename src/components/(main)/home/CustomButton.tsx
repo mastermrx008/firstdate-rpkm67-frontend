@@ -131,7 +131,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   };
   const buttonProps = {
     'first-date': {
-      color: 'bg-project-pink',
+      color: 'bg-project-pink opacity-30 event-pointer-none',
       onClick: firstdate,
     },
     'rub-peun': {
