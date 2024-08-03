@@ -3,7 +3,7 @@
 import Navbar from '@/components/rpkm/Navbar';
 import Scan from '@/components/rpkm/staff/home/qrscanner/QRScanner';
 import { useAuth } from '@/context/AuthContext';
-import { createCheckIn } from '@/utils/checkin';
+import { createCheckIn, createCheckInByStudentId } from '@/utils/checkin';
 import { getCurrentTime } from '@/utils/time';
 import React, { useEffect, useState } from 'react';
 import FailureModal from '@/components/rpkm/staff/home/qrscanner/failureModal';
@@ -46,8 +46,11 @@ function Page() {
     localStorage.setItem('enable', 'true');
   };
 
-  const sendCheckInRequest = async (userId: string) => {
-    if (!userId || !user || localStorage.getItem('enable') !== 'true') {
+  const sendCheckInRequest = async (
+    mode: 'userId' | 'studentId',
+    id: string
+  ) => {
+    if (!user || localStorage.getItem('enable') !== 'true') {
       return;
     }
 
@@ -71,11 +74,10 @@ function Page() {
       return;
     }
 
-    const newCheckInData: CheckIn | null = await createCheckIn(
-      userId,
-      user.email,
-      event
-    );
+    const newCheckInData: CheckIn | null =
+      mode == 'userId'
+        ? await createCheckIn(id, user.email, event)
+        : await createCheckInByStudentId(id, user.email, event);
 
     if (newCheckInData) {
       if (newCheckInData.checkIn.isDuplicate) {

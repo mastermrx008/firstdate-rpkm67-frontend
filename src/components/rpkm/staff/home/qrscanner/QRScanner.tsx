@@ -4,16 +4,19 @@ import { QrReader } from 'react-qr-reader';
 import { motion } from 'framer-motion';
 
 interface ScanProps {
-  sendCheckInRequest: (userId: string) => Promise<void>;
+  sendCheckInRequest: (
+    mode: 'userId' | 'studentId',
+    id: string
+  ) => Promise<void>;
 }
 
 const Scan = ({ sendCheckInRequest }: ScanProps) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleScanResult = (scanRawData: any) => {
-    if (!scanRawData) {
+    if (!scanRawData || !scanRawData.text) {
       return;
     }
-    sendCheckInRequest(scanRawData.text);
+    sendCheckInRequest('userId', scanRawData.text);
   };
 
   return (

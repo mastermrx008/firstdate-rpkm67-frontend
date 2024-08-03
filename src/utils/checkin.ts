@@ -39,6 +39,37 @@ export const createCheckIn = async (
   }
 };
 
+export const createCheckInByStudentId = async (
+  studentId: string,
+  email: string,
+  event: string
+): Promise<CheckIn | null> => {
+  const accessToken = await getAccessToken();
+
+  if (!accessToken) {
+    return null;
+  }
+
+  try {
+    const res: AxiosResponse = await apiClient.post(
+      `/checkin`,
+      {
+        email: email,
+        event: event,
+        student_id: studentId,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    return CheckInParser(res.data);
+  } catch (error) {
+    return null;
+  }
+};
+
 export const fetchCheckIn = async (): Promise<GetCheckIn[] | null> => {
   const accessToken = await getAccessToken();
   const userId = await getUserId();
