@@ -8,6 +8,7 @@ import FailureModal from './failureModal';
 import { createCheckIn } from '@/utils/checkin';
 import { CheckIn } from '@/types/checkIn';
 import { getCurrentTime } from '@/utils/time';
+import dayjs from 'dayjs';
 
 const Scan: React.FC = () => {
   const [checkInData, setCheckInData] = useState<CheckIn | null>(null);
@@ -49,6 +50,7 @@ const Scan: React.FC = () => {
     //i don't useState because it not work with qrscanner
     const enable = localStorage.getItem('enable') === 'true';
     if (!enable) return;
+    localStorage.setItem('enable', 'false');
 
     const userId = scanRawData.text;
     const newCheckInData: CheckIn | null = await createCheckIn(
@@ -57,10 +59,8 @@ const Scan: React.FC = () => {
       event
     );
 
-    localStorage.setItem('enable', 'false');
-
     if (newCheckInData) {
-      /*  if (newCheckInData.checkIn.isDuplicate) {
+      if (newCheckInData.checkIn.isDuplicate) {
         const date = dayjs(newCheckInData.checkIn.timestamp);
         setStatus('error');
         setError(
@@ -73,7 +73,7 @@ const Scan: React.FC = () => {
         setErrorTopic('Already taken!');
         setTaken(true);
         return;
-      } */
+      }
 
       setCheckInData(newCheckInData);
       setStatus('success');
