@@ -1,7 +1,6 @@
 'use client';
 import modalStyles from '@/components/rpkm/Modal/ModalStyle';
 import Base from '@/components/rpkm/freshy-night/Base';
-import Card from '@/components/rpkm/freshy-night/rules/Card';
 import MIC from '@public/rpkm/freshy-night/mic.svg';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
