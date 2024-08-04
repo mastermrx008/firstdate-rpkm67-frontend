@@ -87,6 +87,7 @@ function Page() {
           <div>
             ผู้ใช้สแกน QR-code นี้แล้ว
             <br />
+            <div>{newCheckInData.checkIn.timestamp}</div>
             {`เมื่อเวลา ${date.format('HH:mm')} น.`}
           </div>
         );
