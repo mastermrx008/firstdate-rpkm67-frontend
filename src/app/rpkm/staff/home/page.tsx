@@ -10,8 +10,8 @@ import FailureModal from '@/components/rpkm/staff/home/qrscanner/failureModal';
 import ConfirmationModal from '@/components/rpkm/staff/home/qrscanner/confirmationModal';
 import { CheckIn } from '@/types/checkIn';
 import { FRESHYNIGHT_EVENT, RPKM_DAY_1, RPKM_DAY_2 } from '@/utils/date';
-import dayjs from 'dayjs';
 import StudentCodeInput from '@/components/rpkm/staff/home/qrscanner/StudentCodeInput';
+import moment from 'moment';
 
 function Page() {
   const [eventText, setEventText] = useState<string>('');
@@ -81,7 +81,7 @@ function Page() {
 
     if (newCheckInData) {
       if (newCheckInData.checkIn.isDuplicate) {
-        const date = dayjs(newCheckInData.checkIn.timestamp);
+        const date = moment(newCheckInData.checkIn.timestamp);
         setStatus('error');
         setError(
           <div>
