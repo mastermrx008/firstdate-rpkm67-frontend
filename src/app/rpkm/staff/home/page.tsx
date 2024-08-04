@@ -11,7 +11,7 @@ import ConfirmationModal from '@/components/rpkm/staff/home/qrscanner/confirmati
 import { CheckIn } from '@/types/checkIn';
 import { FRESHYNIGHT_EVENT, RPKM_DAY_1, RPKM_DAY_2 } from '@/utils/date';
 import StudentCodeInput from '@/components/rpkm/staff/home/qrscanner/StudentCodeInput';
-import moment from 'moment';
+// import moment from 'moment';
 
 function Page() {
   const [eventText, setEventText] = useState<string>('');
@@ -81,14 +81,18 @@ function Page() {
 
     if (newCheckInData) {
       if (newCheckInData.checkIn.isDuplicate) {
-        const date = moment(newCheckInData.checkIn.timestamp);
+        // const date = moment(newCheckInData.checkIn.timestamp);
+        let time = newCheckInData.checkIn.timestamp.split(' ')[1];
+        time =
+          ((parseInt(time.split(':')[0]) + 7) % 24) + ':' + time.split(':')[1];
+
         setStatus('error');
         setError(
           <div>
             ผู้ใช้สแกน QR-code นี้แล้ว
             <br />
-            <div>{newCheckInData.checkIn.timestamp}</div>
-            {`เมื่อเวลา ${date.format('HH:mm')} น.`}
+            {/* {`เมื่อเวลา ${date.format('HH:mm')} น.`} */}
+            {`เมื่อเวลา ${time} น.`}
           </div>
         );
         setErrorTopic('Already taken!');
