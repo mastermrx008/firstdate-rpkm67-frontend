@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Html5Qrcode } from 'html5-qrcode';
-
+import './style.css';
 interface ScanProps {
   sendCheckInRequest: (
     mode: 'userId' | 'studentId',
